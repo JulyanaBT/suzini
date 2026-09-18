@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#18b8ff"
+  >
+
+  <title>
+    Tirage | BT250 Suzini — Double Mixte
+  </title>
+
+
+  <!-- CSS commun -->
+
+  <link
+    rel="stylesheet"
+    href="assets/css/style.css"
+  >
+
+
+  <style>
+
+    /* ========================================
+       PAGE TIRAGE
+    ======================================== */
+
+    main{
+      padding-top:0;
+      padding-bottom:24px;
+    }
+
+    .section{
+      margin-top:10px;
+    }
+
+    .section:first-child{
+      margin-top:0;
+    }
+
+    .compact-panel{
+      padding:12px;
+      border-radius:22px;
+    }
+
+
+    /* ========================================
+       HERO
+    ======================================== */
+
+    .hero-card{
+      padding:16px 14px;
+
+      border-radius:0 0 22px 22px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--pink),
+          var(--blue-dark)
+        );
+
+      color:#fff;
+
+      box-shadow:
+        var(--shadow-soft);
+
+      text-align:center;
+    }
+
+    .hero-title{
+      margin:0;
+
+      font-size:28px;
+      line-height:1;
+      font-weight:1000;
+
+      letter-spacing:-.04em;
+    }
+
+    .hero-text{
+      margin:8px 0 0;
+
+      font-size:14px;
+      line-height:1.35;
+      font-weight:900;
+    }
+
+
+    /* ========================================
+       ÉTAT
+    ======================================== */
+
+    .status-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+    }
+
+    .status-item{
+      padding:10px 6px;
+
+      border-radius:16px;
+
+      background:#fff;
+
+      text-align:center;
+
+      box-shadow:
+        0 6px 14px rgba(16,24,40,.08);
+    }
+
+    .status-item strong{
+      display:block;
+
+      color:var(--blue-dark);
+
+      font-size:22px;
+      line-height:1;
+      font-weight:1000;
+    }
+
+    .status-item span{
+      display:block;
+
+      margin-top:4px;
+
+      color:var(--muted);
+
+      font-size:10px;
+      font-weight:1000;
+      text-transform:uppercase;
+    }
+
+
+    /* ========================================
+       TIRAGE
+    ======================================== */
+
+    .draw-card{
+      display:grid;
+      gap:8px;
+
+      padding:14px;
+
+      border-radius:18px;
+
+      background:#fff;
+      color:var(--text);
+
+      box-shadow:
+        0 8px 18px rgba(16,24,40,.10);
+
+      text-align:center;
+    }
+
+    .draw-title{
+      color:var(--blue-dark);
+
+      font-size:22px;
+      font-weight:1000;
+      line-height:1;
+    }
+
+    .draw-date{
+      color:var(--pink);
+
+      font-size:28px;
+      font-weight:1000;
+      line-height:1;
+    }
+
+    .draw-text{
+      color:var(--muted);
+
+      font-size:14px;
+      font-weight:900;
+      line-height:1.35;
+    }
+
+
+    /* ========================================
+       TIMELINE
+    ======================================== */
+
+    .timeline{
+      display:grid;
+      gap:8px;
+    }
+
+    .timeline-item{
+      min-height:44px;
+
+      display:flex;
+      align-items:center;
+      gap:10px;
+
+      padding:10px 12px;
+
+      border-radius:16px;
+
+      background:#fff;
+      color:var(--text);
+
+      font-size:14px;
+      font-weight:1000;
+
+      box-shadow:
+        0 6px 14px rgba(16,24,40,.08);
+    }
+
+
+    /* ========================================
+       ACTIONS
+    ======================================== */
+
+    .action-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+
+    .action-btn{
+      min-height:44px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      padding:10px 12px;
+
+      border-radius:16px;
+
+      background:var(--blue-dark);
+      color:#fff;
+
+      font-size:14px;
+      font-weight:1000;
+
+      text-align:center;
+      text-decoration:none;
+    }
+
+    .action-btn.primary{
+      background:
+        linear-gradient(
+          180deg,
+          var(--yellow),
+          #f3b800
+        );
+
+      color:var(--text);
+    }
+
+
+    /* ========================================
+       MESSAGE
+    ======================================== */
+
+    .empty{
+      padding:12px;
+
+      border-radius:16px;
+
+      background:#fff;
+      color:var(--muted);
+
+      font-size:14px;
+      font-weight:900;
+      text-align:center;
+    }
+
+
+    .hidden{
+      display:none !important;
+    }
+
+  </style>
+
+</head>
+
+
+<body
+  data-page="tirage"
+  data-title="BT250 Suzini — Double Mixte"
+  data-date="02 octobre 2026"
+>
+
+
+<div id="siteHeader"></div>
+
+
+<main class="container">
+
+
+  <!-- ======================================
+       HERO
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="hero-card">
+
+      <h1 class="hero-title">
+        🎲 Tirage au sort
+      </h1>
+
+      <p
+        class="hero-text"
+        id="heroText"
+      >
+        Les poules et les rencontres apparaîtront
+        dès publication par l’organisation.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       ÉTAT
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+      <div class="status-grid">
+
+
+        <div class="status-item">
+
+          <strong>
+            <span id="countTeams">0</span>/12
+          </strong>
+
+          <span>
+            Équipes
+          </span>
+
+        </div>
+
+
+        <div class="status-item">
+
+          <strong id="drawIcon">
+            ⏳
+          </strong>
+
+          <span>
+            Tirage
+          </span>
+
+        </div>
+
+
+        <div class="status-item">
+
+          <strong id="drawStatus">
+            Attente
+          </strong>
+
+          <span>
+            Statut
+          </span>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       TIRAGE À VENIR
+  ======================================= -->
+
+  <section
+    class="section"
+    id="placeholderSection"
+  >
+
+    <div class="panel compact-panel">
+
+      <div class="draw-card">
+
+        <div class="draw-title">
+          Tirage prévu
+        </div>
+
+        <div class="draw-date">
+          02/10 — 17h30
+        </div>
+
+        <div class="draw-text">
+          Le tirage sera effectué après
+          la clôture des inscriptions.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       TIRAGE PUBLIÉ
+  ======================================= -->
+
+  <section
+    class="section hidden"
+    id="publishedSection"
+  >
+
+    <div class="panel compact-panel">
+
+      <div class="empty">
+        ✅ Tirage publié.
+        Les poules seront affichées ici dès que
+        le module de tirage sera activé.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       DÉROULEMENT
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          📌 Clôture des inscriptions
+        </div>
+
+        <div class="timeline-item">
+          🎲 Tirage des poules
+        </div>
+
+        <div class="timeline-item">
+          📋 Publication de la programmation
+        </div>
+
+        <div class="timeline-item">
+          🏆 Début du tournoi
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       NAVIGATION
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+      <div class="action-grid">
+
+        <a
+          class="action-btn primary"
+          href="inscriptions.html"
+        >
+          📝 Inscriptions
+        </a>
+
+        <a
+          class="action-btn"
+          href="participants.html"
+        >
+          👥 Équipes
+        </a>
+
+        <a
+          class="action-btn"
+          href="programmation.html"
+        >
+          📋 Programmation
+        </a>
+
+        <a
+          class="action-btn"
+          href="classement.html"
+        >
+          🏆 Classement
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<!-- ======================================
+     HEADER
+======================================= -->
+
+<script
+  type="module"
+  src="assets/js/header-tournament.js"
+></script>
+
+
+<!-- ======================================
+     FIRESTORE
+======================================= -->
+
+<script type="module">
+
+  import {
+    db
+  } from "./assets/js/firebase.js";
+
+
+  import {
+    collection,
+    doc,
+    onSnapshot
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+
+  /* ========================================
+     CONFIGURATION
+  ======================================== */
+
+  const EVENT_ID =
+    "suzini-bt250-mixte-2026-10-02";
+
+
+  const MAX_TEAMS =
+    12;
+
+
+  /* ========================================
+     ÉLÉMENTS
+  ======================================== */
+
+  const countTeams =
+    document.getElementById(
+      "countTeams"
+    );
+
+
+  const drawIcon =
+    document.getElementById(
+      "drawIcon"
+    );
+
+
+  const drawStatus =
+    document.getElementById(
+      "drawStatus"
+    );
+
+
+  const heroText =
+    document.getElementById(
+      "heroText"
+    );
+
+
+  const placeholderSection =
+    document.getElementById(
+      "placeholderSection"
+    );
+
+
+  const publishedSection =
+    document.getElementById(
+      "publishedSection"
+    );
+
+
+  /* ========================================
+     FIRESTORE
+  ======================================== */
+
+  const teamsRef =
+    collection(
+      db,
+      "events",
+      EVENT_ID,
+      "teams"
+    );
+
+
+  const tirageRef =
+    doc(
+      db,
+      "events",
+      EVENT_ID,
+      "config",
+      "tirage"
+    );
+
+
+  /* ========================================
+     ÉQUIPES
+  ======================================== */
+
+  function isVisibleTeam(team){
+
+    return (
+      team.status !== "deleted" &&
+      team.status !== "cancelled" &&
+      team.status !== "refused" &&
+      team.stby !== true &&
+      team.list !== "wait"
+    );
+
+  }
+
+
+  onSnapshot(
+
+    teamsRef,
+
+    snapshot => {
+
+      const teams =
+        snapshot.docs
+
+          .map(
+            documentSnapshot =>
+              documentSnapshot.data()
+          )
+
+          .filter(
+            isVisibleTeam
+          );
+
+
+      countTeams.textContent =
+        String(
+          teams.length
+        );
+
+    },
+
+
+    error => {
+
+      console.error(error);
+
+
+      countTeams.textContent =
+        "—";
+
+    }
+
+  );
+
+
+  /* ========================================
+     ÉTAT DU TIRAGE
+  ======================================== */
+
+  onSnapshot(
+
+    tirageRef,
+
+    snapshot => {
+
+      /*
+       * Aucun document au départ :
+       * le tirage est simplement en attente.
+       */
+
+      const data =
+        snapshot.exists()
+          ? snapshot.data()
+          : {};
+
+
+      const published =
+        data.publicVisible === true ||
+        data.published === true;
+
+
+      if(published){
+
+        drawIcon.textContent =
+          "✅";
+
+
+        drawStatus.textContent =
+          "Publié";
+
+
+        heroText.textContent =
+          "Le tirage au sort du tournoi est disponible.";
+
+
+        placeholderSection.classList.add(
+          "hidden"
+        );
+
+
+        publishedSection.classList.remove(
+          "hidden"
+        );
+
+      }
+
+      else{
+
+        drawIcon.textContent =
+          "⏳";
+
+
+        drawStatus.textContent =
+          "Attente";
+
+
+        heroText.textContent =
+          "Les poules et les rencontres apparaîtront dès publication par l’organisation.";
+
+
+        placeholderSection.classList.remove(
+          "hidden"
+        );
+
+
+        publishedSection.classList.add(
+          "hidden"
+        );
+
+      }
+
+    },
+
+
+    error => {
+
+      console.error(error);
+
+
+      drawIcon.textContent =
+        "⏳";
+
+
+      drawStatus.textContent =
+        "Attente";
+
+
+      placeholderSection.classList.remove(
+        "hidden"
+      );
+
+
+      publishedSection.classList.add(
+        "hidden"
+      );
+
+    }
+
+  );
+
+</script>
+
+
+</body>
+
+</html>
