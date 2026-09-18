@@ -1,82 +1,80 @@
 // assets/js/header-tournament.js
 
-import { auth } from "./firebase.js";
-import { getRoleByUid } from "./session.js";
 
-
-/* ==============================
-   CONFIGURATION PAGE
-============================== */
+/* ========================================
+   HEADER TOURNOI
+======================================== */
 
 const header =
-  document.getElementById("siteHeader");
+  document.getElementById(
+    "siteHeader"
+  );
 
-const page =
-  document.body.dataset.page || "accueil";
-
-const title =
-  document.body.dataset.title || "BT250 Suzini";
-
-const date =
-  document.body.dataset.date || "";
-
-
-/* ==============================
-   NAVIGATION PUBLIQUE
-============================== */
-
-const navItems = [
-
-  {
-    key: "accueil",
-    label: "Accueil",
-    href: "index.html",
-    icon: "🏠"
-  },
-
-  {
-    key: "inscription",
-    label: "Inscription",
-    href: "inscriptions.html",
-    icon: "📝"
-  },
-
-  {
-    key: "participants",
-    label: "Équipes",
-    href: "participants.html",
-    icon: "👥"
-  },
-
-  {
-    key: "programmation",
-    label: "Programmation",
-    href: "programmation.html",
-    icon: "📋"
-  },
-
-  {
-    key: "classement",
-    label: "Classement",
-    href: "classement.html",
-    icon: "🏆"
-  },
-
-  {
-    key: "tirage",
-    label: "Tirage",
-    href: "tirage.html",
-    icon: "🎲"
-  }
-
-];
-
-
-/* ==============================
-   CRÉATION DU HEADER
-============================== */
 
 if(header){
+
+  const currentPage =
+    document.body.dataset.page || "";
+
+
+  const tournamentTitle =
+    document.body.dataset.title ||
+    "BT250 Suzini — Double Mixte";
+
+
+  const tournamentDate =
+    document.body.dataset.date ||
+    "02 octobre 2026";
+
+
+  /* ======================================
+     NAVIGATION
+  ====================================== */
+
+  const navigation = [
+
+    {
+      id: "accueil",
+      label: "Accueil",
+      href: "index.html"
+    },
+
+    {
+      id: "inscription",
+      label: "Inscription",
+      href: "inscriptions.html"
+    },
+
+    {
+      id: "participants",
+      label: "Équipes",
+      href: "participants.html"
+    },
+
+    {
+      id: "programmation",
+      label: "Programmation",
+      href: "programmation.html"
+    },
+
+    {
+      id: "classement",
+      label: "Classement",
+      href: "classement.html"
+    },
+
+    {
+      id: "tirage",
+      label: "Tirage",
+      href: "tirage.html"
+    }
+
+  ];
+
+
+  /* ======================================
+     CONSTRUCTION DU HEADER
+  ====================================== */
 
   header.innerHTML = `
 
@@ -85,15 +83,15 @@ if(header){
       <div class="tournament-header-main">
 
 
-        <!-- LOGO SUZINI -->
+        <!-- SUZINI -->
 
         <a
           href="index.html"
+          class="tournament-header-logo"
           aria-label="Accueil du tournoi"
         >
 
           <img
-            class="tournament-header-logo"
             src="assets/img/blason-suzini.png"
             alt="TC Suzini"
           >
@@ -106,28 +104,27 @@ if(header){
         <div class="tournament-header-title">
 
           <div class="tournament-header-name">
-            ${title}
+            ${tournamentTitle}
           </div>
 
           <div class="tournament-header-date">
-            ${date}
+            ${tournamentDate}
           </div>
 
         </div>
 
 
-        <!-- LOGO JUL'YANA -->
+        <!-- JUL'YANA / ADMIN -->
 
         <a
-          href="#"
-          id="julyanaSwitch"
-          aria-label="Accéder à l'administration"
+          href="admin/index.html"
+          class="tournament-header-logo"
+          aria-label="Administration"
         >
 
           <img
-            class="tournament-header-logo"
             src="assets/img/logo-julyana-bt.png"
-            alt="Jul'Yana Beach Tennis"
+            alt="Jul’Yana Beach Tennis"
           >
 
         </a>
@@ -140,45 +137,46 @@ if(header){
 
       <div class="tournament-nav-wrap">
 
-        <span
+        <div
           class="tournament-scroll-hint left"
-          id="hintLeft"
+          aria-hidden="true"
         >
           ‹
-        </span>
+        </div>
 
 
         <nav
           class="tournament-nav"
-          id="tournamentNav"
+          aria-label="Navigation du tournoi"
         >
 
-          ${navItems.map(item => `
+          ${navigation
+            .map(item => `
 
-            <a
-              class="${page === item.key ? "active" : ""}"
-              href="${item.href}"
-            >
-
-              ${item.icon}
-
-              <strong>
+              <a
+                href="${item.href}"
+                class="${
+                  item.id === currentPage
+                    ? "active"
+                    : ""
+                }"
+              >
                 ${item.label}
-              </strong>
+              </a>
 
-            </a>
-
-          `).join("")}
+            `)
+            .join("")
+          }
 
         </nav>
 
 
-        <span
+        <div
           class="tournament-scroll-hint right"
-          id="hintRight"
+          aria-hidden="true"
         >
           ›
-        </span>
+        </div>
 
       </div>
 
@@ -186,275 +184,106 @@ if(header){
 
   `;
 
-}
 
+  /* ======================================
+     NAVIGATION HORIZONTALE
+  ====================================== */
 
-/* ==============================
-   ÉLÉMENTS
-============================== */
-
-const nav =
-  document.getElementById("tournamentNav");
-
-const left =
-  document.getElementById("hintLeft");
-
-const right =
-  document.getElementById("hintRight");
-
-const julyanaSwitch =
-  document.getElementById("julyanaSwitch");
-
-
-/* ==============================
-   ACCÈS ADMIN
-============================== */
-
-async function canSwitchToAdmin(){
-
-  if(!auth.currentUser){
-    return false;
-  }
-
-  const role =
-    await getRoleByUid(
-      auth.currentUser.uid
+  const nav =
+    header.querySelector(
+      ".tournament-nav"
     );
 
-  return [
-    "admin",
-    "jat",
-    "arbitre"
-  ].includes(role);
 
-}
+  const leftHint =
+    header.querySelector(
+      ".tournament-scroll-hint.left"
+    );
 
 
-/* ==============================
-   PAGE ADMIN CORRESPONDANTE
-============================== */
-
-function adminTargetForPage(){
-
-  const adminPages = {
-
-    accueil:
-      "index.html",
-
-    inscription:
-      "inscriptions.html",
-
-    participants:
-      "participants.html",
-
-    programmation:
-      "programmation.html",
-
-    classement:
-      "classement.html",
-
-    tirage:
-      "tirage.html"
-
-  };
+  const rightHint =
+    header.querySelector(
+      ".tournament-scroll-hint.right"
+    );
 
 
-  const target =
-    adminPages[page] || "index.html";
+  function updateScrollHints(){
+
+    if(!nav){
+      return;
+    }
 
 
-  return `admin/${target}`;
-
-}
-
-
-/* ==============================
-   BASCULE JUL'YANA → ADMIN
-============================== */
-
-if(julyanaSwitch){
-
-  julyanaSwitch.addEventListener(
-    "click",
-    async (event) => {
-
-      event.preventDefault();
+    const maxScroll =
+      nav.scrollWidth -
+      nav.clientWidth;
 
 
-      const allowed =
-        await canSwitchToAdmin();
+    if(leftHint){
 
-
-      if(!allowed){
-        return;
-      }
-
-
-      window.location.href =
-        adminTargetForPage();
+      leftHint.style.opacity =
+        nav.scrollLeft > 8
+          ? "1"
+          : "0";
 
     }
-  );
-
-}
 
 
-/* ==============================
-   INDICATEURS DE DÉFILEMENT
-============================== */
+    if(rightHint){
 
-function updateHints(){
+      rightHint.style.opacity =
+        nav.scrollLeft <
+        maxScroll - 8
+          ? "1"
+          : "0";
 
-  if(!nav || !left || !right){
-    return;
-  }
-
-
-  const max =
-    nav.scrollWidth
-    - nav.clientWidth;
-
-
-  if(max < 5){
-
-    left.style.opacity = 0;
-    right.style.opacity = 0;
-
-    return;
+    }
 
   }
 
 
-  left.style.opacity =
-    nav.scrollLeft > 5
-      ? 1
-      : 0;
+  if(nav){
+
+    nav.addEventListener(
+      "scroll",
+      updateScrollHints,
+      {
+        passive: true
+      }
+    );
 
 
-  right.style.opacity =
-    nav.scrollLeft < max - 5
-      ? 1
-      : 0;
-
-}
+    window.addEventListener(
+      "resize",
+      updateScrollHints
+    );
 
 
-/* ==============================
-   CENTRER L'ONGLET ACTIF
-============================== */
+    requestAnimationFrame(
+      () => {
 
-function centerActiveTab(){
-
-  if(!nav){
-    return;
-  }
+        const active =
+          nav.querySelector(
+            ".active"
+          );
 
 
-  const active =
-    nav.querySelector("a.active");
+        if(active){
+
+          active.scrollIntoView({
+            behavior: "auto",
+            block: "nearest",
+            inline: "center"
+          });
+
+        }
 
 
-  if(!active){
-    return;
-  }
+        updateScrollHints();
 
-
-  const target =
-
-    active.offsetLeft
-
-    - (nav.clientWidth / 2)
-
-    + (active.clientWidth / 2);
-
-
-  const max =
-    nav.scrollWidth
-    - nav.clientWidth;
-
-
-  nav.scrollTo({
-
-    left:
-      Math.max(
-        0,
-        Math.min(target, max)
-      ),
-
-    behavior: "instant"
-
-  });
-
-}
-
-
-/* ==============================
-   RAFRAÎCHISSEMENT NAV
-============================== */
-
-function refreshNav(){
-
-  centerActiveTab();
-
-  updateHints();
-
-}
-
-
-/* ==============================
-   ÉVÉNEMENTS
-============================== */
-
-if(nav){
-
-  nav.addEventListener(
-    "scroll",
-    updateHints
-  );
-
-}
-
-
-window.addEventListener(
-  "resize",
-  refreshNav
-);
-
-
-window.addEventListener(
-  "orientationchange",
-  refreshNav
-);
-
-
-window.addEventListener(
-  "load",
-  () => {
-
-    refreshNav();
-
-    setTimeout(
-      refreshNav,
-      150
+      }
     );
 
   }
-);
 
-
-setTimeout(
-  refreshNav,
-  50
-);
-
-
-setTimeout(
-  refreshNav,
-  150
-);
-
-
-setTimeout(
-  refreshNav,
-  400
-);
+}
