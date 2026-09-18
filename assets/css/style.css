@@ -1,0 +1,20 @@
+/* =========================================================
+   SUZINI — APPLICATION TOURNOIS
+   Feuille de style principale
+========================================================= */
+
+
+/* ==============================
+   BASE
+============================== */
+
+@import url("variables.css");
+@import url("base.css");
+
+
+/* ==============================
+   COMPOSANTS
+============================== */
+
+@import url("header-tournament.css");
+@import url("cards.css");
