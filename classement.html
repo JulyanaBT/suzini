@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#18b8ff"
+  >
+
+  <title>
+    Classement | BT250 Suzini — Double Mixte
+  </title>
+
+
+  <!-- CSS commun -->
+
+  <link
+    rel="stylesheet"
+    href="assets/css/style.css"
+  >
+
+
+  <style>
+
+    /* ========================================
+       PAGE CLASSEMENT
+    ======================================== */
+
+    main{
+      padding-top:0;
+      padding-bottom:24px;
+    }
+
+    .section{
+      margin-top:10px;
+    }
+
+    .section:first-child{
+      margin-top:0;
+    }
+
+    .compact-panel{
+      padding:12px;
+      border-radius:22px;
+    }
+
+
+    /* ========================================
+       HERO
+    ======================================== */
+
+    .hero-card{
+      padding:16px 14px;
+
+      border-radius:0 0 22px 22px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--pink),
+          var(--blue-dark)
+        );
+
+      color:#fff;
+
+      box-shadow:
+        var(--shadow-soft);
+
+      text-align:center;
+    }
+
+    .hero-title{
+      margin:0;
+
+      font-size:28px;
+      line-height:1;
+      font-weight:1000;
+
+      letter-spacing:-.04em;
+    }
+
+    .hero-text{
+      margin:8px 0 0;
+
+      font-size:14px;
+      line-height:1.35;
+      font-weight:900;
+    }
+
+
+    /* ========================================
+       ÉTAT DU TOURNOI
+    ======================================== */
+
+    .status-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+    }
+
+    .status-item{
+      padding:10px 6px;
+
+      border-radius:16px;
+
+      background:#fff;
+
+      text-align:center;
+
+      box-shadow:
+        0 6px 14px rgba(16,24,40,.08);
+    }
+
+    .status-item strong{
+      display:block;
+
+      color:var(--blue-dark);
+
+      font-size:22px;
+      line-height:1;
+      font-weight:1000;
+    }
+
+    .status-item span{
+      display:block;
+
+      margin-top:4px;
+
+      color:var(--muted);
+
+      font-size:10px;
+      font-weight:1000;
+      text-transform:uppercase;
+    }
+
+
+    /* ========================================
+       CLASSEMENT
+    ======================================== */
+
+    .ranking-card{
+      display:grid;
+      gap:8px;
+
+      padding:14px;
+
+      border-radius:18px;
+
+      background:#fff;
+      color:var(--text);
+
+      box-shadow:
+        0 8px 18px rgba(16,24,40,.10);
+
+      text-align:center;
+    }
+
+    .ranking-title{
+      color:var(--blue-dark);
+
+      font-size:22px;
+      font-weight:1000;
+      line-height:1;
+    }
+
+    .ranking-text{
+      color:var(--muted);
+
+      font-size:14px;
+      font-weight:900;
+      line-height:1.35;
+    }
+
+
+    /* ========================================
+       RÈGLES
+    ======================================== */
+
+    .rules-list{
+      display:grid;
+      gap:8px;
+    }
+
+    .rule-item{
+      min-height:42px;
+
+      display:flex;
+      align-items:center;
+      gap:10px;
+
+      padding:10px 12px;
+
+      border-radius:16px;
+
+      background:#fff;
+      color:var(--text);
+
+      font-size:14px;
+      font-weight:1000;
+
+      box-shadow:
+        0 6px 14px rgba(16,24,40,.08);
+    }
+
+
+    /* ========================================
+       ACTIONS
+    ======================================== */
+
+    .action-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+
+    .action-btn{
+      min-height:44px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      padding:10px 12px;
+
+      border-radius:16px;
+
+      background:var(--blue-dark);
+      color:#fff;
+
+      font-size:14px;
+      font-weight:1000;
+
+      text-align:center;
+      text-decoration:none;
+    }
+
+    .action-btn.primary{
+      background:
+        linear-gradient(
+          180deg,
+          var(--yellow),
+          #f3b800
+        );
+
+      color:var(--text);
+    }
+
+
+    /* ========================================
+       MESSAGE
+    ======================================== */
+
+    .empty{
+      padding:12px;
+
+      border-radius:16px;
+
+      background:#fff;
+      color:var(--muted);
+
+      font-size:14px;
+      font-weight:900;
+      text-align:center;
+    }
+
+  </style>
+
+</head>
+
+
+<body
+  data-page="classement"
+  data-title="BT250 Suzini — Double Mixte"
+  data-date="02 octobre 2026"
+>
+
+
+<div id="siteHeader"></div>
+
+
+<main class="container">
+
+
+  <!-- ======================================
+       HERO
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="hero-card">
+
+      <h1 class="hero-title">
+        🏆 Classement
+      </h1>
+
+      <p class="hero-text">
+        Les classements seront publiés au fur
+        et à mesure de l’avancement du tournoi.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       ÉTAT
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+      <div class="status-grid">
+
+
+        <div class="status-item">
+
+          <strong>
+            <span id="countTeams">0</span>/12
+          </strong>
+
+          <span>
+            Équipes
+          </span>
+
+        </div>
+
+
+        <div class="status-item">
+
+          <strong id="phaseIcon">
+            ⏳
+          </strong>
+
+          <span id="phaseLabel">
+            Poules
+          </span>
+
+        </div>
+
+
+        <div class="status-item">
+
+          <strong id="rankingStatus">
+            Attente
+          </strong>
+
+          <span>
+            Statut
+          </span>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       CLASSEMENT NON PUBLIÉ
+  ======================================= -->
+
+  <section
+    class="section"
+    id="placeholderSection"
+  >
+
+    <div class="panel compact-panel">
+
+      <div class="ranking-card">
+
+        <div class="ranking-title">
+          Classement à venir
+        </div>
+
+        <div class="ranking-text">
+          Les résultats seront disponibles
+          après publication par l’organisation.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       CLASSEMENT PUBLIÉ
+  ======================================= -->
+
+  <section
+    class="section"
+    id="publishedSection"
+    style="display:none;"
+  >
+
+    <div class="panel compact-panel">
+
+      <div class="empty">
+        ✅ Classement publié.
+        Les résultats détaillés seront affichés ici
+        dès que le module classement sera activé.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       PRINCIPES DE CLASSEMENT
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+      <div class="rules-list">
+
+        <div class="rule-item">
+          ✅ Nombre de victoires
+        </div>
+
+        <div class="rule-item">
+          📊 Différence de jeux / points
+        </div>
+
+        <div class="rule-item">
+          🤝 Confrontation directe si nécessaire
+        </div>
+
+        <div class="rule-item">
+          🏆 Classement final après les phases finales
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       NAVIGATION
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+      <div class="action-grid">
+
+        <a
+          class="action-btn primary"
+          href="participants.html"
+        >
+          👥 Équipes
+        </a>
+
+        <a
+          class="action-btn"
+          href="programmation.html"
+        >
+          📋 Programmation
+        </a>
+
+        <a
+          class="action-btn"
+          href="tirage.html"
+        >
+          🎲 Tirage
+        </a>
+
+        <a
+          class="action-btn"
+          href="index.html"
+        >
+          🏠 Accueil
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<!-- ======================================
+     HEADER
+======================================= -->
+
+<script
+  type="module"
+  src="assets/js/header-tournament.js"
+></script>
+
+
+<!-- ======================================
+     FIRESTORE
+======================================= -->
+
+<script type="module">
+
+  import {
+    db
+  } from "./assets/js/firebase.js";
+
+
+  import {
+    collection,
+    doc,
+    onSnapshot
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+
+  /* ========================================
+     CONFIGURATION
+  ======================================== */
+
+  const EVENT_ID =
+    "suzini-bt250-mixte-2026-10-02";
+
+
+  const MAX_TEAMS =
+    12;
+
+
+  /* ========================================
+     ÉLÉMENTS
+  ======================================== */
+
+  const countTeams =
+    document.getElementById(
+      "countTeams"
+    );
+
+
+  const phaseIcon =
+    document.getElementById(
+      "phaseIcon"
+    );
+
+
+  const phaseLabel =
+    document.getElementById(
+      "phaseLabel"
+    );
+
+
+  const rankingStatus =
+    document.getElementById(
+      "rankingStatus"
+    );
+
+
+  const placeholderSection =
+    document.getElementById(
+      "placeholderSection"
+    );
+
+
+  const publishedSection =
+    document.getElementById(
+      "publishedSection"
+    );
+
+
+  /* ========================================
+     FIRESTORE
+  ======================================== */
+
+  const teamsRef =
+    collection(
+      db,
+      "events",
+      EVENT_ID,
+      "teams"
+    );
+
+
+  const classementRef =
+    doc(
+      db,
+      "events",
+      EVENT_ID,
+      "config",
+      "classement"
+    );
+
+
+  /* ========================================
+     ÉQUIPES
+  ======================================== */
+
+  onSnapshot(
+
+    teamsRef,
+
+    snapshot => {
+
+      const teams =
+        snapshot.docs
+
+          .map(
+            documentSnapshot =>
+              documentSnapshot.data()
+          )
+
+          .filter(
+            team =>
+              team.status !== "deleted" &&
+              team.status !== "cancelled" &&
+              team.status !== "refused" &&
+              team.stby !== true &&
+              team.list !== "wait"
+          );
+
+
+      countTeams.textContent =
+        String(
+          teams.length
+        );
+
+    },
+
+
+    error => {
+
+      console.error(error);
+
+
+      countTeams.textContent =
+        "—";
+
+    }
+
+  );
+
+
+  /* ========================================
+     ÉTAT DU CLASSEMENT
+  ======================================== */
+
+  onSnapshot(
+
+    classementRef,
+
+    snapshot => {
+
+      /*
+       * Aucun document au départ :
+       * classement non publié.
+       */
+
+      const data =
+        snapshot.exists()
+          ? snapshot.data()
+          : {};
+
+
+      const published =
+        data.publicVisible === true ||
+        data.published === true;
+
+
+      const phase =
+        data.phase ||
+        "Poules";
+
+
+      phaseLabel.textContent =
+        phase;
+
+
+      if(published){
+
+        phaseIcon.textContent =
+          "✅";
+
+
+        rankingStatus.textContent =
+          "Publié";
+
+
+        placeholderSection.style.display =
+          "none";
+
+
+        publishedSection.style.display =
+          "block";
+
+      }
+
+      else{
+
+        phaseIcon.textContent =
+          "⏳";
+
+
+        rankingStatus.textContent =
+          "Attente";
+
+
+        placeholderSection.style.display =
+          "block";
+
+
+        publishedSection.style.display =
+          "none";
+
+      }
+
+    },
+
+
+    error => {
+
+      console.error(error);
+
+
+      phaseIcon.textContent =
+        "⏳";
+
+
+      phaseLabel.textContent =
+        "Poules";
+
+
+      rankingStatus.textContent =
+        "Attente";
+
+
+      placeholderSection.style.display =
+        "block";
+
+
+      publishedSection.style.display =
+        "none";
+
+    }
+
+  );
+
+</script>
+
+
+</body>
+
+</html>
