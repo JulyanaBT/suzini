@@ -1,0 +1,2182 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#101010"
+  >
+
+  <title>
+    Admin Équipes | BT250 Suzini
+  </title>
+
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  >
+
+
+  <style>
+
+    main{
+      padding-top:14px;
+      padding-bottom:28px;
+    }
+
+    .section{
+      margin-top:10px;
+    }
+
+    .section:first-child{
+      margin-top:0;
+    }
+
+    .compact-panel{
+      padding:12px;
+      border-radius:22px;
+    }
+
+
+    /* ========================================
+       EN-TÊTE
+    ======================================== */
+
+    .admin-panel-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+
+      margin-bottom:12px;
+    }
+
+    .admin-title{
+      margin:0;
+
+      color:var(--blue-dark);
+
+      font-size:24px;
+      line-height:1;
+      font-weight:1000;
+
+      letter-spacing:-.04em;
+    }
+
+    .admin-text{
+      margin:6px 0 0;
+
+      color:var(--muted);
+
+      font-size:13px;
+      font-weight:850;
+      line-height:1.35;
+    }
+
+    .admin-pill{
+      flex-shrink:0;
+
+      padding:7px 10px;
+
+      border-radius:999px;
+
+      background:var(--yellow);
+      color:var(--text);
+
+      font-size:11px;
+      font-weight:1000;
+    }
+
+
+    /* ========================================
+       STATUT
+    ======================================== */
+
+    .admin-status{
+      padding:10px 12px;
+
+      border-radius:16px;
+
+      background:#fff;
+      color:var(--text);
+
+      font-size:13px;
+      font-weight:900;
+      line-height:1.35;
+
+      box-shadow:
+        0 6px 14px rgba(16,24,40,.08);
+    }
+
+
+    /* ========================================
+       RÉSUMÉ
+    ======================================== */
+
+    .summary-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+    }
+
+    .summary-box{
+      padding:10px 6px;
+
+      border-radius:16px;
+
+      background:#fff;
+      color:var(--blue-dark);
+
+      text-align:center;
+      font-weight:1000;
+    }
+
+    .summary-box strong{
+      display:block;
+
+      font-size:22px;
+      line-height:1;
+    }
+
+    .summary-box span{
+      display:block;
+
+      margin-top:4px;
+
+      color:var(--muted);
+
+      font-size:9px;
+      text-transform:uppercase;
+    }
+
+
+    /* ========================================
+       ACTIONS GÉNÉRALES
+    ======================================== */
+
+    .actions-row{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+
+      margin-top:10px;
+    }
+
+    .btn{
+      min-height:40px;
+
+      border:0;
+      border-radius:14px;
+
+      padding:9px 11px;
+
+      background:var(--blue-dark);
+      color:#fff;
+
+      font-family:inherit;
+      font-size:13px;
+      font-weight:1000;
+
+      cursor:pointer;
+    }
+
+    .btn.pink{
+      background:var(--pink);
+    }
+
+    .btn.yellow{
+      background:var(--yellow);
+      color:var(--text);
+    }
+
+
+    /* ========================================
+       LISTE
+    ======================================== */
+
+    .cards-list{
+      display:grid;
+      gap:10px;
+    }
+
+    .item-card{
+      display:grid;
+      gap:8px;
+
+      padding:12px;
+
+      border:
+        1px solid rgba(16,24,40,.08);
+
+      border-radius:18px;
+
+      background:#fff;
+      color:var(--text);
+
+      box-shadow:
+        0 8px 18px rgba(16,24,40,.10);
+    }
+
+    .item-card.deleted{
+      opacity:.55;
+    }
+
+    .item-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+    }
+
+    .item-title{
+      color:var(--blue-dark);
+
+      font-size:19px;
+      font-weight:1000;
+      line-height:1.05;
+    }
+
+    .item-sub{
+      margin-top:4px;
+
+      color:var(--muted);
+
+      font-size:12px;
+      font-weight:900;
+      line-height:1.3;
+    }
+
+
+    /* ========================================
+       PASTILLES
+    ======================================== */
+
+    .status-pill{
+      flex-shrink:0;
+
+      padding:6px 10px;
+
+      border-radius:999px;
+
+      background:#fff7d6;
+      color:var(--text);
+
+      font-size:10px;
+      font-weight:1000;
+
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    .status-pill.confirmed{
+      background:#d9fbe8;
+      color:#087a35;
+    }
+
+    .status-pill.stby{
+      background:#ffeef2;
+      color:#9b1733;
+    }
+
+    .status-pill.wait{
+      background:#f1f5f9;
+      color:#475467;
+    }
+
+    .status-pill.deleted{
+      background:#fee4e2;
+      color:#b42318;
+    }
+
+
+    /* ========================================
+       JOUEURS
+    ======================================== */
+
+    .player-line{
+      min-height:42px;
+
+      padding:9px 10px;
+
+      border-radius:14px;
+
+      background:#f8fafc;
+
+      font-size:13px;
+      font-weight:900;
+      line-height:1.35;
+    }
+
+    .player-line strong{
+      color:var(--blue-dark);
+    }
+
+    .rank-value{
+      display:inline-block;
+
+      margin-left:4px;
+
+      padding:3px 7px;
+
+      border-radius:999px;
+
+      background:var(--yellow);
+      color:var(--text);
+
+      font-size:11px;
+      font-weight:1000;
+    }
+
+
+    /* ========================================
+       DÉTAILS
+    ======================================== */
+
+    details{
+      padding-top:8px;
+
+      border-top:
+        1px solid rgba(16,24,40,.08);
+    }
+
+    details summary{
+      color:var(--blue-dark);
+
+      font-weight:1000;
+
+      cursor:pointer;
+      list-style:none;
+    }
+
+    details summary::-webkit-details-marker{
+      display:none;
+    }
+
+
+    /* ========================================
+       MINI ACTIONS
+    ======================================== */
+
+    .mini-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+
+      margin-top:8px;
+    }
+
+    .mini-btn{
+      border:0;
+      border-radius:999px;
+
+      padding:8px 12px;
+
+      background:var(--pink);
+      color:#fff;
+
+      font-family:inherit;
+      font-size:12px;
+      font-weight:1000;
+
+      cursor:pointer;
+    }
+
+    .mini-btn.green{
+      background:var(--green);
+    }
+
+    .mini-btn.yellow{
+      background:var(--yellow);
+      color:var(--text);
+    }
+
+    .mini-btn.blue{
+      background:var(--blue-dark);
+    }
+
+    .mini-btn.red{
+      background:#9b1c1c;
+    }
+
+    .mini-btn.dark{
+      background:#344054;
+    }
+
+    .mini-btn:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+    }
+
+
+    /* ========================================
+       NAVIGATION
+    ======================================== */
+
+    .nav-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+
+    .nav-link{
+      min-height:44px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      padding:10px;
+
+      border-radius:14px;
+
+      background:#344054;
+      color:#fff;
+
+      font-size:13px;
+      font-weight:1000;
+
+      text-align:center;
+      text-decoration:none;
+    }
+
+    .nav-link.public{
+      background:var(--green);
+    }
+
+
+    @media(min-width:760px){
+
+      .cards-list{
+        grid-template-columns:1fr 1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body data-page="participants">
+
+
+<main class="container">
+
+
+  <!-- ======================================
+       EN-TÊTE / RÉSUMÉ
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+
+      <div class="admin-panel-head">
+
+        <div>
+
+          <h1 class="admin-title">
+            👥 Gestion des équipes
+          </h1>
+
+          <p class="admin-text">
+            BT250 Suzini — Double Mixte<br>
+            02 octobre 2026
+          </p>
+
+        </div>
+
+
+        <div class="admin-pill">
+          12 max
+        </div>
+
+      </div>
+
+
+      <div class="summary-grid">
+
+
+        <div class="summary-box">
+
+          <strong id="countTotal">
+            0
+          </strong>
+
+          <span>
+            Total
+          </span>
+
+        </div>
+
+
+        <div class="summary-box">
+
+          <strong id="countMain">
+            0
+          </strong>
+
+          <span>
+            Liste
+          </span>
+
+        </div>
+
+
+        <div class="summary-box">
+
+          <strong id="countWait">
+            0
+          </strong>
+
+          <span>
+            Attente
+          </span>
+
+        </div>
+
+
+        <div class="summary-box">
+
+          <strong id="countConfirmed">
+            0
+          </strong>
+
+          <span>
+            Confirmées
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="actions-row">
+
+        <button
+          class="btn"
+          id="btnRefresh"
+          type="button"
+        >
+          🔄 Rafraîchir
+        </button>
+
+
+        <button
+          class="btn yellow"
+          id="btnExpand"
+          type="button"
+        >
+          🧩 Développer
+        </button>
+
+
+        <button
+          class="btn pink"
+          id="btnCollapse"
+          type="button"
+        >
+          🧊 Réduire
+        </button>
+
+      </div>
+
+
+      <div
+        class="admin-status"
+        id="statusMsg"
+        style="margin-top:10px;"
+      >
+        Chargement…
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       ÉQUIPES
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+      <div
+        id="cardsList"
+        class="cards-list"
+      >
+
+        <div class="admin-status">
+          Chargement…
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       NAVIGATION
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+      <div class="nav-actions">
+
+        <a
+          class="nav-link"
+          href="index.html"
+        >
+          🎛️ Tableau de bord
+        </a>
+
+
+        <a
+          class="nav-link public"
+          href="../participants.html"
+        >
+          👁️ Vue publique
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<script type="module">
+
+  /* ========================================
+     SESSION ADMIN
+  ======================================== */
+
+  import {
+    requireAdmin
+  } from "../assets/js/admin-session.js";
+
+
+  if(!requireAdmin()){
+
+    throw new Error(
+      "Accès administrateur requis."
+    );
+
+  }
+
+
+  /* ========================================
+     FIREBASE
+  ======================================== */
+
+  import {
+    db
+  } from "../assets/js/firebase.js";
+
+
+  import {
+    collection,
+    doc,
+    onSnapshot,
+    updateDoc,
+    query,
+    orderBy,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+
+  /* ========================================
+     CONFIGURATION
+  ======================================== */
+
+  const EVENT_ID =
+    "suzini-bt250-mixte-2026-10-02";
+
+
+  const MAX_TEAMS =
+    12;
+
+
+  const teamsRef =
+    collection(
+      db,
+      "events",
+      EVENT_ID,
+      "teams"
+    );
+
+
+  /* ========================================
+     ÉLÉMENTS
+  ======================================== */
+
+  const countTotal =
+    document.getElementById(
+      "countTotal"
+    );
+
+
+  const countMain =
+    document.getElementById(
+      "countMain"
+    );
+
+
+  const countWait =
+    document.getElementById(
+      "countWait"
+    );
+
+
+  const countConfirmed =
+    document.getElementById(
+      "countConfirmed"
+    );
+
+
+  const cardsList =
+    document.getElementById(
+      "cardsList"
+    );
+
+
+  const statusMsg =
+    document.getElementById(
+      "statusMsg"
+    );
+
+
+  const btnRefresh =
+    document.getElementById(
+      "btnRefresh"
+    );
+
+
+  const btnExpand =
+    document.getElementById(
+      "btnExpand"
+    );
+
+
+  const btnCollapse =
+    document.getElementById(
+      "btnCollapse"
+    );
+
+
+  /* ========================================
+     ÉTAT
+  ======================================== */
+
+  let rows =
+    [];
+
+
+  /* ========================================
+     OUTILS
+  ======================================== */
+
+  function esc(value){
+
+    return String(value ?? "")
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
+
+  }
+
+
+  function fmt(value){
+
+    const text =
+      String(value ?? "")
+        .trim();
+
+
+    return text || "—";
+
+  }
+
+
+  function toNum(value){
+
+    if(
+      value === null ||
+      value === undefined ||
+      value === ""
+    ){
+
+      return null;
+
+    }
+
+
+    const number =
+      Number(
+        String(value)
+          .replace(",",".")
+          .trim()
+      );
+
+
+    return Number.isFinite(number)
+      ? number
+      : null;
+
+  }
+
+
+  function itemRef(id){
+
+    return doc(
+      db,
+      "events",
+      EVENT_ID,
+      "teams",
+      id
+    );
+
+  }
+
+
+  function isDeleted(row){
+
+    return (
+      row.status === "deleted" ||
+      row.status === "cancelled" ||
+      row.status === "refused"
+    );
+
+  }
+
+
+  function isWait(row){
+
+    return (
+      row.list === "wait" ||
+      row.publicList === "waiting" ||
+      row.status === "waiting"
+    );
+
+  }
+
+
+  function isStby(row){
+
+    return (
+      row.stby === true ||
+      row.status === "stby"
+    );
+
+  }
+
+
+  function isConfirmed(row){
+
+    return (
+      row.status === "confirmed"
+    );
+
+  }
+
+
+  function fullName(player){
+
+    return (
+      `${player?.prenom || ""} ${player?.nom || ""}`
+        .trim() ||
+      "—"
+    );
+
+  }
+
+
+  function playerRank(
+    player,
+    fallback
+  ){
+
+    return toNum(
+      player?.rank ??
+      fallback
+    );
+
+  }
+
+
+  function rankingValue(row){
+
+    const woman =
+      row.woman ||
+      row.player1 ||
+      {};
+
+
+    const man =
+      row.man ||
+      row.player2 ||
+      {};
+
+
+    const womanRank =
+      playerRank(
+        woman,
+        row.p1Rank
+      );
+
+
+    const manRank =
+      playerRank(
+        man,
+        row.p2Rank
+      );
+
+
+    if(
+      womanRank === null ||
+      manRank === null
+    ){
+
+      return null;
+
+    }
+
+
+    return (
+      womanRank +
+      manRank
+    );
+
+  }
+
+
+  /* ========================================
+     PASTILLE
+  ======================================== */
+
+  function statusPill(row){
+
+    if(
+      isDeleted(row)
+    ){
+
+      return `
+        <span class="status-pill deleted">
+          Supprimée
+        </span>
+      `;
+
+    }
+
+
+    if(
+      isStby(row)
+    ){
+
+      return `
+        <span class="status-pill stby">
+          STBY
+        </span>
+      `;
+
+    }
+
+
+    if(
+      isWait(row)
+    ){
+
+      return `
+        <span class="status-pill wait">
+          Attente
+        </span>
+      `;
+
+    }
+
+
+    if(
+      isConfirmed(row)
+    ){
+
+      return `
+        <span class="status-pill confirmed">
+          Confirmée
+        </span>
+      `;
+
+    }
+
+
+    return `
+      <span class="status-pill">
+        Inscrite
+      </span>
+    `;
+
+  }
+
+
+  /* ========================================
+     CARTE ÉQUIPE
+  ======================================== */
+
+  function teamCard(
+    row,
+    index
+  ){
+
+    const woman =
+      row.woman ||
+      row.player1 ||
+      {};
+
+
+    const man =
+      row.man ||
+      row.player2 ||
+      {};
+
+
+    const teamName =
+      row.teamName ||
+      `${woman.prenom || "Joueuse"} & ${man.prenom || "Joueur"}`;
+
+
+    const womanRank =
+      playerRank(
+        woman,
+        row.p1Rank
+      );
+
+
+    const manRank =
+      playerRank(
+        man,
+        row.p2Rank
+      );
+
+
+    const teamRank =
+      rankingValue(
+        row
+      );
+
+
+    const deleted =
+      isDeleted(row);
+
+
+    return `
+
+      <div
+        class="item-card ${
+          deleted
+            ? "deleted"
+            : ""
+        }"
+        data-id="${esc(row.id)}"
+      >
+
+
+        <div class="item-head">
+
+          <div>
+
+            <div class="item-title">
+              #${index + 1} —
+              ${esc(teamName)}
+            </div>
+
+
+            <div class="item-sub">
+
+              Rang équipe :
+              <strong>
+                ${
+                  teamRank === null
+                    ? "—"
+                    : esc(teamRank)
+                }
+              </strong>
+
+              <br>
+
+              Source :
+              ${esc(
+                row.source ||
+                "inscription"
+              )}
+
+            </div>
+
+          </div>
+
+
+          ${statusPill(row)}
+
+        </div>
+
+
+        <div class="player-line">
+
+          👩
+          <strong>Joueuse :</strong>
+          ${esc(fullName(woman))}
+
+          <br>
+
+          Licence :
+          ${esc(fmt(woman.licence))}
+
+          <br>
+
+          Classement BT :
+
+          <span class="rank-value">
+            ${
+              womanRank === null
+                ? "—"
+                : esc(womanRank)
+            }
+          </span>
+
+        </div>
+
+
+        <div class="player-line">
+
+          👨
+          <strong>Joueur :</strong>
+          ${esc(fullName(man))}
+
+          <br>
+
+          Licence :
+          ${esc(fmt(man.licence))}
+
+          <br>
+
+          Classement BT :
+
+          <span class="rank-value">
+            ${
+              manRank === null
+                ? "—"
+                : esc(manRank)
+            }
+          </span>
+
+        </div>
+
+
+        <details>
+
+          <summary>
+            ⚙️ Actions / Modifier
+          </summary>
+
+
+          <div class="mini-actions">
+
+
+            <button
+              class="mini-btn green"
+              data-action="confirm"
+              data-id="${esc(row.id)}"
+            >
+              ✓ Confirmer
+            </button>
+
+
+            <button
+              class="mini-btn yellow"
+              data-action="main"
+              data-id="${esc(row.id)}"
+            >
+              Liste principale
+            </button>
+
+
+            <button
+              class="mini-btn blue"
+              data-action="wait"
+              data-id="${esc(row.id)}"
+            >
+              Liste attente
+            </button>
+
+
+            <button
+              class="mini-btn"
+              data-action="stby"
+              data-id="${esc(row.id)}"
+            >
+              ${
+                isStby(row)
+                  ? "Réactiver"
+                  : "STBY"
+              }
+            </button>
+
+          </div>
+
+
+          <div class="mini-actions">
+
+
+            <button
+              class="mini-btn blue"
+              data-action="edit"
+              data-id="${esc(row.id)}"
+            >
+              Modifier équipe
+            </button>
+
+
+            <button
+              class="mini-btn yellow"
+              data-action="rank"
+              data-id="${esc(row.id)}"
+            >
+              Classements BT
+            </button>
+
+
+            ${
+              deleted
+
+                ? `
+                    <button
+                      class="mini-btn green"
+                      data-action="restore"
+                      data-id="${esc(row.id)}"
+                    >
+                      Restaurer
+                    </button>
+                  `
+
+                : `
+                    <button
+                      class="mini-btn red"
+                      data-action="delete"
+                      data-id="${esc(row.id)}"
+                    >
+                      Supprimer
+                    </button>
+                  `
+            }
+
+
+          </div>
+
+        </details>
+
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* ========================================
+     TRI
+  ======================================== */
+
+  function sortedRows(){
+
+    return [
+      ...rows
+    ].sort(
+      (a,b) => {
+
+        /*
+         * 1. Équipes actives
+         * 2. Liste d'attente
+         * 3. STBY
+         * 4. Supprimées
+         */
+
+        function priority(row){
+
+          if(isDeleted(row)){
+            return 4;
+          }
+
+          if(isStby(row)){
+            return 3;
+          }
+
+          if(isWait(row)){
+            return 2;
+          }
+
+          return 1;
+
+        }
+
+
+        const priorityDiff =
+          priority(a) -
+          priority(b);
+
+
+        if(priorityDiff !== 0){
+
+          return priorityDiff;
+
+        }
+
+
+        const rankA =
+          rankingValue(a);
+
+
+        const rankB =
+          rankingValue(b);
+
+
+        if(
+          rankA !== null &&
+          rankB !== null &&
+          rankA !== rankB
+        ){
+
+          return rankA - rankB;
+
+        }
+
+
+        return 0;
+
+      }
+    );
+
+  }
+
+
+  /* ========================================
+     AFFICHAGE
+  ======================================== */
+
+  function render(){
+
+    const activeRows =
+      rows.filter(
+        row =>
+          !isDeleted(row)
+      );
+
+
+    const mainRows =
+      activeRows.filter(
+        row =>
+          !isWait(row) &&
+          !isStby(row)
+      );
+
+
+    const waitRows =
+      activeRows.filter(
+        row =>
+          isWait(row)
+      );
+
+
+    const confirmedRows =
+      activeRows.filter(
+        row =>
+          isConfirmed(row)
+      );
+
+
+    countTotal.textContent =
+      String(
+        activeRows.length
+      );
+
+
+    countMain.textContent =
+      String(
+        mainRows.length
+      );
+
+
+    countWait.textContent =
+      String(
+        waitRows.length
+      );
+
+
+    countConfirmed.textContent =
+      String(
+        confirmedRows.length
+      );
+
+
+    const ordered =
+      sortedRows();
+
+
+    cardsList.innerHTML =
+      ordered.length
+
+        ? ordered
+            .map(
+              (row,index) =>
+                teamCard(
+                  row,
+                  index
+                )
+            )
+            .join("")
+
+        : `
+            <div class="admin-status">
+              Aucune équipe inscrite.
+            </div>
+          `;
+
+
+    statusMsg.textContent =
+      `✅ ${activeRows.length} équipe(s) active(s) sur ${MAX_TEAMS}.`;
+
+  }
+
+
+  /* ========================================
+     FIRESTORE
+  ======================================== */
+
+  onSnapshot(
+
+    query(
+      teamsRef,
+      orderBy(
+        "createdAt",
+        "asc"
+      )
+    ),
+
+    snapshot => {
+
+      rows =
+        snapshot.docs.map(
+          documentSnapshot => ({
+
+            id:
+              documentSnapshot.id,
+
+            ...documentSnapshot.data()
+
+          })
+        );
+
+
+      render();
+
+    },
+
+
+    error => {
+
+      console.error(error);
+
+
+      statusMsg.textContent =
+        "❌ Impossible de charger les équipes.";
+
+
+      cardsList.innerHTML = `
+        <div class="admin-status">
+          Erreur de chargement.
+        </div>
+      `;
+
+    }
+
+  );
+
+
+  /* ========================================
+     MODIFICATION FIRESTORE
+  ======================================== */
+
+  async function patchItem(
+    id,
+    patch
+  ){
+
+    await updateDoc(
+
+      itemRef(id),
+
+      {
+        ...patch,
+
+        updatedAt:
+          serverTimestamp()
+      }
+
+    );
+
+  }
+
+
+  /* ========================================
+     MODIFIER UNE ÉQUIPE
+  ======================================== */
+
+  async function editTeam(row){
+
+    const woman =
+      row.woman ||
+      row.player1 ||
+      {};
+
+
+    const man =
+      row.man ||
+      row.player2 ||
+      {};
+
+
+    const womanFirstName =
+      prompt(
+        "Joueuse — Prénom :",
+        woman.prenom || ""
+      );
+
+
+    if(
+      womanFirstName === null
+    ){
+      return;
+    }
+
+
+    const womanLastName =
+      prompt(
+        "Joueuse — Nom :",
+        woman.nom || ""
+      );
+
+
+    if(
+      womanLastName === null
+    ){
+      return;
+    }
+
+
+    const womanLicence =
+      prompt(
+        "Joueuse — Licence :",
+        woman.licence || ""
+      );
+
+
+    if(
+      womanLicence === null
+    ){
+      return;
+    }
+
+
+    const manFirstName =
+      prompt(
+        "Joueur — Prénom :",
+        man.prenom || ""
+      );
+
+
+    if(
+      manFirstName === null
+    ){
+      return;
+    }
+
+
+    const manLastName =
+      prompt(
+        "Joueur — Nom :",
+        man.nom || ""
+      );
+
+
+    if(
+      manLastName === null
+    ){
+      return;
+    }
+
+
+    const manLicence =
+      prompt(
+        "Joueur — Licence :",
+        man.licence || ""
+      );
+
+
+    if(
+      manLicence === null
+    ){
+      return;
+    }
+
+
+    const newWoman = {
+
+      ...woman,
+
+      prenom:
+        womanFirstName.trim(),
+
+      nom:
+        womanLastName.trim(),
+
+      licence:
+        womanLicence.trim(),
+
+      sexe:
+        "F"
+
+    };
+
+
+    const newMan = {
+
+      ...man,
+
+      prenom:
+        manFirstName.trim(),
+
+      nom:
+        manLastName.trim(),
+
+      licence:
+        manLicence.trim(),
+
+      sexe:
+        "H"
+
+    };
+
+
+    await patchItem(
+
+      row.id,
+
+      {
+        teamName:
+          `${newWoman.prenom} & ${newMan.prenom}`,
+
+        woman:
+          newWoman,
+
+        man:
+          newMan,
+
+        /*
+         * Compatibilité avec l'ancien format.
+         */
+
+        player1:
+          newWoman,
+
+        player2:
+          newMan
+      }
+
+    );
+
+  }
+
+
+  /* ========================================
+     CLASSEMENTS BT
+  ======================================== */
+
+  async function editRanks(row){
+
+    const woman =
+      row.woman ||
+      row.player1 ||
+      {};
+
+
+    const man =
+      row.man ||
+      row.player2 ||
+      {};
+
+
+    const womanInput =
+      prompt(
+        `Classement BT de ${woman.prenom || "la joueuse"} :`,
+        woman.rank ??
+        row.p1Rank ??
+        ""
+      );
+
+
+    if(
+      womanInput === null
+    ){
+      return;
+    }
+
+
+    const manInput =
+      prompt(
+        `Classement BT de ${man.prenom || "le joueur"} :`,
+        man.rank ??
+        row.p2Rank ??
+        ""
+      );
+
+
+    if(
+      manInput === null
+    ){
+      return;
+    }
+
+
+    const womanRank =
+      womanInput.trim() === ""
+        ? null
+        : toNum(
+            womanInput
+          );
+
+
+    const manRank =
+      manInput.trim() === ""
+        ? null
+        : toNum(
+            manInput
+          );
+
+
+    if(
+      womanInput.trim() !== "" &&
+      womanRank === null
+    ){
+
+      alert(
+        "Classement joueuse invalide."
+      );
+
+      return;
+
+    }
+
+
+    if(
+      manInput.trim() !== "" &&
+      manRank === null
+    ){
+
+      alert(
+        "Classement joueur invalide."
+      );
+
+      return;
+
+    }
+
+
+    const newWoman = {
+
+      ...woman,
+
+      rank:
+        womanRank
+
+    };
+
+
+    const newMan = {
+
+      ...man,
+
+      rank:
+        manRank
+
+    };
+
+
+    await patchItem(
+
+      row.id,
+
+      {
+        woman:
+          newWoman,
+
+        man:
+          newMan,
+
+        player1:
+          newWoman,
+
+        player2:
+          newMan,
+
+        p1Rank:
+          womanRank,
+
+        p2Rank:
+          manRank
+      }
+
+    );
+
+  }
+
+
+  /* ========================================
+     ACTIONS
+  ======================================== */
+
+  cardsList.addEventListener(
+
+    "click",
+
+    async event => {
+
+      const button =
+        event.target.closest(
+          "button[data-action]"
+        );
+
+
+      if(!button){
+        return;
+      }
+
+
+      const id =
+        button.dataset.id;
+
+
+      const action =
+        button.dataset.action;
+
+
+      const row =
+        rows.find(
+          item =>
+            item.id === id
+        );
+
+
+      if(!row){
+        return;
+      }
+
+
+      button.disabled =
+        true;
+
+
+      try{
+
+
+        /* CONFIRMER */
+
+        if(
+          action === "confirm"
+        ){
+
+          await patchItem(
+
+            id,
+
+            {
+              status:
+                "confirmed",
+
+              list:
+                "main",
+
+              stby:
+                false
+            }
+
+          );
+
+        }
+
+
+        /* LISTE PRINCIPALE */
+
+        if(
+          action === "main"
+        ){
+
+          await patchItem(
+
+            id,
+
+            {
+              list:
+                "main",
+
+              stby:
+                false,
+
+              status:
+                isConfirmed(row)
+                  ? "confirmed"
+                  : "registered"
+            }
+
+          );
+
+        }
+
+
+        /* LISTE D'ATTENTE */
+
+        if(
+          action === "wait"
+        ){
+
+          await patchItem(
+
+            id,
+
+            {
+              list:
+                "wait",
+
+              stby:
+                false
+            }
+
+          );
+
+        }
+
+
+        /* STBY */
+
+        if(
+          action === "stby"
+        ){
+
+          await patchItem(
+
+            id,
+
+            {
+              stby:
+                !isStby(row)
+            }
+
+          );
+
+        }
+
+
+        /* MODIFICATION */
+
+        if(
+          action === "edit"
+        ){
+
+          await editTeam(
+            row
+          );
+
+        }
+
+
+        /* CLASSEMENTS */
+
+        if(
+          action === "rank"
+        ){
+
+          await editRanks(
+            row
+          );
+
+        }
+
+
+        /* SUPPRESSION LOGIQUE */
+
+        if(
+          action === "delete"
+        ){
+
+          const ok =
+            confirm(
+              `Supprimer l'équipe "${row.teamName || "Équipe"}" ?`
+            );
+
+
+          if(!ok){
+            return;
+          }
+
+
+          await patchItem(
+
+            id,
+
+            {
+              status:
+                "deleted",
+
+              deletedAt:
+                serverTimestamp()
+            }
+
+          );
+
+        }
+
+
+        /* RESTAURATION */
+
+        if(
+          action === "restore"
+        ){
+
+          await patchItem(
+
+            id,
+
+            {
+              status:
+                "registered",
+
+              list:
+                "main",
+
+              stby:
+                false,
+
+              deletedAt:
+                null
+            }
+
+          );
+
+        }
+
+
+      }
+
+      catch(error){
+
+        console.error(error);
+
+
+        alert(
+          "Action impossible."
+        );
+
+      }
+
+      finally{
+
+        button.disabled =
+          false;
+
+      }
+
+    }
+
+  );
+
+
+  /* ========================================
+     ACTIONS GÉNÉRALES
+  ======================================== */
+
+  btnRefresh.onclick =
+    () => {
+
+      /*
+       * onSnapshot est déjà temps réel.
+       * Le bouton force simplement
+       * un nouveau rendu local.
+       */
+
+      render();
+
+    };
+
+
+  btnExpand.onclick =
+    () => {
+
+      document
+        .querySelectorAll(
+          "details"
+        )
+        .forEach(
+          detail => {
+
+            detail.open =
+              true;
+
+          }
+        );
+
+    };
+
+
+  btnCollapse.onclick =
+    () => {
+
+      document
+        .querySelectorAll(
+          "details"
+        )
+        .forEach(
+          detail => {
+
+            detail.open =
+              false;
+
+          }
+        );
+
+    };
+
+</script>
+
+
+</body>
+
+</html>
