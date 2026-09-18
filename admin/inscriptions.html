@@ -1,0 +1,2150 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#101010"
+  >
+
+  <title>
+    Admin Inscriptions | BT250 Suzini
+  </title>
+
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  >
+
+
+  <style>
+
+    main{
+      padding-top:14px;
+      padding-bottom:28px;
+    }
+
+    .section{
+      margin-top:10px;
+    }
+
+    .section:first-child{
+      margin-top:0;
+    }
+
+    .compact-panel{
+      padding:12px;
+      border-radius:22px;
+    }
+
+
+    /* ========================================
+       TITRES
+    ======================================== */
+
+    .admin-panel-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+
+      margin-bottom:12px;
+    }
+
+    .admin-title{
+      margin:0;
+
+      color:var(--blue-dark);
+
+      font-size:24px;
+      line-height:1;
+      font-weight:1000;
+
+      letter-spacing:-.04em;
+    }
+
+    .admin-text{
+      margin:6px 0 0;
+
+      color:var(--muted);
+
+      font-size:13px;
+      font-weight:850;
+      line-height:1.35;
+    }
+
+    .admin-pill{
+      flex-shrink:0;
+
+      padding:7px 10px;
+
+      border-radius:999px;
+
+      background:var(--yellow);
+      color:var(--text);
+
+      font-size:11px;
+      font-weight:1000;
+    }
+
+
+    /* ========================================
+       STATUT
+    ======================================== */
+
+    .admin-status{
+      padding:10px 12px;
+
+      border-radius:16px;
+
+      background:#fff;
+      color:var(--text);
+
+      font-size:13px;
+      font-weight:900;
+      line-height:1.35;
+
+      box-shadow:
+        0 6px 14px rgba(16,24,40,.08);
+    }
+
+    .admin-status strong{
+      color:var(--blue-dark);
+    }
+
+
+    /* ========================================
+       ACTIONS
+    ======================================== */
+
+    .admin-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+
+      margin-top:10px;
+    }
+
+    .admin-btn,
+    .mini-btn{
+      border:0;
+
+      font-family:inherit;
+      font-weight:1000;
+
+      cursor:pointer;
+    }
+
+    .admin-btn{
+      min-height:42px;
+
+      padding:9px 11px;
+
+      border-radius:14px;
+
+      background:var(--blue-dark);
+      color:#fff;
+
+      font-size:13px;
+    }
+
+    .admin-btn.pink,
+    .mini-btn.pink{
+      background:var(--pink);
+      color:#fff;
+    }
+
+    .admin-btn.yellow,
+    .mini-btn.yellow{
+      background:var(--yellow);
+      color:var(--text);
+    }
+
+    .admin-btn.green,
+    .mini-btn.green{
+      background:var(--green);
+      color:#fff;
+    }
+
+    .admin-btn.red,
+    .mini-btn.red{
+      background:#9b1c1c;
+      color:#fff;
+    }
+
+    .admin-btn.dark{
+      background:#344054;
+      color:#fff;
+    }
+
+    .admin-btn:disabled,
+    .mini-btn:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+    }
+
+
+    /* ========================================
+       STATS
+    ======================================== */
+
+    .stats-line{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+    }
+
+    .stat-box{
+      padding:10px;
+
+      border-radius:16px;
+
+      background:#fff;
+      color:var(--blue-dark);
+
+      text-align:center;
+      font-weight:1000;
+    }
+
+    .stat-box strong{
+      display:block;
+
+      font-size:24px;
+      line-height:1;
+    }
+
+    .stat-box span{
+      display:block;
+
+      margin-top:4px;
+
+      color:var(--muted);
+
+      font-size:10px;
+      text-transform:uppercase;
+    }
+
+
+    /* ========================================
+       ONGLETS
+    ======================================== */
+
+    .subtabs{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+
+      margin-bottom:12px;
+    }
+
+    .subtab{
+      min-height:42px;
+
+      border:0;
+      border-radius:14px;
+
+      background:var(--blue-dark);
+      color:#fff;
+
+      font-family:inherit;
+      font-size:12px;
+      font-weight:1000;
+
+      cursor:pointer;
+    }
+
+    .subtab.active{
+      background:var(--yellow);
+      color:var(--text);
+    }
+
+
+    /* ========================================
+       LISTES
+    ======================================== */
+
+    .items-list{
+      display:grid;
+      gap:10px;
+    }
+
+    .item-card{
+      display:grid;
+      gap:8px;
+
+      padding:12px;
+
+      border-radius:18px;
+
+      background:#fff;
+      color:var(--text);
+
+      box-shadow:
+        0 8px 18px rgba(16,24,40,.10);
+    }
+
+    .item-title{
+      color:var(--blue-dark);
+
+      font-size:19px;
+      font-weight:1000;
+      line-height:1.05;
+    }
+
+    .item-meta{
+      color:#344054;
+
+      font-size:13px;
+      font-weight:850;
+      line-height:1.4;
+    }
+
+    .item-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .mini-btn{
+      padding:8px 12px;
+
+      border-radius:999px;
+
+      background:var(--blue-dark);
+      color:#fff;
+
+      font-size:12px;
+    }
+
+
+    /* ========================================
+       NAVIGATION
+    ======================================== */
+
+    .nav-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+
+    .nav-link{
+      min-height:44px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      padding:10px;
+
+      border-radius:14px;
+
+      background:#344054;
+      color:#fff;
+
+      font-size:13px;
+      font-weight:1000;
+
+      text-align:center;
+      text-decoration:none;
+    }
+
+    .nav-link.public{
+      background:var(--green);
+    }
+
+
+    .hidden{
+      display:none !important;
+    }
+
+
+    @media(min-width:760px){
+
+      .admin-actions{
+        grid-template-columns:
+          repeat(4,1fr);
+      }
+
+      .items-list{
+        grid-template-columns:
+          1fr 1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body data-page="inscriptions">
+
+
+<main class="container">
+
+
+  <!-- ======================================
+       GESTION DES INSCRIPTIONS
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+
+      <div class="admin-panel-head">
+
+        <div>
+
+          <h1 class="admin-title">
+            📝 Gestion inscriptions
+          </h1>
+
+          <p class="admin-text">
+            BT250 Suzini — Double Mixte<br>
+            02 octobre 2026
+          </p>
+
+        </div>
+
+
+        <div class="admin-pill">
+          Admin
+        </div>
+
+      </div>
+
+
+      <div class="admin-status">
+
+        <strong>
+          Statut actuel :
+        </strong>
+
+        <span id="currentState">
+          Chargement…
+        </span>
+
+      </div>
+
+
+      <div class="admin-actions">
+
+        <button
+          class="admin-btn yellow"
+          id="btnNotOpen"
+          type="button"
+        >
+          💤 Pas ouvertes
+        </button>
+
+
+        <button
+          class="admin-btn green"
+          id="btnOpen"
+          type="button"
+        >
+          ✅ Ouvrir
+        </button>
+
+
+        <button
+          class="admin-btn pink"
+          id="btnPause"
+          type="button"
+        >
+          ⏸️ Suspendre
+        </button>
+
+
+        <button
+          class="admin-btn"
+          id="btnClose"
+          type="button"
+        >
+          🔒 Clôturer
+        </button>
+
+      </div>
+
+
+      <div
+        id="statusMessage"
+        class="admin-status"
+        style="margin-top:10px;"
+      >
+        —
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       STATISTIQUES
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+      <div class="stats-line">
+
+
+        <div class="stat-box">
+
+          <strong id="countTotal">
+            0
+          </strong>
+
+          <span>
+            Équipes
+          </span>
+
+        </div>
+
+
+        <div class="stat-box">
+
+          <strong id="countRegistered">
+            0
+          </strong>
+
+          <span>
+            Inscrites
+          </span>
+
+        </div>
+
+
+        <div class="stat-box">
+
+          <strong id="countConfirmed">
+            0
+          </strong>
+
+          <span>
+            Confirmées
+          </span>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       LISTES
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+
+      <div class="subtabs">
+
+        <button
+          class="subtab active"
+          id="tabTeams"
+          type="button"
+        >
+          👥 Équipes
+        </button>
+
+
+        <button
+          class="subtab"
+          id="tabProfiles"
+          type="button"
+        >
+          🔎 Recherches
+        </button>
+
+
+        <button
+          class="subtab"
+          id="tabInvites"
+          type="button"
+        >
+          🤝 Propositions
+        </button>
+
+      </div>
+
+
+      <div class="admin-panel-head">
+
+        <div>
+
+          <h2
+            class="admin-title"
+            id="listTitle"
+          >
+            Équipes inscrites
+          </h2>
+
+          <p
+            class="admin-text"
+            id="listText"
+          >
+            Liste des équipes du tournoi.
+          </p>
+
+        </div>
+
+
+        <div class="admin-pill">
+          Live
+        </div>
+
+      </div>
+
+
+      <div
+        id="itemsList"
+        class="items-list"
+      >
+
+        <div class="admin-status">
+          Chargement…
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       NAVIGATION
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+      <div class="nav-actions">
+
+        <a
+          class="nav-link"
+          href="index.html"
+        >
+          🎛️ Tableau de bord
+        </a>
+
+
+        <a
+          class="nav-link public"
+          href="../inscriptions.html"
+        >
+          👁️ Vue publique
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<script type="module">
+
+  /* ========================================
+     SESSION ADMIN
+  ======================================== */
+
+  import {
+    requireAdmin
+  } from "../assets/js/admin-session.js";
+
+
+  if(!requireAdmin()){
+
+    throw new Error(
+      "Accès administrateur requis."
+    );
+
+  }
+
+
+  /* ========================================
+     FIREBASE
+  ======================================== */
+
+  import {
+    db
+  } from "../assets/js/firebase.js";
+
+
+  import {
+    collection,
+    doc,
+    onSnapshot,
+    setDoc,
+    updateDoc,
+    deleteDoc,
+    serverTimestamp,
+    query,
+    orderBy
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+
+  /* ========================================
+     CONFIGURATION
+  ======================================== */
+
+  const EVENT_ID =
+    "suzini-bt250-mixte-2026-10-02";
+
+
+  /* ========================================
+     RÉFÉRENCES FIRESTORE
+  ======================================== */
+
+  const statusRef =
+    doc(
+      db,
+      "events",
+      EVENT_ID,
+      "config",
+      "status"
+    );
+
+
+  const teamsRef =
+    collection(
+      db,
+      "events",
+      EVENT_ID,
+      "teams"
+    );
+
+
+  const profilesRef =
+    collection(
+      db,
+      "events",
+      EVENT_ID,
+      "partnerProfiles"
+    );
+
+
+  const invitesRef =
+    collection(
+      db,
+      "events",
+      EVENT_ID,
+      "teamInvitations"
+    );
+
+
+  /* ========================================
+     ÉLÉMENTS
+  ======================================== */
+
+  const currentState =
+    document.getElementById(
+      "currentState"
+    );
+
+
+  const statusMessage =
+    document.getElementById(
+      "statusMessage"
+    );
+
+
+  const btnNotOpen =
+    document.getElementById(
+      "btnNotOpen"
+    );
+
+
+  const btnOpen =
+    document.getElementById(
+      "btnOpen"
+    );
+
+
+  const btnPause =
+    document.getElementById(
+      "btnPause"
+    );
+
+
+  const btnClose =
+    document.getElementById(
+      "btnClose"
+    );
+
+
+  const tabTeams =
+    document.getElementById(
+      "tabTeams"
+    );
+
+
+  const tabProfiles =
+    document.getElementById(
+      "tabProfiles"
+    );
+
+
+  const tabInvites =
+    document.getElementById(
+      "tabInvites"
+    );
+
+
+  const listTitle =
+    document.getElementById(
+      "listTitle"
+    );
+
+
+  const listText =
+    document.getElementById(
+      "listText"
+    );
+
+
+  const itemsList =
+    document.getElementById(
+      "itemsList"
+    );
+
+
+  const countTotal =
+    document.getElementById(
+      "countTotal"
+    );
+
+
+  const countRegistered =
+    document.getElementById(
+      "countRegistered"
+    );
+
+
+  const countConfirmed =
+    document.getElementById(
+      "countConfirmed"
+    );
+
+
+  /* ========================================
+     ÉTAT LOCAL
+  ======================================== */
+
+  let currentStatus =
+    "not_open";
+
+
+  let currentTab =
+    "teams";
+
+
+  let unsubscribeMain =
+    null;
+
+
+  /* ========================================
+     OUTILS
+  ======================================== */
+
+  function esc(value){
+
+    return String(value || "")
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
+
+  }
+
+
+  function stateLabel(state){
+
+    switch(state){
+
+      case "open":
+        return "✅ Ouvertes";
+
+      case "paused":
+        return "⏸️ Suspendues";
+
+      case "closed":
+        return "🔒 Clôturées";
+
+      default:
+        return "💤 Pas encore ouvertes";
+
+    }
+
+  }
+
+
+  /* ========================================
+     STATUT DES INSCRIPTIONS
+  ======================================== */
+
+  function setButtonsDisabled(
+    disabled
+  ){
+
+    [
+      btnNotOpen,
+      btnOpen,
+      btnPause,
+      btnClose
+    ].forEach(
+      button => {
+
+        button.disabled =
+          disabled;
+
+      }
+    );
+
+  }
+
+
+  async function setState(
+    nextState
+  ){
+
+    setButtonsDisabled(true);
+
+
+    statusMessage.textContent =
+      "Mise à jour du statut…";
+
+
+    try{
+
+      await setDoc(
+
+        statusRef,
+
+        {
+          inscriptionsState:
+            nextState,
+
+          updatedAt:
+            serverTimestamp()
+        },
+
+        {
+          merge:true
+        }
+
+      );
+
+
+      statusMessage.textContent =
+        "✅ Statut mis à jour.";
+
+    }
+
+    catch(error){
+
+      console.error(error);
+
+
+      statusMessage.textContent =
+        "❌ Impossible de modifier le statut.";
+
+    }
+
+    finally{
+
+      setButtonsDisabled(false);
+
+    }
+
+  }
+
+
+  onSnapshot(
+
+    statusRef,
+
+    snapshot => {
+
+      const data =
+        snapshot.exists()
+          ? snapshot.data()
+          : {};
+
+
+      /*
+       * IMPORTANT :
+       * même champ que inscriptions.html.
+       */
+
+      currentStatus =
+        data.inscriptionsState ||
+        "not_open";
+
+
+      currentState.textContent =
+        stateLabel(
+          currentStatus
+        );
+
+
+      btnPause.textContent =
+        currentStatus === "paused"
+          ? "▶️ Réouvrir"
+          : "⏸️ Suspendre";
+
+    },
+
+    error => {
+
+      console.error(error);
+
+
+      currentState.textContent =
+        "Erreur";
+
+    }
+
+  );
+
+
+  btnNotOpen.onclick =
+    () => setState(
+      "not_open"
+    );
+
+
+  btnOpen.onclick =
+    () => setState(
+      "open"
+    );
+
+
+  btnPause.onclick =
+    () => setState(
+
+      currentStatus === "paused"
+        ? "open"
+        : "paused"
+
+    );
+
+
+  btnClose.onclick =
+    () => setState(
+      "closed"
+    );
+
+
+  /* ========================================
+     COMPTEURS
+  ======================================== */
+
+  function countTeams(
+    rows
+  ){
+
+    const visible =
+      rows.filter(
+        row =>
+          row.status !== "deleted" &&
+          row.status !== "cancelled" &&
+          row.status !== "refused" &&
+          row.stby !== true &&
+          row.list !== "wait"
+      );
+
+
+    let registered =
+      0;
+
+
+    let confirmed =
+      0;
+
+
+    visible.forEach(
+      row => {
+
+        if(
+          row.status ===
+          "confirmed"
+        ){
+
+          confirmed++;
+
+        }
+
+        else{
+
+          registered++;
+
+        }
+
+      }
+    );
+
+
+    countTotal.textContent =
+      String(
+        visible.length
+      );
+
+
+    countRegistered.textContent =
+      String(
+        registered
+      );
+
+
+    countConfirmed.textContent =
+      String(
+        confirmed
+      );
+
+  }
+
+
+  /* ========================================
+     CARTE ÉQUIPE
+  ======================================== */
+
+  function teamCard(
+    id,
+    data
+  ){
+
+    const woman =
+      data.woman ||
+      data.player1 ||
+      {};
+
+
+    const man =
+      data.man ||
+      data.player2 ||
+      {};
+
+
+    const status =
+      data.status ||
+      "registered";
+
+
+    const teamName =
+      data.teamName ||
+      `${woman.prenom || "Joueuse"} & ${man.prenom || "Joueur"}`;
+
+
+    return `
+
+      <div class="item-card">
+
+        <div class="item-title">
+          ${esc(teamName)}
+        </div>
+
+
+        <div class="item-meta">
+
+          <strong>Joueuse :</strong>
+          ${esc(woman.prenom)}
+          ${esc(woman.nom)}
+          <br>
+
+          Licence :
+          ${esc(woman.licence || "—")}
+          <br><br>
+
+
+          <strong>Joueur :</strong>
+          ${esc(man.prenom)}
+          ${esc(man.nom)}
+          <br>
+
+          Licence :
+          ${esc(man.licence || "—")}
+          <br><br>
+
+
+          <strong>Statut :</strong>
+          ${esc(status)}
+          <br>
+
+          <strong>Source :</strong>
+          ${esc(data.source || "—")}
+
+        </div>
+
+
+        <div class="item-actions">
+
+          <button
+            class="mini-btn green"
+            data-action="confirm"
+            data-id="${esc(id)}"
+          >
+            ✓ Confirmer
+          </button>
+
+
+          <button
+            class="mini-btn yellow"
+            data-action="registered"
+            data-id="${esc(id)}"
+          >
+            Inscrite
+          </button>
+
+
+          <button
+            class="mini-btn red"
+            data-action="delete-team"
+            data-id="${esc(id)}"
+          >
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* ========================================
+     CARTE RECHERCHE PARTENAIRE
+  ======================================== */
+
+  function profileCard(
+    id,
+    data
+  ){
+
+    const status =
+      data.status ||
+      "active";
+
+
+    const sex =
+      data.sexe === "F"
+        ? "Joueuse"
+        : "Joueur";
+
+
+    return `
+
+      <div class="item-card">
+
+        <div class="item-title">
+          ${esc(data.prenom || "Profil")}
+          — ${esc(sex)}
+        </div>
+
+
+        <div class="item-meta">
+
+          <strong>Nom :</strong>
+          ${esc(data.nom || "—")}
+          <br>
+
+          <strong>Licence :</strong>
+          ${esc(data.licence || "—")}
+          <br>
+
+          <strong>Téléphone :</strong>
+          ${esc(data.phone || "—")}
+          <br>
+
+          <strong>Statut :</strong>
+          ${esc(status)}
+          <br><br>
+
+          ${esc(data.profile || "")}
+
+        </div>
+
+
+        <div class="item-actions">
+
+          <button
+            class="mini-btn green"
+            data-action="profile-active"
+            data-id="${esc(id)}"
+          >
+            Actif
+          </button>
+
+
+          <button
+            class="mini-btn yellow"
+            data-action="profile-closed"
+            data-id="${esc(id)}"
+          >
+            Masquer
+          </button>
+
+
+          <button
+            class="mini-btn red"
+            data-action="delete-profile"
+            data-id="${esc(id)}"
+          >
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* ========================================
+     CARTE PROPOSITION
+  ======================================== */
+
+  function inviteCard(
+    id,
+    data
+  ){
+
+    const proposer =
+      data.proposer ||
+      {};
+
+
+    const status =
+      data.status ||
+      "pending";
+
+
+    return `
+
+      <div class="item-card">
+
+        <div class="item-title">
+          Proposition pour
+          ${esc(
+            data.partnerPrenom ||
+            "profil"
+          )}
+        </div>
+
+
+        <div class="item-meta">
+
+          <strong>Proposé par :</strong>
+          ${esc(proposer.prenom)}
+          ${esc(proposer.nom)}
+          <br>
+
+          <strong>Licence :</strong>
+          ${esc(proposer.licence || "—")}
+          <br>
+
+          <strong>Statut :</strong>
+          ${esc(status)}
+
+        </div>
+
+
+        <div class="item-actions">
+
+          <button
+            class="mini-btn yellow"
+            data-action="invite-pending"
+            data-id="${esc(id)}"
+          >
+            En attente
+          </button>
+
+
+          <button
+            class="mini-btn green"
+            data-action="invite-accepted"
+            data-id="${esc(id)}"
+          >
+            Acceptée
+          </button>
+
+
+          <button
+            class="mini-btn pink"
+            data-action="invite-refused"
+            data-id="${esc(id)}"
+          >
+            Refusée
+          </button>
+
+
+          <button
+            class="mini-btn red"
+            data-action="delete-invite"
+            data-id="${esc(id)}"
+          >
+            Supprimer
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* ========================================
+     ONGLETS
+  ======================================== */
+
+  function updateTabs(){
+
+    tabTeams.classList.toggle(
+      "active",
+      currentTab === "teams"
+    );
+
+
+    tabProfiles.classList.toggle(
+      "active",
+      currentTab === "profiles"
+    );
+
+
+    tabInvites.classList.toggle(
+      "active",
+      currentTab === "invites"
+    );
+
+
+    if(
+      currentTab === "profiles"
+    ){
+
+      listTitle.textContent =
+        "Recherches partenaire";
+
+
+      listText.textContent =
+        "Profils déposés par les joueurs en recherche.";
+
+      return;
+
+    }
+
+
+    if(
+      currentTab === "invites"
+    ){
+
+      listTitle.textContent =
+        "Propositions d’équipe";
+
+
+      listText.textContent =
+        "Propositions envoyées depuis les profils.";
+
+      return;
+
+    }
+
+
+    listTitle.textContent =
+      "Équipes inscrites";
+
+
+    listText.textContent =
+      "Liste des équipes du tournoi.";
+
+  }
+
+
+  function mainCollection(){
+
+    if(
+      currentTab === "profiles"
+    ){
+
+      return profilesRef;
+
+    }
+
+
+    if(
+      currentTab === "invites"
+    ){
+
+      return invitesRef;
+
+    }
+
+
+    return teamsRef;
+
+  }
+
+
+  function renderRows(
+    rows
+  ){
+
+    /*
+     * Les compteurs du haut doivent toujours
+     * représenter les équipes, pas l'onglet actif.
+     */
+
+    if(
+      currentTab === "profiles"
+    ){
+
+      itemsList.innerHTML =
+        rows.length
+
+          ? rows
+              .map(
+                row =>
+                  profileCard(
+                    row.id,
+                    row
+                  )
+              )
+              .join("")
+
+          : `
+              <div class="admin-status">
+                Aucun profil de recherche.
+              </div>
+            `;
+
+      return;
+
+    }
+
+
+    if(
+      currentTab === "invites"
+    ){
+
+      itemsList.innerHTML =
+        rows.length
+
+          ? rows
+              .map(
+                row =>
+                  inviteCard(
+                    row.id,
+                    row
+                  )
+              )
+              .join("")
+
+          : `
+              <div class="admin-status">
+                Aucune proposition.
+              </div>
+            `;
+
+      return;
+
+    }
+
+
+    itemsList.innerHTML =
+      rows.length
+
+        ? rows
+            .map(
+              row =>
+                teamCard(
+                  row.id,
+                  row
+                )
+            )
+            .join("")
+
+        : `
+            <div class="admin-status">
+              Aucune équipe inscrite.
+            </div>
+          `;
+
+  }
+
+
+  function startMainListener(){
+
+    if(
+      unsubscribeMain
+    ){
+
+      unsubscribeMain();
+
+    }
+
+
+    updateTabs();
+
+
+    itemsList.innerHTML = `
+      <div class="admin-status">
+        Chargement…
+      </div>
+    `;
+
+
+    unsubscribeMain =
+      onSnapshot(
+
+        query(
+          mainCollection(),
+          orderBy(
+            "createdAt",
+            "asc"
+          )
+        ),
+
+        snapshot => {
+
+          const rows =
+            snapshot.docs.map(
+              documentSnapshot => ({
+
+                id:
+                  documentSnapshot.id,
+
+                ...documentSnapshot.data()
+
+              })
+            );
+
+
+          renderRows(
+            rows
+          );
+
+        },
+
+
+        error => {
+
+          console.error(error);
+
+
+          itemsList.innerHTML = `
+            <div class="admin-status">
+              Erreur de chargement.
+            </div>
+          `;
+
+        }
+
+      );
+
+  }
+
+
+  /* ========================================
+     COMPTEUR ÉQUIPES INDÉPENDANT
+  ======================================== */
+
+  onSnapshot(
+
+    query(
+      teamsRef,
+      orderBy(
+        "createdAt",
+        "asc"
+      )
+    ),
+
+    snapshot => {
+
+      const rows =
+        snapshot.docs.map(
+          documentSnapshot => ({
+
+            id:
+              documentSnapshot.id,
+
+            ...documentSnapshot.data()
+
+          })
+        );
+
+
+      countTeams(
+        rows
+      );
+
+    },
+
+    error => {
+
+      console.error(error);
+
+
+      countTotal.textContent =
+        "—";
+
+
+      countRegistered.textContent =
+        "—";
+
+
+      countConfirmed.textContent =
+        "—";
+
+    }
+
+  );
+
+
+  tabTeams.onclick =
+    () => {
+
+      currentTab =
+        "teams";
+
+
+      startMainListener();
+
+    };
+
+
+  tabProfiles.onclick =
+    () => {
+
+      currentTab =
+        "profiles";
+
+
+      startMainListener();
+
+    };
+
+
+  tabInvites.onclick =
+    () => {
+
+      currentTab =
+        "invites";
+
+
+      startMainListener();
+
+    };
+
+
+  /* ========================================
+     MODIFICATION DES ÉLÉMENTS
+  ======================================== */
+
+  async function updateItem(
+    id,
+    patch
+  ){
+
+    let reference;
+
+
+    if(
+      currentTab === "profiles"
+    ){
+
+      reference =
+        doc(
+          db,
+          "events",
+          EVENT_ID,
+          "partnerProfiles",
+          id
+        );
+
+    }
+
+    else if(
+      currentTab === "invites"
+    ){
+
+      reference =
+        doc(
+          db,
+          "events",
+          EVENT_ID,
+          "teamInvitations",
+          id
+        );
+
+    }
+
+    else{
+
+      reference =
+        doc(
+          db,
+          "events",
+          EVENT_ID,
+          "teams",
+          id
+        );
+
+    }
+
+
+    await updateDoc(
+
+      reference,
+
+      {
+        ...patch,
+
+        updatedAt:
+          serverTimestamp()
+      }
+
+    );
+
+  }
+
+
+  /* ========================================
+     SUPPRESSION
+  ======================================== */
+
+  async function deleteItem(
+    id,
+    type
+  ){
+
+    const ok =
+      confirm(
+        "Supprimer définitivement cet élément ?"
+      );
+
+
+    if(!ok){
+
+      return;
+
+    }
+
+
+    if(
+      type === "team"
+    ){
+
+      await deleteDoc(
+        doc(
+          db,
+          "events",
+          EVENT_ID,
+          "teams",
+          id
+        )
+      );
+
+      return;
+
+    }
+
+
+    if(
+      type === "profile"
+    ){
+
+      await deleteDoc(
+        doc(
+          db,
+          "events",
+          EVENT_ID,
+          "partnerProfiles",
+          id
+        )
+      );
+
+      return;
+
+    }
+
+
+    if(
+      type === "invite"
+    ){
+
+      await deleteDoc(
+        doc(
+          db,
+          "events",
+          EVENT_ID,
+          "teamInvitations",
+          id
+        )
+      );
+
+    }
+
+  }
+
+
+  /* ========================================
+     ACTIONS SUR LES CARTES
+  ======================================== */
+
+  itemsList.addEventListener(
+
+    "click",
+
+    async event => {
+
+      const button =
+        event.target.closest(
+          "button[data-action]"
+        );
+
+
+      if(!button){
+
+        return;
+
+      }
+
+
+      const action =
+        button.dataset.action;
+
+
+      const id =
+        button.dataset.id;
+
+
+      button.disabled =
+        true;
+
+
+      try{
+
+
+        /* ÉQUIPES */
+
+        if(
+          action === "confirm"
+        ){
+
+          await updateItem(
+            id,
+            {
+              status:
+                "confirmed"
+            }
+          );
+
+        }
+
+
+        if(
+          action === "registered"
+        ){
+
+          await updateItem(
+            id,
+            {
+              status:
+                "registered"
+            }
+          );
+
+        }
+
+
+        /* PROFILS */
+
+        if(
+          action === "profile-active"
+        ){
+
+          await updateItem(
+            id,
+            {
+              status:
+                "active",
+
+              closedReason:
+                null
+            }
+          );
+
+        }
+
+
+        if(
+          action === "profile-closed"
+        ){
+
+          await updateItem(
+            id,
+            {
+              status:
+                "closed",
+
+              closedReason:
+                "admin"
+            }
+          );
+
+        }
+
+
+        /* PROPOSITIONS */
+
+        if(
+          action === "invite-pending"
+        ){
+
+          await updateItem(
+            id,
+            {
+              status:
+                "pending"
+            }
+          );
+
+        }
+
+
+        if(
+          action === "invite-accepted"
+        ){
+
+          await updateItem(
+            id,
+            {
+              status:
+                "accepted"
+            }
+          );
+
+        }
+
+
+        if(
+          action === "invite-refused"
+        ){
+
+          await updateItem(
+            id,
+            {
+              status:
+                "refused"
+            }
+          );
+
+        }
+
+
+        /* SUPPRESSIONS */
+
+        if(
+          action === "delete-team"
+        ){
+
+          await deleteItem(
+            id,
+            "team"
+          );
+
+        }
+
+
+        if(
+          action === "delete-profile"
+        ){
+
+          await deleteItem(
+            id,
+            "profile"
+          );
+
+        }
+
+
+        if(
+          action === "delete-invite"
+        ){
+
+          await deleteItem(
+            id,
+            "invite"
+          );
+
+        }
+
+      }
+
+      catch(error){
+
+        console.error(error);
+
+
+        alert(
+          "Action impossible."
+        );
+
+      }
+
+      finally{
+
+        button.disabled =
+          false;
+
+      }
+
+    }
+
+  );
+
+
+  /* ========================================
+     INITIALISATION
+  ======================================== */
+
+  startMainListener();
+
+</script>
+
+
+</body>
+
+</html>
