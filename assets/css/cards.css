@@ -1,0 +1,320 @@
+/* =========================================================
+   SUZINI — APPLICATION TOURNOIS
+   Cartes et panneaux
+========================================================= */
+
+
+/* ==============================
+   PANNEAU PRINCIPAL
+============================== */
+
+.panel{
+  position:relative;
+  overflow:hidden;
+
+  border-radius:var(--radius-large);
+
+  padding:18px 14px;
+
+  color:var(--white);
+
+  background:
+    radial-gradient(
+      circle at 12% 0%,
+      rgba(255,255,255,.95),
+      transparent 9%
+    ),
+    radial-gradient(
+      circle at 16% 9%,
+      rgba(255,216,77,.75),
+      transparent 17%
+    ),
+    linear-gradient(
+      135deg,
+      #11aaf5 0%,
+      #1fd4e2 40%,
+      #0b8f62 100%
+    );
+
+  border:
+    3px solid rgba(255,255,255,.72);
+
+  box-shadow:
+    var(--shadow);
+}
+
+
+.panel::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.16),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 50% 112%,
+      rgba(255,216,77,.35),
+      transparent 34%
+    );
+
+  pointer-events:none;
+}
+
+
+.panel > *{
+  position:relative;
+  z-index:1;
+}
+
+
+/* ==============================
+   EN-TÊTE PANNEAU
+============================== */
+
+.panel-head{
+  display:grid;
+  gap:10px;
+
+  margin-bottom:12px;
+}
+
+
+.panel-title{
+  margin:0;
+
+  color:var(--white);
+
+  font-size:28px;
+  line-height:.95;
+
+  font-weight:1000;
+
+  text-transform:uppercase;
+
+  text-shadow:
+    0 10px 22px rgba(0,0,0,.18);
+}
+
+
+.panel-text{
+  margin:0;
+
+  color:var(--white);
+
+  font-size:14px;
+  line-height:1.35;
+
+  font-weight:850;
+}
+
+
+/* ==============================
+   BADGES
+============================== */
+
+.pill,
+.badge{
+  display:inline-flex;
+
+  width:max-content;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:7px 12px;
+
+  border-radius:999px;
+
+  background:var(--pink);
+  color:var(--white);
+
+  font-size:11px;
+
+  font-weight:1000;
+
+  text-transform:uppercase;
+}
+
+
+/* ==============================
+   GRILLE DE CARTES
+============================== */
+
+.card-grid{
+  display:grid;
+  gap:10px;
+}
+
+
+/* ==============================
+   CARTE
+============================== */
+
+.info-card{
+  display:block;
+
+  width:100%;
+
+  min-height:112px;
+
+  padding:14px;
+
+  border-radius:var(--radius-medium);
+
+  color:var(--white);
+
+  text-decoration:none;
+
+  box-shadow:
+    0 10px 22px rgba(16,24,40,.18);
+}
+
+
+/* ==============================
+   COULEURS CARTES
+============================== */
+
+.info-card.blue{
+  background:var(--blue-dark);
+  color:var(--white);
+}
+
+
+.info-card.pink{
+  background:var(--pink);
+  color:var(--white);
+}
+
+
+.info-card.yellow{
+  background:var(--yellow);
+  color:var(--text);
+}
+
+
+.info-card.green{
+  background:#0b7a3b;
+  color:var(--white);
+}
+
+
+/* ==============================
+   CONTENU CARTES
+============================== */
+
+.card-date{
+  font-size:34px;
+  line-height:.9;
+
+  font-weight:1000;
+}
+
+
+.card-kicker{
+  margin-top:6px;
+
+  font-size:10px;
+
+  font-weight:1000;
+
+  text-transform:uppercase;
+
+  letter-spacing:.05em;
+}
+
+
+.card-title{
+  margin:5px 0;
+
+  font-size:22px;
+  line-height:1;
+
+  font-weight:1000;
+}
+
+
+.card-text{
+  font-size:13px;
+  line-height:1.35;
+
+  font-weight:800;
+}
+
+
+/* ==============================
+   LIEN DANS CARTE
+============================== */
+
+.card-link{
+  display:inline-flex;
+
+  margin-top:9px;
+
+  padding:7px 12px;
+
+  border-radius:999px;
+
+  background:var(--white);
+  color:var(--blue-dark);
+
+  font-size:12px;
+
+  font-weight:1000;
+}
+
+
+/* ==============================
+   NOTE / INFORMATION
+============================== */
+
+.note{
+  margin-top:12px;
+
+  padding:11px 13px;
+
+  border-radius:var(--radius-small);
+
+  background:var(--pink);
+  color:var(--white);
+
+  font-size:13px;
+  line-height:1.35;
+
+  font-weight:800;
+}
+
+
+/* ==============================
+   DESKTOP
+============================== */
+
+@media(min-width:760px){
+
+  .panel{
+    padding:22px;
+  }
+
+
+  .card-grid.cols-2{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+
+  .card-grid.cols-3{
+    grid-template-columns:
+      repeat(3,1fr);
+  }
+
+
+  .card-grid.cols-4{
+    grid-template-columns:
+      repeat(4,1fr);
+  }
+
+}
