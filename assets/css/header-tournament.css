@@ -1,0 +1,385 @@
+/* =========================================================
+   HEADER TOURNOI
+   Jul'Yana Beach Tennis / TC Suzini
+========================================================= */
+
+
+/* ==============================
+   HEADER GLOBAL
+============================== */
+
+.tournament-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  background:
+    radial-gradient(
+      circle at 12% 0%,
+      rgba(255,255,255,.95),
+      transparent 9%
+    ),
+    radial-gradient(
+      circle at 16% 9%,
+      rgba(255,216,77,.75),
+      transparent 17%
+    ),
+    linear-gradient(
+      135deg,
+      #11aaf5 0%,
+      #1fd4e2 40%,
+      #0b8f62 100%
+    );
+
+  border-bottom:
+    1px solid rgba(255,255,255,.25);
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.18);
+}
+
+
+/* ==============================
+   PARTIE PRINCIPALE
+============================== */
+
+.tournament-header-main{
+  width:min(
+    var(--container),
+    calc(100% - 24px)
+  );
+
+  margin:auto;
+
+  min-height:70px;
+
+  display:grid;
+
+  grid-template-columns:
+    48px
+    minmax(0,1fr)
+    48px;
+
+  align-items:center;
+
+  gap:10px;
+}
+
+
+/* ==============================
+   LOGOS
+============================== */
+
+.tournament-header-logo{
+  display:block;
+
+  width:44px;
+  height:44px;
+
+  object-fit:contain;
+
+  filter:
+    drop-shadow(
+      0 4px 8px rgba(0,0,0,.18)
+    );
+}
+
+
+/* ==============================
+   TITRE
+============================== */
+
+.tournament-header-title{
+  min-width:0;
+
+  text-align:center;
+
+  line-height:1;
+}
+
+
+.tournament-header-name{
+  color:#fff;
+
+  font-size:
+    clamp(20px,5vw,34px);
+
+  font-weight:1000;
+
+  text-transform:uppercase;
+
+  letter-spacing:-.05em;
+
+  text-shadow:
+    0 8px 18px rgba(0,0,0,.18);
+}
+
+
+.tournament-header-date{
+  margin-top:5px;
+
+  color:#fff;
+
+  font-size:13px;
+
+  font-weight:1000;
+
+  text-transform:uppercase;
+
+  letter-spacing:.04em;
+}
+
+
+/* ==============================
+   CONTENEUR NAVIGATION
+============================== */
+
+.tournament-nav-wrap{
+  position:relative;
+
+  width:min(
+    var(--container),
+    calc(100% - 24px)
+  );
+
+  margin:0 auto;
+}
+
+
+/* ==============================
+   FONDU LATÉRAL
+============================== */
+
+.tournament-nav-wrap::before,
+.tournament-nav-wrap::after{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  bottom:10px;
+
+  width:42px;
+
+  z-index:3;
+
+  pointer-events:none;
+}
+
+
+.tournament-nav-wrap::before{
+  left:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(17,170,245,.95),
+      transparent
+    );
+}
+
+
+.tournament-nav-wrap::after{
+  right:0;
+
+  background:
+    linear-gradient(
+      270deg,
+      rgba(11,143,98,.95),
+      transparent
+    );
+}
+
+
+/* ==============================
+   INDICATEURS DE DÉFILEMENT
+============================== */
+
+.tournament-scroll-hint{
+  position:absolute;
+
+  top:50%;
+
+  transform:
+    translateY(-50%);
+
+  width:24px;
+  height:24px;
+
+  display:grid;
+
+  place-items:center;
+
+  color:#fff;
+
+  font-size:20px;
+
+  font-weight:1000;
+
+  text-shadow:
+    0 2px 6px rgba(0,0,0,.35);
+
+  pointer-events:none;
+
+  opacity:0;
+
+  transition:
+    opacity .25s ease;
+
+  z-index:5;
+}
+
+
+.tournament-scroll-hint.left{
+  left:6px;
+}
+
+
+.tournament-scroll-hint.right{
+  right:6px;
+}
+
+
+/* ==============================
+   NAVIGATION
+============================== */
+
+.tournament-nav{
+  display:flex;
+
+  gap:9px;
+
+  overflow-x:auto;
+  overflow-y:hidden;
+
+  white-space:nowrap;
+
+  padding:
+    0 34px 11px;
+
+  scrollbar-width:none;
+
+  -webkit-overflow-scrolling:touch;
+
+  scroll-snap-type:
+    x proximity;
+}
+
+
+.tournament-nav::-webkit-scrollbar{
+  display:none;
+}
+
+
+/* ==============================
+   BOUTONS NAVIGATION
+============================== */
+
+.tournament-nav a{
+  flex:0 0 auto;
+
+  scroll-snap-align:start;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:6px;
+
+  min-height:40px;
+
+  padding:
+    8px 14px;
+
+  border-radius:22px;
+
+  background:#ff3e8a;
+
+  color:#fff;
+
+  font-size:12px;
+
+  font-weight:1000;
+
+  text-decoration:none;
+
+  box-shadow:
+    0 8px 18px rgba(255,62,138,.30),
+    inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+
+/* ==============================
+   PAGE ACTIVE
+============================== */
+
+.tournament-nav a.active{
+  background:#ffd84d;
+
+  color:#063b72;
+
+  box-shadow:
+    0 10px 20px rgba(255,216,77,.40),
+    inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media(max-width:700px){
+
+  .tournament-header-main{
+    min-height:64px;
+
+    grid-template-columns:
+      42px
+      minmax(0,1fr)
+      42px;
+
+    gap:8px;
+  }
+
+
+  .tournament-header-logo{
+    width:38px;
+    height:38px;
+  }
+
+
+  .tournament-header-name{
+    font-size:21px;
+  }
+
+
+  .tournament-header-date{
+    font-size:11px;
+  }
+
+
+  .tournament-nav-wrap{
+    width:100%;
+  }
+
+
+  .tournament-nav{
+    gap:8px;
+
+    padding:
+      0 34px 10px;
+  }
+
+
+  .tournament-nav a{
+    min-height:38px;
+
+    padding:
+      8px 13px;
+
+    font-size:12px;
+  }
+
+}
