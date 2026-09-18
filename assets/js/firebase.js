@@ -4,13 +4,10 @@ import {
   initializeApp
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 
+
 import {
   getFirestore
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-import {
-  getAuth
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
 
 /* ==============================
@@ -48,15 +45,8 @@ const app =
   initializeApp(firebaseConfig);
 
 
-/* ==============================
-   SERVICES
-============================== */
-
 const db =
   getFirestore(app);
-
-const auth =
-  getAuth(app);
 
 
 /* ==============================
@@ -65,6 +55,5 @@ const auth =
 
 export {
   app,
-  db,
-  auth
+  db
 };
