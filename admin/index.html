@@ -1,0 +1,973 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#101010"
+  >
+
+  <title>
+    Administration | BT250 Suzini
+  </title>
+
+
+  <!-- CSS commun -->
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  >
+
+
+  <style>
+
+    /* ========================================
+       PAGE ADMIN
+    ======================================== */
+
+    body{
+      padding-top:0;
+    }
+
+    main{
+      padding-top:14px;
+      padding-bottom:32px;
+    }
+
+    .section{
+      margin-top:12px;
+    }
+
+    .section:first-child{
+      margin-top:0;
+    }
+
+    .admin-panel{
+      padding:14px;
+
+      border-radius:22px;
+
+      background:
+        rgba(255,255,255,.95);
+
+      box-shadow:
+        var(--shadow);
+    }
+
+
+    /* ========================================
+       EN-TÊTE DE CARTE
+    ======================================== */
+
+    .admin-panel-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+
+      margin-bottom:14px;
+    }
+
+    .admin-title{
+      margin:0;
+
+      color:var(--blue-dark);
+
+      font-size:26px;
+      font-weight:1000;
+      line-height:1;
+
+      letter-spacing:-.04em;
+    }
+
+    .admin-text{
+      margin:7px 0 0;
+
+      color:var(--muted);
+
+      font-size:14px;
+      font-weight:850;
+      line-height:1.35;
+    }
+
+    .admin-pill{
+      flex-shrink:0;
+
+      padding:7px 11px;
+
+      border-radius:999px;
+
+      background:var(--yellow);
+      color:var(--text);
+
+      font-size:11px;
+      font-weight:1000;
+
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+
+
+    /* ========================================
+       CONNEXION
+    ======================================== */
+
+    .admin-login{
+      display:grid;
+      gap:10px;
+    }
+
+    .admin-input{
+      width:100%;
+      min-height:48px;
+
+      border:
+        1px solid rgba(16,24,40,.12);
+
+      border-radius:16px;
+
+      padding:12px 14px;
+
+      background:#fff;
+      color:var(--text);
+
+      font-family:inherit;
+      font-size:16px;
+      font-weight:800;
+    }
+
+
+    /* ========================================
+       BOUTONS
+    ======================================== */
+
+    .admin-btn{
+      min-height:48px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      border:0;
+      border-radius:16px;
+
+      padding:12px 14px;
+
+      background:var(--blue-dark);
+      color:#fff;
+
+      font-family:inherit;
+      font-size:15px;
+      font-weight:1000;
+
+      text-align:center;
+      text-decoration:none;
+
+      cursor:pointer;
+    }
+
+    .admin-btn.pink{
+      background:var(--pink);
+    }
+
+    .admin-btn.yellow{
+      background:var(--yellow);
+      color:var(--text);
+    }
+
+    .admin-btn.green{
+      background:var(--green);
+    }
+
+    .admin-btn:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+    }
+
+
+    /* ========================================
+       STATUT
+    ======================================== */
+
+    .admin-status{
+      padding:12px 14px;
+
+      border-radius:16px;
+
+      background:#fff;
+      color:var(--text);
+
+      font-size:14px;
+      font-weight:900;
+      line-height:1.4;
+    }
+
+    .admin-status strong{
+      color:var(--blue-dark);
+    }
+
+    .admin-status.err{
+      background:#ffecec;
+      color:#9b1c1c;
+    }
+
+    .admin-status.ok{
+      background:#d9fbe8;
+      color:#087a35;
+    }
+
+
+    /* ========================================
+       ACTIONS DU HAUT
+    ======================================== */
+
+    .admin-top-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+
+      margin-top:12px;
+    }
+
+
+    /* ========================================
+       MENU
+    ======================================== */
+
+    .admin-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .admin-card{
+      min-height:130px;
+
+      display:flex;
+      flex-direction:column;
+
+      padding:14px;
+
+      border-radius:18px;
+
+      color:#fff;
+
+      text-decoration:none;
+
+      box-shadow:
+        0 8px 18px rgba(16,24,40,.10);
+    }
+
+    .admin-card.blue{
+      background:
+        linear-gradient(
+          145deg,
+          #149be5,
+          var(--blue-dark)
+        );
+    }
+
+    .admin-card.pink{
+      background:
+        linear-gradient(
+          145deg,
+          var(--pink),
+          #c51f67
+        );
+    }
+
+    .admin-card.yellow{
+      background:
+        linear-gradient(
+          145deg,
+          var(--yellow),
+          #f0b800
+        );
+
+      color:var(--text);
+    }
+
+    .admin-card.green{
+      background:
+        linear-gradient(
+          145deg,
+          #19a56a,
+          var(--green-dark)
+        );
+    }
+
+    .admin-card.orange{
+      background:
+        linear-gradient(
+          145deg,
+          var(--orange),
+          #d94c0b
+        );
+    }
+
+    .admin-card.dark{
+      background:
+        linear-gradient(
+          145deg,
+          #344054,
+          #101828
+        );
+    }
+
+    .admin-kicker{
+      margin-bottom:6px;
+
+      font-size:10px;
+      font-weight:1000;
+
+      text-transform:uppercase;
+      letter-spacing:.06em;
+
+      opacity:.82;
+    }
+
+    .admin-card-title{
+      margin:0;
+
+      font-size:20px;
+      font-weight:1000;
+      line-height:1;
+    }
+
+    .admin-card-text{
+      margin:8px 0 0;
+
+      font-size:12px;
+      font-weight:850;
+      line-height:1.3;
+
+      opacity:.92;
+    }
+
+
+    /* ========================================
+       UTILITAIRE
+    ======================================== */
+
+    .hidden{
+      display:none !important;
+    }
+
+
+    /* ========================================
+       DESKTOP
+    ======================================== */
+
+    @media(min-width:760px){
+
+      main{
+        padding-top:22px;
+      }
+
+      .admin-grid{
+        grid-template-columns:
+          repeat(3,1fr);
+      }
+
+      .admin-card{
+        min-height:150px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body data-page="accueil">
+
+
+<main class="container">
+
+
+  <!-- ======================================
+       CONNEXION
+  ======================================= -->
+
+  <section
+    class="section"
+    id="loginSection"
+  >
+
+    <div class="admin-panel">
+
+
+      <div class="admin-panel-head">
+
+        <div>
+
+          <h1 class="admin-title">
+            Administration
+          </h1>
+
+          <p class="admin-text">
+            BT250 Suzini — Double Mixte<br>
+            02 octobre 2026
+          </p>
+
+        </div>
+
+
+        <div class="admin-pill">
+          Admin
+        </div>
+
+      </div>
+
+
+      <form
+        id="loginForm"
+        class="admin-login"
+        autocomplete="off"
+      >
+
+        <input
+          id="password"
+          class="admin-input"
+          type="password"
+          placeholder="Mot de passe admin"
+          autocomplete="current-password"
+          required
+        >
+
+
+        <button
+          class="admin-btn"
+          id="loginBtn"
+          type="submit"
+        >
+          🔐 Se connecter
+        </button>
+
+
+        <div
+          id="loginMessage"
+          class="admin-status"
+        >
+          Entre le mot de passe administrateur.
+        </div>
+
+      </form>
+
+
+      <div class="admin-top-actions">
+
+        <a
+          class="admin-btn green"
+          href="../index.html"
+        >
+          🏠 Site public
+        </a>
+
+        <a
+          class="admin-btn yellow"
+          href="../participants.html"
+        >
+          👥 Équipes
+        </a>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       ESPACE ADMIN CONNECTÉ
+  ======================================= -->
+
+  <section
+    class="section hidden"
+    id="adminContent"
+  >
+
+    <div class="admin-panel">
+
+
+      <div class="admin-panel-head">
+
+        <div>
+
+          <h1 class="admin-title">
+            🎛️ Espace admin
+          </h1>
+
+          <p class="admin-text">
+            Gestion du BT250 Suzini —
+            Double Mixte du 02 octobre 2026.
+          </p>
+
+        </div>
+
+
+        <div class="admin-pill">
+          Connecté
+        </div>
+
+      </div>
+
+
+      <div class="admin-status ok">
+        <strong>Administration active</strong><br>
+        Cet appareil restera identifié jusqu’à
+        la déconnexion.
+      </div>
+
+
+      <div class="admin-top-actions">
+
+        <button
+          id="logoutBtn"
+          class="admin-btn pink"
+          type="button"
+        >
+          🚪 Déconnexion
+        </button>
+
+
+        <a
+          class="admin-btn green"
+          href="../index.html"
+        >
+          👁️ Vue publique
+        </a>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       MENU ADMIN
+  ======================================= -->
+
+  <section
+    class="section hidden"
+    id="menuContent"
+  >
+
+    <div class="admin-panel">
+
+
+      <div class="admin-panel-head">
+
+        <div>
+
+          <h2 class="admin-title">
+            Gestion
+          </h2>
+
+          <p class="admin-text">
+            Accès aux fonctions du tournoi.
+          </p>
+
+        </div>
+
+
+        <div class="admin-pill">
+          Menu
+        </div>
+
+      </div>
+
+
+      <div class="admin-grid">
+
+
+        <!-- INSCRIPTIONS -->
+
+        <a
+          class="admin-card blue"
+          href="inscriptions.html"
+        >
+
+          <div class="admin-kicker">
+            Ouverture
+          </div>
+
+          <h3 class="admin-card-title">
+            Inscriptions
+          </h3>
+
+          <div class="admin-card-text">
+            Ouvrir, suspendre ou clôturer
+            les inscriptions.
+          </div>
+
+        </a>
+
+
+        <!-- ÉQUIPES -->
+
+        <a
+          class="admin-card pink"
+          href="participants.html"
+        >
+
+          <div class="admin-kicker">
+            Joueurs
+          </div>
+
+          <h3 class="admin-card-title">
+            Équipes
+          </h3>
+
+          <div class="admin-card-text">
+            Gérer les équipes, joueurs
+            et classements BT.
+          </div>
+
+        </a>
+
+
+        <!-- TIRAGE -->
+
+        <a
+          class="admin-card orange"
+          href="tirage.html"
+        >
+
+          <div class="admin-kicker">
+            Poules
+          </div>
+
+          <h3 class="admin-card-title">
+            Tirage
+          </h3>
+
+          <div class="admin-card-text">
+            Préparer et publier
+            le tirage des poules.
+          </div>
+
+        </a>
+
+
+        <!-- PROGRAMMATION -->
+
+        <a
+          class="admin-card yellow"
+          href="programmation.html"
+        >
+
+          <div class="admin-kicker">
+            Planning
+          </div>
+
+          <h3 class="admin-card-title">
+            Programmation
+          </h3>
+
+          <div class="admin-card-text">
+            Organiser les matchs,
+            horaires et terrains.
+          </div>
+
+        </a>
+
+
+        <!-- CLASSEMENT -->
+
+        <a
+          class="admin-card green"
+          href="classement.html"
+        >
+
+          <div class="admin-kicker">
+            Résultats
+          </div>
+
+          <h3 class="admin-card-title">
+            Classement
+          </h3>
+
+          <div class="admin-card-text">
+            Saisir les résultats et
+            gérer le classement.
+          </div>
+
+        </a>
+
+
+        <!-- PARAMÈTRES -->
+
+        <a
+          class="admin-card dark"
+          href="parametres.html"
+        >
+
+          <div class="admin-kicker">
+            Configuration
+          </div>
+
+          <h3 class="admin-card-title">
+            Paramètres
+          </h3>
+
+          <div class="admin-card-text">
+            Configurer les informations
+            et options du tournoi.
+          </div>
+
+        </a>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<script type="module">
+
+  import {
+    isAdminConnected,
+    loginAdmin,
+    logoutAdmin
+  } from "../assets/js/admin-session.js";
+
+
+  /* ========================================
+     ÉLÉMENTS
+  ======================================== */
+
+  const loginSection =
+    document.getElementById(
+      "loginSection"
+    );
+
+
+  const adminContent =
+    document.getElementById(
+      "adminContent"
+    );
+
+
+  const menuContent =
+    document.getElementById(
+      "menuContent"
+    );
+
+
+  const loginForm =
+    document.getElementById(
+      "loginForm"
+    );
+
+
+  const passwordInput =
+    document.getElementById(
+      "password"
+    );
+
+
+  const loginBtn =
+    document.getElementById(
+      "loginBtn"
+    );
+
+
+  const loginMessage =
+    document.getElementById(
+      "loginMessage"
+    );
+
+
+  const logoutBtn =
+    document.getElementById(
+      "logoutBtn"
+    );
+
+
+  /* ========================================
+     AFFICHAGE
+  ======================================== */
+
+  function showLogin(){
+
+    loginSection.classList.remove(
+      "hidden"
+    );
+
+
+    adminContent.classList.add(
+      "hidden"
+    );
+
+
+    menuContent.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  function showAdmin(){
+
+    loginSection.classList.add(
+      "hidden"
+    );
+
+
+    adminContent.classList.remove(
+      "hidden"
+    );
+
+
+    menuContent.classList.remove(
+      "hidden"
+    );
+
+  }
+
+
+  /* ========================================
+     CONNEXION
+  ======================================== */
+
+  loginForm.addEventListener(
+    "submit",
+    event => {
+
+      event.preventDefault();
+
+
+      const password =
+        passwordInput.value;
+
+
+      if(!password){
+
+        return;
+
+      }
+
+
+      loginBtn.disabled =
+        true;
+
+
+      loginMessage.className =
+        "admin-status";
+
+
+      loginMessage.textContent =
+        "Connexion…";
+
+
+      const success =
+        loginAdmin(
+          password
+        );
+
+
+      if(!success){
+
+        loginMessage.className =
+          "admin-status err";
+
+
+        loginMessage.textContent =
+          "❌ Mot de passe incorrect.";
+
+
+        passwordInput.select();
+
+
+        loginBtn.disabled =
+          false;
+
+
+        return;
+
+      }
+
+
+      /*
+       * Comme sur l'Americano :
+       * rechargement après connexion.
+       */
+
+      window.location.reload();
+
+    }
+  );
+
+
+  /* ========================================
+     DÉCONNEXION
+  ======================================== */
+
+  logoutBtn.addEventListener(
+    "click",
+    () => {
+
+      logoutAdmin();
+
+
+      passwordInput.value =
+        "";
+
+
+      loginMessage.className =
+        "admin-status";
+
+
+      loginMessage.textContent =
+        "Déconnecté.";
+
+
+      showLogin();
+
+    }
+  );
+
+
+  /* ========================================
+     INITIALISATION
+  ======================================== */
+
+  if(
+    isAdminConnected()
+  ){
+
+    showAdmin();
+
+  }
+
+  else{
+
+    showLogin();
+
+  }
+
+</script>
+
+
+</body>
+
+</html>
