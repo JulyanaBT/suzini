@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="fr">
 
 <head>
@@ -16,7 +17,7 @@
   >
 
   <title>
-    Admin Équipes | BT250 Suzini
+    Équipes | Administration BT250
   </title>
 
 
@@ -28,174 +29,299 @@
 
   <style>
 
-    main{
-      padding-top:14px;
-      padding-bottom:28px;
+    /* ========================================
+       PAGE
+    ======================================== */
+
+    body{
+      background:var(--sand-light);
     }
 
-    .section{
-      margin-top:10px;
-    }
 
-    .section:first-child{
-      margin-top:0;
-    }
-
-    .compact-panel{
-      padding:12px;
-      border-radius:22px;
+    .teams-admin-page{
+      padding-top:8px;
+      padding-bottom:26px;
     }
 
 
     /* ========================================
-       EN-TÊTE
+       HERO
     ======================================== */
 
-    .admin-panel-head{
+    .teams-admin-head{
+      padding:15px 16px;
+
+      border-radius:18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #111,
+          #292929
+        );
+
+      color:white;
+    }
+
+
+    .teams-admin-head-top{
       display:flex;
+
       align-items:flex-start;
       justify-content:space-between;
-      gap:10px;
 
-      margin-bottom:12px;
+      gap:10px;
     }
 
-    .admin-title{
-      margin:0;
 
-      color:var(--blue-dark);
+    .teams-admin-kicker{
+      color:var(--orange);
 
-      font-size:24px;
+      font-size:9px;
+
+      font-weight:950;
+
+      letter-spacing:1.2px;
+
+      text-transform:uppercase;
+    }
+
+
+    .teams-admin-head h1{
+      margin:5px 0 0;
+
+      font-size:28px;
+
       line-height:1;
+
       font-weight:1000;
 
-      letter-spacing:-.04em;
+      letter-spacing:-1px;
     }
 
-    .admin-text{
+
+    .teams-admin-head p{
       margin:6px 0 0;
 
-      color:var(--muted);
+      color:#aaa;
 
-      font-size:13px;
-      font-weight:850;
+      font-size:10px;
+
       line-height:1.35;
     }
 
-    .admin-pill{
-      flex-shrink:0;
 
-      padding:7px 10px;
+    .live-badge{
+      flex:0 0 auto;
+
+      padding:5px 8px;
 
       border-radius:999px;
 
-      background:var(--yellow);
-      color:var(--text);
+      background:
+        rgba(37,184,100,.16);
 
-      font-size:11px;
-      font-weight:1000;
+      color:#75e9a4;
+
+      font-size:9px;
+
+      font-weight:950;
     }
 
 
     /* ========================================
-       STATUT
+       COMPTEURS
     ======================================== */
 
-    .admin-status{
-      padding:10px 12px;
-
-      border-radius:16px;
-
-      background:#fff;
-      color:var(--text);
-
-      font-size:13px;
-      font-weight:900;
-      line-height:1.35;
-
-      box-shadow:
-        0 6px 14px rgba(16,24,40,.08);
-    }
-
-
-    /* ========================================
-       RÉSUMÉ
-    ======================================== */
-
-    .summary-grid{
+    .teams-summary{
       display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:8px;
+
+      grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+      gap:6px;
+
+      margin-top:8px;
     }
+
 
     .summary-box{
-      padding:10px 6px;
+      min-width:0;
 
-      border-radius:16px;
+      padding:10px 4px;
 
-      background:#fff;
-      color:var(--blue-dark);
+      border-radius:14px;
+
+      background:white;
 
       text-align:center;
-      font-weight:1000;
+
+      box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.06);
     }
+
 
     .summary-box strong{
       display:block;
 
-      font-size:22px;
+      color:#111;
+
+      font-size:21px;
+
       line-height:1;
+
+      font-weight:1000;
     }
+
 
     .summary-box span{
       display:block;
 
       margin-top:4px;
 
-      color:var(--muted);
+      color:#777;
 
-      font-size:9px;
+      font-size:7px;
+
+      font-weight:900;
+
+      letter-spacing:.35px;
+
       text-transform:uppercase;
     }
 
 
-    /* ========================================
-       ACTIONS GÉNÉRALES
-    ======================================== */
-
-    .actions-row{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:8px;
-
-      margin-top:10px;
+    .summary-box.main strong{
+      color:#126a35;
     }
 
-    .btn{
-      min-height:40px;
+
+    .summary-box.wait strong{
+      color:#b47b00;
+    }
+
+
+    .summary-box.confirmed strong{
+      color:var(--orange);
+    }
+
+
+    /* ========================================
+       OUTILS
+    ======================================== */
+
+    .teams-tools{
+      display:grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:7px;
+
+      margin-top:8px;
+    }
+
+
+    .tool-btn{
+      min-height:41px;
 
       border:0;
-      border-radius:14px;
 
-      padding:9px 11px;
+      border-radius:11px;
 
-      background:var(--blue-dark);
-      color:#fff;
+      background:#111;
 
-      font-family:inherit;
-      font-size:13px;
-      font-weight:1000;
+      color:white;
+
+      font:inherit;
+
+      font-size:10px;
+
+      font-weight:950;
 
       cursor:pointer;
     }
 
-    .btn.pink{
-      background:var(--pink);
+
+    .tool-btn.secondary{
+      background:#e9e9e9;
+      color:#444;
     }
 
-    .btn.yellow{
-      background:var(--yellow);
-      color:var(--text);
+
+    /* ========================================
+       EN-TÊTE LISTE
+    ======================================== */
+
+    .teams-list-head{
+      display:flex;
+
+      align-items:flex-end;
+      justify-content:space-between;
+
+      gap:10px;
+
+      margin-top:14px;
+      margin-bottom:7px;
+
+      padding:0 2px;
+    }
+
+
+    .teams-list-kicker{
+      color:var(--orange);
+
+      font-size:8px;
+
+      font-weight:950;
+
+      letter-spacing:.8px;
+
+      text-transform:uppercase;
+    }
+
+
+    .teams-list-head h2{
+      margin:3px 0 0;
+
+      color:#111;
+
+      font-size:19px;
+
+      line-height:1;
+
+      font-weight:1000;
+    }
+
+
+    .teams-list-head p{
+      margin:4px 0 0;
+
+      color:#777;
+
+      font-size:9px;
+
+      line-height:1.3;
+
+      font-weight:700;
+    }
+
+
+    .list-count{
+      flex:0 0 auto;
+
+      padding:5px 8px;
+
+      border-radius:999px;
+
+      background:#111;
+
+      color:white;
+
+      font-size:8px;
+
+      font-weight:950;
     }
 
 
@@ -203,98 +329,159 @@
        LISTE
     ======================================== */
 
-    .cards-list{
+    .teams-list{
       display:grid;
-      gap:10px;
-    }
 
-    .item-card{
-      display:grid;
-      gap:8px;
-
-      padding:12px;
-
-      border:
-        1px solid rgba(16,24,40,.08);
-
-      border-radius:18px;
-
-      background:#fff;
-      color:var(--text);
-
-      box-shadow:
-        0 8px 18px rgba(16,24,40,.10);
-    }
-
-    .item-card.deleted{
-      opacity:.55;
-    }
-
-    .item-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:10px;
-    }
-
-    .item-title{
-      color:var(--blue-dark);
-
-      font-size:19px;
-      font-weight:1000;
-      line-height:1.05;
-    }
-
-    .item-sub{
-      margin-top:4px;
-
-      color:var(--muted);
-
-      font-size:12px;
-      font-weight:900;
-      line-height:1.3;
+      gap:7px;
     }
 
 
     /* ========================================
-       PASTILLES
+       CARTE ÉQUIPE
     ======================================== */
 
-    .status-pill{
-      flex-shrink:0;
+    .team-admin-card{
+      padding:11px;
 
-      padding:6px 10px;
+      border-radius:15px;
+
+      background:white;
+
+      border-left:
+        4px solid #ddd;
+
+      box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.06);
+    }
+
+
+    .team-admin-card.confirmed{
+      border-left-color:#25b864;
+    }
+
+
+    .team-admin-card.wait{
+      border-left-color:#f0b429;
+    }
+
+
+    .team-admin-card.stby{
+      border-left-color:#ff4b27;
+    }
+
+
+    .team-admin-card.deleted{
+      border-left-color:#999;
+
+      opacity:.58;
+    }
+
+
+    /* ========================================
+       TÊTE CARTE
+    ======================================== */
+
+    .team-card-head{
+      display:flex;
+
+      align-items:flex-start;
+      justify-content:space-between;
+
+      gap:9px;
+    }
+
+
+    .team-main{
+      min-width:0;
+    }
+
+
+    .team-number{
+      color:var(--orange);
+
+      font-size:8px;
+
+      font-weight:950;
+
+      letter-spacing:.6px;
+
+      text-transform:uppercase;
+    }
+
+
+    .team-name{
+      margin-top:3px;
+
+      color:#111;
+
+      font-size:17px;
+
+      line-height:1.05;
+
+      font-weight:1000;
+
+      word-break:break-word;
+    }
+
+
+    .team-meta{
+      margin-top:5px;
+
+      color:#888;
+
+      font-size:9px;
+
+      font-weight:750;
+
+      line-height:1.4;
+    }
+
+
+    /* ========================================
+       STATUT
+    ======================================== */
+
+    .team-status{
+      flex:0 0 auto;
+
+      padding:5px 8px;
 
       border-radius:999px;
 
-      background:#fff7d6;
-      color:var(--text);
+      background:#eee;
 
-      font-size:10px;
-      font-weight:1000;
+      color:#666;
+
+      font-size:8px;
+
+      font-weight:950;
 
       text-transform:uppercase;
-      white-space:nowrap;
     }
 
-    .status-pill.confirmed{
-      background:#d9fbe8;
-      color:#087a35;
+
+    .team-status.confirmed{
+      background:#ddf7e7;
+      color:#126a35;
     }
 
-    .status-pill.stby{
-      background:#ffeef2;
-      color:#9b1733;
+
+    .team-status.wait{
+      background:#fff3cd;
+      color:#8a6500;
     }
 
-    .status-pill.wait{
-      background:#f1f5f9;
-      color:#475467;
+
+    .team-status.stby{
+      background:#fff0ec;
+      color:#c83417;
     }
 
-    .status-pill.deleted{
-      background:#fee4e2;
-      color:#b42318;
+
+    .team-status.deleted{
+      background:#ececec;
+      color:#777;
     }
 
 
@@ -302,161 +489,296 @@
        JOUEURS
     ======================================== */
 
-    .player-line{
-      min-height:42px;
+    .team-players{
+      display:grid;
 
-      padding:9px 10px;
+      grid-template-columns:
+        1fr 1fr;
 
-      border-radius:14px;
+      gap:6px;
 
-      background:#f8fafc;
+      margin-top:9px;
+    }
 
-      font-size:13px;
-      font-weight:900;
+
+    .player-box{
+      min-width:0;
+
+      padding:9px;
+
+      border-radius:11px;
+
+      background:#f3f3f3;
+    }
+
+
+    .player-role{
+      display:block;
+
+      margin-bottom:3px;
+
+      color:#777;
+
+      font-size:8px;
+
+      font-weight:950;
+
+      text-transform:uppercase;
+    }
+
+
+    .player-name{
+      color:#111;
+
+      font-size:11px;
+
+      line-height:1.15;
+
+      font-weight:1000;
+
+      word-break:break-word;
+    }
+
+
+    .player-info{
+      margin-top:4px;
+
+      color:#777;
+
+      font-size:8px;
+
       line-height:1.35;
+
+      font-weight:750;
     }
 
-    .player-line strong{
-      color:var(--blue-dark);
-    }
 
-    .rank-value{
+    .rank-pill{
       display:inline-block;
 
-      margin-left:4px;
+      margin-top:5px;
 
-      padding:3px 7px;
+      padding:3px 6px;
 
       border-radius:999px;
 
-      background:var(--yellow);
-      color:var(--text);
+      background:#fff3cd;
 
-      font-size:11px;
-      font-weight:1000;
+      color:#8a6500;
+
+      font-size:8px;
+
+      font-weight:950;
     }
 
 
     /* ========================================
-       DÉTAILS
+       ACTION RAPIDE
     ======================================== */
 
-    details{
-      padding-top:8px;
+    .quick-actions{
+      display:grid;
 
-      border-top:
-        1px solid rgba(16,24,40,.08);
-    }
+      grid-template-columns:
+        1fr 1fr;
 
-    details summary{
-      color:var(--blue-dark);
-
-      font-weight:1000;
-
-      cursor:pointer;
-      list-style:none;
-    }
-
-    details summary::-webkit-details-marker{
-      display:none;
-    }
-
-
-    /* ========================================
-       MINI ACTIONS
-    ======================================== */
-
-    .mini-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
+      gap:5px;
 
       margin-top:8px;
     }
 
-    .mini-btn{
+
+    .quick-btn{
+      min-width:0;
+
+      min-height:37px;
+
+      padding:5px;
+
       border:0;
-      border-radius:999px;
 
-      padding:8px 12px;
+      border-radius:9px;
 
-      background:var(--pink);
-      color:#fff;
+      background:#f1f1f1;
 
-      font-family:inherit;
-      font-size:12px;
-      font-weight:1000;
+      color:#555;
+
+      font:inherit;
+
+      font-size:9px;
+
+      font-weight:950;
 
       cursor:pointer;
     }
 
-    .mini-btn.green{
-      background:var(--green);
+
+    .quick-btn.green{
+      background:#ddf7e7;
+      color:#126a35;
     }
 
-    .mini-btn.yellow{
-      background:var(--yellow);
-      color:var(--text);
+
+    .quick-btn.yellow{
+      background:#fff3cd;
+      color:#8a6500;
     }
 
-    .mini-btn.blue{
-      background:var(--blue-dark);
+
+    .quick-btn.orange{
+      background:#fff0ec;
+      color:#c83417;
     }
 
-    .mini-btn.red{
-      background:#9b1c1c;
+
+    .quick-btn.dark{
+      background:#111;
+      color:white;
     }
 
-    .mini-btn.dark{
-      background:#344054;
-    }
 
-    .mini-btn:disabled{
-      opacity:.55;
-      cursor:not-allowed;
+    .quick-btn:disabled{
+      opacity:.45;
     }
 
 
     /* ========================================
-       NAVIGATION
+       PLUS D'ACTIONS
     ======================================== */
 
-    .nav-actions{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
+    .team-more{
+      margin-top:8px;
+
+      padding-top:8px;
+
+      border-top:
+        1px solid #eee;
     }
 
-    .nav-link{
-      min-height:44px;
 
-      display:flex;
-      align-items:center;
-      justify-content:center;
+    .team-more summary{
+      cursor:pointer;
 
-      padding:10px;
+      list-style:none;
 
-      border-radius:14px;
+      color:#888;
 
-      background:#344054;
-      color:#fff;
+      font-size:9px;
 
-      font-size:13px;
-      font-weight:1000;
+      font-weight:900;
+
+      user-select:none;
+    }
+
+
+    .team-more summary::-webkit-details-marker{
+      display:none;
+    }
+
+
+    .secondary-actions{
+      display:grid;
+
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:5px;
+
+      margin-top:8px;
+    }
+
+
+    .secondary-btn{
+      min-width:0;
+
+      min-height:36px;
+
+      padding:5px;
+
+      border:0;
+
+      border-radius:9px;
+
+      background:#eee;
+
+      color:#555;
+
+      font:inherit;
+
+      font-size:9px;
+
+      font-weight:950;
+
+      cursor:pointer;
+    }
+
+
+    .secondary-btn.red{
+      background:#ffe3de;
+      color:#a52d18;
+    }
+
+
+    .secondary-btn.green{
+      background:#ddf7e7;
+      color:#126a35;
+    }
+
+
+    .secondary-btn:disabled{
+      opacity:.45;
+    }
+
+
+    /* ========================================
+       VIDE / ERREUR
+    ======================================== */
+
+    .teams-empty{
+      padding:25px 15px;
+
+      border-radius:16px;
+
+      background:white;
+
+      color:#777;
+
+      font-size:11px;
+
+      font-weight:800;
 
       text-align:center;
-      text-decoration:none;
+
+      box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.05);
     }
 
-    .nav-link.public{
-      background:var(--green);
+
+    /* ========================================
+       RESPONSIVE
+    ======================================== */
+
+    @media(max-width:350px){
+
+      .teams-summary{
+        grid-template-columns:
+          repeat(2,minmax(0,1fr));
+      }
+
+
+      .team-players{
+        grid-template-columns:1fr;
+      }
+
     }
 
 
-    @media(min-width:760px){
+    @media(min-width:700px){
 
-      .cards-list{
-        grid-template-columns:1fr 1fr;
+      .teams-list{
+        grid-template-columns:
+          repeat(2,minmax(0,1fr));
       }
 
     }
@@ -466,198 +788,204 @@
 </head>
 
 
-<body data-page="participants">
+<body
+  data-page="participants"
+  data-admin="true"
+>
 
 
-<main class="container">
+<!-- ======================================
+     HEADER ADMIN
+======================================= -->
+
+<div id="siteHeader"></div>
+
+
+<main class="container teams-admin-page">
 
 
   <!-- ======================================
-       EN-TÊTE / RÉSUMÉ
+       HERO
   ======================================= -->
 
-  <section class="section">
-
-    <div class="panel compact-panel">
+  <section class="teams-admin-head">
 
 
-      <div class="admin-panel-head">
+    <div class="teams-admin-head-top">
 
-        <div>
 
-          <h1 class="admin-title">
-            👥 Gestion des équipes
-          </h1>
+      <div>
 
-          <p class="admin-text">
-            BT250 Suzini — Double Mixte<br>
-            02 octobre 2026
-          </p>
-
+        <div class="teams-admin-kicker">
+          Gestion en direct
         </div>
 
 
-        <div class="admin-pill">
-          12 max
-        </div>
+        <h1>
+          Équipes
+        </h1>
+
+
+        <p>
+          Gestion des équipes du BT250 Double Mixte.
+        </p>
 
       </div>
 
 
-      <div class="summary-grid">
-
-
-        <div class="summary-box">
-
-          <strong id="countTotal">
-            0
-          </strong>
-
-          <span>
-            Total
-          </span>
-
-        </div>
-
-
-        <div class="summary-box">
-
-          <strong id="countMain">
-            0
-          </strong>
-
-          <span>
-            Liste
-          </span>
-
-        </div>
-
-
-        <div class="summary-box">
-
-          <strong id="countWait">
-            0
-          </strong>
-
-          <span>
-            Attente
-          </span>
-
-        </div>
-
-
-        <div class="summary-box">
-
-          <strong id="countConfirmed">
-            0
-          </strong>
-
-          <span>
-            Confirmées
-          </span>
-
-        </div>
-
-
+      <div class="live-badge">
+        ● LIVE
       </div>
 
 
-      <div class="actions-row">
-
-        <button
-          class="btn"
-          id="btnRefresh"
-          type="button"
-        >
-          🔄 Rafraîchir
-        </button>
+    </div>
 
 
-        <button
-          class="btn yellow"
-          id="btnExpand"
-          type="button"
-        >
-          🧩 Développer
-        </button>
+  </section>
 
 
-        <button
-          class="btn pink"
-          id="btnCollapse"
-          type="button"
-        >
-          🧊 Réduire
-        </button>
 
+  <!-- ======================================
+       COMPTEURS
+  ======================================= -->
+
+  <section class="teams-summary">
+
+
+    <div class="summary-box">
+
+      <strong id="countTotal">
+        0
+      </strong>
+
+      <span>
+        Total
+      </span>
+
+    </div>
+
+
+    <div class="summary-box main">
+
+      <strong id="countMain">
+        0
+      </strong>
+
+      <span>
+        Principale
+      </span>
+
+    </div>
+
+
+    <div class="summary-box wait">
+
+      <strong id="countWait">
+        0
+      </strong>
+
+      <span>
+        Attente
+      </span>
+
+    </div>
+
+
+    <div class="summary-box confirmed">
+
+      <strong id="countConfirmed">
+        0
+      </strong>
+
+      <span>
+        Confirmées
+      </span>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- ======================================
+       OUTILS
+  ======================================= -->
+
+  <section class="teams-tools">
+
+
+    <button
+      id="btnExpand"
+      class="tool-btn"
+      type="button"
+    >
+      ⚙️ Tout développer
+    </button>
+
+
+    <button
+      id="btnCollapse"
+      class="tool-btn secondary"
+      type="button"
+    >
+      Réduire
+    </button>
+
+
+  </section>
+
+
+
+  <!-- ======================================
+       TITRE LISTE
+  ======================================= -->
+
+  <section class="teams-list-head">
+
+
+    <div>
+
+      <div class="teams-list-kicker">
+        Participants
       </div>
 
 
-      <div
-        class="admin-status"
-        id="statusMsg"
-        style="margin-top:10px;"
-      >
+      <h2>
+        Toutes les équipes
+      </h2>
+
+
+      <p id="statusMsg">
         Chargement…
-      </div>
-
+      </p>
 
     </div>
+
+
+    <span
+      id="listCount"
+      class="list-count"
+    >
+      0 / 12
+    </span>
+
 
   </section>
 
 
-  <!-- ======================================
-       ÉQUIPES
-  ======================================= -->
-
-  <section class="section">
-
-    <div class="panel compact-panel">
-
-      <div
-        id="cardsList"
-        class="cards-list"
-      >
-
-        <div class="admin-status">
-          Chargement…
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
 
   <!-- ======================================
-       NAVIGATION
+       LISTE
   ======================================= -->
 
-  <section class="section">
+  <section
+    id="cardsList"
+    class="teams-list"
+  >
 
-    <div class="panel compact-panel">
-
-      <div class="nav-actions">
-
-        <a
-          class="nav-link"
-          href="index.html"
-        >
-          🎛️ Tableau de bord
-        </a>
-
-
-        <a
-          class="nav-link public"
-          href="../participants.html"
-        >
-          👁️ Vue publique
-        </a>
-
-      </div>
-
+    <div class="teams-empty">
+      Chargement des équipes…
     </div>
 
   </section>
@@ -666,10 +994,26 @@
 </main>
 
 
+
+<!-- ======================================
+     HEADER ADMIN
+======================================= -->
+
+<script
+  type="module"
+  src="../assets/js/admin-header.js"
+></script>
+
+
+
+<!-- ======================================
+     FIRESTORE / ADMIN
+======================================= -->
+
 <script type="module">
 
   /* ========================================
-     SESSION ADMIN
+     SESSION
   ======================================== */
 
   import {
@@ -755,6 +1099,12 @@
     );
 
 
+  const listCount =
+    document.getElementById(
+      "listCount"
+    );
+
+
   const cardsList =
     document.getElementById(
       "cardsList"
@@ -764,12 +1114,6 @@
   const statusMsg =
     document.getElementById(
       "statusMsg"
-    );
-
-
-  const btnRefresh =
-    document.getElementById(
-      "btnRefresh"
     );
 
 
@@ -799,7 +1143,9 @@
 
   function esc(value){
 
-    return String(value ?? "")
+    return String(
+      value ?? ""
+    )
       .replaceAll("&","&amp;")
       .replaceAll("<","&lt;")
       .replaceAll(">","&gt;")
@@ -812,8 +1158,9 @@
   function fmt(value){
 
     const text =
-      String(value ?? "")
-        .trim();
+      String(
+        value ?? ""
+      ).trim();
 
 
     return text || "—";
@@ -974,68 +1321,55 @@
 
 
   /* ========================================
-     PASTILLE
+     STATUT
   ======================================== */
 
-  function statusPill(row){
+  function statusInfo(row){
 
-    if(
-      isDeleted(row)
-    ){
+    if(isDeleted(row)){
 
-      return `
-        <span class="status-pill deleted">
-          Supprimée
-        </span>
-      `;
+      return {
+        className:"deleted",
+        label:"Supprimée"
+      };
 
     }
 
 
-    if(
-      isStby(row)
-    ){
+    if(isStby(row)){
 
-      return `
-        <span class="status-pill stby">
-          STBY
-        </span>
-      `;
+      return {
+        className:"stby",
+        label:"STBY"
+      };
 
     }
 
 
-    if(
-      isWait(row)
-    ){
+    if(isWait(row)){
 
-      return `
-        <span class="status-pill wait">
-          Attente
-        </span>
-      `;
+      return {
+        className:"wait",
+        label:"Attente"
+      };
 
     }
 
 
-    if(
-      isConfirmed(row)
-    ){
+    if(isConfirmed(row)){
 
-      return `
-        <span class="status-pill confirmed">
-          Confirmée
-        </span>
-      `;
+      return {
+        className:"confirmed",
+        label:"Confirmée"
+      };
 
     }
 
 
-    return `
-      <span class="status-pill">
-        Inscrite
-      </span>
-    `;
+    return {
+      className:"registered",
+      label:"Inscrite"
+    };
 
   }
 
@@ -1086,44 +1420,56 @@
       );
 
 
+    const state =
+      statusInfo(
+        row
+      );
+
+
     const deleted =
-      isDeleted(row);
+      isDeleted(
+        row
+      );
 
 
     return `
 
-      <div
-        class="item-card ${
-          deleted
-            ? "deleted"
-            : ""
-        }"
+      <article
+        class="
+          team-admin-card
+          ${esc(state.className)}
+        "
         data-id="${esc(row.id)}"
       >
 
 
-        <div class="item-head">
+        <!-- TÊTE -->
 
-          <div>
+        <div class="team-card-head">
 
-            <div class="item-title">
-              #${index + 1} —
+
+          <div class="team-main">
+
+
+            <div class="team-number">
+
+              Équipe ${index + 1}
+
+              ${
+                teamRank !== null
+                  ? ` · Rang ${esc(teamRank)}`
+                  : ""
+              }
+
+            </div>
+
+
+            <div class="team-name">
               ${esc(teamName)}
             </div>
 
 
-            <div class="item-sub">
-
-              Rang équipe :
-              <strong>
-                ${
-                  teamRank === null
-                    ? "—"
-                    : esc(teamRank)
-                }
-              </strong>
-
-              <br>
+            <div class="team-meta">
 
               Source :
               ${esc(
@@ -1133,170 +1479,237 @@
 
             </div>
 
+
           </div>
 
 
-          ${statusPill(row)}
-
-        </div>
-
-
-        <div class="player-line">
-
-          👩
-          <strong>Joueuse :</strong>
-          ${esc(fullName(woman))}
-
-          <br>
-
-          Licence :
-          ${esc(fmt(woman.licence))}
-
-          <br>
-
-          Classement BT :
-
-          <span class="rank-value">
-            ${
-              womanRank === null
-                ? "—"
-                : esc(womanRank)
-            }
+          <span
+            class="
+              team-status
+              ${esc(state.className)}
+            "
+          >
+            ${esc(state.label)}
           </span>
 
-        </div>
-
-
-        <div class="player-line">
-
-          👨
-          <strong>Joueur :</strong>
-          ${esc(fullName(man))}
-
-          <br>
-
-          Licence :
-          ${esc(fmt(man.licence))}
-
-          <br>
-
-          Classement BT :
-
-          <span class="rank-value">
-            ${
-              manRank === null
-                ? "—"
-                : esc(manRank)
-            }
-          </span>
 
         </div>
 
 
-        <details>
 
-          <summary>
-            ⚙️ Actions / Modifier
-          </summary>
+        <!-- JOUEURS -->
 
-
-          <div class="mini-actions">
+        <div class="team-players">
 
 
-            <button
-              class="mini-btn green"
-              data-action="confirm"
-              data-id="${esc(row.id)}"
-            >
-              ✓ Confirmer
-            </button>
+          <div class="player-box">
+
+            <span class="player-role">
+              👩 Joueuse
+            </span>
 
 
-            <button
-              class="mini-btn yellow"
-              data-action="main"
-              data-id="${esc(row.id)}"
-            >
-              Liste principale
-            </button>
+            <div class="player-name">
+              ${esc(fullName(woman))}
+            </div>
 
 
-            <button
-              class="mini-btn blue"
-              data-action="wait"
-              data-id="${esc(row.id)}"
-            >
-              Liste attente
-            </button>
+            <div class="player-info">
+
+              Licence :
+              ${esc(
+                fmt(woman.licence)
+              )}
+
+            </div>
 
 
-            <button
-              class="mini-btn"
-              data-action="stby"
-              data-id="${esc(row.id)}"
-            >
+            <span class="rank-pill">
+
+              BT :
               ${
-                isStby(row)
-                  ? "Réactiver"
-                  : "STBY"
+                womanRank === null
+                  ? "—"
+                  : esc(womanRank)
               }
-            </button>
+
+            </span>
 
           </div>
 
 
-          <div class="mini-actions">
+          <div class="player-box">
+
+            <span class="player-role">
+              👨 Joueur
+            </span>
 
 
-            <button
-              class="mini-btn blue"
-              data-action="edit"
-              data-id="${esc(row.id)}"
-            >
-              Modifier équipe
-            </button>
+            <div class="player-name">
+              ${esc(fullName(man))}
+            </div>
 
 
-            <button
-              class="mini-btn yellow"
-              data-action="rank"
-              data-id="${esc(row.id)}"
-            >
-              Classements BT
-            </button>
+            <div class="player-info">
+
+              Licence :
+              ${esc(
+                fmt(man.licence)
+              )}
+
+            </div>
 
 
-            ${
-              deleted
+            <span class="rank-pill">
 
-                ? `
+              BT :
+              ${
+                manRank === null
+                  ? "—"
+                  : esc(manRank)
+              }
+
+            </span>
+
+          </div>
+
+
+        </div>
+
+
+
+        ${
+          deleted
+
+            ? `
+
+                <!-- ÉQUIPE SUPPRIMÉE -->
+
+                <div class="quick-actions">
+
+                  <button
+                    class="quick-btn green"
+                    data-action="restore"
+                    data-id="${esc(row.id)}"
+                    type="button"
+                  >
+                    ↩️ Restaurer l'équipe
+                  </button>
+
+                </div>
+
+              `
+
+            : `
+
+                <!-- ACTIONS RAPIDES -->
+
+                <div class="quick-actions">
+
+
+                  <button
+                    class="quick-btn green"
+                    data-action="confirm"
+                    data-id="${esc(row.id)}"
+                    type="button"
+                  >
+                    ✓ Confirmer
+                  </button>
+
+
+                  <button
+                    class="quick-btn ${
+                      isWait(row)
+                        ? "dark"
+                        : "yellow"
+                    }"
+                    data-action="${
+                      isWait(row)
+                        ? "main"
+                        : "wait"
+                    }"
+                    data-id="${esc(row.id)}"
+                    type="button"
+                  >
+                    ${
+                      isWait(row)
+                        ? "↩️ Liste principale"
+                        : "⏳ Liste d'attente"
+                    }
+                  </button>
+
+
+                </div>
+
+
+
+                <!-- PLUS D'ACTIONS -->
+
+                <details class="team-more">
+
+
+                  <summary>
+                    ⚙️ Modifier / autres actions
+                  </summary>
+
+
+                  <div class="secondary-actions">
+
+
                     <button
-                      class="mini-btn green"
-                      data-action="restore"
+                      class="secondary-btn"
+                      data-action="edit"
                       data-id="${esc(row.id)}"
+                      type="button"
                     >
-                      Restaurer
+                      ✏️ Modifier équipe
                     </button>
-                  `
 
-                : `
+
                     <button
-                      class="mini-btn red"
+                      class="secondary-btn"
+                      data-action="rank"
+                      data-id="${esc(row.id)}"
+                      type="button"
+                    >
+                      🏆 Classements BT
+                    </button>
+
+
+                    <button
+                      class="secondary-btn"
+                      data-action="stby"
+                      data-id="${esc(row.id)}"
+                      type="button"
+                    >
+                      ${
+                        isStby(row)
+                          ? "▶️ Réactiver"
+                          : "⏸️ STBY"
+                      }
+                    </button>
+
+
+                    <button
+                      class="secondary-btn red"
                       data-action="delete"
                       data-id="${esc(row.id)}"
+                      type="button"
                     >
-                      Supprimer
+                      🗑️ Supprimer
                     </button>
-                  `
-            }
 
 
-          </div>
-
-        </details>
+                  </div>
 
 
-      </div>
+                </details>
+
+              `
+        }
+
+
+      </article>
 
     `;
 
@@ -1314,8 +1727,11 @@
     ].sort(
       (a,b) => {
 
+
         /*
-         * 1. Équipes actives
+         * ORDRE :
+         *
+         * 1. Liste principale
          * 2. Liste d'attente
          * 3. STBY
          * 4. Supprimées
@@ -1327,13 +1743,16 @@
             return 4;
           }
 
+
           if(isStby(row)){
             return 3;
           }
 
+
           if(isWait(row)){
             return 2;
           }
+
 
           return 1;
 
@@ -1351,6 +1770,11 @@
 
         }
 
+
+        /*
+         * Dans un même groupe :
+         * meilleur rang équipe en premier.
+         */
 
         const rankA =
           rankingValue(a);
@@ -1371,7 +1795,41 @@
         }
 
 
-        return 0;
+        if(
+          rankA !== null &&
+          rankB === null
+        ){
+
+          return -1;
+
+        }
+
+
+        if(
+          rankA === null &&
+          rankB !== null
+        ){
+
+          return 1;
+
+        }
+
+
+        /*
+         * Sinon ordre d'inscription.
+         */
+
+        const timeA =
+          a.createdAt?.seconds ||
+          0;
+
+
+        const timeB =
+          b.createdAt?.seconds ||
+          0;
+
+
+        return timeA - timeB;
 
       }
     );
@@ -1438,6 +1896,10 @@
       );
 
 
+    listCount.textContent =
+      `${mainRows.length} / ${MAX_TEAMS}`;
+
+
     const ordered =
       sortedRows();
 
@@ -1456,14 +1918,30 @@
             .join("")
 
         : `
-            <div class="admin-status">
+            <div class="teams-empty">
               Aucune équipe inscrite.
             </div>
           `;
 
 
-    statusMsg.textContent =
-      `✅ ${activeRows.length} équipe(s) active(s) sur ${MAX_TEAMS}.`;
+    if(mainRows.length >= MAX_TEAMS){
+
+      statusMsg.textContent =
+        `Tableau principal complet · ${mainRows.length} / ${MAX_TEAMS} équipes.`;
+
+    }
+
+    else{
+
+      const remaining =
+        MAX_TEAMS -
+        mainRows.length;
+
+
+      statusMsg.textContent =
+        `${mainRows.length} équipe(s) en liste principale · ${remaining} place(s) disponible(s).`;
+
+    }
 
   }
 
@@ -1504,15 +1982,17 @@
 
     error => {
 
-      console.error(error);
+      console.error(
+        error
+      );
 
 
       statusMsg.textContent =
-        "❌ Impossible de charger les équipes.";
+        "Impossible de charger les équipes.";
 
 
       cardsList.innerHTML = `
-        <div class="admin-status">
+        <div class="teams-empty">
           Erreur de chargement.
         </div>
       `;
@@ -1572,9 +2052,7 @@
       );
 
 
-    if(
-      womanFirstName === null
-    ){
+    if(womanFirstName === null){
       return;
     }
 
@@ -1586,9 +2064,7 @@
       );
 
 
-    if(
-      womanLastName === null
-    ){
+    if(womanLastName === null){
       return;
     }
 
@@ -1600,9 +2076,7 @@
       );
 
 
-    if(
-      womanLicence === null
-    ){
+    if(womanLicence === null){
       return;
     }
 
@@ -1614,9 +2088,7 @@
       );
 
 
-    if(
-      manFirstName === null
-    ){
+    if(manFirstName === null){
       return;
     }
 
@@ -1628,9 +2100,7 @@
       );
 
 
-    if(
-      manLastName === null
-    ){
+    if(manLastName === null){
       return;
     }
 
@@ -1642,9 +2112,7 @@
       );
 
 
-    if(
-      manLicence === null
-    ){
+    if(manLicence === null){
       return;
     }
 
@@ -1702,7 +2170,8 @@
           newMan,
 
         /*
-         * Compatibilité avec l'ancien format.
+         * Compatibilité avec
+         * l'ancien format.
          */
 
         player1:
@@ -1744,9 +2213,7 @@
       );
 
 
-    if(
-      womanInput === null
-    ){
+    if(womanInput === null){
       return;
     }
 
@@ -1760,9 +2227,7 @@
       );
 
 
-    if(
-      manInput === null
-    ){
+    if(manInput === null){
       return;
     }
 
@@ -1861,7 +2326,7 @@
 
 
   /* ========================================
-     ACTIONS
+     ACTIONS SUR LES ÉQUIPES
   ======================================== */
 
   cardsList.addEventListener(
@@ -1877,7 +2342,9 @@
 
 
       if(!button){
+
         return;
+
       }
 
 
@@ -1897,7 +2364,9 @@
 
 
       if(!row){
+
         return;
+
       }
 
 
@@ -1908,11 +2377,11 @@
       try{
 
 
-        /* CONFIRMER */
+        /* ==================================
+           CONFIRMER
+        ================================== */
 
-        if(
-          action === "confirm"
-        ){
+        if(action === "confirm"){
 
           await patchItem(
 
@@ -1934,11 +2403,35 @@
         }
 
 
-        /* LISTE PRINCIPALE */
+        /* ==================================
+           LISTE PRINCIPALE
+        ================================== */
 
-        if(
-          action === "main"
-        ){
+        else if(action === "main"){
+
+          const currentMainCount =
+            rows.filter(
+              item =>
+                item.id !== id &&
+                !isDeleted(item) &&
+                !isWait(item) &&
+                !isStby(item)
+            ).length;
+
+
+          if(
+            currentMainCount >=
+            MAX_TEAMS
+          ){
+
+            alert(
+              `La liste principale contient déjà ${MAX_TEAMS} équipes.`
+            );
+
+            return;
+
+          }
+
 
           await patchItem(
 
@@ -1946,6 +2439,9 @@
 
             {
               list:
+                "main",
+
+              publicList:
                 "main",
 
               stby:
@@ -1962,11 +2458,11 @@
         }
 
 
-        /* LISTE D'ATTENTE */
+        /* ==================================
+           LISTE D'ATTENTE
+        ================================== */
 
-        if(
-          action === "wait"
-        ){
+        else if(action === "wait"){
 
           await patchItem(
 
@@ -1975,6 +2471,9 @@
             {
               list:
                 "wait",
+
+              publicList:
+                "waiting",
 
               stby:
                 false
@@ -1985,11 +2484,39 @@
         }
 
 
-        /* STBY */
+        /* ==================================
+           STBY
+        ================================== */
 
-        if(
-          action === "stby"
-        ){
+        else if(action === "stby"){
+
+          if(isStby(row)){
+
+            const currentMainCount =
+              rows.filter(
+                item =>
+                  item.id !== id &&
+                  !isDeleted(item) &&
+                  !isWait(item) &&
+                  !isStby(item)
+              ).length;
+
+
+            if(
+              currentMainCount >=
+              MAX_TEAMS
+            ){
+
+              alert(
+                `La liste principale contient déjà ${MAX_TEAMS} équipes.`
+              );
+
+              return;
+
+            }
+
+          }
+
 
           await patchItem(
 
@@ -2005,11 +2532,11 @@
         }
 
 
-        /* MODIFICATION */
+        /* ==================================
+           MODIFIER
+        ================================== */
 
-        if(
-          action === "edit"
-        ){
+        else if(action === "edit"){
 
           await editTeam(
             row
@@ -2018,11 +2545,11 @@
         }
 
 
-        /* CLASSEMENTS */
+        /* ==================================
+           CLASSEMENTS
+        ================================== */
 
-        if(
-          action === "rank"
-        ){
+        else if(action === "rank"){
 
           await editRanks(
             row
@@ -2031,11 +2558,11 @@
         }
 
 
-        /* SUPPRESSION LOGIQUE */
+        /* ==================================
+           SUPPRESSION LOGIQUE
+        ================================== */
 
-        if(
-          action === "delete"
-        ){
+        else if(action === "delete"){
 
           const ok =
             confirm(
@@ -2044,7 +2571,9 @@
 
 
           if(!ok){
+
             return;
+
           }
 
 
@@ -2065,11 +2594,32 @@
         }
 
 
-        /* RESTAURATION */
+        /* ==================================
+           RESTAURATION
+        ================================== */
 
-        if(
-          action === "restore"
-        ){
+        else if(action === "restore"){
+
+          const currentMainCount =
+            rows.filter(
+              item =>
+                item.id !== id &&
+                !isDeleted(item) &&
+                !isWait(item) &&
+                !isStby(item)
+            ).length;
+
+
+          /*
+           * Si le tableau principal est plein,
+           * l'équipe restaurée passe directement
+           * en liste d'attente.
+           */
+
+          const mainIsFull =
+            currentMainCount >=
+            MAX_TEAMS;
+
 
           await patchItem(
 
@@ -2080,7 +2630,14 @@
                 "registered",
 
               list:
-                "main",
+                mainIsFull
+                  ? "wait"
+                  : "main",
+
+              publicList:
+                mainIsFull
+                  ? "waiting"
+                  : "main",
 
               stby:
                 false,
@@ -2098,7 +2655,9 @@
 
       catch(error){
 
-        console.error(error);
+        console.error(
+          error
+        );
 
 
         alert(
@@ -2120,29 +2679,16 @@
 
 
   /* ========================================
-     ACTIONS GÉNÉRALES
+     DÉVELOPPER / RÉDUIRE
   ======================================== */
 
-  btnRefresh.onclick =
-    () => {
-
-      /*
-       * onSnapshot est déjà temps réel.
-       * Le bouton force simplement
-       * un nouveau rendu local.
-       */
-
-      render();
-
-    };
-
-
-  btnExpand.onclick =
+  btnExpand.addEventListener(
+    "click",
     () => {
 
       document
         .querySelectorAll(
-          "details"
+          ".team-more"
         )
         .forEach(
           detail => {
@@ -2153,15 +2699,17 @@
           }
         );
 
-    };
+    }
+  );
 
 
-  btnCollapse.onclick =
+  btnCollapse.addEventListener(
+    "click",
     () => {
 
       document
         .querySelectorAll(
-          "details"
+          ".team-more"
         )
         .forEach(
           detail => {
@@ -2172,7 +2720,8 @@
           }
         );
 
-    };
+    }
+  );
 
 </script>
 
