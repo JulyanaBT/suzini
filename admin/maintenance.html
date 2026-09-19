@@ -1,0 +1,1116 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#101010"
+  >
+
+  <title>
+    Maintenance | Admin BT250 Suzini
+  </title>
+
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  >
+
+
+  <style>
+
+    main{
+      padding-top:14px;
+      padding-bottom:28px;
+    }
+
+    .section{
+      margin-top:10px;
+    }
+
+    .section:first-child{
+      margin-top:0;
+    }
+
+    .compact-panel{
+      padding:12px;
+      border-radius:22px;
+    }
+
+
+    /* ========================================
+       EN-TÊTE
+    ======================================== */
+
+    .admin-panel-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+
+      margin-bottom:12px;
+    }
+
+    .admin-title{
+      margin:0;
+
+      color:var(--blue-dark);
+
+      font-size:24px;
+      line-height:1;
+      font-weight:1000;
+
+      letter-spacing:-.04em;
+    }
+
+    .admin-text{
+      margin:6px 0 0;
+
+      color:var(--muted);
+
+      font-size:13px;
+      font-weight:850;
+      line-height:1.35;
+    }
+
+    .admin-pill{
+      flex-shrink:0;
+
+      padding:7px 10px;
+
+      border-radius:999px;
+
+      background:var(--yellow);
+      color:var(--text);
+
+      font-size:11px;
+      font-weight:1000;
+    }
+
+
+    /* ========================================
+       STATUT
+    ======================================== */
+
+    .admin-status{
+      margin-top:10px;
+
+      padding:12px 14px;
+
+      border-radius:16px;
+
+      background:#fff;
+      color:var(--text);
+
+      font-size:14px;
+      font-weight:900;
+      line-height:1.35;
+
+      box-shadow:
+        0 6px 14px rgba(16,24,40,.08);
+    }
+
+
+    /* ========================================
+       FORMULAIRE
+    ======================================== */
+
+    .form-grid{
+      display:grid;
+      gap:12px;
+    }
+
+    .field{
+      display:grid;
+      gap:7px;
+    }
+
+    .field label{
+      color:var(--blue-dark);
+
+      font-size:14px;
+      font-weight:1000;
+    }
+
+    .admin-textarea{
+      width:100%;
+      min-height:86px;
+
+      border:
+        1px solid rgba(16,24,40,.08);
+
+      border-radius:16px;
+
+      padding:12px 14px;
+
+      background:#fff;
+      color:var(--text);
+
+      font-family:inherit;
+      font-size:15px;
+      font-weight:800;
+      line-height:1.35;
+
+      resize:vertical;
+
+      box-shadow:
+        0 6px 14px rgba(16,24,40,.08);
+    }
+
+
+    /* ========================================
+       BOUTONS
+    ======================================== */
+
+    .admin-btn{
+      min-height:46px;
+
+      border:0;
+      border-radius:16px;
+
+      padding:10px 12px;
+
+      background:var(--blue-dark);
+      color:#fff;
+
+      font-family:inherit;
+      font-size:14px;
+      font-weight:1000;
+
+      cursor:pointer;
+    }
+
+    .admin-btn.green{
+      background:var(--green);
+    }
+
+    .admin-btn.yellow{
+      background:var(--yellow);
+      color:var(--text);
+    }
+
+    .admin-btn.red{
+      background:#9b1c1c;
+    }
+
+    .admin-btn:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+    }
+
+    .actions-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:8px;
+
+      margin-top:12px;
+    }
+
+
+    /* ========================================
+       PAGES
+    ======================================== */
+
+    .pages-grid{
+      display:grid;
+      gap:10px;
+    }
+
+    .page-toggle{
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:center;
+      gap:12px;
+
+      padding:13px;
+
+      border:
+        1px solid rgba(16,24,40,.08);
+
+      border-radius:18px;
+
+      background:#fff;
+      color:var(--text);
+
+      box-shadow:
+        0 8px 18px rgba(16,24,40,.10);
+    }
+
+    .page-toggle.maintenance-global{
+      background:
+        linear-gradient(
+          135deg,
+          #fff7d6,
+          #ffffff
+        );
+
+      border-color:
+        rgba(255,196,0,.35);
+    }
+
+    .page-title{
+      color:var(--blue-dark);
+
+      font-size:16px;
+      font-weight:1000;
+      line-height:1.1;
+    }
+
+    .page-key{
+      margin-top:4px;
+
+      color:var(--muted);
+
+      font-size:12px;
+      font-weight:800;
+      line-height:1.2;
+    }
+
+
+    /* ========================================
+       SWITCH
+    ======================================== */
+
+    .switch{
+      position:relative;
+
+      width:58px;
+      height:34px;
+
+      flex:0 0 auto;
+    }
+
+    .switch input{
+      opacity:0;
+      width:0;
+      height:0;
+    }
+
+    .slider{
+      position:absolute;
+      inset:0;
+
+      border-radius:999px;
+
+      background:#d0d5dd;
+
+      cursor:pointer;
+
+      transition:.2s;
+
+      box-shadow:
+        inset 0 0 0 1px
+        rgba(16,24,40,.08);
+    }
+
+    .slider::before{
+      content:"";
+
+      position:absolute;
+
+      width:28px;
+      height:28px;
+
+      left:3px;
+      top:3px;
+
+      border-radius:50%;
+
+      background:#fff;
+
+      transition:.2s;
+
+      box-shadow:
+        0 4px 10px
+        rgba(16,24,40,.18);
+    }
+
+    .switch input:checked + .slider{
+      background:var(--pink);
+    }
+
+    .switch input:checked + .slider::before{
+      transform:
+        translateX(24px);
+    }
+
+
+    /* ========================================
+       TITRES
+    ======================================== */
+
+    .section-title{
+      margin:0 0 10px;
+
+      color:var(--blue-dark);
+
+      font-size:22px;
+      font-weight:1000;
+
+      letter-spacing:-.03em;
+    }
+
+
+    /* ========================================
+       NAVIGATION
+    ======================================== */
+
+    .nav-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+
+    .nav-link{
+      min-height:44px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      padding:10px;
+
+      border-radius:14px;
+
+      background:#344054;
+      color:#fff;
+
+      font-size:13px;
+      font-weight:1000;
+
+      text-align:center;
+      text-decoration:none;
+    }
+
+    .nav-link.public{
+      background:var(--green);
+    }
+
+
+    @media(min-width:760px){
+
+      main{
+        padding-top:18px;
+      }
+
+      .actions-grid{
+        grid-template-columns:
+          1fr 1fr;
+      }
+
+      .pages-grid{
+        grid-template-columns:
+          1fr 1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body data-page="maintenance">
+
+
+<main class="container">
+
+
+  <!-- ======================================
+       CONFIGURATION
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+
+      <div class="admin-panel-head">
+
+        <div>
+
+          <h1 class="admin-title">
+            🛠️ Maintenance
+          </h1>
+
+          <p class="admin-text">
+            BT250 Suzini — Double Mixte<br>
+            02 octobre 2026
+          </p>
+
+        </div>
+
+
+        <div class="admin-pill">
+          Admin
+        </div>
+
+      </div>
+
+
+      <div class="pages-grid">
+
+
+        <div
+          class="page-toggle maintenance-global"
+        >
+
+          <div>
+
+            <div class="page-title">
+              Mode maintenance
+            </div>
+
+            <div class="page-key">
+              Active le blocage des pages sélectionnées.
+            </div>
+
+          </div>
+
+
+          <label class="switch">
+
+            <input
+              id="enabledInput"
+              type="checkbox"
+            >
+
+            <span class="slider"></span>
+
+          </label>
+
+        </div>
+
+
+      </div>
+
+
+      <div
+        class="form-grid"
+        style="margin-top:14px;"
+      >
+
+        <div class="field">
+
+          <label for="messageInput">
+            Message affiché aux visiteurs
+          </label>
+
+
+          <textarea
+            id="messageInput"
+            class="admin-textarea"
+          >Page momentanément en maintenance. Merci de revenir dans quelques minutes.</textarea>
+
+        </div>
+
+      </div>
+
+
+      <div class="actions-grid">
+
+        <button
+          id="btnSave"
+          class="admin-btn green"
+          type="button"
+        >
+          💾 Enregistrer
+        </button>
+
+
+        <button
+          id="btnAllOff"
+          class="admin-btn yellow"
+          type="button"
+        >
+          ✅ Tout rendre public
+        </button>
+
+      </div>
+
+
+      <div
+        id="statusMsg"
+        class="admin-status"
+      >
+        Chargement…
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       PAGES PUBLIQUES
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+      <h2 class="section-title">
+        Pages publiques
+      </h2>
+
+
+      <div
+        id="pagesList"
+        class="pages-grid"
+      ></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       NAVIGATION
+  ======================================= -->
+
+  <section class="section">
+
+    <div class="panel compact-panel">
+
+      <div class="nav-actions">
+
+        <a
+          class="nav-link"
+          href="index.html"
+        >
+          🎛️ Tableau de bord
+        </a>
+
+
+        <a
+          class="nav-link public"
+          href="../index.html"
+        >
+          👁️ Vue publique
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<script type="module">
+
+
+  /* ========================================
+     SESSION ADMIN
+  ======================================== */
+
+  import {
+    requireAdmin
+  } from "../assets/js/admin-session.js";
+
+
+  if(!requireAdmin()){
+
+    throw new Error(
+      "Accès administrateur requis."
+    );
+
+  }
+
+
+  /* ========================================
+     FIREBASE
+  ======================================== */
+
+  import {
+    db
+  } from "../assets/js/firebase.js";
+
+
+  import {
+    doc,
+    getDoc,
+    setDoc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+
+  /* ========================================
+     CONFIGURATION
+  ======================================== */
+
+  const EVENT_ID =
+    "suzini-bt250-mixte-2026-10-02";
+
+
+  const DEFAULT_MESSAGE =
+    "Page momentanément en maintenance. Merci de revenir dans quelques minutes.";
+
+
+  const maintenanceRef =
+    doc(
+      db,
+      "events",
+      EVENT_ID,
+      "config",
+      "maintenance"
+    );
+
+
+  /* ========================================
+     PAGES DU TOURNOI
+  ======================================== */
+
+  const pageItems = [
+
+    {
+      key:"index",
+      label:"Accueil"
+    },
+
+    {
+      key:"inscriptions",
+      label:"Inscriptions"
+    },
+
+    {
+      key:"participants",
+      label:"Équipes"
+    },
+
+    {
+      key:"tirage",
+      label:"Tirage"
+    },
+
+    {
+      key:"programmation",
+      label:"Programmation"
+    },
+
+    {
+      key:"classement",
+      label:"Classement"
+    }
+
+  ];
+
+
+  /* ========================================
+     ÉLÉMENTS
+  ======================================== */
+
+  const enabledInput =
+    document.getElementById(
+      "enabledInput"
+    );
+
+
+  const messageInput =
+    document.getElementById(
+      "messageInput"
+    );
+
+
+  const pagesList =
+    document.getElementById(
+      "pagesList"
+    );
+
+
+  const btnSave =
+    document.getElementById(
+      "btnSave"
+    );
+
+
+  const btnAllOff =
+    document.getElementById(
+      "btnAllOff"
+    );
+
+
+  const statusMsg =
+    document.getElementById(
+      "statusMsg"
+    );
+
+
+  /* ========================================
+     DONNÉES
+  ======================================== */
+
+  let maintenanceData = {
+
+    enabled:false,
+
+    message:
+      DEFAULT_MESSAGE,
+
+    pages:{}
+
+  };
+
+
+  /* ========================================
+     OUTILS
+  ======================================== */
+
+  function esc(value){
+
+    return String(value ?? "")
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
+
+  }
+
+
+  /* ========================================
+     AFFICHAGE DES PAGES
+  ======================================== */
+
+  function renderPages(){
+
+    pagesList.innerHTML =
+      pageItems
+        .map(
+          item => {
+
+            const checked =
+              maintenanceData.pages?.[
+                item.key
+              ] === true
+                ? "checked"
+                : "";
+
+
+            return `
+
+              <div class="page-toggle">
+
+                <div>
+
+                  <div class="page-title">
+                    ${esc(item.label)}
+                  </div>
+
+                  <div class="page-key">
+                    ${esc(item.key)}.html
+                  </div>
+
+                </div>
+
+
+                <label class="switch">
+
+                  <input
+                    type="checkbox"
+                    data-page-key="${esc(item.key)}"
+                    ${checked}
+                  >
+
+                  <span class="slider"></span>
+
+                </label>
+
+              </div>
+
+            `;
+
+          }
+        )
+        .join("");
+
+  }
+
+
+  /* ========================================
+     APPLIQUER LES DONNÉES
+  ======================================== */
+
+  function applyData(){
+
+    enabledInput.checked =
+      maintenanceData.enabled === true;
+
+
+    messageInput.value =
+      maintenanceData.message ||
+      DEFAULT_MESSAGE;
+
+
+    renderPages();
+
+  }
+
+
+  /* ========================================
+     CHARGEMENT
+  ======================================== */
+
+  async function loadMaintenance(){
+
+    statusMsg.textContent =
+      "Chargement de la configuration…";
+
+
+    try{
+
+      const snapshot =
+        await getDoc(
+          maintenanceRef
+        );
+
+
+      if(snapshot.exists()){
+
+        const data =
+          snapshot.data() || {};
+
+
+        maintenanceData = {
+
+          enabled:
+            data.enabled === true,
+
+          message:
+            data.message ||
+            DEFAULT_MESSAGE,
+
+          pages:
+            data.pages || {}
+
+        };
+
+      }
+
+
+      applyData();
+
+
+      statusMsg.textContent =
+        maintenanceData.enabled
+          ? "🛠️ Mode maintenance activé."
+          : "✅ Site public actif.";
+
+    }
+
+    catch(error){
+
+      console.error(error);
+
+
+      statusMsg.textContent =
+        "❌ Impossible de charger la configuration.";
+
+    }
+
+  }
+
+
+  /* ========================================
+     RÉCUPÉRER LE FORMULAIRE
+  ======================================== */
+
+  function collectData(){
+
+    const pages = {};
+
+
+    document
+      .querySelectorAll(
+        "[data-page-key]"
+      )
+      .forEach(
+        input => {
+
+          pages[
+            input.dataset.pageKey
+          ] =
+            input.checked === true;
+
+        }
+      );
+
+
+    return {
+
+      enabled:
+        enabledInput.checked === true,
+
+      message:
+        messageInput.value.trim() ||
+        DEFAULT_MESSAGE,
+
+      pages,
+
+      updatedAt:
+        serverTimestamp()
+
+    };
+
+  }
+
+
+  /* ========================================
+     ENREGISTREMENT
+  ======================================== */
+
+  async function saveMaintenance(){
+
+    btnSave.disabled =
+      true;
+
+
+    btnAllOff.disabled =
+      true;
+
+
+    statusMsg.textContent =
+      "Enregistrement…";
+
+
+    try{
+
+      const data =
+        collectData();
+
+
+      await setDoc(
+
+        maintenanceRef,
+
+        data,
+
+        {
+          merge:true
+        }
+
+      );
+
+
+      maintenanceData = {
+
+        enabled:
+          data.enabled,
+
+        message:
+          data.message,
+
+        pages:
+          data.pages
+
+      };
+
+
+      statusMsg.textContent =
+        data.enabled
+          ? "🛠️ Maintenance enregistrée et activée."
+          : "✅ Maintenance désactivée. Site public actif.";
+
+    }
+
+    catch(error){
+
+      console.error(error);
+
+
+      statusMsg.textContent =
+        "❌ Enregistrement impossible.";
+
+    }
+
+    finally{
+
+      btnSave.disabled =
+        false;
+
+
+      btnAllOff.disabled =
+        false;
+
+    }
+
+  }
+
+
+  /* ========================================
+     TOUT RENDRE PUBLIC
+  ======================================== */
+
+  async function makeAllPublic(){
+
+    const confirmed =
+      confirm(
+        "Rendre toutes les pages publiques ?"
+      );
+
+
+    if(!confirmed){
+      return;
+    }
+
+
+    enabledInput.checked =
+      false;
+
+
+    document
+      .querySelectorAll(
+        "[data-page-key]"
+      )
+      .forEach(
+        input => {
+
+          input.checked =
+            false;
+
+        }
+      );
+
+
+    await saveMaintenance();
+
+  }
+
+
+  /* ========================================
+     ACTIONS
+  ======================================== */
+
+  btnSave.onclick =
+    saveMaintenance;
+
+
+  btnAllOff.onclick =
+    makeAllPublic;
+
+
+  /* ========================================
+     INITIALISATION
+  ======================================== */
+
+  loadMaintenance();
+
+
+</script>
+
+
+</body>
+
+</html>
