@@ -1,43 +1,31 @@
 /* =========================================================
-   SUZINI — APPLICATION TOURNOIS
-   Cartes et panneaux
+   SUZINI — BT250 DOUBLE MIXTE
+   Cartes & composants communs
 ========================================================= */
 
 
 /* ==============================
-   PANNEAU PRINCIPAL
+   PANNEAU
 ============================== */
 
 .panel{
   position:relative;
+
   overflow:hidden;
 
-  border-radius:var(--radius-large);
-
-  padding:18px 14px;
-
-  color:var(--white);
-
-  background:
-    radial-gradient(
-      circle at 12% 0%,
-      rgba(255,255,255,.95),
-      transparent 9%
-    ),
-    radial-gradient(
-      circle at 16% 9%,
-      rgba(255,216,77,.75),
-      transparent 17%
-    ),
-    linear-gradient(
-      135deg,
-      #11aaf5 0%,
-      #1fd4e2 40%,
-      #0b8f62 100%
-    );
+  padding:14px;
 
   border:
-    3px solid rgba(255,255,255,.72);
+    1px solid rgba(0,0,0,.05);
+
+  border-radius:
+    var(--radius);
+
+  background:
+    rgba(255,255,255,.96);
+
+  color:
+    var(--black);
 
   box-shadow:
     var(--shadow);
@@ -45,29 +33,13 @@
 
 
 .panel::before{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.16),
-      transparent 36%
-    ),
-    radial-gradient(
-      circle at 50% 112%,
-      rgba(255,216,77,.35),
-      transparent 34%
-    );
-
-  pointer-events:none;
+  display:none;
 }
 
 
 .panel > *{
   position:relative;
+
   z-index:1;
 }
 
@@ -77,7 +49,12 @@
 ============================== */
 
 .panel-head{
-  display:grid;
+  display:flex;
+
+  align-items:flex-start;
+
+  justify-content:space-between;
+
   gap:10px;
 
   margin-bottom:12px;
@@ -87,29 +64,34 @@
 .panel-title{
   margin:0;
 
-  color:var(--white);
+  color:
+    var(--black);
 
-  font-size:28px;
-  line-height:.95;
+  font-size:22px;
+
+  line-height:1;
 
   font-weight:1000;
 
-  text-transform:uppercase;
+  letter-spacing:-.03em;
 
-  text-shadow:
-    0 10px 22px rgba(0,0,0,.18);
+  text-transform:none;
+
+  text-shadow:none;
 }
 
 
 .panel-text{
-  margin:0;
+  margin:5px 0 0;
 
-  color:var(--white);
+  color:
+    var(--grey);
 
-  font-size:14px;
+  font-size:13px;
+
   line-height:1.35;
 
-  font-weight:850;
+  font-weight:800;
 }
 
 
@@ -123,36 +105,47 @@
 
   width:max-content;
 
+  max-width:100%;
+
   align-items:center;
+
   justify-content:center;
 
-  padding:7px 12px;
+  padding:
+    6px 9px;
 
-  border-radius:999px;
+  border-radius:
+    999px;
 
-  background:var(--pink);
-  color:var(--white);
+  background:
+    var(--orange);
 
-  font-size:11px;
+  color:
+    var(--white);
+
+  font-size:9px;
 
   font-weight:1000;
 
   text-transform:uppercase;
+
+  white-space:nowrap;
 }
 
 
 /* ==============================
-   GRILLE DE CARTES
+   GRILLE
 ============================== */
 
 .card-grid{
   display:grid;
-  gap:10px;
+
+  gap:8px;
 }
 
 
 /* ==============================
-   CARTE
+   CARTES
 ============================== */
 
 .info-card{
@@ -160,78 +153,106 @@
 
   width:100%;
 
-  min-height:112px;
+  min-height:94px;
 
-  padding:14px;
+  padding:12px;
 
-  border-radius:var(--radius-medium);
+  border-radius:14px;
 
-  color:var(--white);
+  color:
+    var(--black);
 
   text-decoration:none;
 
   box-shadow:
-    0 10px 22px rgba(16,24,40,.18);
+    0 3px 12px
+    rgba(0,0,0,.05);
 }
 
 
 /* ==============================
-   COULEURS CARTES
+   COULEURS
 ============================== */
 
 .info-card.blue{
-  background:var(--blue-dark);
-  color:var(--white);
+  background:
+    var(--blue-light);
+
+  color:
+    var(--black);
 }
 
 
 .info-card.pink{
-  background:var(--pink);
-  color:var(--white);
+  background:
+    #fff0eb;
+
+  color:
+    var(--black);
 }
 
 
 .info-card.yellow{
-  background:var(--yellow);
-  color:var(--text);
+  background:
+    #fff3cd;
+
+  color:
+    var(--black);
 }
 
 
 .info-card.green{
-  background:#0b7a3b;
-  color:var(--white);
+  background:
+    #e4f5e9;
+
+  color:
+    var(--black);
 }
 
 
 /* ==============================
-   CONTENU CARTES
+   CONTENU CARTE
 ============================== */
 
 .card-date{
-  font-size:34px;
+  color:
+    var(--orange);
+
+  font-size:30px;
+
   line-height:.9;
 
   font-weight:1000;
+
+  letter-spacing:-.04em;
 }
 
 
 .card-kicker{
   margin-top:6px;
 
-  font-size:10px;
+  color:
+    var(--orange);
+
+  font-size:8px;
 
   font-weight:1000;
 
   text-transform:uppercase;
 
-  letter-spacing:.05em;
+  letter-spacing:.8px;
 }
 
 
 .card-title{
-  margin:5px 0;
+  margin:
+    4px 0;
 
-  font-size:22px;
+  color:
+    var(--black);
+
+  font-size:18px;
+
   line-height:1;
 
   font-weight:1000;
@@ -239,8 +260,12 @@
 
 
 .card-text{
-  font-size:13px;
-  line-height:1.35;
+  color:
+    var(--grey);
+
+  font-size:12px;
+
+  line-height:1.3;
 
   font-weight:800;
 }
@@ -253,39 +278,525 @@
 .card-link{
   display:inline-flex;
 
-  margin-top:9px;
+  margin-top:8px;
 
-  padding:7px 12px;
+  padding:
+    7px 11px;
 
   border-radius:999px;
 
-  background:var(--white);
-  color:var(--blue-dark);
+  background:
+    var(--orange);
 
-  font-size:12px;
+  color:
+    var(--white);
+
+  font-size:11px;
 
   font-weight:1000;
 }
 
 
 /* ==============================
-   NOTE / INFORMATION
+   NOTE
 ============================== */
 
 .note{
-  margin-top:12px;
+  margin-top:10px;
 
-  padding:11px 13px;
+  padding:
+    10px 12px;
 
-  border-radius:var(--radius-small);
+  border-radius:
+    14px;
 
-  background:var(--pink);
-  color:var(--white);
+  background:
+    var(--sand);
 
-  font-size:13px;
+  color:
+    var(--black);
+
+  font-size:12px;
+
   line-height:1.35;
 
   font-weight:800;
+}
+
+
+/* =========================================================
+   COMPOSANTS STYLE AMERICANO
+========================================================= */
+
+
+/* ==============================
+   HERO
+============================== */
+
+.home-hero{
+  overflow:hidden;
+
+  padding:18px;
+
+  border-radius:
+    var(--radius);
+
+  background:
+
+    radial-gradient(
+      circle at 88% 10%,
+      rgba(255,255,255,.65),
+      transparent 25%
+    ),
+
+    linear-gradient(
+      180deg,
+      #42c0e2 0%,
+      #cceff8 47%,
+      #f4dcaa 48%,
+      #eccb83 100%
+    );
+
+  box-shadow:
+    var(--shadow);
+}
+
+
+/* ==============================
+   PILLS HERO
+============================== */
+
+.hero-pills{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:5px;
+
+  margin-bottom:15px;
+}
+
+
+.hero-pills span{
+  padding:
+    5px 8px;
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.91);
+
+  font-size:9px;
+
+  font-weight:850;
+}
+
+
+/* ==============================
+   LABEL HERO
+============================== */
+
+.hero-label{
+  margin-bottom:6px;
+
+  font-size:10px;
+
+  font-weight:900;
+
+  letter-spacing:1.2px;
+
+  text-transform:uppercase;
+}
+
+
+/* ==============================
+   TITRE HERO
+============================== */
+
+.home-hero h1{
+  margin:0;
+
+  font-size:
+    clamp(38px,12vw,58px);
+
+  line-height:.84;
+
+  font-weight:1000;
+
+  letter-spacing:-2.5px;
+
+  text-transform:uppercase;
+}
+
+
+.home-hero h1 span{
+  display:block;
+
+  margin-top:7px;
+
+  color:
+    var(--orange);
+
+  font-size:.72em;
+
+  line-height:.9;
+
+  font-style:italic;
+
+  letter-spacing:-1.5px;
+
+  text-transform:none;
+}
+
+
+/* ==============================
+   MESSAGE HERO
+============================== */
+
+.hero-message{
+  margin-top:16px;
+
+  font-size:17px;
+
+  line-height:1.15;
+
+  font-weight:800;
+}
+
+
+.hero-message strong{
+  color:
+    var(--orange);
+}
+
+
+/* ==============================
+   ACTIONS HERO
+============================== */
+
+.hero-actions{
+  margin-top:16px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:7px;
+}
+
+
+.btn{
+  min-width:0;
+
+  min-height:48px;
+
+  padding:
+    11px 8px;
+
+  border:0;
+
+  border-radius:13px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-align:center;
+
+  font-size:14px;
+
+  font-weight:900;
+}
+
+
+.btn-orange{
+  background:
+    var(--orange);
+
+  color:
+    var(--white);
+}
+
+
+.btn-black{
+  background:
+    var(--black);
+
+  color:
+    var(--white);
+}
+
+
+/* ==============================
+   INFOS ESSENTIELLES
+============================== */
+
+.essential-grid{
+  margin-top:8px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:7px;
+}
+
+
+.essential-card{
+  min-width:0;
+
+  min-height:66px;
+
+  padding:10px;
+
+  border-radius:14px;
+
+  background:
+    var(--white);
+
+  box-shadow:
+    var(--shadow);
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+}
+
+
+.essential-icon{
+  flex:0 0 auto;
+
+  font-size:22px;
+}
+
+
+.essential-card div{
+  min-width:0;
+}
+
+
+.essential-card small{
+  display:block;
+
+  margin-bottom:2px;
+
+  color:
+    var(--orange);
+
+  font-size:8px;
+
+  font-weight:900;
+
+  letter-spacing:.8px;
+
+  text-transform:uppercase;
+}
+
+
+.essential-card strong{
+  display:block;
+
+  font-size:12px;
+
+  line-height:1.15;
+}
+
+
+/* ==============================
+   DASHBOARD
+============================== */
+
+.dashboard{
+  margin-top:8px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:7px;
+}
+
+
+.dashboard-card{
+  min-width:0;
+
+  min-height:74px;
+
+  padding:11px;
+
+  border-radius:14px;
+
+  background:
+    var(--grey-light);
+
+  display:flex;
+
+  align-items:center;
+
+  gap:9px;
+
+  box-shadow:
+    0 3px 12px
+    rgba(0,0,0,.04);
+}
+
+
+.dashboard-live{
+  background:
+    var(--blue-light);
+}
+
+
+.dashboard-icon{
+  width:39px;
+  height:39px;
+
+  flex:
+    0 0 39px;
+
+  border-radius:11px;
+
+  background:
+    var(--white);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:19px;
+}
+
+
+.dashboard-card div{
+  min-width:0;
+}
+
+
+.dashboard-card small{
+  display:block;
+
+  margin-bottom:2px;
+
+  color:
+    var(--orange);
+
+  font-size:8px;
+
+  font-weight:900;
+
+  letter-spacing:.7px;
+
+  text-transform:uppercase;
+}
+
+
+.dashboard-card strong{
+  display:block;
+
+  font-size:13px;
+
+  line-height:1.1;
+}
+
+
+/* ==============================
+   BANDEAU INFORMATION
+============================== */
+
+.food-strip{
+  margin-top:8px;
+
+  min-height:66px;
+
+  padding:
+    11px 14px;
+
+  border-radius:14px;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #f5dfae,
+      #fff0cc
+    );
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  box-shadow:
+    var(--shadow);
+}
+
+
+.food-strip > span{
+  font-size:28px;
+}
+
+
+.food-strip strong{
+  display:block;
+
+  margin-bottom:2px;
+
+  font-size:14px;
+}
+
+
+.food-strip small{
+  display:block;
+
+  color:#665640;
+
+  font-size:10px;
+
+  line-height:1.25;
+}
+
+
+/* ==============================
+   TOUCH
+============================== */
+
+.btn:active,
+.dashboard-card:active{
+  transform:
+    scale(.97);
+}
+
+
+/* ==============================
+   PETITS TÉLÉPHONES
+============================== */
+
+@media(max-width:350px){
+
+  .home-hero h1{
+    font-size:36px;
+  }
+
+
+  .hero-actions{
+    grid-template-columns:1fr;
+  }
+
+
+  .essential-grid{
+    grid-template-columns:1fr;
+  }
+
 }
 
 
@@ -296,7 +807,7 @@
 @media(min-width:760px){
 
   .panel{
-    padding:22px;
+    padding:18px;
   }
 
 
