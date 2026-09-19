@@ -1,94 +1,264 @@
-// assets/js/header-tournament.js
+import {
+  isAdminConnected
+} from "./admin-session.js";
 
 
-/* ========================================
-   HEADER TOURNOI
-======================================== */
-
-const header =
+const headerTarget =
   document.getElementById(
     "siteHeader"
   );
 
 
-if(header){
+if(headerTarget){
 
   const currentPage =
-    document.body.dataset.page || "";
+    document.body.dataset.page ||
+    "accueil";
 
 
-  const tournamentTitle =
-    document.body.dataset.title ||
-    "BT250 Suzini — Double Mixte";
+  const adminConnected =
+    isAdminConnected();
 
 
-  const tournamentDate =
-    document.body.dataset.date ||
-    "02 octobre 2026";
+  /* ========================================
+     CORRESPONDANCE PUBLIC → ADMIN
+  ======================================== */
+
+  const adminPages = {
+
+    accueil:
+      "admin/index.html",
+
+    inscription:
+      "admin/inscriptions.html",
+
+    inscriptions:
+      "admin/inscriptions.html",
+
+    participants:
+      "admin/participants.html",
+
+    programmation:
+      "admin/programmation.html",
+
+    classement:
+      "admin/classement.html",
+
+    tirage:
+      "admin/tirage.html"
+
+  };
 
 
-  /* ======================================
-     NAVIGATION
-  ====================================== */
+  const adminTarget =
+    adminPages[currentPage] ||
+    "admin/index.html";
 
-  const navigation = [
 
-    {
-      id: "accueil",
-      label: "Accueil",
-      href: "index.html"
-    },
+  const julyanaTarget =
+    adminConnected
+      ? adminTarget
+      : "admin/index.html";
 
-    {
-      id: "inscription",
-      label: "Inscription",
-      href: "inscriptions.html"
-    },
 
-    {
-      id: "participants",
-      label: "Équipes",
-      href: "participants.html"
-    },
+  /* ========================================
+     STYLES NAVIGATION
+  ======================================== */
 
-    {
-      id: "programmation",
-      label: "Programmation",
-      href: "programmation.html"
-    },
+  const navStyle =
+    document.createElement(
+      "style"
+    );
 
-    {
-      id: "classement",
-      label: "Classement",
-      href: "classement.html"
-    },
 
-    {
-      id: "tirage",
-      label: "Tirage",
-      href: "tirage.html"
+  navStyle.textContent = `
+
+    #siteHeader .main-nav-shell{
+      position:relative;
+      width:100%;
+      overflow:hidden;
     }
 
-  ];
+
+    #siteHeader .main-nav{
+      display:flex !important;
+      flex-direction:row !important;
+      flex-wrap:nowrap !important;
+
+      align-items:stretch;
+      justify-content:flex-start !important;
+
+      gap:4px;
+
+      width:100%;
+      max-width:100%;
+
+      box-sizing:border-box;
+
+      overflow-x:auto !important;
+      overflow-y:hidden !important;
+
+      padding:
+        5px 28px
+        6px 28px;
+
+      scroll-behavior:smooth;
+
+      scrollbar-width:none;
+
+      -webkit-overflow-scrolling:touch;
+
+      overscroll-behavior-x:contain;
+    }
 
 
-  /* ======================================
-     CONSTRUCTION DU HEADER
-  ====================================== */
-
-  header.innerHTML = `
-
-    <header class="tournament-header">
-
-      <div class="tournament-header-main">
+    #siteHeader
+    .main-nav::-webkit-scrollbar{
+      display:none;
+    }
 
 
-        <!-- SUZINI -->
+    #siteHeader
+    .main-nav > a{
+      flex:0 0 auto !important;
+
+      display:flex;
+
+      flex-direction:column;
+
+      align-items:center;
+      justify-content:center;
+
+      min-width:74px;
+
+      width:auto !important;
+
+      white-space:nowrap;
+
+      box-sizing:border-box;
+    }
+
+
+    #siteHeader
+    .main-nav .nav-icon{
+      flex:0 0 auto;
+    }
+
+
+    #siteHeader
+    .main-nav .nav-label{
+      display:block;
+      white-space:nowrap;
+    }
+
+
+    /* LOGO JUL'YANA */
+
+    #siteHeader
+    .admin-switch{
+      cursor:pointer;
+
+      -webkit-tap-highlight-color:
+        transparent;
+    }
+
+
+    /* FLÈCHES */
+
+    #siteHeader
+    .nav-scroll-arrow{
+      position:absolute;
+
+      z-index:30;
+
+      top:50%;
+
+      transform:
+        translateY(-50%);
+
+      display:flex;
+
+      align-items:center;
+      justify-content:center;
+
+      width:25px;
+      height:38px;
+
+      padding:0;
+
+      border:0;
+      border-radius:0;
+
+      background:
+        rgba(255,255,255,.94);
+
+      color:#111;
+
+      font-size:25px;
+      font-weight:1000;
+      line-height:1;
+
+      cursor:pointer;
+    }
+
+
+    #siteHeader
+    .nav-scroll-arrow[hidden]{
+      display:none !important;
+    }
+
+
+    #siteHeader
+    .nav-scroll-left{
+      left:0;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff 60%,
+          rgba(255,255,255,.80)
+        );
+    }
+
+
+    #siteHeader
+    .nav-scroll-right{
+      right:0;
+
+      background:
+        linear-gradient(
+          270deg,
+          #ffffff 60%,
+          rgba(255,255,255,.80)
+        );
+    }
+
+  `;
+
+
+  document.head.appendChild(
+    navStyle
+  );
+
+
+  /* ========================================
+     HEADER
+  ======================================== */
+
+  headerTarget.innerHTML = `
+
+    <header class="site-header">
+
+
+      <div class="header-top">
+
+
+        <!-- LOGO SUZINI -->
 
         <a
           href="index.html"
-          class="tournament-header-logo"
-          aria-label="Accueil du tournoi"
+          class="header-logo"
+          aria-label="Accueil"
         >
 
           <img
@@ -101,30 +271,38 @@ if(header){
 
         <!-- TITRE -->
 
-        <div class="tournament-header-title">
+        <div class="header-event">
 
-          <div class="tournament-header-name">
-            ${tournamentTitle}
-          </div>
+          <span>
+            LES VENDREDIS DU BT SUZINI
+          </span>
 
-          <div class="tournament-header-date">
-            ${tournamentDate}
-          </div>
+          <strong>
+            BT250 - Double Mixte
+          </strong>
 
         </div>
 
 
-        <!-- JUL'YANA / ADMIN -->
+        <!-- LOGO JUL'YANA -->
 
         <a
-          href="admin/index.html"
-          class="tournament-header-logo"
-          aria-label="Administration"
+          href="${julyanaTarget}"
+          class="
+            header-logo
+            header-logo-right
+            admin-switch
+          "
+          aria-label="${
+            adminConnected
+              ? "Passer en administration"
+              : "Accéder à l'administration"
+          }"
         >
 
           <img
             src="assets/img/logo-julyana-bt.png"
-            alt="Jul’Yana Beach Tennis"
+            alt="Jul'Yana Beach Tennis"
           >
 
         </a>
@@ -135,81 +313,189 @@ if(header){
 
       <!-- NAVIGATION -->
 
-      <div class="tournament-nav-wrap">
+      <div class="main-nav-shell">
 
-        <div
-          class="tournament-scroll-hint left"
-          aria-hidden="true"
+
+        <button
+          type="button"
+          class="
+            nav-scroll-arrow
+            nav-scroll-left
+          "
+          aria-label="Voir les onglets précédents"
+          hidden
         >
           ‹
-        </div>
+        </button>
 
 
-        <nav
-          class="tournament-nav"
-          aria-label="Navigation du tournoi"
-        >
+        <nav class="main-nav">
 
-          ${navigation
-            .map(item => `
 
-              <a
-                href="${item.href}"
-                class="${
-                  item.id === currentPage
-                    ? "active"
-                    : ""
-                }"
-              >
-                ${item.label}
-              </a>
+          <a
+            href="index.html"
+            data-nav="accueil"
+          >
 
-            `)
-            .join("")
-          }
+            <span class="nav-icon">
+              🏠
+            </span>
+
+            <span class="nav-label">
+              Accueil
+            </span>
+
+          </a>
+
+
+          <a
+            href="inscriptions.html"
+            data-nav="inscription"
+          >
+
+            <span class="nav-icon">
+              ✍️
+            </span>
+
+            <span class="nav-label">
+              Inscription
+            </span>
+
+          </a>
+
+
+          <a
+            href="participants.html"
+            data-nav="participants"
+          >
+
+            <span class="nav-icon">
+              👥
+            </span>
+
+            <span class="nav-label">
+              Équipes
+            </span>
+
+          </a>
+
+
+          <a
+            href="programmation.html"
+            data-nav="programmation"
+          >
+
+            <span class="nav-icon">
+              🎾
+            </span>
+
+            <span class="nav-label">
+              Matchs
+            </span>
+
+          </a>
+
+
+          <a
+            href="classement.html"
+            data-nav="classement"
+          >
+
+            <span class="nav-icon">
+              🏆
+            </span>
+
+            <span class="nav-label">
+              Classement
+            </span>
+
+          </a>
+
+
+          <a
+            href="tirage.html"
+            data-nav="tirage"
+          >
+
+            <span class="nav-icon">
+              🎲
+            </span>
+
+            <span class="nav-label">
+              Tirage
+            </span>
+
+          </a>
+
 
         </nav>
 
 
-        <div
-          class="tournament-scroll-hint right"
-          aria-hidden="true"
+        <button
+          type="button"
+          class="
+            nav-scroll-arrow
+            nav-scroll-right
+          "
+          aria-label="Voir les onglets suivants"
+          hidden
         >
           ›
-        </div>
+        </button>
+
 
       </div>
+
 
     </header>
 
   `;
 
 
-  /* ======================================
-     NAVIGATION HORIZONTALE
-  ====================================== */
+  /* ========================================
+     NAVIGATION
+  ======================================== */
 
   const nav =
-    header.querySelector(
-      ".tournament-nav"
+    headerTarget.querySelector(
+      ".main-nav"
     );
 
 
-  const leftHint =
-    header.querySelector(
-      ".tournament-scroll-hint.left"
+  const activeLink =
+    headerTarget.querySelector(
+      `[data-nav="${currentPage}"]`
     );
 
 
-  const rightHint =
-    header.querySelector(
-      ".tournament-scroll-hint.right"
+  const leftArrow =
+    headerTarget.querySelector(
+      ".nav-scroll-left"
     );
 
 
-  function updateScrollHints(){
+  const rightArrow =
+    headerTarget.querySelector(
+      ".nav-scroll-right"
+    );
 
-    if(!nav){
+
+  if(activeLink){
+
+    activeLink.classList.add(
+      "active"
+    );
+
+  }
+
+
+  function updateNavArrows(){
+
+    if(
+      !nav ||
+      !leftArrow ||
+      !rightArrow
+    ){
       return;
     }
 
@@ -219,71 +505,146 @@ if(header){
       nav.clientWidth;
 
 
-    if(leftHint){
+    if(maxScroll <= 2){
 
-      leftHint.style.opacity =
-        nav.scrollLeft > 8
-          ? "1"
-          : "0";
+      leftArrow.hidden =
+        true;
 
-    }
+      rightArrow.hidden =
+        true;
 
-
-    if(rightHint){
-
-      rightHint.style.opacity =
-        nav.scrollLeft <
-        maxScroll - 8
-          ? "1"
-          : "0";
+      return;
 
     }
+
+
+    leftArrow.hidden =
+      nav.scrollLeft <= 2;
+
+
+    rightArrow.hidden =
+      nav.scrollLeft >=
+      maxScroll - 2;
 
   }
 
 
-  if(nav){
+  function centerActiveLink(){
 
-    nav.addEventListener(
-      "scroll",
-      updateScrollHints,
-      {
-        passive: true
-      }
-    );
-
-
-    window.addEventListener(
-      "resize",
-      updateScrollHints
-    );
+    if(
+      !nav ||
+      !activeLink
+    ){
+      return;
+    }
 
 
-    requestAnimationFrame(
-      () => {
-
-        const active =
-          nav.querySelector(
-            ".active"
-          );
+    const linkCenter =
+      activeLink.offsetLeft +
+      (
+        activeLink.offsetWidth / 2
+      );
 
 
-        if(active){
+    const targetScroll =
+      linkCenter -
+      (
+        nav.clientWidth / 2
+      );
 
-          active.scrollIntoView({
-            behavior: "auto",
-            block: "nearest",
-            inline: "center"
-          });
+
+    const maxScroll =
+      Math.max(
+        0,
+        nav.scrollWidth -
+        nav.clientWidth
+      );
+
+
+    const finalScroll =
+      Math.min(
+        Math.max(
+          targetScroll,
+          0
+        ),
+        maxScroll
+      );
+
+
+    nav.scrollLeft =
+      finalScroll;
+
+
+    updateNavArrows();
+
+  }
+
+
+  leftArrow.addEventListener(
+    "click",
+    () => {
+
+      nav.scrollBy({
+
+        left:
+          -(nav.clientWidth * .65),
+
+        behavior:
+          "smooth"
+
+      });
+
+    }
+  );
+
+
+  rightArrow.addEventListener(
+    "click",
+    () => {
+
+      nav.scrollBy({
+
+        left:
+          nav.clientWidth * .65,
+
+        behavior:
+          "smooth"
+
+      });
+
+    }
+  );
+
+
+  nav.addEventListener(
+    "scroll",
+    updateNavArrows,
+    {
+      passive:true
+    }
+  );
+
+
+  window.addEventListener(
+    "resize",
+    centerActiveLink
+  );
+
+
+  requestAnimationFrame(
+    () => {
+
+      requestAnimationFrame(
+        () => {
+
+          centerActiveLink();
+
+          updateNavArrows();
 
         }
+      );
 
-
-        updateScrollHints();
-
-      }
-    );
-
-  }
+    }
+  );
 
 }
