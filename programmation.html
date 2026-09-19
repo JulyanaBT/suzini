@@ -12,15 +12,13 @@
 
   <meta
     name="theme-color"
-    content="#18b8ff"
+    content="#ffffff"
   >
 
   <title>
-    Programmation | BT250 Suzini — Double Mixte
+    Programmation | BT250 - Double Mixte
   </title>
 
-
-  <!-- CSS commun -->
 
   <link
     rel="stylesheet"
@@ -34,147 +32,213 @@
        PAGE PROGRAMMATION
     ======================================== */
 
-    main{
-      padding-top:0;
-      padding-bottom:24px;
-    }
-
-    .section{
-      margin-top:10px;
-    }
-
-    .section:first-child{
-      margin-top:0;
-    }
-
-    .compact-panel{
-      padding:12px;
-      border-radius:22px;
+    .schedule-page{
+      padding-bottom:18px;
     }
 
 
     /* ========================================
-       HERO
+       HEADER PAGE
     ======================================== */
 
-    .placeholder-card{
-      padding:16px 14px;
+    .schedule-head{
+      margin-bottom:8px;
 
-      border-radius:0 0 22px 22px;
+      padding:16px 17px;
+
+      border-radius:18px;
 
       background:
         linear-gradient(
           135deg,
-          var(--pink),
-          var(--blue-dark)
+          #111111,
+          #2a2a2a
         );
 
-      color:#fff;
+      color:white;
 
       box-shadow:
-        var(--shadow-soft);
-
-      text-align:center;
+        0 8px 22px rgba(0,0,0,.08);
     }
 
-    .placeholder-title{
-      margin:0;
 
-      font-size:26px;
-      line-height:1;
-      font-weight:1000;
+    .schedule-head-top{
+      display:flex;
 
-      letter-spacing:-.04em;
+      align-items:center;
+
+      justify-content:space-between;
+
+      gap:10px;
     }
 
-    .placeholder-text{
-      margin:8px 0 0;
 
-      font-size:14px;
-      line-height:1.35;
+    .schedule-kicker{
+      color:var(--orange);
+
+      font-size:9px;
+
       font-weight:900;
-    }
 
+      letter-spacing:1.3px;
 
-    /* ========================================
-       ÉTAT
-    ======================================== */
-
-    .status-box{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:8px;
-    }
-
-    .status-item{
-      padding:10px 6px;
-
-      border-radius:16px;
-
-      background:#fff;
-
-      text-align:center;
-
-      box-shadow:
-        0 6px 14px rgba(16,24,40,.08);
-    }
-
-    .status-item strong{
-      display:block;
-
-      color:var(--blue-dark);
-
-      font-size:22px;
-      line-height:1;
-      font-weight:1000;
-    }
-
-    .status-item span{
-      display:block;
-
-      margin-top:4px;
-
-      color:var(--muted);
-
-      font-size:10px;
-      font-weight:1000;
       text-transform:uppercase;
     }
 
 
+    .schedule-badge{
+      flex:0 0 auto;
+
+      padding:5px 9px;
+
+      border-radius:999px;
+
+      background:
+        rgba(255,255,255,.12);
+
+      color:white;
+
+      font-size:9px;
+
+      font-weight:900;
+    }
+
+
+    .schedule-head h1{
+      margin:6px 0 0;
+
+      font-size:30px;
+
+      line-height:1;
+
+      font-weight:1000;
+
+      letter-spacing:-1.1px;
+
+      text-transform:uppercase;
+    }
+
+
+    .schedule-head p{
+      margin:7px 0 0;
+
+      color:#d5d5d5;
+
+      font-size:11px;
+
+      line-height:1.35;
+    }
+
+
     /* ========================================
-       INFORMATION
+       PLACEHOLDER
     ======================================== */
 
-    .info-card{
-      display:grid;
-      gap:8px;
-
-      padding:12px;
+    .schedule-placeholder{
+      padding:28px 18px;
 
       border-radius:18px;
 
-      background:#fff;
-      color:var(--text);
+      background:white;
+
+      text-align:center;
 
       box-shadow:
-        0 8px 18px rgba(16,24,40,.10);
+        0 8px 22px rgba(0,0,0,.07);
     }
 
-    .info-title{
-      color:var(--blue-dark);
 
-      font-size:20px;
-      font-weight:1000;
-      line-height:1;
+    .schedule-icon{
+      width:66px;
+      height:66px;
+
+      margin:
+        0 auto 14px;
+
+      display:flex;
+
+      align-items:center;
+      justify-content:center;
+
+      border-radius:20px;
+
+      background:#e4f7fc;
+
+      font-size:34px;
     }
 
-    .info-text{
-      color:var(--muted);
 
-      font-size:14px;
+    .schedule-placeholder small{
+      display:block;
+
+      margin-bottom:5px;
+
+      color:var(--orange);
+
+      font-size:9px;
+
       font-weight:900;
-      line-height:1.35;
+
+      letter-spacing:1.2px;
+
+      text-transform:uppercase;
+    }
+
+
+    .schedule-placeholder h2{
+      margin:0;
+
+      color:#101010;
+
+      font-size:24px;
+
+      line-height:1.05;
+
+      font-weight:1000;
+    }
+
+
+    .schedule-placeholder p{
+      max-width:390px;
+
+      margin:
+        10px auto 0;
+
+      color:#70757a;
+
+      font-size:12px;
+
+      line-height:1.45;
+
+      font-weight:650;
+    }
+
+
+    /* ========================================
+       HORAIRE
+    ======================================== */
+
+    .schedule-time{
+      display:inline-flex;
+
+      align-items:center;
+      justify-content:center;
+
+      gap:6px;
+
+      margin-top:17px;
+
+      padding:9px 13px;
+
+      border-radius:999px;
+
+      background:#101010;
+
+      color:white;
+
+      font-size:12px;
+
+      font-weight:950;
     }
 
 
@@ -182,85 +246,94 @@
        ACTIONS
     ======================================== */
 
-    .action-grid{
+    .schedule-actions{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
 
-      margin-top:10px;
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:7px;
+
+      margin-top:8px;
     }
 
-    .action-btn{
-      min-height:44px;
+
+    .schedule-link{
+      min-width:0;
+      min-height:47px;
+
+      padding:10px 8px;
 
       display:flex;
+
       align-items:center;
       justify-content:center;
 
-      padding:10px 12px;
+      border-radius:14px;
 
-      border-radius:16px;
+      font-size:12px;
 
-      background:var(--blue-dark);
-      color:#fff;
-
-      font-size:14px;
-      font-weight:1000;
+      font-weight:950;
 
       text-align:center;
-      text-decoration:none;
     }
 
-    .action-btn.primary{
-      background:
-        linear-gradient(
-          180deg,
-          var(--yellow),
-          #f3b800
-        );
 
-      color:var(--text);
+    .schedule-link.orange{
+      background:var(--orange);
+
+      color:white;
+
+      box-shadow:
+        0 6px 16px rgba(255,75,39,.18);
+    }
+
+
+    .schedule-link.black{
+      background:#101010;
+
+      color:white;
+    }
+
+
+    .schedule-link:active{
+      transform:scale(.985);
     }
 
 
     /* ========================================
-       PROGRAMMATION PUBLIÉE
+       NOTE
     ======================================== */
 
-    .published-card{
-      display:grid;
-      gap:8px;
+    .schedule-note{
+      margin-top:8px;
 
-      padding:14px;
+      padding:11px 13px;
 
-      border-radius:18px;
+      border-radius:14px;
 
-      background:#fff;
+      background:#fff2c7;
 
-      text-align:center;
+      color:#6d5200;
 
-      box-shadow:
-        0 8px 18px rgba(16,24,40,.10);
-    }
+      font-size:10px;
 
-    .published-title{
-      color:var(--green);
+      line-height:1.4;
 
-      font-size:20px;
-      font-weight:1000;
-    }
-
-    .published-text{
-      color:var(--muted);
-
-      font-size:14px;
-      font-weight:900;
-      line-height:1.35;
+      font-weight:700;
     }
 
 
-    .hidden{
-      display:none !important;
+    /* ========================================
+       PETITS MOBILES
+    ======================================== */
+
+    @media(max-width:350px){
+
+      .schedule-actions{
+        grid-template-columns:1fr;
+      }
+
     }
 
   </style>
@@ -270,7 +343,7 @@
 
 <body
   data-page="programmation"
-  data-title="BT250 Suzini — Double Mixte"
+  data-title="BT250 - Double Mixte"
   data-date="02 octobre 2026"
 >
 
@@ -278,190 +351,124 @@
 <div id="siteHeader"></div>
 
 
-<main class="container">
+<main class="container schedule-page">
 
 
   <!-- ======================================
-       HERO
+       HEADER PAGE
   ======================================= -->
 
-  <section class="section">
+  <section class="schedule-head">
 
-    <div class="placeholder-card">
+    <div class="schedule-head-top">
 
-      <h1 class="placeholder-title">
-        📋 Programmation
-      </h1>
+      <span class="schedule-kicker">
+        BT250 · Double Mixte
+      </span>
 
-      <p
-        class="placeholder-text"
-        id="heroText"
-      >
-        La programmation sera publiée après
-        la clôture des inscriptions et le tirage.
-      </p>
+
+      <span class="schedule-badge">
+        Vendredi 2 octobre
+      </span>
 
     </div>
+
+
+    <h1>
+      Matchs
+    </h1>
+
+
+    <p>
+      Retrouve ici les matchs, les horaires
+      et les terrains dès la publication
+      de la programmation.
+    </p>
 
   </section>
 
 
+
   <!-- ======================================
-       ÉTAT
+       PLACEHOLDER
   ======================================= -->
 
-  <section class="section">
-
-    <div class="panel compact-panel">
-
-      <div class="status-box">
+  <section class="schedule-placeholder">
 
 
-        <div class="status-item">
-
-          <strong id="countTeams">
-            0
-          </strong>
-
-          <span>
-            Équipes
-          </span>
-
-        </div>
-
-
-        <div class="status-item">
-
-          <strong>
-            12
-          </strong>
-
-          <span>
-            Max
-          </span>
-
-        </div>
-
-
-        <div class="status-item">
-
-          <strong id="statusIcon">
-            ⏳
-          </strong>
-
-          <span id="statusLabel">
-            À venir
-          </span>
-
-        </div>
-
-
-      </div>
-
+    <div class="schedule-icon">
+      🎾
     </div>
+
+
+    <small>
+      Programmation à venir
+    </small>
+
+
+    <h2>
+      Les matchs seront bientôt disponibles
+    </h2>
+
+
+    <p>
+      La programmation sera publiée ici
+      après la validation des équipes
+      et la constitution des poules.
+    </p>
+
+
+    <div class="schedule-time">
+      🕕 Début du tournoi · 18h00
+    </div>
+
 
   </section>
 
 
+
   <!-- ======================================
-       PROGRAMMATION À VENIR
+       ACTIONS
   ======================================= -->
 
-  <section
-    class="section"
-    id="waitingSection"
-  >
-
-    <div class="panel compact-panel">
-
-      <div class="info-card">
-
-        <div
-          class="info-title"
-          id="infoTitle"
-        >
-          🟢 Inscriptions en cours
-        </div>
-
-        <div
-          class="info-text"
-          id="infoText"
-        >
-          Les horaires, poules et terrains seront
-          visibles ici dès publication par l’organisation.
-        </div>
+  <div class="schedule-actions">
 
 
-        <div class="action-grid">
+    <a
+      class="schedule-link orange"
+      href="tirage.html"
+    >
+      🎲 Voir le tirage
+    </a>
 
-          <a
-            class="action-btn primary"
-            href="inscriptions.html"
-          >
-            📝 S’inscrire
-          </a>
 
-          <a
-            class="action-btn"
-            href="participants.html"
-          >
-            👥 Voir les équipes
-          </a>
+    <a
+      class="schedule-link black"
+      href="participants.html"
+    >
+      👥 Voir les équipes
+    </a>
 
-          <a
-            class="action-btn"
-            href="tirage.html"
-          >
-            🎲 Tirage
-          </a>
 
-          <a
-            class="action-btn"
-            href="classement.html"
-          >
-            🏆 Classement
-          </a>
+  </div>
 
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
 
 
   <!-- ======================================
-       PROGRAMMATION PUBLIÉE
+       NOTE
   ======================================= -->
 
-  <section
-    class="section hidden"
-    id="publishedSection"
-  >
+  <section class="schedule-note">
 
-    <div class="panel compact-panel">
-
-      <div class="published-card">
-
-        <div class="published-title">
-          ✅ Programmation publiée
-        </div>
-
-        <div class="published-text">
-          Les matchs, horaires et terrains
-          seront affichés ici par le module
-          de programmation.
-        </div>
-
-      </div>
-
-    </div>
+    ⏱️ Les horaires affichés lors du tournoi
+    seront indicatifs. Pense à suivre la programmation
+    pour connaître ton prochain match et ton terrain.
 
   </section>
 
 
 </main>
+
 
 
 <!-- ======================================
@@ -475,262 +482,13 @@
 
 
 <!-- ======================================
-     FIRESTORE
+     MAINTENANCE
 ======================================= -->
 
-<script type="module">
-
-  import {
-    db
-  } from "./assets/js/firebase.js";
-
-
-  import {
-    collection,
-    doc,
-    onSnapshot
-  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-
-  /* ========================================
-     CONFIGURATION
-  ======================================== */
-
-  const EVENT_ID =
-    "suzini-bt250-mixte-2026-10-02";
-
-
-  const MAX_TEAMS =
-    12;
-
-
-  /* ========================================
-     ÉLÉMENTS
-  ======================================== */
-
-  const countTeams =
-    document.getElementById(
-      "countTeams"
-    );
-
-
-  const statusIcon =
-    document.getElementById(
-      "statusIcon"
-    );
-
-
-  const statusLabel =
-    document.getElementById(
-      "statusLabel"
-    );
-
-
-  const heroText =
-    document.getElementById(
-      "heroText"
-    );
-
-
-  const waitingSection =
-    document.getElementById(
-      "waitingSection"
-    );
-
-
-  const publishedSection =
-    document.getElementById(
-      "publishedSection"
-    );
-
-
-  /* ========================================
-     FIRESTORE
-  ======================================== */
-
-  const teamsRef =
-    collection(
-      db,
-      "events",
-      EVENT_ID,
-      "teams"
-    );
-
-
-  const programmationRef =
-    doc(
-      db,
-      "events",
-      EVENT_ID,
-      "config",
-      "programmation"
-    );
-
-
-  /* ========================================
-     ÉQUIPES
-  ======================================== */
-
-  function isVisibleTeam(team){
-
-    return (
-      team.status !== "deleted" &&
-      team.status !== "cancelled" &&
-      team.status !== "refused" &&
-      team.stby !== true &&
-      team.list !== "wait"
-    );
-
-  }
-
-
-  onSnapshot(
-
-    teamsRef,
-
-    snapshot => {
-
-      const teams =
-        snapshot.docs
-
-          .map(
-            documentSnapshot =>
-              documentSnapshot.data()
-          )
-
-          .filter(
-            isVisibleTeam
-          );
-
-
-      countTeams.textContent =
-        String(
-          teams.length
-        );
-
-    },
-
-
-    error => {
-
-      console.error(error);
-
-
-      countTeams.textContent =
-        "—";
-
-    }
-
-  );
-
-
-  /* ========================================
-     ÉTAT PROGRAMMATION
-  ======================================== */
-
-  onSnapshot(
-
-    programmationRef,
-
-    snapshot => {
-
-      /*
-       * Si aucun document n'existe encore,
-       * la programmation reste simplement
-       * en attente.
-       */
-
-      const data =
-        snapshot.exists()
-          ? snapshot.data()
-          : {};
-
-
-      const published =
-        data.publicVisible === true ||
-        data.published === true;
-
-
-      if(published){
-
-        statusIcon.textContent =
-          "✅";
-
-
-        statusLabel.textContent =
-          "Publiée";
-
-
-        heroText.textContent =
-          "La programmation du tournoi est disponible.";
-
-
-        waitingSection.classList.add(
-          "hidden"
-        );
-
-
-        publishedSection.classList.remove(
-          "hidden"
-        );
-
-      }
-
-      else{
-
-        statusIcon.textContent =
-          "⏳";
-
-
-        statusLabel.textContent =
-          "À venir";
-
-
-        heroText.textContent =
-          "La programmation sera publiée après la clôture des inscriptions et le tirage.";
-
-
-        waitingSection.classList.remove(
-          "hidden"
-        );
-
-
-        publishedSection.classList.add(
-          "hidden"
-        );
-
-      }
-
-    },
-
-
-    error => {
-
-      console.error(error);
-
-
-      statusIcon.textContent =
-        "⏳";
-
-
-      statusLabel.textContent =
-        "À venir";
-
-
-      waitingSection.classList.remove(
-        "hidden"
-      );
-
-
-      publishedSection.classList.add(
-        "hidden"
-      );
-
-    }
-
-  );
-
-</script>
+<script
+  type="module"
+  src="assets/js/maintenance-guard.js"
+></script>
 
 
 </body>
