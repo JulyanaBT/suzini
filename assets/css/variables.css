@@ -1,37 +1,55 @@
 /* =========================================================
-   SUZINI — APPLICATION TOURNOIS
+   SUZINI — BT250 DOUBLE MIXTE
    Variables globales
+
+   Charte "Les vendredis du BT Suzini"
 ========================================================= */
 
 :root{
 
+
   /* ==============================
-     COULEURS PRINCIPALES
+     COULEURS DE MARQUE
   ============================== */
 
-  --blue:#18b8ff;
+  --orange:#ff4b27;
+  --orange-dark:#dc391b;
+
+  --black:#101010;
+  --dark:#242424;
+
+  --blue:#24b5db;
+  --blue-light:#dff7fc;
+
+  --sand:#f4dfb0;
+  --sand-light:#fffaf0;
+
+  --grey:#6e7378;
+  --grey-light:#eff0f1;
+
+  --white:#ffffff;
+
+  --green:#0b7a3b;
+  --green-dark:#075c2d;
+
+  --yellow:#ffd84d;
+
+  --pink:#ff3e8a;
+
+
+  /* ==============================
+     COMPATIBILITÉ ANCIENNE CHARTE
+  ============================== */
+
   --blue-dark:#063b72;
 
   --turquoise:#43e6d8;
 
-  --pink:#ff3e8a;
-  --orange:#ff7a1a;
-  --yellow:#ffd84d;
+  --text:#101010;
 
-  --green:#0b6b45;
-  --green-dark:#06452d;
+  --muted:#6e7378;
 
-
-  /* ==============================
-     TEXTE & FONDS
-  ============================== */
-
-  --white:#ffffff;
-
-  --text:#102033;
-  --muted:#667085;
-
-  --card:rgba(255,255,255,.94);
+  --card:#ffffff;
 
 
   /* ==============================
@@ -39,20 +57,24 @@
   ============================== */
 
   --shadow:
-    0 18px 44px rgba(16,24,40,.16);
+    0 8px 22px rgba(0,0,0,.08);
 
   --shadow-soft:
-    0 10px 24px rgba(16,24,40,.12);
+    0 4px 14px rgba(0,0,0,.06);
 
 
   /* ==============================
      DIMENSIONS
   ============================== */
 
-  --container:1180px;
+  --container:600px;
 
   --radius-small:14px;
+
   --radius-medium:18px;
-  --radius-large:24px;
+
+  --radius-large:22px;
+
+  --radius:18px;
 
 }
