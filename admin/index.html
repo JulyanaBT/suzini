@@ -20,7 +20,7 @@
   </title>
 
 
-  <!-- CSS public commun -->
+  <!-- CSS COMMUN -->
 
   <link
     rel="stylesheet"
@@ -54,7 +54,7 @@
       max-width:460px;
 
       margin:
-        40px auto 0;
+        18px auto 0;
 
       padding:22px 18px;
 
@@ -245,7 +245,7 @@
 
 
     /* ========================================
-       EN-TÊTE
+       EN-TÊTE TABLEAU DE BORD
     ======================================== */
 
     .admin-dashboard-title{
@@ -674,6 +674,13 @@
 >
 
 
+<!-- ======================================
+     HEADER ADMIN
+======================================= -->
+
+<div id="siteHeader"></div>
+
+
 <main class="container admin-page">
 
 
@@ -760,7 +767,9 @@
   >
 
 
-    <!-- EN-TÊTE -->
+    <!-- ====================================
+         EN-TÊTE
+    ===================================== -->
 
     <div class="admin-dashboard-title">
 
@@ -772,6 +781,7 @@
 
       <h1>
         BT250
+
         <span>
           Double Mixte
         </span>
@@ -1108,6 +1118,17 @@
 
 
 <!-- ======================================
+     HEADER ADMIN
+======================================= -->
+
+<script
+  type="module"
+  src="../assets/js/admin-header.js"
+></script>
+
+
+
+<!-- ======================================
      SESSION ADMIN
 ======================================= -->
 
@@ -1161,7 +1182,7 @@
 
 
   /* ========================================
-     AFFICHAGE
+     ÉTAT DE LA PAGE
   ======================================== */
 
   function refreshPageState(){
@@ -1222,9 +1243,9 @@
       if(success){
 
         /*
-         * On recharge afin que toutes les
-         * parties du site détectent
-         * immédiatement la session admin.
+         * Recharge nécessaire :
+         * admin-header.js détectera alors
+         * immédiatement la nouvelle session.
          */
 
         window.location.reload();
