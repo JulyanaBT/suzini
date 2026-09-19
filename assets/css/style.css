@@ -1,20 +1,37 @@
 /* =========================================================
-   SUZINI — APPLICATION TOURNOIS
+   SUZINI — BT250 DOUBLE MIXTE
    Feuille de style principale
+
+   Charte graphique :
+   "Les vendredis du BT Suzini"
+
+   Inspirée de l'application Americano TC Suzini
 ========================================================= */
+
+
+/* ==============================
+   VARIABLES
+============================== */
+
+@import url("variables.css");
 
 
 /* ==============================
    BASE
 ============================== */
 
-@import url("variables.css");
 @import url("base.css");
 
 
 /* ==============================
-   COMPOSANTS
+   HEADER TOURNOI
 ============================== */
 
 @import url("header-tournament.css");
+
+
+/* ==============================
+   CARTES & COMPOSANTS
+============================== */
+
 @import url("cards.css");
