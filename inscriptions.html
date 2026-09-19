@@ -12,15 +12,13 @@
 
   <meta
     name="theme-color"
-    content="#18b8ff"
+    content="#ffffff"
   >
 
   <title>
-    Inscriptions | BT250 Suzini — Double Mixte
+    Inscription | BT250 - Double Mixte
   </title>
 
-
-  <!-- CSS commun -->
 
   <link
     rel="stylesheet"
@@ -31,71 +29,668 @@
   <style>
 
     /* ========================================
-       PAGE INSCRIPTIONS
+       PAGE INSCRIPTION
     ======================================== */
 
-    main{
-      padding-top:0;
-      padding-bottom:24px;
-    }
-
-    .section{
-      margin-top:10px;
-    }
-
-    .section:first-child{
-      margin-top:0;
-    }
-
-    .compact-panel{
-      padding:12px;
-      border-radius:22px;
+    .signup-page{
+      padding-bottom:18px;
     }
 
 
     /* ========================================
-       ONGLETS
+       MINI HERO
     ======================================== */
 
-    .subtabs{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
+    .signup-hero{
+      margin-bottom:8px;
 
-      padding:10px;
+      padding:16px 18px;
 
-      border-radius:0 0 22px 22px;
+      border-radius:18px;
 
-      background:var(--pink);
+      background:
+        linear-gradient(
+          135deg,
+          #ff4b27,
+          #ff714f
+        );
+
+      color:white;
 
       box-shadow:
-        var(--shadow-soft);
+        var(--shadow);
     }
 
-    .subtab,
-    .mode-btn{
-      min-height:42px;
 
-      border:0;
-      border-radius:16px;
+    .signup-hero-top{
+      display:flex;
 
-      font-family:inherit;
-      font-size:13px;
-      font-weight:1000;
+      align-items:center;
 
-      cursor:pointer;
+      justify-content:space-between;
+
+      gap:12px;
+
+      margin-bottom:8px;
     }
 
-    .subtab{
+
+    .signup-kicker{
+      font-size:9px;
+
+      font-weight:900;
+
+      letter-spacing:1.3px;
+
+      text-transform:uppercase;
+
+      opacity:.9;
+    }
+
+
+    .signup-badge{
+      flex:0 0 auto;
+
+      padding:5px 8px;
+
+      border-radius:999px;
+
       background:
         rgba(255,255,255,.18);
 
-      color:#fff;
+      font-size:9px;
+
+      font-weight:900;
+
+      text-transform:uppercase;
     }
 
-    .subtab.active{
-      background:#fff;
-      color:var(--blue-dark);
+
+    .signup-hero h1{
+      margin:0;
+
+      font-size:31px;
+
+      line-height:1;
+
+      font-weight:1000;
+
+      letter-spacing:-1.1px;
+
+      text-transform:uppercase;
+    }
+
+
+    .signup-hero p{
+      margin:8px 0 0;
+
+      max-width:440px;
+
+      font-size:12px;
+
+      line-height:1.35;
+
+      font-weight:650;
+
+      opacity:.95;
+    }
+
+
+    /* ========================================
+       SOUS-ONGLETS PRINCIPAUX
+    ======================================== */
+
+    .signup-subnav{
+      display:grid;
+
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:6px;
+
+      margin-bottom:8px;
+
+      padding:6px;
+
+      border-radius:15px;
+
+      background:white;
+
+      box-shadow:
+        0 8px 22px rgba(0,0,0,.07);
+    }
+
+
+    .signup-tab{
+      min-height:43px;
+
+      padding:8px 10px;
+
+      border:0;
+
+      border-radius:11px;
+
+      background:#eeeeee;
+
+      color:#555;
+
+      font:inherit;
+
+      font-size:11px;
+
+      font-weight:950;
+
+      cursor:pointer;
+
+      -webkit-tap-highlight-color:
+        transparent;
+    }
+
+
+    .signup-tab.active{
+      background:#101010;
+
+      color:white;
+    }
+
+
+    .signup-tab:active{
+      transform:scale(.985);
+    }
+
+
+    /* ========================================
+       PANNEAUX
+    ======================================== */
+
+    .signup-tab-panel{
+      display:block;
+    }
+
+
+    .signup-tab-panel[hidden],
+    .hidden{
+      display:none !important;
+    }
+
+
+    .signup-panel{
+      padding:17px;
+
+      border-radius:18px;
+
+      background:white;
+
+      box-shadow:
+        var(--shadow);
+    }
+
+
+    .signup-panel-head{
+      display:flex;
+
+      align-items:flex-start;
+
+      justify-content:space-between;
+
+      gap:12px;
+
+      margin-bottom:14px;
+    }
+
+
+    .signup-panel-head > div:first-child{
+      min-width:0;
+    }
+
+
+    .signup-panel-head small{
+      display:block;
+
+      margin-bottom:3px;
+
+      color:var(--orange);
+
+      font-size:9px;
+
+      font-weight:900;
+
+      letter-spacing:1.2px;
+
+      text-transform:uppercase;
+    }
+
+
+    .signup-panel-head h2{
+      margin:0;
+
+      font-size:22px;
+
+      line-height:1;
+
+      font-weight:950;
+    }
+
+
+    .signup-panel-head p{
+      margin:5px 0 0;
+
+      color:#70757a;
+
+      font-size:11px;
+
+      line-height:1.35;
+    }
+
+
+    /* ========================================
+       ÉTAT INSCRIPTIONS
+    ======================================== */
+
+    .registration-badge{
+      flex:0 0 auto;
+
+      padding:5px 8px;
+
+      border-radius:999px;
+
+      background:#eeeeee;
+
+      color:#555;
+
+      font-size:8px;
+
+      font-weight:950;
+
+      text-transform:uppercase;
+    }
+
+
+    .registration-badge.open{
+      background:#ddf7e7;
+
+      color:#126a35;
+    }
+
+
+    .registration-badge.closed{
+      background:#ffe6df;
+
+      color:#b3290e;
+    }
+
+
+    .registration-state{
+      margin-bottom:12px;
+
+      padding:10px 12px;
+
+      border-radius:12px;
+
+      background:#f4f4f4;
+
+      color:#666;
+
+      font-size:11px;
+
+      line-height:1.35;
+
+      font-weight:800;
+    }
+
+
+    .registration-state.ok{
+      background:#ddf7e7;
+
+      color:#126a35;
+
+      border:
+        1px solid #a9e5c0;
+    }
+
+
+    .registration-state.warn{
+      background:#fff3d4;
+
+      color:#775a00;
+
+      border:
+        1px solid #f1dc98;
+    }
+
+
+    .registration-state.error{
+      background:#ffe6df;
+
+      color:#b3290e;
+
+      border:
+        1px solid #ffc1b1;
+    }
+
+
+    /* ========================================
+       JOUEURS
+    ======================================== */
+
+    .players{
+      display:grid;
+
+      gap:8px;
+    }
+
+
+    .player-card{
+      padding:14px;
+
+      border-radius:15px;
+
+      background:#f7f7f7;
+
+      border:
+        1px solid #eeeeee;
+    }
+
+
+    .player-title{
+      display:flex;
+
+      align-items:center;
+
+      gap:8px;
+
+      margin-bottom:11px;
+    }
+
+
+    .player-symbol{
+      width:31px;
+
+      height:31px;
+
+      flex:0 0 31px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      border-radius:10px;
+
+      background:white;
+
+      font-size:15px;
+
+      box-shadow:
+        0 2px 8px rgba(0,0,0,.05);
+    }
+
+
+    .player-title small{
+      display:block;
+
+      color:var(--orange);
+
+      font-size:8px;
+
+      font-weight:900;
+
+      letter-spacing:.9px;
+
+      text-transform:uppercase;
+    }
+
+
+    .player-title strong{
+      display:block;
+
+      margin-top:1px;
+
+      font-size:16px;
+
+      line-height:1;
+
+      font-weight:950;
+    }
+
+
+    /* ========================================
+       FORMULAIRES
+    ======================================== */
+
+    .form-box{
+      display:grid;
+
+      gap:11px;
+    }
+
+
+    .name-grid{
+      display:grid;
+
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:8px;
+    }
+
+
+    .field{
+      min-width:0;
+
+      display:grid;
+
+      gap:5px;
+    }
+
+
+    .field label{
+      color:#292929;
+
+      font-size:9px;
+
+      font-weight:900;
+
+      letter-spacing:.8px;
+
+      text-transform:uppercase;
+    }
+
+
+    .field input,
+    .field textarea,
+    .field select,
+    .filter-select{
+      width:100%;
+
+      min-width:0;
+
+      min-height:46px;
+
+      padding:11px 12px;
+
+      border:
+        2px solid #ededed;
+
+      border-radius:13px;
+
+      outline:none;
+
+      background:#f7f7f7;
+
+      color:#111;
+
+      font:inherit;
+
+      font-size:15px;
+
+      font-weight:750;
+
+      transition:
+        border-color .15s ease,
+        background .15s ease;
+    }
+
+
+    .field textarea{
+      min-height:105px;
+
+      resize:vertical;
+    }
+
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus,
+    .filter-select:focus{
+      border-color:var(--orange);
+
+      background:white;
+    }
+
+
+    .field input:disabled,
+    .field textarea:disabled,
+    .field select:disabled{
+      opacity:.55;
+    }
+
+
+    /* ========================================
+       BOUTONS
+    ======================================== */
+
+    .btn-submit,
+    .action-btn{
+      width:100%;
+
+      min-height:49px;
+
+      padding:11px 12px;
+
+      border:0;
+
+      border-radius:14px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      background:#101010;
+
+      color:white;
+
+      font:inherit;
+
+      font-size:13px;
+
+      font-weight:950;
+
+      text-align:center;
+
+      text-decoration:none;
+
+      cursor:pointer;
+
+      -webkit-tap-highlight-color:
+        transparent;
+    }
+
+
+    .btn-submit{
+      background:var(--orange);
+
+      font-size:15px;
+    }
+
+
+    .action-btn.orange{
+      background:var(--orange);
+    }
+
+
+    .action-btn.black{
+      background:#101010;
+    }
+
+
+    .action-btn.green{
+      background:#187a43;
+    }
+
+
+    .action-btn.soft{
+      background:#eeeeee;
+
+      color:#333;
+    }
+
+
+    .btn-submit:active,
+    .action-btn:active{
+      transform:scale(.985);
+    }
+
+
+    .btn-submit:disabled,
+    .action-btn:disabled{
+      opacity:.45;
+
+      cursor:not-allowed;
+    }
+
+
+    /* ========================================
+       MESSAGES
+    ======================================== */
+
+    .message{
+      padding:10px 12px;
+
+      border-radius:12px;
+
+      background:#f4f4f4;
+
+      color:#666;
+
+      font-size:11px;
+
+      font-weight:800;
+
+      line-height:1.35;
+    }
+
+
+    .message.ok{
+      background:#ddf7e7;
+
+      color:#126a35;
+
+      border:
+        1px solid #a9e5c0;
+    }
+
+
+    .message.error{
+      background:#ffe6df;
+
+      color:#b3290e;
+
+      border:
+        1px solid #ffc1b1;
+    }
+
+
+    .message.warn{
+      background:#fff3d4;
+
+      color:#775a00;
+
+      border:
+        1px solid #f1dc98;
     }
 
 
@@ -105,325 +700,243 @@
 
     .partner-mode{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
+
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:6px;
+
+      margin-bottom:12px;
+
+      padding:5px;
+
+      border-radius:13px;
+
+      background:#f1f1f1;
+    }
+
+
+    .partner-mode button{
+      min-height:39px;
+
+      border:0;
+
+      border-radius:10px;
+
+      background:transparent;
+
+      color:#666;
+
+      font:inherit;
+
+      font-size:10px;
+
+      font-weight:950;
+
+      cursor:pointer;
+    }
+
+
+    .partner-mode button.active{
+      background:white;
+
+      color:#101010;
+
+      box-shadow:
+        0 3px 10px rgba(0,0,0,.07);
+    }
+
+
+    .partner-filter{
+      display:grid;
+
+      gap:7px;
 
       margin-bottom:10px;
     }
 
-    .mode-btn{
-      background:var(--blue-dark);
-      color:#fff;
-    }
 
-    .mode-btn.active{
-      background:var(--yellow);
-      color:var(--text);
-    }
+    .privacy-note{
+      padding:9px 11px;
 
+      border-radius:11px;
 
-    /* ========================================
-       FORMULAIRES
-    ======================================== */
+      background:var(--blue-light);
 
-    .form-grid{
-      display:grid;
-      gap:10px;
-    }
+      color:#246474;
 
-    .form-grid.two{
-      grid-template-columns:1fr;
-    }
+      font-size:10px;
 
-    .field{
-      display:grid;
-      gap:6px;
-    }
-
-    .field label{
-      color:var(--blue-dark);
-
-      font-size:13px;
-      font-weight:1000;
-    }
-
-    input,
-    textarea,
-    select{
-      width:100%;
-
-      border:
-        1px solid rgba(16,24,40,.12);
-
-      border-radius:16px;
-
-      padding:12px;
-
-      font-family:inherit;
-      font-size:15px;
-      font-weight:800;
-
-      color:var(--text);
-      background:#fff;
-    }
-
-    textarea{
-      min-height:96px;
-      resize:vertical;
-    }
-
-    input:disabled,
-    textarea:disabled,
-    select:disabled{
-      opacity:.55;
-      background:#f8fafc;
-    }
-
-
-    /* ========================================
-       JOUEURS
-    ======================================== */
-
-    .player-box{
-      display:grid;
-      gap:10px;
-
-      padding:12px;
-
-      border-radius:18px;
-
-      background:#fff;
-
-      box-shadow:
-        0 6px 14px rgba(16,24,40,.08);
-    }
-
-    .box-title{
-      margin:0;
-
-      color:var(--blue-dark);
-
-      font-size:20px;
-      font-weight:1000;
-      line-height:1;
-    }
-
-
-    /* ========================================
-       BOUTONS
-    ======================================== */
-
-    .btn{
-      min-height:46px;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-
-      padding:10px 12px;
-
-      border:0;
-      border-radius:16px;
-
-      font-family:inherit;
-      font-size:14px;
-      font-weight:1000;
-
-      text-align:center;
-      text-decoration:none;
-
-      cursor:pointer;
-
-      background:var(--blue-dark);
-      color:#fff;
-    }
-
-    .btn.primary{
-      background:
-        linear-gradient(
-          180deg,
-          var(--yellow),
-          #f3b800
-        );
-
-      color:var(--text);
-    }
-
-    .btn.green{
-      background:var(--green);
-    }
-
-    .btn.pink{
-      background:var(--pink);
-    }
-
-    .btn.blue{
-      background:var(--blue-dark);
-    }
-
-    .btn:disabled{
-      opacity:.55;
-      cursor:not-allowed;
-    }
-
-
-    /* ========================================
-       ÉTATS
-    ======================================== */
-
-    .status{
-      padding:10px 12px;
-
-      border-radius:16px;
-
-      background:#fff;
-      color:var(--muted);
-
-      font-size:13px;
-      font-weight:900;
       line-height:1.35;
-    }
 
-    .status.warn{
-      background:#fff7d6;
-      color:var(--text);
-    }
-
-    .status.ok{
-      background:#d9fbe8;
-      color:#087a35;
-    }
-
-    .status.err{
-      background:#ffecec;
-      color:#9b1c1c;
+      font-weight:800;
     }
 
 
     /* ========================================
-       PROFILS PARTENAIRES
+       PROFILS
     ======================================== */
 
     .search-list{
       display:grid;
-      gap:10px;
 
-      margin-top:10px;
+      gap:8px;
     }
+
 
     .search-card{
       display:grid;
-      gap:8px;
 
-      padding:12px;
+      gap:9px;
+
+      padding:13px;
 
       border:
-        1px solid rgba(16,24,40,.08);
+        1px solid #eeeeee;
 
-      border-radius:18px;
+      border-radius:15px;
 
-      background:#fff;
-
-      box-shadow:
-        0 8px 18px rgba(16,24,40,.10);
+      background:#f8f8f8;
     }
+
 
     .search-top{
       display:flex;
+
       align-items:center;
+
       justify-content:space-between;
+
       gap:10px;
     }
 
-    .search-name{
-      color:var(--blue-dark);
 
-      font-size:20px;
-      font-weight:1000;
-      line-height:1.05;
+    .search-name{
+      font-size:18px;
+
+      line-height:1;
+
+      font-weight:950;
     }
 
-    .sex-pill{
-      width:32px;
-      height:32px;
 
-      flex-shrink:0;
+    .sex-pill{
+      width:30px;
+
+      height:30px;
+
+      flex:0 0 30px;
 
       display:flex;
+
       align-items:center;
+
       justify-content:center;
 
       border-radius:999px;
 
-      color:#fff;
+      color:white;
 
-      font-size:13px;
-      font-weight:1000;
+      font-size:11px;
+
+      font-weight:950;
     }
+
 
     .sex-pill.f{
-      background:var(--pink);
+      background:#ff4b77;
     }
+
 
     .sex-pill.m{
-      background:var(--blue-dark);
+      background:#24a8d2;
     }
+
 
     .search-profile{
-      color:var(--text);
+      color:#555;
 
-      font-size:14px;
-      font-weight:850;
-      line-height:1.35;
+      font-size:11px;
+
+      line-height:1.4;
+
+      font-weight:700;
     }
 
-    .filter-row{
+
+    .profile-actions{
       display:grid;
-      grid-template-columns:1fr;
-      gap:8px;
 
-      margin-bottom:10px;
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:6px;
     }
+
+
+    .profile-actions .action-btn{
+      min-height:42px;
+
+      padding:8px;
+
+      font-size:10px;
+    }
+
 
     .empty{
-      padding:12px;
+      padding:16px;
 
-      border-radius:16px;
+      border-radius:13px;
 
-      background:#fff;
-      color:var(--muted);
+      background:#f5f5f5;
 
-      font-size:14px;
-      font-weight:900;
+      color:#777;
+
+      font-size:11px;
+
+      font-weight:850;
+
       text-align:center;
     }
 
 
     /* ========================================
-       UTILITAIRE
+       INVITATION
     ======================================== */
 
-    .hidden{
-      display:none !important;
+    .invite-card{
+      padding:18px;
+
+      border-radius:18px;
+
+      background:white;
+
+      box-shadow:var(--shadow);
+    }
+
+
+    .invite-actions{
+      display:grid;
+
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:7px;
+
+      margin-top:10px;
     }
 
 
     /* ========================================
-       DESKTOP
+       PETITS MOBILES
     ======================================== */
 
-    @media(min-width:760px){
+    @media(max-width:350px){
 
-      .form-grid.two{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .search-list{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .filter-row{
-        grid-template-columns:220px 1fr;
+      .name-grid,
+      .profile-actions,
+      .invite-actions{
+        grid-template-columns:1fr;
       }
 
     }
@@ -435,7 +948,7 @@
 
 <body
   data-page="inscription"
-  data-title="BT250 Suzini — Double Mixte"
+  data-title="BT250 - Double Mixte"
   data-date="02 octobre 2026"
 >
 
@@ -443,7 +956,7 @@
 <div id="siteHeader"></div>
 
 
-<main class="container">
+<main class="container signup-page">
 
 
   <!-- ======================================
@@ -451,553 +964,686 @@
   ======================================= -->
 
   <section
-    class="section hidden"
     id="invitationSection"
+    class="invite-card hidden"
   >
 
-    <div class="panel compact-panel">
+    <div class="signup-panel-head">
 
+      <div>
 
-      <div class="panel-head">
+        <small>
+          Proposition d'équipe
+        </small>
 
-        <div>
-
-          <h1 class="panel-title">
-            Proposition d’équipe
-          </h1>
-
-          <p
-            class="panel-text"
-            id="inviteIntro"
-          >
-            Chargement de la proposition…
-          </p>
-
-        </div>
-
-
-        <div class="pill">
+        <h2>
           Invitation
-        </div>
+        </h2>
+
+        <p id="inviteIntro">
+          Chargement de la proposition…
+        </p>
 
       </div>
 
+    </div>
 
-      <div
-        id="inviteBox"
-        class="status"
+
+    <div
+      id="inviteBox"
+      class="message"
+    >
+      Chargement…
+    </div>
+
+
+    <div class="invite-actions">
+
+      <button
+        class="action-btn green"
+        id="btnAcceptInvite"
+        type="button"
       >
-        Chargement…
-      </div>
+        ✅ Accepter
+      </button>
 
 
-      <div
-        class="form-grid two"
-        style="margin-top:10px;"
+      <button
+        class="action-btn soft"
+        id="btnRefuseInvite"
+        type="button"
       >
+        ❌ Refuser
+      </button>
 
-        <button
-          class="btn green"
-          id="btnAcceptInvite"
-          type="button"
-        >
-          ✅ Accepter
-        </button>
+    </div>
 
 
-        <button
-          class="btn pink"
-          id="btnRefuseInvite"
-          type="button"
-        >
-          ❌ Refuser
-        </button>
-
-      </div>
-
-
-      <div
-        id="inviteStatus"
-        class="status"
-        style="margin-top:10px;"
-      >
-        —
-      </div>
-
+    <div
+      id="inviteStatus"
+      class="message"
+      style="margin-top:10px;"
+    >
+      —
     </div>
 
   </section>
 
 
+
   <!-- ======================================
-       ONGLETS
+       PAGE NORMALE
   ======================================= -->
 
-  <section
-    class="section"
-    id="normalPage"
-  >
+  <div id="normalPage">
 
-    <div class="subtabs">
+
+    <!-- ====================================
+         MINI HERO
+    ===================================== -->
+
+    <section class="signup-hero">
+
+      <div class="signup-hero-top">
+
+        <span class="signup-kicker">
+          Les vendredis du BT Suzini
+        </span>
+
+        <span
+          id="heroTeamCount"
+          class="signup-badge"
+        >
+          0 / 12 équipes
+        </span>
+
+      </div>
+
+
+      <h1>
+        Inscription
+      </h1>
+
+
+      <p>
+        Inscris ton équipe mixte pour le BT250
+        du vendredi 2 octobre.
+      </p>
+
+    </section>
+
+
+
+    <!-- ====================================
+         SOUS-ONGLETS
+    ===================================== -->
+
+    <nav
+      class="signup-subnav"
+      aria-label="Mode d'inscription"
+    >
 
       <button
-        class="subtab active"
         id="tabRegister"
         type="button"
+        class="signup-tab active"
       >
-        📝 Inscription
+        📝 Mon équipe
       </button>
 
 
       <button
-        class="subtab"
         id="tabPartner"
         type="button"
+        class="signup-tab"
       >
-        🔎 Recherche partenaire
+        🔎 Partenaire
       </button>
 
-    </div>
-
-  </section>
+    </nav>
 
 
-  <!-- ======================================
-       INSCRIPTION ÉQUIPE
-  ======================================= -->
 
-  <section
-    class="section"
-    id="panelRegister"
-  >
+    <!-- ====================================
+         INSCRIPTION ÉQUIPE
+    ===================================== -->
 
-    <div class="panel compact-panel">
+    <div
+      id="panelRegister"
+      class="signup-tab-panel"
+    >
 
-
-      <div class="panel-head">
-
-        <div>
-
-          <h1 class="panel-title">
-            Inscription équipe
-          </h1>
-
-          <p class="panel-text">
-            Renseigne les informations de la joueuse
-            et du joueur.
-          </p>
-
-        </div>
+      <section class="signup-panel">
 
 
-        <div
-          class="pill"
-          id="openPill"
-        >
-          Vérification
-        </div>
+        <div class="signup-panel-head">
 
-      </div>
+          <div>
 
+            <small>
+              Double Mixte
+            </small>
 
-      <div
-        id="stateMessage"
-        class="status warn"
-        style="margin-bottom:10px;"
-      >
-        Vérification de l’ouverture des inscriptions…
-      </div>
+            <h2>
+              Ton équipe
+            </h2>
 
-
-      <form
-        id="teamForm"
-        class="form-grid"
-        autocomplete="off"
-      >
-
-
-        <!-- JOUEUSE -->
-
-        <div class="player-box">
-
-          <h2 class="box-title">
-            Joueuse
-          </h2>
-
-
-          <div class="form-grid two">
-
-            <div class="field">
-
-              <label for="wPrenom">
-                Prénom *
-              </label>
-
-              <input
-                id="wPrenom"
-                autocomplete="given-name"
-                required
-              >
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="wNom">
-                Nom *
-              </label>
-
-              <input
-                id="wNom"
-                autocomplete="family-name"
-                required
-              >
-
-            </div>
+            <p>
+              Renseigne la joueuse et le joueur.
+              L'équipe apparaîtra ensuite dans
+              la liste des participants.
+            </p>
 
           </div>
 
 
-          <div class="field">
-
-            <label for="wLicence">
-              Numéro de licence FFT *
-            </label>
-
-            <input
-              id="wLicence"
-              required
-              inputmode="text"
-              autocapitalize="characters"
-              maxlength="12"
-            >
-
-          </div>
-
-        </div>
-
-
-        <!-- JOUEUR -->
-
-        <div class="player-box">
-
-          <h2 class="box-title">
-            Joueur
-          </h2>
-
-
-          <div class="form-grid two">
-
-            <div class="field">
-
-              <label for="mPrenom">
-                Prénom *
-              </label>
-
-              <input
-                id="mPrenom"
-                autocomplete="given-name"
-                required
-              >
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="mNom">
-                Nom *
-              </label>
-
-              <input
-                id="mNom"
-                autocomplete="family-name"
-                required
-              >
-
-            </div>
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="mLicence">
-              Numéro de licence FFT *
-            </label>
-
-            <input
-              id="mLicence"
-              required
-              inputmode="text"
-              autocapitalize="characters"
-              maxlength="12"
-            >
-
-          </div>
-
-        </div>
-
-
-        <button
-          class="btn primary"
-          type="submit"
-          id="teamSubmit"
-        >
-          ✅ Inscrire l’équipe
-        </button>
-
-
-        <div
-          id="teamStatus"
-          class="status"
-        >
-          Le nom d’équipe sera généré automatiquement :
-          prénom joueuse & prénom joueur.
-        </div>
-
-      </form>
-
-    </div>
-
-  </section>
-
-
-  <!-- ======================================
-       RECHERCHE PARTENAIRE
-  ======================================= -->
-
-  <section
-    class="section hidden"
-    id="panelPartner"
-  >
-
-    <div class="panel compact-panel">
-
-
-      <div class="partner-mode">
-
-        <button
-          class="mode-btn active"
-          id="modeView"
-          type="button"
-        >
-          👀 Voir les profils
-        </button>
-
-
-        <button
-          class="mode-btn"
-          id="modePost"
-          type="button"
-        >
-          ✍️ Déposer une recherche
-        </button>
-
-      </div>
-
-
-      <!-- PROFILS -->
-
-      <div id="partnerView">
-
-        <div class="filter-row">
-
-          <select
-            id="sexFilter"
-            aria-label="Filtrer les profils"
+          <span
+            id="openPill"
+            class="registration-badge"
           >
-
-            <option value="all">
-              Tous les profils
-            </option>
-
-            <option value="F">
-              Joueuses
-            </option>
-
-            <option value="M">
-              Joueurs
-            </option>
-
-          </select>
-
-
-          <div class="status">
-            Les profils publics affichent uniquement
-            le prénom et la description BT.
-          </div>
+            Vérification
+          </span>
 
         </div>
 
 
         <div
-          id="searchList"
-          class="search-list"
+          id="stateMessage"
+          class="registration-state"
         >
-
-          <div class="empty">
-            Chargement…
-          </div>
-
+          Vérification de l'ouverture
+          des inscriptions…
         </div>
 
-      </div>
-
-
-      <!-- DÉPOSER UNE RECHERCHE -->
-
-      <div
-        id="partnerPost"
-        class="hidden"
-      >
 
         <form
-          id="searchForm"
-          class="form-grid"
+          id="teamForm"
+          class="form-box"
           autocomplete="off"
         >
 
 
-          <div class="form-grid two">
+          <div class="players">
 
-            <div class="field">
 
-              <label for="sPrenom">
-                Prénom *
-              </label>
+            <!-- ============================
+                 JOUEUSE
+            ============================= -->
 
-              <input
-                id="sPrenom"
-                required
+            <div class="player-card">
+
+              <div class="player-title">
+
+                <span class="player-symbol">
+                  👩
+                </span>
+
+                <div>
+
+                  <small>
+                    Équipe
+                  </small>
+
+                  <strong>
+                    Joueuse
+                  </strong>
+
+                </div>
+
+              </div>
+
+
+              <div class="name-grid">
+
+
+                <div class="field">
+
+                  <label for="wPrenom">
+                    Prénom *
+                  </label>
+
+                  <input
+                    id="wPrenom"
+                    autocomplete="given-name"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="field">
+
+                  <label for="wNom">
+                    Nom *
+                  </label>
+
+                  <input
+                    id="wNom"
+                    autocomplete="family-name"
+                    required
+                  >
+
+                </div>
+
+
+              </div>
+
+
+              <div
+                class="field"
+                style="margin-top:8px;"
               >
+
+                <label for="wLicence">
+                  Licence FFT *
+                </label>
+
+                <input
+                  id="wLicence"
+                  required
+                  inputmode="text"
+                  autocapitalize="characters"
+                  maxlength="12"
+                  placeholder="Ex : 1234567A"
+                >
+
+              </div>
 
             </div>
 
 
-            <div class="field">
 
-              <label for="sNom">
-                Nom *
-              </label>
+            <!-- ============================
+                 JOUEUR
+            ============================= -->
 
-              <input
-                id="sNom"
-                required
+            <div class="player-card">
+
+              <div class="player-title">
+
+                <span class="player-symbol">
+                  👨
+                </span>
+
+                <div>
+
+                  <small>
+                    Équipe
+                  </small>
+
+                  <strong>
+                    Joueur
+                  </strong>
+
+                </div>
+
+              </div>
+
+
+              <div class="name-grid">
+
+
+                <div class="field">
+
+                  <label for="mPrenom">
+                    Prénom *
+                  </label>
+
+                  <input
+                    id="mPrenom"
+                    autocomplete="given-name"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="field">
+
+                  <label for="mNom">
+                    Nom *
+                  </label>
+
+                  <input
+                    id="mNom"
+                    autocomplete="family-name"
+                    required
+                  >
+
+                </div>
+
+
+              </div>
+
+
+              <div
+                class="field"
+                style="margin-top:8px;"
               >
+
+                <label for="mLicence">
+                  Licence FFT *
+                </label>
+
+                <input
+                  id="mLicence"
+                  required
+                  inputmode="text"
+                  autocapitalize="characters"
+                  maxlength="12"
+                  placeholder="Ex : 1234567A"
+                >
+
+              </div>
 
             </div>
 
-          </div>
-
-
-          <div class="form-grid two">
-
-            <div class="field">
-
-              <label for="sSexe">
-                Profil *
-              </label>
-
-              <select
-                id="sSexe"
-                required
-              >
-
-                <option value="">
-                  Choisir
-                </option>
-
-                <option value="F">
-                  Joueuse
-                </option>
-
-                <option value="M">
-                  Joueur
-                </option>
-
-              </select>
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="sLicence">
-                Licence FFT *
-              </label>
-
-              <input
-                id="sLicence"
-                required
-                inputmode="text"
-                autocapitalize="characters"
-                maxlength="12"
-              >
-
-            </div>
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="sPhone">
-              WhatsApp / téléphone *
-            </label>
-
-            <input
-              id="sPhone"
-              required
-              inputmode="tel"
-              placeholder="Ex : 0694..."
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="sProfile">
-              Description de ton profil BT
-              et du partenaire recherché *
-            </label>
-
-            <textarea
-              id="sProfile"
-              required
-              placeholder="Ex : classé 250e BT, plutôt côté gauche, cherche partenaire motivé(e) pour le BT250."
-            ></textarea>
 
           </div>
 
 
           <button
-            class="btn green"
+            class="btn-submit"
             type="submit"
-            id="searchSubmit"
+            id="teamSubmit"
           >
-            🔎 Déposer ma recherche
+            ✍️ Inscrire l'équipe
           </button>
 
 
           <div
-            id="searchStatus"
-            class="status"
+            id="teamStatus"
+            class="message"
           >
-            Ton numéro servira uniquement au contact WhatsApp.
+            Le nom de l'équipe sera généré
+            automatiquement avec les deux prénoms.
           </div>
+
 
         </form>
 
-      </div>
+      </section>
 
     </div>
 
-  </section>
+
+
+    <!-- ====================================
+         RECHERCHE PARTENAIRE
+    ===================================== -->
+
+    <div
+      id="panelPartner"
+      class="signup-tab-panel"
+      hidden
+    >
+
+      <section class="signup-panel">
+
+
+        <div class="signup-panel-head">
+
+          <div>
+
+            <small>
+              Pas encore en équipe ?
+            </small>
+
+            <h2>
+              Trouve ton partenaire
+            </h2>
+
+            <p>
+              Consulte les recherches déjà publiées
+              ou dépose ton propre profil.
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="partner-mode">
+
+          <button
+            id="modeView"
+            type="button"
+            class="active"
+          >
+            👀 Voir les profils
+          </button>
+
+
+          <button
+            id="modePost"
+            type="button"
+          >
+            ✍️ Déposer
+          </button>
+
+        </div>
+
+
+
+        <!-- ================================
+             PROFILS
+        ================================= -->
+
+        <div id="partnerView">
+
+
+          <div class="partner-filter">
+
+            <select
+              id="sexFilter"
+              class="filter-select"
+              aria-label="Filtrer les profils"
+            >
+
+              <option value="all">
+                Tous les profils
+              </option>
+
+              <option value="F">
+                Joueuses
+              </option>
+
+              <option value="M">
+                Joueurs
+              </option>
+
+            </select>
+
+
+            <div class="privacy-note">
+              🔒 Les profils publics affichent uniquement
+              le prénom et la description Beach Tennis.
+            </div>
+
+          </div>
+
+
+          <div
+            id="searchList"
+            class="search-list"
+          >
+
+            <div class="empty">
+              Chargement…
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ================================
+             DÉPOSER UNE RECHERCHE
+        ================================= -->
+
+        <div
+          id="partnerPost"
+          hidden
+        >
+
+          <form
+            id="searchForm"
+            class="form-box"
+            autocomplete="off"
+          >
+
+
+            <div class="name-grid">
+
+
+              <div class="field">
+
+                <label for="sPrenom">
+                  Prénom *
+                </label>
+
+                <input
+                  id="sPrenom"
+                  required
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="sNom">
+                  Nom *
+                </label>
+
+                <input
+                  id="sNom"
+                  required
+                >
+
+              </div>
+
+
+            </div>
+
+
+            <div class="name-grid">
+
+
+              <div class="field">
+
+                <label for="sSexe">
+                  Profil *
+                </label>
+
+                <select
+                  id="sSexe"
+                  required
+                >
+
+                  <option value="">
+                    Choisir
+                  </option>
+
+                  <option value="F">
+                    Joueuse
+                  </option>
+
+                  <option value="M">
+                    Joueur
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="sLicence">
+                  Licence FFT *
+                </label>
+
+                <input
+                  id="sLicence"
+                  required
+                  inputmode="text"
+                  autocapitalize="characters"
+                  maxlength="12"
+                >
+
+              </div>
+
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="sPhone">
+                WhatsApp / téléphone *
+              </label>
+
+              <input
+                id="sPhone"
+                required
+                inputmode="tel"
+                placeholder="Ex : 0694..."
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="sProfile">
+                Ton profil et le partenaire recherché *
+              </label>
+
+              <textarea
+                id="sProfile"
+                required
+                placeholder="Ex : classé 250e BT, plutôt côté gauche, cherche partenaire motivé(e) pour le BT250."
+              ></textarea>
+
+            </div>
+
+
+            <button
+              class="btn-submit"
+              type="submit"
+              id="searchSubmit"
+            >
+              🔎 Publier ma recherche
+            </button>
+
+
+            <div
+              id="searchStatus"
+              class="message"
+            >
+              Ton numéro sert uniquement
+              au contact WhatsApp.
+            </div>
+
+
+          </form>
+
+        </div>
+
+
+      </section>
+
+    </div>
+
+
+  </div>
+
 
 </main>
+
 
 
 <!-- ======================================
@@ -1008,6 +1654,7 @@
   type="module"
   src="assets/js/header-tournament.js"
 ></script>
+
 
 
 <!-- ======================================
@@ -1035,7 +1682,7 @@
 
 
   /* ========================================
-     CONFIGURATION DU TOURNOI
+     CONFIGURATION
   ======================================== */
 
   const EVENT_ID =
@@ -1046,41 +1693,49 @@
     "02/10";
 
 
-  const statusRef = doc(
-    db,
-    "events",
-    EVENT_ID,
-    "config",
-    "status"
-  );
+  const MAX_TEAMS =
+    12;
 
 
-  const teamsRef = collection(
-    db,
-    "events",
-    EVENT_ID,
-    "teams"
-  );
+  const statusRef =
+    doc(
+      db,
+      "events",
+      EVENT_ID,
+      "config",
+      "status"
+    );
 
 
-  const profilesRef = collection(
-    db,
-    "events",
-    EVENT_ID,
-    "partnerProfiles"
-  );
+  const teamsRef =
+    collection(
+      db,
+      "events",
+      EVENT_ID,
+      "teams"
+    );
 
 
-  const invitationsRef = collection(
-    db,
-    "events",
-    EVENT_ID,
-    "teamInvitations"
-  );
+  const profilesRef =
+    collection(
+      db,
+      "events",
+      EVENT_ID,
+      "partnerProfiles"
+    );
+
+
+  const invitationsRef =
+    collection(
+      db,
+      "events",
+      EVENT_ID,
+      "teamInvitations"
+    );
 
 
   /* ========================================
-     ÉLÉMENTS DE PAGE
+     ÉLÉMENTS
   ======================================== */
 
   const params =
@@ -1243,6 +1898,12 @@
     );
 
 
+  const heroTeamCount =
+    document.getElementById(
+      "heroTeamCount"
+    );
+
+
   /* ========================================
      ÉTAT LOCAL
   ======================================== */
@@ -1251,13 +1912,20 @@
     "open";
 
 
-  let partnerProfiles = [];
+  let partnerProfiles =
+    [];
 
 
-  let currentInvite = null;
+  let currentInvite =
+    null;
 
 
-  let currentInviteRef = null;
+  let currentInviteRef =
+    null;
+
+
+  let currentTeamCount =
+    0;
 
 
   /* ========================================
@@ -1267,11 +1935,11 @@
   function esc(value){
 
     return String(value || "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
 
   }
 
@@ -1289,7 +1957,7 @@
     return String(value || "")
       .trim()
       .toUpperCase()
-      .replace(/\s+/g, "");
+      .replace(/\s+/g,"");
 
   }
 
@@ -1297,14 +1965,31 @@
   function cleanPhone(value){
 
     return String(value || "")
-      .replace(/[^\d+]/g, "");
+      .replace(/[^\d+]/g,"");
+
+  }
+
+
+  function isFull(){
+
+    return (
+      currentTeamCount >=
+      MAX_TEAMS
+    );
 
   }
 
 
   function isOpen(){
 
-    return inscriptionsState === "open";
+    return (
+      inscriptionsState ===
+        "open"
+
+      &&
+
+      !isFull()
+    );
 
   }
 
@@ -1327,16 +2012,12 @@
     );
 
 
-    panelRegister.classList.toggle(
-      "hidden",
-      partner
-    );
+    panelRegister.hidden =
+      partner;
 
 
-    panelPartner.classList.toggle(
-      "hidden",
-      !partner
-    );
+    panelPartner.hidden =
+      !partner;
 
   }
 
@@ -1359,16 +2040,12 @@
     );
 
 
-    partnerView.classList.toggle(
-      "hidden",
-      post
-    );
+    partnerView.hidden =
+      post;
 
 
-    partnerPost.classList.toggle(
-      "hidden",
-      !post
-    );
+    partnerPost.hidden =
+      !post;
 
   }
 
@@ -1398,6 +2075,10 @@
 
   function updateStateUi(){
 
+    heroTeamCount.textContent =
+      `${currentTeamCount} / ${MAX_TEAMS} équipes`;
+
+
     const closed =
       !isOpen();
 
@@ -1414,14 +2095,66 @@
     );
 
 
-    if(isOpen()){
+    openPill.className =
+      "registration-badge";
+
+
+    if(isFull()){
+
+      openPill.classList.add(
+        "closed"
+      );
+
+
+      openPill.textContent =
+        "Complet";
+
+
+      stateMessage.className =
+        "registration-state warn";
+
+
+      stateMessage.textContent =
+        "🎾 Le tableau est complet : 12 équipes inscrites.";
+
+
+      teamStatus.className =
+        "message warn";
+
+
+      teamStatus.textContent =
+        "Le nombre maximum d'équipes est atteint.";
+
+
+      searchStatus.className =
+        "message warn";
+
+
+      searchStatus.textContent =
+        "Le tournoi est complet.";
+
+
+      return;
+
+    }
+
+
+    if(
+      inscriptionsState ===
+      "open"
+    ){
+
+      openPill.classList.add(
+        "open"
+      );
+
 
       openPill.textContent =
         "Ouvert";
 
 
       stateMessage.className =
-        "status ok";
+        "registration-state ok";
 
 
       stateMessage.textContent =
@@ -1429,19 +2162,19 @@
 
 
       teamStatus.className =
-        "status";
+        "message";
 
 
       teamStatus.textContent =
-        "Le nom d’équipe sera généré automatiquement : prénom joueuse & prénom joueur.";
+        "Le nom de l'équipe sera généré automatiquement avec les deux prénoms.";
 
 
       searchStatus.className =
-        "status";
+        "message";
 
 
       searchStatus.textContent =
-        "Ton numéro servira uniquement au contact WhatsApp.";
+        "Ton numéro sert uniquement au contact WhatsApp.";
 
 
       return;
@@ -1449,74 +2182,63 @@
     }
 
 
-    if(inscriptionsState === "paused"){
+    if(
+      inscriptionsState ===
+      "paused"
+    ){
+
+      openPill.classList.add(
+        "closed"
+      );
+
 
       openPill.textContent =
         "Suspendu";
 
 
       stateMessage.className =
-        "status warn";
+        "registration-state warn";
 
 
       stateMessage.textContent =
         "⏸️ Les inscriptions sont momentanément suspendues.";
 
 
-      teamStatus.className =
-        "status warn";
-
-
-      teamStatus.textContent =
-        "Les inscriptions sont momentanément suspendues.";
-
-
-      searchStatus.className =
-        "status warn";
-
-
-      searchStatus.textContent =
-        "Les recherches partenaire sont momentanément suspendues.";
-
-
       return;
 
     }
 
 
-    if(inscriptionsState === "closed"){
+    if(
+      inscriptionsState ===
+      "closed"
+    ){
+
+      openPill.classList.add(
+        "closed"
+      );
+
 
       openPill.textContent =
         "Clos";
 
 
       stateMessage.className =
-        "status warn";
+        "registration-state warn";
 
 
       stateMessage.textContent =
         "🔒 Les inscriptions sont clôturées.";
 
 
-      teamStatus.className =
-        "status warn";
-
-
-      teamStatus.textContent =
-        "Les inscriptions sont clôturées.";
-
-
-      searchStatus.className =
-        "status warn";
-
-
-      searchStatus.textContent =
-        "Les recherches partenaire sont clôturées.";
-
-
       return;
 
     }
+
+
+    openPill.classList.add(
+      "closed"
+    );
 
 
     openPill.textContent =
@@ -1524,7 +2246,7 @@
 
 
     stateMessage.className =
-      "status warn";
+      "registration-state warn";
 
 
     stateMessage.textContent =
@@ -1537,15 +2259,15 @@
      WHATSAPP
   ======================================== */
 
-  function normalizeWhatsappPhone(
-    value
-  ){
+  function normalizeWhatsappPhone(value){
 
     let phone =
       cleanPhone(value);
 
 
-    if(phone.startsWith("0")){
+    if(
+      phone.startsWith("0")
+    ){
 
       phone =
         "594" +
@@ -1646,10 +2368,19 @@
 
 
   /* ========================================
-     CRÉATION ÉQUIPE DIRECTE
+     INSCRIPTION DIRECTE
   ======================================== */
 
   async function createDirectTeam(){
+
+    if(isFull()){
+
+      throw new Error(
+        "Le tournoi est complet."
+      );
+
+    }
+
 
     const woman = {
 
@@ -1876,7 +2607,7 @@
 
 
   /* ========================================
-     PROPOSITION D'ÉQUIPE
+     PROPOSITION
   ======================================== */
 
   async function createProposal(
@@ -1927,9 +2658,7 @@
 
 
     if(!prenom){
-
       return;
-
     }
 
 
@@ -1940,9 +2669,7 @@
 
 
     if(!nom){
-
       return;
-
     }
 
 
@@ -1953,9 +2680,7 @@
 
 
     if(!licence){
-
       return;
-
     }
 
 
@@ -2047,6 +2772,15 @@
     profile
   ){
 
+    if(isFull()){
+
+      throw new Error(
+        "Le tournoi est complet."
+      );
+
+    }
+
+
     const proposer =
       invite.proposer || {};
 
@@ -2095,7 +2829,9 @@
     let man;
 
 
-    if(profile.sexe === "F"){
+    if(
+      profile.sexe === "F"
+    ){
 
       woman =
         partnerPlayer;
@@ -2216,9 +2952,7 @@
       !currentInvite ||
       !currentInviteRef
     ){
-
       return;
-
     }
 
 
@@ -2240,7 +2974,7 @@
 
 
     inviteStatus.className =
-      "status warn";
+      "message warn";
 
 
     inviteStatus.innerHTML =
@@ -2259,15 +2993,13 @@
 
 
   /* ========================================
-     MODE INVITATION
+     INVITATION
   ======================================== */
 
   async function loadInvitationMode(){
 
     if(!inviteId){
-
       return false;
-
     }
 
 
@@ -2277,16 +3009,6 @@
 
 
     normalPage.classList.add(
-      "hidden"
-    );
-
-
-    panelRegister.classList.add(
-      "hidden"
-    );
-
-
-    panelPartner.classList.add(
       "hidden"
     );
 
@@ -2316,7 +3038,7 @@
 
 
         inviteBox.className =
-          "status err";
+          "message error";
 
 
         inviteBox.textContent =
@@ -2365,7 +3087,7 @@
 
 
         inviteBox.className =
-          "status err";
+          "message error";
 
 
         inviteBox.textContent =
@@ -2409,7 +3131,7 @@
 
 
         inviteBox.className =
-          "status warn";
+          "message warn";
 
 
         inviteBox.textContent =
@@ -2439,7 +3161,7 @@
 
 
         inviteBox.className =
-          "status warn";
+          "message warn";
 
 
         inviteBox.textContent =
@@ -2468,7 +3190,7 @@
 
 
       inviteBox.className =
-        "status";
+        "message";
 
 
       inviteBox.innerHTML = `
@@ -2477,7 +3199,7 @@
           Proposition reçue
         </strong>
 
-        <br>
+        <br><br>
 
         ${esc(proposer.prenom)}
         ${esc(proposer.nom)}
@@ -2489,7 +3211,7 @@
 
         <br><br>
 
-        Si tu acceptes, l’équipe sera inscrite
+        Si tu acceptes, l'équipe sera inscrite
         automatiquement et ton profil sera retiré
         de la recherche partenaire.
 
@@ -2515,7 +3237,7 @@
 
 
       inviteBox.className =
-        "status err";
+        "message error";
 
 
       inviteBox.textContent =
@@ -2538,12 +3260,14 @@
 
 
   /* ========================================
-     AFFICHAGE PROFILS
+     PROFILS
   ======================================== */
 
   function sexBadge(sexe){
 
-    if(sexe === "F"){
+    if(
+      sexe === "F"
+    ){
 
       return `
         <span class="sex-pill f">
@@ -2574,22 +3298,33 @@
 
         .filter(
           item =>
-            item.status === "active"
+            item.status ===
+            "active"
         )
 
         .filter(
           item =>
-            filter === "all" ||
-            item.sexe === filter
+            filter ===
+              "all"
+
+            ||
+
+            item.sexe ===
+              filter
         );
 
 
-    if(items.length === 0){
+    if(
+      items.length === 0
+    ){
 
-      searchList.innerHTML =
-        `<div class="empty">
+      searchList.innerHTML = `
+
+        <div class="empty">
           Aucun profil à afficher.
-        </div>`;
+        </div>
+
+      `;
 
 
       return;
@@ -2606,39 +3341,54 @@
             <div class="search-top">
 
               <div class="search-name">
-                ${esc(item.prenom || "Profil")}
+                ${esc(
+                  item.prenom ||
+                  "Profil"
+                )}
               </div>
 
-              ${sexBadge(item.sexe)}
+              ${sexBadge(
+                item.sexe
+              )}
 
             </div>
 
 
             <div class="search-profile">
-              ${esc(item.profile)}
+              ${esc(
+                item.profile
+              )}
             </div>
 
 
-            <a
-              class="btn pink"
-              href="${esc(
-                whatsappLink(item)
-              )}"
-              target="_blank"
-              rel="noopener"
-            >
-              💬 Contacter en privé
-            </a>
+            <div class="profile-actions">
+
+              <a
+                class="action-btn orange"
+                href="${esc(
+                  whatsappLink(
+                    item
+                  )
+                )}"
+                target="_blank"
+                rel="noopener"
+              >
+                💬 Contacter
+              </a>
 
 
-            <button
-              class="btn blue"
-              type="button"
-              data-action="proposal"
-              data-id="${esc(item.id)}"
-            >
-              🤝 Proposition d’inscription
-            </button>
+              <button
+                class="action-btn black"
+                type="button"
+                data-action="proposal"
+                data-id="${esc(
+                  item.id
+                )}"
+              >
+                🤝 Proposer
+              </button>
+
+            </div>
 
           </div>
 
@@ -2649,35 +3399,61 @@
 
 
   /* ========================================
-     INTERACTIONS
+     ONGLETS
   ======================================== */
 
-  tabRegister.onclick =
-    () => setTab(
-      "register"
-    );
+  tabRegister.addEventListener(
+    "click",
+    () => {
+
+      setTab(
+        "register"
+      );
+
+    }
+  );
 
 
-  tabPartner.onclick =
-    () => setTab(
-      "partner"
-    );
+  tabPartner.addEventListener(
+    "click",
+    () => {
+
+      setTab(
+        "partner"
+      );
+
+    }
+  );
 
 
-  modeView.onclick =
-    () => setPartnerMode(
-      "view"
-    );
+  modeView.addEventListener(
+    "click",
+    () => {
+
+      setPartnerMode(
+        "view"
+      );
+
+    }
+  );
 
 
-  modePost.onclick =
-    () => setPartnerMode(
-      "post"
-    );
+  modePost.addEventListener(
+    "click",
+    () => {
+
+      setPartnerMode(
+        "post"
+      );
+
+    }
+  );
 
 
-  sexFilter.onchange =
-    renderProfiles;
+  sexFilter.addEventListener(
+    "change",
+    renderProfiles
+  );
 
 
   /* ========================================
@@ -2694,7 +3470,7 @@
       if(!isOpen()){
 
         teamStatus.className =
-          "status warn";
+          "message warn";
 
 
         teamStatus.textContent =
@@ -2711,7 +3487,7 @@
 
 
       teamStatus.className =
-        "status";
+        "message";
 
 
       teamStatus.textContent =
@@ -2728,7 +3504,7 @@
 
 
         teamStatus.className =
-          "status ok";
+          "message ok";
 
 
         teamStatus.textContent =
@@ -2742,7 +3518,7 @@
 
 
         teamStatus.className =
-          "status err";
+          "message error";
 
 
         teamStatus.textContent =
@@ -2756,8 +3532,12 @@
 
       finally{
 
-        teamSubmit.disabled =
-          false;
+        if(isOpen()){
+
+          teamSubmit.disabled =
+            false;
+
+        }
 
       }
 
@@ -2779,7 +3559,7 @@
       if(!isOpen()){
 
         searchStatus.className =
-          "status warn";
+          "message warn";
 
 
         searchStatus.textContent =
@@ -2796,7 +3576,7 @@
 
 
       searchStatus.className =
-        "status";
+        "message";
 
 
       searchStatus.textContent =
@@ -2812,7 +3592,7 @@
 
 
         searchStatus.className =
-          "status ok";
+          "message ok";
 
 
         searchStatus.textContent =
@@ -2831,7 +3611,7 @@
 
 
         searchStatus.className =
-          "status err";
+          "message error";
 
 
         searchStatus.textContent =
@@ -2845,8 +3625,12 @@
 
       finally{
 
-        searchSubmit.disabled =
-          false;
+        if(isOpen()){
+
+          searchSubmit.disabled =
+            false;
+
+        }
 
       }
 
@@ -2869,9 +3653,7 @@
 
 
       if(!button){
-
         return;
-
       }
 
 
@@ -2910,19 +3692,18 @@
 
 
   /* ========================================
-     ACCEPTATION / REFUS
+     ACCEPTATION
   ======================================== */
 
-  btnAcceptInvite.onclick =
+  btnAcceptInvite.addEventListener(
+    "click",
     async () => {
 
       if(
         !currentInvite ||
         !currentInvite.profile
       ){
-
         return;
-
       }
 
 
@@ -2935,11 +3716,11 @@
 
 
       inviteStatus.className =
-        "status";
+        "message";
 
 
       inviteStatus.textContent =
-        "Création de l’équipe…";
+        "Création de l'équipe…";
 
 
       try{
@@ -2951,7 +3732,7 @@
 
 
         inviteStatus.className =
-          "status ok";
+          "message ok";
 
 
         inviteStatus.textContent =
@@ -2965,11 +3746,15 @@
 
 
         inviteStatus.className =
-          "status err";
+          "message error";
 
 
         inviteStatus.textContent =
-          "❌ Impossible d’accepter la proposition.";
+          "❌ " +
+          (
+            error?.message ||
+            "Impossible d’accepter la proposition."
+          );
 
 
         btnAcceptInvite.disabled =
@@ -2981,16 +3766,20 @@
 
       }
 
-    };
+    }
+  );
 
 
-  btnRefuseInvite.onclick =
+  /* ========================================
+     REFUS
+  ======================================== */
+
+  btnRefuseInvite.addEventListener(
+    "click",
     async () => {
 
       if(!currentInvite){
-
         return;
-
       }
 
 
@@ -3003,7 +3792,7 @@
 
 
       inviteStatus.className =
-        "status";
+        "message";
 
 
       inviteStatus.textContent =
@@ -3022,7 +3811,7 @@
 
 
         inviteStatus.className =
-          "status err";
+          "message error";
 
 
         inviteStatus.textContent =
@@ -3038,7 +3827,72 @@
 
       }
 
-    };
+    }
+  );
+
+
+  /* ========================================
+     FIRESTORE — ÉQUIPES
+  ======================================== */
+
+  onSnapshot(
+    teamsRef,
+
+    snapshot => {
+
+      currentTeamCount =
+        snapshot.docs.filter(
+          documentSnapshot => {
+
+            const team =
+              documentSnapshot.data() ||
+              {};
+
+
+            return (
+
+              team.status !==
+                "deleted"
+
+              &&
+
+              team.status !==
+                "cancelled"
+
+              &&
+
+              team.status !==
+                "refused"
+
+              &&
+
+              team.stby !==
+                true
+
+              &&
+
+              team.list !==
+                "wait"
+
+            );
+
+          }
+        ).length;
+
+
+      updateStateUi();
+
+    },
+
+    error => {
+
+      console.error(
+        "Erreur équipes :",
+        error
+      );
+
+    }
+  );
 
 
   /* ========================================
@@ -3048,16 +3902,11 @@
   onSnapshot(
     statusRef,
 
-    snap => {
-
-      /*
-       * Aucun document au premier lancement :
-       * inscriptions ouvertes par défaut.
-       */
+    snapshot => {
 
       const data =
-        snap.exists()
-          ? snap.data()
+        snapshot.exists()
+          ? snapshot.data()
           : {};
 
 
@@ -3074,11 +3923,6 @@
 
       console.error(error);
 
-
-      /*
-       * En cas d'erreur Firestore,
-       * on bloque par prudence.
-       */
 
       inscriptionsState =
         "not_open";
@@ -3103,16 +3947,16 @@
       )
     ),
 
-    snap => {
+    snapshot => {
 
       partnerProfiles =
-        snap.docs.map(
-          documentSnap => ({
+        snapshot.docs.map(
+          documentSnapshot => ({
 
             id:
-              documentSnap.id,
+              documentSnapshot.id,
 
-            ...documentSnap.data()
+            ...documentSnapshot.data()
 
           })
         );
@@ -3127,10 +3971,13 @@
       console.error(error);
 
 
-      searchList.innerHTML =
-        `<div class="empty">
+      searchList.innerHTML = `
+
+        <div class="empty">
           Impossible de charger les profils.
-        </div>`;
+        </div>
+
+      `;
 
     }
   );
