@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="fr">
 
 <head>
@@ -16,7 +17,7 @@
   >
 
   <title>
-    Admin Inscriptions | BT250 Suzini
+    Inscriptions | Administration BT250
   </title>
 
 
@@ -28,208 +29,354 @@
 
   <style>
 
-    main{
-      padding-top:14px;
-      padding-bottom:28px;
+    /* ========================================
+       PAGE
+    ======================================== */
+
+    body{
+      background:var(--sand-light);
     }
 
-    .section{
-      margin-top:10px;
-    }
 
-    .section:first-child{
-      margin-top:0;
-    }
-
-    .compact-panel{
-      padding:12px;
-      border-radius:22px;
+    .registrations-page{
+      padding-top:8px;
+      padding-bottom:26px;
     }
 
 
     /* ========================================
-       TITRES
+       HERO
     ======================================== */
 
-    .admin-panel-head{
+    .registrations-head{
+      padding:15px 16px;
+
+      border-radius:18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #111,
+          #292929
+        );
+
+      color:white;
+    }
+
+
+    .registrations-head-top{
       display:flex;
-      align-items:flex-start;
+
+      align-items:center;
       justify-content:space-between;
+
       gap:10px;
-
-      margin-bottom:12px;
     }
 
-    .admin-title{
-      margin:0;
 
-      color:var(--blue-dark);
+    .registrations-kicker{
+      color:var(--orange);
 
-      font-size:24px;
+      font-size:9px;
+
+      font-weight:950;
+
+      letter-spacing:1.2px;
+
+      text-transform:uppercase;
+    }
+
+
+    .registrations-head-icon{
+      font-size:20px;
+    }
+
+
+    .registrations-head h1{
+      margin:5px 0 0;
+
+      font-size:28px;
+
       line-height:1;
-      font-weight:1000;
 
-      letter-spacing:-.04em;
+      font-weight:1000;
     }
 
-    .admin-text{
+
+    .registrations-head p{
       margin:6px 0 0;
 
-      color:var(--muted);
+      color:#ccc;
 
-      font-size:13px;
-      font-weight:850;
+      font-size:11px;
+
       line-height:1.35;
     }
 
-    .admin-pill{
-      flex-shrink:0;
-
-      padding:7px 10px;
-
-      border-radius:999px;
-
-      background:var(--yellow);
-      color:var(--text);
-
-      font-size:11px;
-      font-weight:1000;
-    }
-
 
     /* ========================================
-       STATUT
+       ÉTAT INSCRIPTIONS
     ======================================== */
 
-    .admin-status{
-      padding:10px 12px;
+    .registration-control{
+      margin-top:8px;
+
+      padding:12px;
 
       border-radius:16px;
 
-      background:#fff;
-      color:var(--text);
-
-      font-size:13px;
-      font-weight:900;
-      line-height:1.35;
+      background:white;
 
       box-shadow:
-        0 6px 14px rgba(16,24,40,.08);
+        0 6px 18px
+        rgba(0,0,0,.06);
     }
 
-    .admin-status strong{
-      color:var(--blue-dark);
+
+    .registration-state-line{
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      gap:10px;
+    }
+
+
+    .registration-state-label{
+      color:#777;
+
+      font-size:9px;
+
+      font-weight:950;
+
+      letter-spacing:.5px;
+
+      text-transform:uppercase;
+    }
+
+
+    .registration-state{
+      padding:5px 9px;
+
+      border-radius:999px;
+
+      background:#eee;
+
+      color:#555;
+
+      font-size:9px;
+
+      font-weight:950;
+
+      white-space:nowrap;
+    }
+
+
+    .registration-state[data-state="open"]{
+      background:#ddf7e7;
+      color:#126a35;
+    }
+
+
+    .registration-state[data-state="paused"]{
+      background:#fff3cd;
+      color:#8a6500;
+    }
+
+
+    .registration-state[data-state="closed"]{
+      background:#ffe3de;
+      color:#a52d18;
+    }
+
+
+    .registration-state[data-state="not_open"]{
+      background:#eee;
+      color:#666;
     }
 
 
     /* ========================================
-       ACTIONS
+       BOUTONS STATUT
     ======================================== */
 
-    .admin-actions{
+    .registration-actions{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
+
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:6px;
 
       margin-top:10px;
     }
 
-    .admin-btn,
-    .mini-btn{
-      border:0;
 
-      font-family:inherit;
-      font-weight:1000;
+    .state-action{
+      min-width:0;
 
-      cursor:pointer;
-    }
-
-    .admin-btn{
       min-height:42px;
 
-      padding:9px 11px;
+      padding:7px 5px;
 
-      border-radius:14px;
+      border:
+        2px solid transparent;
 
-      background:var(--blue-dark);
-      color:#fff;
+      border-radius:11px;
 
-      font-size:13px;
+      background:#f1f1f1;
+
+      color:#555;
+
+      font:inherit;
+
+      font-size:10px;
+
+      font-weight:950;
+
+      cursor:pointer;
+
+      -webkit-tap-highlight-color:
+        transparent;
     }
 
-    .admin-btn.pink,
-    .mini-btn.pink{
-      background:var(--pink);
-      color:#fff;
+
+    .state-action:active{
+      transform:scale(.98);
     }
 
-    .admin-btn.yellow,
-    .mini-btn.yellow{
-      background:var(--yellow);
-      color:var(--text);
+
+    .state-action[data-state="not_open"]{
+      background:#f1f1f1;
+      color:#666;
     }
 
-    .admin-btn.green,
-    .mini-btn.green{
-      background:var(--green);
-      color:#fff;
+
+    .state-action[data-state="open"]{
+      background:#e5f8ec;
+      color:#126a35;
     }
 
-    .admin-btn.red,
-    .mini-btn.red{
-      background:#9b1c1c;
-      color:#fff;
+
+    .state-action[data-state="paused"]{
+      background:#fff5d7;
+      color:#8a6500;
     }
 
-    .admin-btn.dark{
-      background:#344054;
-      color:#fff;
+
+    .state-action[data-state="closed"]{
+      background:#fff0ec;
+      color:#c83417;
     }
 
-    .admin-btn:disabled,
-    .mini-btn:disabled{
-      opacity:.55;
+
+    .state-action.current{
+      border-color:currentColor;
+    }
+
+
+    .state-action:disabled{
+      opacity:.45;
       cursor:not-allowed;
     }
 
 
-    /* ========================================
-       STATS
-    ======================================== */
+    .status-message{
+      display:none;
 
-    .stats-line{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:8px;
-    }
+      margin-top:8px;
 
-    .stat-box{
-      padding:10px;
+      padding:8px 10px;
 
-      border-radius:16px;
+      border-radius:10px;
 
-      background:#fff;
-      color:var(--blue-dark);
+      background:#f3f3f3;
+
+      color:#666;
+
+      font-size:9px;
+
+      font-weight:850;
 
       text-align:center;
+    }
+
+
+    .status-message.visible{
+      display:block;
+    }
+
+
+    .status-message.ok{
+      background:#ddf7e7;
+      color:#126a35;
+    }
+
+
+    .status-message.error{
+      background:#fff0ec;
+      color:#c83417;
+    }
+
+
+    /* ========================================
+       COMPTEURS
+    ======================================== */
+
+    .registration-summary{
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+      gap:6px;
+
+      margin-top:8px;
+    }
+
+
+    .summary-card{
+      padding:10px 5px;
+
+      border-radius:14px;
+
+      background:white;
+
+      text-align:center;
+
+      box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.06);
+    }
+
+
+    .summary-card strong{
+      display:block;
+
+      color:#111;
+
+      font-size:21px;
+
+      line-height:1;
+
       font-weight:1000;
     }
 
-    .stat-box strong{
-      display:block;
 
-      font-size:24px;
-      line-height:1;
-    }
-
-    .stat-box span{
+    .summary-card span{
       display:block;
 
       margin-top:4px;
 
-      color:var(--muted);
+      color:#777;
 
-      font-size:10px;
+      font-size:8px;
+
+      font-weight:900;
+
+      letter-spacing:.35px;
+
       text-transform:uppercase;
     }
 
@@ -238,145 +385,371 @@
        ONGLETS
     ======================================== */
 
-    .subtabs{
+    .registration-tabs{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:8px;
 
-      margin-bottom:12px;
-    }
+      grid-template-columns:
+        repeat(3,minmax(0,1fr));
 
-    .subtab{
-      min-height:42px;
+      gap:5px;
 
-      border:0;
+      margin-top:8px;
+
+      padding:5px;
+
       border-radius:14px;
 
-      background:var(--blue-dark);
-      color:#fff;
+      background:white;
 
-      font-family:inherit;
-      font-size:12px;
-      font-weight:1000;
+      box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.05);
+    }
+
+
+    .registration-tab{
+      min-width:0;
+
+      min-height:39px;
+
+      padding:5px 3px;
+
+      border:0;
+
+      border-radius:10px;
+
+      background:#f1f1f1;
+
+      color:#666;
+
+      font:inherit;
+
+      font-size:9px;
+
+      font-weight:950;
 
       cursor:pointer;
     }
 
-    .subtab.active{
-      background:var(--yellow);
-      color:var(--text);
+
+    .registration-tab.active{
+      background:#111;
+      color:white;
     }
 
 
     /* ========================================
-       LISTES
+       TITRE DE LISTE
+    ======================================== */
+
+    .list-head{
+      display:flex;
+
+      align-items:flex-end;
+      justify-content:space-between;
+
+      gap:10px;
+
+      margin-top:13px;
+      margin-bottom:7px;
+
+      padding:0 2px;
+    }
+
+
+    .list-kicker{
+      color:var(--orange);
+
+      font-size:8px;
+
+      font-weight:950;
+
+      letter-spacing:.8px;
+
+      text-transform:uppercase;
+    }
+
+
+    .list-head h2{
+      margin:3px 0 0;
+
+      color:#111;
+
+      font-size:19px;
+
+      line-height:1;
+
+      font-weight:1000;
+    }
+
+
+    .list-head p{
+      margin:4px 0 0;
+
+      color:#777;
+
+      font-size:9px;
+
+      line-height:1.3;
+
+      font-weight:700;
+    }
+
+
+    .live-pill{
+      flex:0 0 auto;
+
+      padding:4px 7px;
+
+      border-radius:999px;
+
+      background:#ddf7e7;
+
+      color:#126a35;
+
+      font-size:8px;
+
+      font-weight:950;
+
+      text-transform:uppercase;
+    }
+
+
+    /* ========================================
+       LISTE
     ======================================== */
 
     .items-list{
       display:grid;
-      gap:10px;
+      gap:7px;
     }
+
 
     .item-card{
-      display:grid;
-      gap:8px;
+      padding:11px;
 
-      padding:12px;
+      border-radius:15px;
 
-      border-radius:18px;
-
-      background:#fff;
-      color:var(--text);
+      background:white;
 
       box-shadow:
-        0 8px 18px rgba(16,24,40,.10);
+        0 6px 18px
+        rgba(0,0,0,.06);
     }
+
+
+    .item-head{
+      display:flex;
+
+      align-items:flex-start;
+      justify-content:space-between;
+
+      gap:8px;
+
+      margin-bottom:8px;
+    }
+
 
     .item-title{
-      color:var(--blue-dark);
+      min-width:0;
 
-      font-size:19px;
+      color:#111;
+
+      font-size:15px;
+
+      line-height:1.1;
+
       font-weight:1000;
-      line-height:1.05;
     }
 
-    .item-meta{
-      color:#344054;
 
-      font-size:13px;
-      font-weight:850;
-      line-height:1.4;
-    }
+    .item-state{
+      flex:0 0 auto;
 
-    .item-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-
-    .mini-btn{
-      padding:8px 12px;
+      padding:4px 7px;
 
       border-radius:999px;
 
-      background:var(--blue-dark);
-      color:#fff;
+      background:#eee;
 
-      font-size:12px;
+      color:#666;
+
+      font-size:8px;
+
+      font-weight:950;
+
+      text-transform:uppercase;
+    }
+
+
+    .item-state.confirmed,
+    .item-state.active,
+    .item-state.accepted{
+      background:#ddf7e7;
+      color:#126a35;
+    }
+
+
+    .item-state.pending,
+    .item-state.registered{
+      background:#fff3cd;
+      color:#8a6500;
+    }
+
+
+    .item-state.closed,
+    .item-state.refused{
+      background:#ffe3de;
+      color:#a52d18;
+    }
+
+
+    .item-meta{
+      color:#666;
+
+      font-size:10px;
+
+      font-weight:750;
+
+      line-height:1.5;
+    }
+
+
+    .item-meta strong{
+      color:#222;
+      font-weight:950;
+    }
+
+
+    .item-description{
+      margin-top:7px;
+
+      padding:8px 9px;
+
+      border-radius:10px;
+
+      background:#f5f5f5;
+
+      color:#555;
+
+      font-size:10px;
+
+      line-height:1.4;
+
+      font-weight:700;
     }
 
 
     /* ========================================
-       NAVIGATION
+       ACTIONS CARTES
     ======================================== */
 
-    .nav-actions{
+    .item-actions{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
+
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:5px;
+
+      margin-top:9px;
     }
 
-    .nav-link{
-      min-height:44px;
 
-      display:flex;
-      align-items:center;
-      justify-content:center;
+    .item-action{
+      min-width:0;
 
-      padding:10px;
+      min-height:36px;
 
-      border-radius:14px;
+      padding:5px;
 
-      background:#344054;
-      color:#fff;
+      border:0;
 
-      font-size:13px;
-      font-weight:1000;
+      border-radius:9px;
+
+      background:#f1f1f1;
+
+      color:#555;
+
+      font:inherit;
+
+      font-size:9px;
+
+      font-weight:950;
+
+      cursor:pointer;
+    }
+
+
+    .item-action.green{
+      background:#ddf7e7;
+      color:#126a35;
+    }
+
+
+    .item-action.yellow{
+      background:#fff3cd;
+      color:#8a6500;
+    }
+
+
+    .item-action.orange{
+      background:#fff0ec;
+      color:#c83417;
+    }
+
+
+    .item-action.red{
+      background:#ffe3de;
+      color:#a52d18;
+    }
+
+
+    .item-action:disabled{
+      opacity:.45;
+    }
+
+
+    /* ========================================
+       VIDE / CHARGEMENT
+    ======================================== */
+
+    .list-empty{
+      padding:25px 15px;
+
+      border-radius:16px;
+
+      background:white;
+
+      color:#777;
+
+      font-size:11px;
+
+      font-weight:800;
 
       text-align:center;
-      text-decoration:none;
-    }
 
-    .nav-link.public{
-      background:var(--green);
-    }
-
-
-    .hidden{
-      display:none !important;
+      box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.05);
     }
 
 
-    @media(min-width:760px){
+    /* ========================================
+       RESPONSIVE
+    ======================================== */
 
-      .admin-actions{
+    @media(min-width:560px){
+
+      .registration-actions{
         grid-template-columns:
-          repeat(4,1fr);
+          repeat(4,minmax(0,1fr));
       }
+
 
       .items-list{
         grid-template-columns:
-          1fr 1fr;
+          repeat(2,minmax(0,1fr));
       }
 
     }
@@ -386,280 +759,273 @@
 </head>
 
 
-<body data-page="inscriptions">
+<body
+  data-page="inscriptions"
+  data-admin="true"
+>
 
 
-<main class="container">
+<!-- ======================================
+     HEADER ADMIN
+======================================= -->
+
+<div id="siteHeader"></div>
+
+
+<main class="container registrations-page">
 
 
   <!-- ======================================
-       GESTION DES INSCRIPTIONS
+       HERO
   ======================================= -->
 
-  <section class="section">
-
-    <div class="panel compact-panel">
+  <section class="registrations-head">
 
 
-      <div class="admin-panel-head">
+    <div class="registrations-head-top">
 
-        <div>
-
-          <h1 class="admin-title">
-            📝 Gestion inscriptions
-          </h1>
-
-          <p class="admin-text">
-            BT250 Suzini — Double Mixte<br>
-            02 octobre 2026
-          </p>
-
-        </div>
+      <span class="registrations-kicker">
+        Administration
+      </span>
 
 
-        <div class="admin-pill">
-          Admin
-        </div>
+      <span class="registrations-head-icon">
+        ✍️
+      </span>
 
-      </div>
-
-
-      <div class="admin-status">
-
-        <strong>
-          Statut actuel :
-        </strong>
-
-        <span id="currentState">
-          Chargement…
-        </span>
-
-      </div>
+    </div>
 
 
-      <div class="admin-actions">
-
-        <button
-          class="admin-btn yellow"
-          id="btnNotOpen"
-          type="button"
-        >
-          💤 Pas ouvertes
-        </button>
+    <h1>
+      Inscriptions
+    </h1>
 
 
-        <button
-          class="admin-btn green"
-          id="btnOpen"
-          type="button"
-        >
-          ✅ Ouvrir
-        </button>
+    <p>
+      Gestion des inscriptions du BT250 Double Mixte.
+    </p>
 
 
-        <button
-          class="admin-btn pink"
-          id="btnPause"
-          type="button"
-        >
-          ⏸️ Suspendre
-        </button>
+  </section>
 
 
-        <button
-          class="admin-btn"
-          id="btnClose"
-          type="button"
-        >
-          🔒 Clôturer
-        </button>
 
-      </div>
+  <!-- ======================================
+       ÉTAT DES INSCRIPTIONS
+  ======================================= -->
+
+  <section class="registration-control">
 
 
-      <div
-        id="statusMessage"
-        class="admin-status"
-        style="margin-top:10px;"
+    <div class="registration-state-line">
+
+      <span class="registration-state-label">
+        État des inscriptions
+      </span>
+
+
+      <span
+        id="currentState"
+        class="registration-state"
+        data-state="loading"
       >
-        —
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- ======================================
-       STATISTIQUES
-  ======================================= -->
-
-  <section class="section">
-
-    <div class="panel compact-panel">
-
-      <div class="stats-line">
-
-
-        <div class="stat-box">
-
-          <strong id="countTotal">
-            0
-          </strong>
-
-          <span>
-            Équipes
-          </span>
-
-        </div>
-
-
-        <div class="stat-box">
-
-          <strong id="countRegistered">
-            0
-          </strong>
-
-          <span>
-            Inscrites
-          </span>
-
-        </div>
-
-
-        <div class="stat-box">
-
-          <strong id="countConfirmed">
-            0
-          </strong>
-
-          <span>
-            Confirmées
-          </span>
-
-        </div>
-
-
-      </div>
+        Chargement…
+      </span>
 
     </div>
 
-  </section>
+
+    <div class="registration-actions">
 
 
-  <!-- ======================================
-       LISTES
-  ======================================= -->
-
-  <section class="section">
-
-    <div class="panel compact-panel">
-
-
-      <div class="subtabs">
-
-        <button
-          class="subtab active"
-          id="tabTeams"
-          type="button"
-        >
-          👥 Équipes
-        </button>
-
-
-        <button
-          class="subtab"
-          id="tabProfiles"
-          type="button"
-        >
-          🔎 Recherches
-        </button>
-
-
-        <button
-          class="subtab"
-          id="tabInvites"
-          type="button"
-        >
-          🤝 Propositions
-        </button>
-
-      </div>
-
-
-      <div class="admin-panel-head">
-
-        <div>
-
-          <h2
-            class="admin-title"
-            id="listTitle"
-          >
-            Équipes inscrites
-          </h2>
-
-          <p
-            class="admin-text"
-            id="listText"
-          >
-            Liste des équipes du tournoi.
-          </p>
-
-        </div>
-
-
-        <div class="admin-pill">
-          Live
-        </div>
-
-      </div>
-
-
-      <div
-        id="itemsList"
-        class="items-list"
+      <button
+        id="btnNotOpen"
+        class="state-action"
+        data-state="not_open"
+        type="button"
       >
+        💤 Pas ouvertes
+      </button>
 
-        <div class="admin-status">
-          Chargement…
-        </div>
 
-      </div>
+      <button
+        id="btnOpen"
+        class="state-action"
+        data-state="open"
+        type="button"
+      >
+        ✅ Ouvrir
+      </button>
+
+
+      <button
+        id="btnPause"
+        class="state-action"
+        data-state="paused"
+        type="button"
+      >
+        ⏸️ Suspendre
+      </button>
+
+
+      <button
+        id="btnClose"
+        class="state-action"
+        data-state="closed"
+        type="button"
+      >
+        🔒 Clôturer
+      </button>
 
 
     </div>
 
+
+    <div
+      id="statusMessage"
+      class="status-message"
+    >
+    </div>
+
+
   </section>
 
 
+
   <!-- ======================================
-       NAVIGATION
+       COMPTEURS
   ======================================= -->
 
-  <section class="section">
-
-    <div class="panel compact-panel">
-
-      <div class="nav-actions">
-
-        <a
-          class="nav-link"
-          href="index.html"
-        >
-          🎛️ Tableau de bord
-        </a>
+  <section class="registration-summary">
 
 
-        <a
-          class="nav-link public"
-          href="../inscriptions.html"
-        >
-          👁️ Vue publique
-        </a>
+    <div class="summary-card">
 
+      <strong id="countTotal">
+        0
+      </strong>
+
+      <span>
+        Équipes
+      </span>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <strong id="countConfirmed">
+        0
+      </strong>
+
+      <span>
+        Confirmées
+      </span>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <strong id="countRemaining">
+        12
+      </strong>
+
+      <span>
+        Places
+      </span>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- ======================================
+       ONGLETS
+  ======================================= -->
+
+  <section class="registration-tabs">
+
+
+    <button
+      id="tabTeams"
+      class="registration-tab active"
+      type="button"
+    >
+      👥 Équipes
+    </button>
+
+
+    <button
+      id="tabProfiles"
+      class="registration-tab"
+      type="button"
+    >
+      🔎 Recherches
+    </button>
+
+
+    <button
+      id="tabInvites"
+      class="registration-tab"
+      type="button"
+    >
+      🤝 Propositions
+    </button>
+
+
+  </section>
+
+
+
+  <!-- ======================================
+       TITRE LISTE
+  ======================================= -->
+
+  <section class="list-head">
+
+
+    <div>
+
+      <div class="list-kicker">
+        Suivi en direct
       </div>
 
+
+      <h2 id="listTitle">
+        Équipes inscrites
+      </h2>
+
+
+      <p id="listText">
+        Liste des équipes du tournoi.
+      </p>
+
+    </div>
+
+
+    <span class="live-pill">
+      Live
+    </span>
+
+
+  </section>
+
+
+
+  <!-- ======================================
+       LISTE
+  ======================================= -->
+
+  <section
+    id="itemsList"
+    class="items-list"
+  >
+
+    <div class="list-empty">
+      Chargement…
     </div>
 
   </section>
@@ -668,10 +1034,26 @@
 </main>
 
 
+
+<!-- ======================================
+     HEADER ADMIN
+======================================= -->
+
+<script
+  type="module"
+  src="../assets/js/admin-header.js"
+></script>
+
+
+
+<!-- ======================================
+     FIRESTORE / ADMIN
+======================================= -->
+
 <script type="module">
 
   /* ========================================
-     SESSION ADMIN
+     SESSION
   ======================================== */
 
   import {
@@ -718,8 +1100,12 @@
     "suzini-bt250-mixte-2026-10-02";
 
 
+  const MAX_TEAMS =
+    12;
+
+
   /* ========================================
-     RÉFÉRENCES FIRESTORE
+     RÉFÉRENCES
   ======================================== */
 
   const statusRef =
@@ -799,6 +1185,32 @@
     );
 
 
+  const stateButtons = [
+    btnNotOpen,
+    btnOpen,
+    btnPause,
+    btnClose
+  ];
+
+
+  const countTotal =
+    document.getElementById(
+      "countTotal"
+    );
+
+
+  const countConfirmed =
+    document.getElementById(
+      "countConfirmed"
+    );
+
+
+  const countRemaining =
+    document.getElementById(
+      "countRemaining"
+    );
+
+
   const tabTeams =
     document.getElementById(
       "tabTeams"
@@ -835,24 +1247,6 @@
     );
 
 
-  const countTotal =
-    document.getElementById(
-      "countTotal"
-    );
-
-
-  const countRegistered =
-    document.getElementById(
-      "countRegistered"
-    );
-
-
-  const countConfirmed =
-    document.getElementById(
-      "countConfirmed"
-    );
-
-
   /* ========================================
      ÉTAT LOCAL
   ======================================== */
@@ -875,7 +1269,9 @@
 
   function esc(value){
 
-    return String(value || "")
+    return String(
+      value ?? ""
+    )
       .replaceAll("&","&amp;")
       .replaceAll("<","&lt;")
       .replaceAll(">","&gt;")
@@ -890,16 +1286,40 @@
     switch(state){
 
       case "open":
-        return "✅ Ouvertes";
+        return "Ouvertes";
 
       case "paused":
-        return "⏸️ Suspendues";
+        return "Suspendues";
 
       case "closed":
-        return "🔒 Clôturées";
+        return "Clôturées";
 
       default:
-        return "💤 Pas encore ouvertes";
+        return "Pas ouvertes";
+
+    }
+
+  }
+
+
+  function showStatusMessage(
+    message,
+    type = ""
+  ){
+
+    statusMessage.textContent =
+      message;
+
+
+    statusMessage.className =
+      "status-message visible";
+
+
+    if(type){
+
+      statusMessage.classList.add(
+        type
+      );
 
     }
 
@@ -914,12 +1334,7 @@
     disabled
   ){
 
-    [
-      btnNotOpen,
-      btnOpen,
-      btnPause,
-      btnClose
-    ].forEach(
+    stateButtons.forEach(
       button => {
 
         button.disabled =
@@ -931,15 +1346,45 @@
   }
 
 
+  function updateStateDisplay(){
+
+    currentState.textContent =
+      stateLabel(
+        currentStatus
+      );
+
+
+    currentState.dataset.state =
+      currentStatus;
+
+
+    stateButtons.forEach(
+      button => {
+
+        button.classList.toggle(
+          "current",
+          button.dataset.state ===
+            currentStatus
+        );
+
+      }
+    );
+
+  }
+
+
   async function setState(
     nextState
   ){
 
-    setButtonsDisabled(true);
+    setButtonsDisabled(
+      true
+    );
 
 
-    statusMessage.textContent =
-      "Mise à jour du statut…";
+    showStatusMessage(
+      "Mise à jour…"
+    );
 
 
     try{
@@ -963,24 +1408,32 @@
       );
 
 
-      statusMessage.textContent =
-        "✅ Statut mis à jour.";
+      showStatusMessage(
+        "✓ Statut mis à jour.",
+        "ok"
+      );
 
     }
 
     catch(error){
 
-      console.error(error);
+      console.error(
+        error
+      );
 
 
-      statusMessage.textContent =
-        "❌ Impossible de modifier le statut.";
+      showStatusMessage(
+        "Impossible de modifier le statut.",
+        "error"
+      );
 
     }
 
     finally{
 
-      setButtonsDisabled(false);
+      setButtonsDisabled(
+        false
+      );
 
     }
 
@@ -999,117 +1452,122 @@
           : {};
 
 
-      /*
-       * IMPORTANT :
-       * même champ que inscriptions.html.
-       */
-
       currentStatus =
         data.inscriptionsState ||
         "not_open";
 
 
-      currentState.textContent =
-        stateLabel(
-          currentStatus
-        );
-
-
-      btnPause.textContent =
-        currentStatus === "paused"
-          ? "▶️ Réouvrir"
-          : "⏸️ Suspendre";
+      updateStateDisplay();
 
     },
 
     error => {
 
-      console.error(error);
+      console.error(
+        error
+      );
 
 
       currentState.textContent =
         "Erreur";
+
+
+      currentState.dataset.state =
+        "closed";
 
     }
 
   );
 
 
-  btnNotOpen.onclick =
-    () => setState(
-      "not_open"
+  btnNotOpen.addEventListener(
+    "click",
+    () => {
+
+      setState(
+        "not_open"
+      );
+
+    }
+  );
+
+
+  btnOpen.addEventListener(
+    "click",
+    () => {
+
+      setState(
+        "open"
+      );
+
+    }
+  );
+
+
+  btnPause.addEventListener(
+    "click",
+    () => {
+
+      setState(
+        "paused"
+      );
+
+    }
+  );
+
+
+  btnClose.addEventListener(
+    "click",
+    () => {
+
+      setState(
+        "closed"
+      );
+
+    }
+  );
+
+
+  /* ========================================
+     ÉQUIPES VISIBLES
+  ======================================== */
+
+  function getVisibleTeams(
+    rows
+  ){
+
+    return rows.filter(
+      row =>
+        row.status !== "deleted" &&
+        row.status !== "cancelled" &&
+        row.status !== "refused" &&
+        row.stby !== true &&
+        row.list !== "wait"
     );
 
-
-  btnOpen.onclick =
-    () => setState(
-      "open"
-    );
-
-
-  btnPause.onclick =
-    () => setState(
-
-      currentStatus === "paused"
-        ? "open"
-        : "paused"
-
-    );
-
-
-  btnClose.onclick =
-    () => setState(
-      "closed"
-    );
+  }
 
 
   /* ========================================
      COMPTEURS
   ======================================== */
 
-  function countTeams(
+  function updateTeamCounters(
     rows
   ){
 
     const visible =
-      rows.filter(
-        row =>
-          row.status !== "deleted" &&
-          row.status !== "cancelled" &&
-          row.status !== "refused" &&
-          row.stby !== true &&
-          row.list !== "wait"
+      getVisibleTeams(
+        rows
       );
 
 
-    let registered =
-      0;
-
-
-    let confirmed =
-      0;
-
-
-    visible.forEach(
-      row => {
-
-        if(
+    const confirmed =
+      visible.filter(
+        row =>
           row.status ===
           "confirmed"
-        ){
-
-          confirmed++;
-
-        }
-
-        else{
-
-          registered++;
-
-        }
-
-      }
-    );
+      ).length;
 
 
     countTotal.textContent =
@@ -1118,15 +1576,19 @@
       );
 
 
-    countRegistered.textContent =
-      String(
-        registered
-      );
-
-
     countConfirmed.textContent =
       String(
         confirmed
+      );
+
+
+    countRemaining.textContent =
+      String(
+        Math.max(
+          0,
+          MAX_TEAMS -
+          visible.length
+        )
       );
 
   }
@@ -1163,78 +1625,96 @@
       `${woman.prenom || "Joueuse"} & ${man.prenom || "Joueur"}`;
 
 
+    const statusLabel =
+      status === "confirmed"
+        ? "Confirmée"
+        : "Inscrite";
+
+
     return `
 
-      <div class="item-card">
+      <article class="item-card">
 
-        <div class="item-title">
-          ${esc(teamName)}
+
+        <div class="item-head">
+
+          <div class="item-title">
+            ${esc(teamName)}
+          </div>
+
+
+          <span
+            class="
+              item-state
+              ${esc(status)}
+            "
+          >
+            ${esc(statusLabel)}
+          </span>
+
         </div>
 
 
         <div class="item-meta">
 
-          <strong>Joueuse :</strong>
-          ${esc(woman.prenom)}
+          <strong>
+            👩 Joueuse
+          </strong>
+
+          · ${esc(woman.prenom)}
           ${esc(woman.nom)}
+
           <br>
 
           Licence :
           ${esc(woman.licence || "—")}
+
+
           <br><br>
 
 
-          <strong>Joueur :</strong>
-          ${esc(man.prenom)}
+          <strong>
+            👨 Joueur
+          </strong>
+
+          · ${esc(man.prenom)}
           ${esc(man.nom)}
+
           <br>
 
           Licence :
           ${esc(man.licence || "—")}
-          <br><br>
-
-
-          <strong>Statut :</strong>
-          ${esc(status)}
-          <br>
-
-          <strong>Source :</strong>
-          ${esc(data.source || "—")}
 
         </div>
 
 
         <div class="item-actions">
 
+
           <button
-            class="mini-btn green"
+            class="item-action green"
             data-action="confirm"
             data-id="${esc(id)}"
+            type="button"
           >
             ✓ Confirmer
           </button>
 
 
           <button
-            class="mini-btn yellow"
+            class="item-action yellow"
             data-action="registered"
             data-id="${esc(id)}"
+            type="button"
           >
             Inscrite
           </button>
 
 
-          <button
-            class="mini-btn red"
-            data-action="delete-team"
-            data-id="${esc(id)}"
-          >
-            Supprimer
-          </button>
-
         </div>
 
-      </div>
+
+      </article>
 
     `;
 
@@ -1263,68 +1743,105 @@
 
     return `
 
-      <div class="item-card">
+      <article class="item-card">
 
-        <div class="item-title">
-          ${esc(data.prenom || "Profil")}
-          — ${esc(sex)}
+
+        <div class="item-head">
+
+          <div class="item-title">
+
+            ${esc(
+              data.prenom ||
+              "Profil"
+            )}
+
+            ${esc(
+              data.nom ||
+              ""
+            )}
+
+          </div>
+
+
+          <span
+            class="
+              item-state
+              ${esc(status)}
+            "
+          >
+            ${
+              status === "active"
+                ? "Actif"
+                : "Masqué"
+            }
+          </span>
+
         </div>
 
 
         <div class="item-meta">
 
-          <strong>Nom :</strong>
-          ${esc(data.nom || "—")}
+          <strong>
+            ${esc(sex)}
+          </strong>
+
           <br>
 
-          <strong>Licence :</strong>
-          ${esc(data.licence || "—")}
+          Licence :
+          ${esc(
+            data.licence ||
+            "—"
+          )}
+
           <br>
 
-          <strong>Téléphone :</strong>
-          ${esc(data.phone || "—")}
-          <br>
-
-          <strong>Statut :</strong>
-          ${esc(status)}
-          <br><br>
-
-          ${esc(data.profile || "")}
+          Téléphone :
+          ${esc(
+            data.phone ||
+            "—"
+          )}
 
         </div>
 
 
+        ${
+          data.profile
+            ? `
+                <div class="item-description">
+                  ${esc(data.profile)}
+                </div>
+              `
+            : ""
+        }
+
+
         <div class="item-actions">
 
+
           <button
-            class="mini-btn green"
+            class="item-action green"
             data-action="profile-active"
             data-id="${esc(id)}"
+            type="button"
           >
-            Actif
+            ✓ Afficher
           </button>
 
 
           <button
-            class="mini-btn yellow"
+            class="item-action orange"
             data-action="profile-closed"
             data-id="${esc(id)}"
+            type="button"
           >
             Masquer
           </button>
 
 
-          <button
-            class="mini-btn red"
-            data-action="delete-profile"
-            data-id="${esc(id)}"
-          >
-            Supprimer
-          </button>
-
         </div>
 
-      </div>
+
+      </article>
 
     `;
 
@@ -1350,76 +1867,110 @@
       "pending";
 
 
+    const statusLabel =
+      status === "accepted"
+        ? "Acceptée"
+        : status === "refused"
+          ? "Refusée"
+          : "En attente";
+
+
     return `
 
-      <div class="item-card">
+      <article class="item-card">
 
-        <div class="item-title">
-          Proposition pour
-          ${esc(
-            data.partnerPrenom ||
-            "profil"
-          )}
+
+        <div class="item-head">
+
+          <div class="item-title">
+
+            Proposition pour
+            ${esc(
+              data.partnerPrenom ||
+              "un profil"
+            )}
+
+          </div>
+
+
+          <span
+            class="
+              item-state
+              ${esc(status)}
+            "
+          >
+            ${esc(statusLabel)}
+          </span>
+
         </div>
 
 
         <div class="item-meta">
 
-          <strong>Proposé par :</strong>
-          ${esc(proposer.prenom)}
-          ${esc(proposer.nom)}
+          <strong>
+            Proposée par
+          </strong>
+
           <br>
 
-          <strong>Licence :</strong>
-          ${esc(proposer.licence || "—")}
+          ${esc(
+            proposer.prenom ||
+            "—"
+          )}
+
+          ${esc(
+            proposer.nom ||
+            ""
+          )}
+
           <br>
 
-          <strong>Statut :</strong>
-          ${esc(status)}
+          Licence :
+          ${esc(
+            proposer.licence ||
+            "—"
+          )}
 
         </div>
 
 
         <div class="item-actions">
 
+
           <button
-            class="mini-btn yellow"
+            class="item-action yellow"
             data-action="invite-pending"
             data-id="${esc(id)}"
+            type="button"
           >
             En attente
           </button>
 
 
           <button
-            class="mini-btn green"
+            class="item-action green"
             data-action="invite-accepted"
             data-id="${esc(id)}"
+            type="button"
           >
-            Acceptée
+            ✓ Acceptée
           </button>
 
 
           <button
-            class="mini-btn pink"
+            class="item-action orange"
             data-action="invite-refused"
             data-id="${esc(id)}"
+            type="button"
           >
             Refusée
           </button>
 
 
-          <button
-            class="mini-btn red"
-            data-action="delete-invite"
-            data-id="${esc(id)}"
-          >
-            Supprimer
-          </button>
-
         </div>
 
-      </div>
+
+      </article>
 
     `;
 
@@ -1450,9 +2001,7 @@
     );
 
 
-    if(
-      currentTab === "profiles"
-    ){
+    if(currentTab === "profiles"){
 
       listTitle.textContent =
         "Recherches partenaire";
@@ -1466,12 +2015,10 @@
     }
 
 
-    if(
-      currentTab === "invites"
-    ){
+    if(currentTab === "invites"){
 
       listTitle.textContent =
-        "Propositions d’équipe";
+        "Propositions d'équipe";
 
 
       listText.textContent =
@@ -1487,25 +2034,21 @@
 
 
     listText.textContent =
-      "Liste des équipes du tournoi.";
+      "Suivi rapide des équipes du tournoi.";
 
   }
 
 
   function mainCollection(){
 
-    if(
-      currentTab === "profiles"
-    ){
+    if(currentTab === "profiles"){
 
       return profilesRef;
 
     }
 
 
-    if(
-      currentTab === "invites"
-    ){
+    if(currentTab === "invites"){
 
       return invitesRef;
 
@@ -1517,22 +2060,18 @@
   }
 
 
+  /* ========================================
+     AFFICHAGE LISTE
+  ======================================== */
+
   function renderRows(
     rows
   ){
 
-    /*
-     * Les compteurs du haut doivent toujours
-     * représenter les équipes, pas l'onglet actif.
-     */
-
-    if(
-      currentTab === "profiles"
-    ){
+    if(currentTab === "profiles"){
 
       itemsList.innerHTML =
         rows.length
-
           ? rows
               .map(
                 row =>
@@ -1542,9 +2081,8 @@
                   )
               )
               .join("")
-
           : `
-              <div class="admin-status">
+              <div class="list-empty">
                 Aucun profil de recherche.
               </div>
             `;
@@ -1554,13 +2092,10 @@
     }
 
 
-    if(
-      currentTab === "invites"
-    ){
+    if(currentTab === "invites"){
 
       itemsList.innerHTML =
         rows.length
-
           ? rows
               .map(
                 row =>
@@ -1570,9 +2105,8 @@
                   )
               )
               .join("")
-
           : `
-              <div class="admin-status">
+              <div class="list-empty">
                 Aucune proposition.
               </div>
             `;
@@ -1582,10 +2116,15 @@
     }
 
 
-    itemsList.innerHTML =
-      rows.length
+    const visibleTeams =
+      getVisibleTeams(
+        rows
+      );
 
-        ? rows
+
+    itemsList.innerHTML =
+      visibleTeams.length
+        ? visibleTeams
             .map(
               row =>
                 teamCard(
@@ -1594,9 +2133,8 @@
                 )
             )
             .join("")
-
         : `
-            <div class="admin-status">
+            <div class="list-empty">
               Aucune équipe inscrite.
             </div>
           `;
@@ -1606,9 +2144,7 @@
 
   function startMainListener(){
 
-    if(
-      unsubscribeMain
-    ){
+    if(unsubscribeMain){
 
       unsubscribeMain();
 
@@ -1619,7 +2155,7 @@
 
 
     itemsList.innerHTML = `
-      <div class="admin-status">
+      <div class="list-empty">
         Chargement…
       </div>
     `;
@@ -1657,14 +2193,15 @@
 
         },
 
-
         error => {
 
-          console.error(error);
+          console.error(
+            error
+          );
 
 
           itemsList.innerHTML = `
-            <div class="admin-status">
+            <div class="list-empty">
               Erreur de chargement.
             </div>
           `;
@@ -1677,7 +2214,7 @@
 
 
   /* ========================================
-     COMPTEUR ÉQUIPES INDÉPENDANT
+     COMPTEURS ÉQUIPES EN DIRECT
   ======================================== */
 
   onSnapshot(
@@ -1705,7 +2242,7 @@
         );
 
 
-      countTeams(
+      updateTeamCounters(
         rows
       );
 
@@ -1713,18 +2250,20 @@
 
     error => {
 
-      console.error(error);
+      console.error(
+        error
+      );
 
 
       countTotal.textContent =
         "—";
 
 
-      countRegistered.textContent =
+      countConfirmed.textContent =
         "—";
 
 
-      countConfirmed.textContent =
+      countRemaining.textContent =
         "—";
 
     }
@@ -1732,7 +2271,12 @@
   );
 
 
-  tabTeams.onclick =
+  /* ========================================
+     CHANGEMENT D'ONGLET
+  ======================================== */
+
+  tabTeams.addEventListener(
+    "click",
     () => {
 
       currentTab =
@@ -1741,10 +2285,12 @@
 
       startMainListener();
 
-    };
+    }
+  );
 
 
-  tabProfiles.onclick =
+  tabProfiles.addEventListener(
+    "click",
     () => {
 
       currentTab =
@@ -1753,10 +2299,12 @@
 
       startMainListener();
 
-    };
+    }
+  );
 
 
-  tabInvites.onclick =
+  tabInvites.addEventListener(
+    "click",
     () => {
 
       currentTab =
@@ -1765,11 +2313,12 @@
 
       startMainListener();
 
-    };
+    }
+  );
 
 
   /* ========================================
-     MODIFICATION DES ÉLÉMENTS
+     MISE À JOUR D'UN ÉLÉMENT
   ======================================== */
 
   async function updateItem(
@@ -1780,9 +2329,7 @@
     let reference;
 
 
-    if(
-      currentTab === "profiles"
-    ){
+    if(currentTab === "profiles"){
 
       reference =
         doc(
@@ -1795,9 +2342,7 @@
 
     }
 
-    else if(
-      currentTab === "invites"
-    ){
+    else if(currentTab === "invites"){
 
       reference =
         doc(
@@ -1836,85 +2381,6 @@
       }
 
     );
-
-  }
-
-
-  /* ========================================
-     SUPPRESSION
-  ======================================== */
-
-  async function deleteItem(
-    id,
-    type
-  ){
-
-    const ok =
-      confirm(
-        "Supprimer définitivement cet élément ?"
-      );
-
-
-    if(!ok){
-
-      return;
-
-    }
-
-
-    if(
-      type === "team"
-    ){
-
-      await deleteDoc(
-        doc(
-          db,
-          "events",
-          EVENT_ID,
-          "teams",
-          id
-        )
-      );
-
-      return;
-
-    }
-
-
-    if(
-      type === "profile"
-    ){
-
-      await deleteDoc(
-        doc(
-          db,
-          "events",
-          EVENT_ID,
-          "partnerProfiles",
-          id
-        )
-      );
-
-      return;
-
-    }
-
-
-    if(
-      type === "invite"
-    ){
-
-      await deleteDoc(
-        doc(
-          db,
-          "events",
-          EVENT_ID,
-          "teamInvitations",
-          id
-        )
-      );
-
-    }
 
   }
 
@@ -1959,9 +2425,7 @@
 
         /* ÉQUIPES */
 
-        if(
-          action === "confirm"
-        ){
+        if(action === "confirm"){
 
           await updateItem(
             id,
@@ -1974,9 +2438,7 @@
         }
 
 
-        if(
-          action === "registered"
-        ){
+        else if(action === "registered"){
 
           await updateItem(
             id,
@@ -1991,9 +2453,7 @@
 
         /* PROFILS */
 
-        if(
-          action === "profile-active"
-        ){
+        else if(action === "profile-active"){
 
           await updateItem(
             id,
@@ -2009,9 +2469,7 @@
         }
 
 
-        if(
-          action === "profile-closed"
-        ){
+        else if(action === "profile-closed"){
 
           await updateItem(
             id,
@@ -2029,9 +2487,7 @@
 
         /* PROPOSITIONS */
 
-        if(
-          action === "invite-pending"
-        ){
+        else if(action === "invite-pending"){
 
           await updateItem(
             id,
@@ -2044,9 +2500,7 @@
         }
 
 
-        if(
-          action === "invite-accepted"
-        ){
+        else if(action === "invite-accepted"){
 
           await updateItem(
             id,
@@ -2059,9 +2513,7 @@
         }
 
 
-        if(
-          action === "invite-refused"
-        ){
+        else if(action === "invite-refused"){
 
           await updateItem(
             id,
@@ -2073,49 +2525,13 @@
 
         }
 
-
-        /* SUPPRESSIONS */
-
-        if(
-          action === "delete-team"
-        ){
-
-          await deleteItem(
-            id,
-            "team"
-          );
-
-        }
-
-
-        if(
-          action === "delete-profile"
-        ){
-
-          await deleteItem(
-            id,
-            "profile"
-          );
-
-        }
-
-
-        if(
-          action === "delete-invite"
-        ){
-
-          await deleteItem(
-            id,
-            "invite"
-          );
-
-        }
-
       }
 
       catch(error){
 
-        console.error(error);
+        console.error(
+          error
+        );
 
 
         alert(
