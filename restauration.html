@@ -38,111 +38,20 @@
 
 
     /* ========================================
-       HERO
-    ======================================== */
-
-    .food-head{
-
-      padding:16px 17px;
-
-      border-radius:18px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #111111,
-          #292929
-        );
-
-      color:#fff;
-
-      box-shadow:
-        0 8px 22px
-        rgba(0,0,0,.08);
-    }
-
-
-    .food-head-top{
-
-      display:flex;
-
-      align-items:center;
-      justify-content:space-between;
-
-      gap:10px;
-    }
-
-
-    .food-kicker{
-
-      color:var(--orange);
-
-      font-size:9px;
-      font-weight:950;
-
-      letter-spacing:1.3px;
-
-      text-transform:uppercase;
-    }
-
-
-    .food-pill{
-
-      padding:5px 8px;
-
-      border-radius:999px;
-
-      background:
-        rgba(255,75,39,.14);
-
-      color:#ff9b84;
-
-      font-size:9px;
-      font-weight:950;
-    }
-
-
-    .food-head h1{
-
-      margin:6px 0 0;
-
-      font-size:30px;
-      line-height:1;
-
-      font-weight:1000;
-
-      letter-spacing:-1.1px;
-
-      text-transform:uppercase;
-    }
-
-
-    .food-head p{
-
-      margin:7px 0 0;
-
-      color:#d5d5d5;
-
-      font-size:11px;
-      line-height:1.4;
-    }
-
-
-    /* ========================================
        SOUS-NAV INFOS
+       Toujours visible sur la largeur
     ======================================== */
 
     .infos-subnav{
 
-      display:flex;
+      display:grid;
 
-      gap:6px;
+      grid-template-columns:
+        repeat(4,minmax(0,1fr));
 
-      overflow-x:auto;
+      gap:5px;
 
-      margin-top:8px;
-
-      padding:8px;
+      padding:7px;
 
       border-radius:15px;
 
@@ -151,21 +60,19 @@
       box-shadow:
         0 8px 22px
         rgba(0,0,0,.07);
-
-      scrollbar-width:none;
-    }
-
-
-    .infos-subnav::-webkit-scrollbar{
-      display:none;
     }
 
 
     .infos-subnav a{
 
-      flex:0 0 auto;
+      display:flex;
 
-      padding:8px 10px;
+      align-items:center;
+      justify-content:center;
+
+      min-width:0;
+
+      padding:9px 4px;
 
       border-radius:999px;
 
@@ -173,10 +80,13 @@
 
       color:#333;
 
-      font-size:10px;
+      font-size:9px;
       font-weight:900;
 
+      line-height:1;
+
       text-decoration:none;
+      text-align:center;
 
       white-space:nowrap;
     }
@@ -224,6 +134,7 @@
     .food-icon{
 
       font-size:42px;
+
       line-height:1;
     }
 
@@ -236,6 +147,8 @@
 
       font-size:22px;
       font-weight:1000;
+
+      line-height:1.1;
     }
 
 
@@ -276,6 +189,22 @@
       text-transform:uppercase;
     }
 
+
+    /* ========================================
+       TABLETTE
+    ======================================== */
+
+    @media(min-width:760px){
+
+      .infos-subnav a{
+
+        padding:10px 8px;
+
+        font-size:10px;
+      }
+
+    }
+
   </style>
 
 </head>
@@ -295,61 +224,32 @@
 
 
   <!-- ======================================
-       HERO
+       SOUS-NAVIGATION INFOS
   ======================================= -->
 
-  <section class="food-head">
-
-
-    <div class="food-head-top">
-
-      <span class="food-kicker">
-        Infos pratiques
-      </span>
-
-
-      <span class="food-pill">
-        🍔 RESTAURATION
-      </span>
-
-    </div>
-
-
-    <h1>
-      Restauration
-    </h1>
-
-
-    <p>
-      Restauration et boissons pendant
-      le BT250 Double Mixte du vendredi
-      2 octobre au TC Suzini.
-    </p>
-
-
-  </section>
-
-
-  <!-- ======================================
-       SOUS-NAVIGATION
-  ======================================= -->
-
-  <nav class="infos-subnav">
+  <nav
+    class="infos-subnav"
+    aria-label="Informations pratiques"
+  >
 
     <a href="reglement.html">
       📜 Règlement
     </a>
 
+
     <a
       href="restauration.html"
       class="active"
+      aria-current="page"
     >
       🍔 Restauration
     </a>
 
+
     <a href="acces.html">
       📍 Accès
     </a>
+
 
     <a href="contacts.html">
       ☎️ Contacts
