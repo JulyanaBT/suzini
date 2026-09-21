@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#ffffff"
+  >
+
+  <title>
+    Contacts | BT250 - Double Mixte
+  </title>
+
+
+  <link
+    rel="stylesheet"
+    href="assets/css/style.css"
+  >
+
+
+  <style>
+
+    /* ========================================
+       PAGE
+    ======================================== */
+
+    .contacts-page{
+      padding-bottom:24px;
+    }
+
+
+    /* ========================================
+       HERO
+    ======================================== */
+
+    .contacts-head{
+
+      padding:16px 17px;
+
+      border-radius:18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #111111,
+          #292929
+        );
+
+      color:#fff;
+
+      box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.08);
+    }
+
+
+    .contacts-head-top{
+
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      gap:10px;
+    }
+
+
+    .contacts-kicker{
+
+      color:var(--orange);
+
+      font-size:9px;
+      font-weight:950;
+
+      letter-spacing:1.3px;
+
+      text-transform:uppercase;
+    }
+
+
+    .contacts-pill{
+
+      padding:5px 8px;
+
+      border-radius:999px;
+
+      background:
+        rgba(255,75,39,.14);
+
+      color:#ff9b84;
+
+      font-size:9px;
+      font-weight:950;
+    }
+
+
+    .contacts-head h1{
+
+      margin:6px 0 0;
+
+      font-size:30px;
+      line-height:1;
+
+      font-weight:1000;
+
+      letter-spacing:-1.1px;
+
+      text-transform:uppercase;
+    }
+
+
+    .contacts-head p{
+
+      margin:7px 0 0;
+
+      color:#d5d5d5;
+
+      font-size:11px;
+      line-height:1.4;
+    }
+
+
+    /* ========================================
+       SOUS-NAV INFOS
+    ======================================== */
+
+    .infos-subnav{
+
+      display:flex;
+
+      gap:6px;
+
+      overflow-x:auto;
+
+      margin-top:8px;
+
+      padding:8px;
+
+      border-radius:15px;
+
+      background:#fff;
+
+      box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.07);
+
+      scrollbar-width:none;
+    }
+
+
+    .infos-subnav::-webkit-scrollbar{
+      display:none;
+    }
+
+
+    .infos-subnav a{
+
+      flex:0 0 auto;
+
+      padding:8px 10px;
+
+      border-radius:999px;
+
+      background:#eeeeee;
+
+      color:#333;
+
+      font-size:10px;
+      font-weight:900;
+
+      text-decoration:none;
+
+      white-space:nowrap;
+    }
+
+
+    .infos-subnav a.active{
+
+      background:#111;
+
+      color:#fff;
+    }
+
+
+    /* ========================================
+       CONTACTS
+    ======================================== */
+
+    .contacts-grid{
+
+      display:grid;
+
+      gap:8px;
+
+      margin-top:8px;
+    }
+
+
+    .contact-card{
+
+      padding:14px;
+
+      border-radius:17px;
+
+      background:#fff;
+
+      box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.07);
+    }
+
+
+    .contact-card h2{
+
+      margin:0;
+
+      color:#111;
+
+      font-size:17px;
+      font-weight:1000;
+
+      line-height:1.1;
+    }
+
+
+    .contact-card p{
+
+      margin:6px 0 0;
+
+      color:#666;
+
+      font-size:11px;
+      font-weight:750;
+
+      line-height:1.45;
+    }
+
+
+    .contact-link{
+
+      display:inline-block;
+
+      margin-top:7px;
+
+      color:#111;
+
+      font-size:11px;
+      font-weight:900;
+
+      text-decoration:none;
+
+      word-break:break-word;
+    }
+
+
+    /* ========================================
+       WHATSAPP
+    ======================================== */
+
+    .whatsapp-btn{
+
+      display:inline-flex;
+
+      align-items:center;
+      justify-content:center;
+
+      min-height:40px;
+
+      margin-top:10px;
+
+      padding:8px 12px;
+
+      border-radius:12px;
+
+      background:#25d366;
+
+      color:#fff;
+
+      font-size:11px;
+      font-weight:950;
+
+      text-decoration:none;
+
+      text-align:center;
+    }
+
+
+    /* ========================================
+       CARTE WHATSAPP
+    ======================================== */
+
+    .contact-card-featured{
+
+      background:
+        linear-gradient(
+          135deg,
+          #e8fff0,
+          #ffffff
+        );
+
+      border:
+        1px solid
+        rgba(37,211,102,.20);
+    }
+
+
+    /* ========================================
+       SUPPORT
+    ======================================== */
+
+    .contact-card-support{
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff0ec,
+          #ffffff
+        );
+
+      border:
+        1px solid
+        rgba(255,75,39,.18);
+    }
+
+
+    /* ========================================
+       TABLETTE
+    ======================================== */
+
+    @media(min-width:760px){
+
+      .contacts-grid{
+
+        grid-template-columns:
+          repeat(2,minmax(0,1fr));
+      }
+
+
+      .contact-card-featured{
+
+        grid-column:
+          1 / -1;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body
+  data-page="infos"
+  data-title="BT250 - Double Mixte"
+  data-date="02 octobre 2026"
+>
+
+
+<div id="siteHeader"></div>
+
+
+<main class="container contacts-page">
+
+
+  <!-- ======================================
+       HERO
+  ======================================= -->
+
+  <section class="contacts-head">
+
+
+    <div class="contacts-head-top">
+
+      <span class="contacts-kicker">
+        Infos pratiques
+      </span>
+
+
+      <span class="contacts-pill">
+        ☎️ CONTACTS
+      </span>
+
+    </div>
+
+
+    <h1>
+      Contacts
+    </h1>
+
+
+    <p>
+      Les contacts utiles pour le BT250
+      Double Mixte du vendredi 2 octobre
+      au Tennis Club de Suzini.
+    </p>
+
+
+  </section>
+
+
+  <!-- ======================================
+       SOUS-NAVIGATION
+  ======================================= -->
+
+  <nav class="infos-subnav">
+
+    <a href="reglement.html">
+      📜 Règlement
+    </a>
+
+    <a href="restauration.html">
+      🍔 Restauration
+    </a>
+
+    <a href="acces.html">
+      📍 Accès
+    </a>
+
+    <a
+      href="contacts.html"
+      class="active"
+    >
+      ☎️ Contacts
+    </a>
+
+  </nav>
+
+
+  <!-- ======================================
+       CONTACTS
+  ======================================= -->
+
+  <section class="contacts-grid">
+
+
+    <!-- WHATSAPP -->
+
+    <article
+      class="
+        contact-card
+        contact-card-featured
+      "
+    >
+
+      <h2>
+        💬 Groupe WhatsApp officiel
+      </h2>
+
+
+      <p>
+        Les informations importantes du tournoi
+        peuvent être diffusées sur le groupe :
+        programmation, résultats, annonces
+        et informations de dernière minute.
+      </p>
+
+
+      <a
+        class="whatsapp-btn"
+        href="https://chat.whatsapp.com/Kk8uAXuZplX1Tw0g2rHtp6?s=em&p=i&mlu=0&ilr=0"
+        target="_blank"
+        rel="noopener"
+      >
+        💬 Rejoindre le groupe WhatsApp
+      </a>
+
+    </article>
+
+
+    <!-- COMMISSION -->
+
+    <article class="contact-card">
+
+      <h2>
+        🎾 Commission Beach Tennis
+      </h2>
+
+
+      <p>
+        Tennis Club de Suzini
+      </p>
+
+
+      <a
+        class="contact-link"
+        href="mailto:tcsuzini.beachtennis@gmail.com"
+      >
+        📧 tcsuzini.beachtennis@gmail.com
+      </a>
+
+    </article>
+
+
+    <!-- QUENTIN -->
+
+    <article class="contact-card">
+
+      <h2>
+        Quentin
+      </h2>
+
+
+      <a
+        class="contact-link"
+        href="tel:+33660063692"
+      >
+        📱 +33 6 60 06 36 92
+      </a>
+
+
+      <br>
+
+
+      <a
+        class="whatsapp-btn"
+        href="https://wa.me/33660063692"
+        target="_blank"
+        rel="noopener"
+      >
+        💬 Contacter Quentin
+      </a>
+
+    </article>
+
+
+    <!-- MÉLANIE -->
+
+    <article class="contact-card">
+
+      <h2>
+        Mélanie
+      </h2>
+
+
+      <a
+        class="contact-link"
+        href="tel:+33613255475"
+      >
+        📱 +33 6 13 25 54 75
+      </a>
+
+
+      <br>
+
+
+      <a
+        class="whatsapp-btn"
+        href="https://wa.me/33613255475"
+        target="_blank"
+        rel="noopener"
+      >
+        💬 Contacter Mélanie
+      </a>
+
+    </article>
+
+
+    <!-- SUPPORT -->
+
+    <article
+      class="
+        contact-card
+        contact-card-support
+      "
+    >
+
+      <h2>
+        🛠️ Support technique
+      </h2>
+
+
+      <p>
+        <strong>
+          Jul’Yana Beach Tennis
+        </strong>
+      </p>
+
+
+      <a
+        class="contact-link"
+        href="tel:+594694406099"
+      >
+        📱 +594 694 40 60 99
+      </a>
+
+
+      <br>
+
+
+      <a
+        class="contact-link"
+        href="mailto:contact@julyanabt.fr"
+      >
+        📧 contact@julyanabt.fr
+      </a>
+
+
+      <br>
+
+
+      <a
+        class="whatsapp-btn"
+        href="https://wa.me/594694406099"
+        target="_blank"
+        rel="noopener"
+      >
+        💬 Assistance technique
+      </a>
+
+    </article>
+
+
+  </section>
+
+
+</main>
+
+
+<script
+  type="module"
+  src="assets/js/header-tournament.js"
+></script>
+
+
+<script
+  type="module"
+  src="assets/js/maintenance-guard.js"
+></script>
+
+
+</body>
+
+</html>
