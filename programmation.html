@@ -38,99 +38,6 @@
 
 
     /* ========================================
-       HEADER PAGE
-    ======================================== */
-
-    .schedule-head{
-      margin-bottom:8px;
-
-      padding:16px 17px;
-
-      border-radius:18px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #111111,
-          #2a2a2a
-        );
-
-      color:white;
-
-      box-shadow:
-        0 8px 22px rgba(0,0,0,.08);
-    }
-
-
-    .schedule-head-top{
-      display:flex;
-
-      align-items:center;
-
-      justify-content:space-between;
-
-      gap:10px;
-    }
-
-
-    .schedule-kicker{
-      color:var(--orange);
-
-      font-size:9px;
-
-      font-weight:900;
-
-      letter-spacing:1.3px;
-
-      text-transform:uppercase;
-    }
-
-
-    .schedule-badge{
-      flex:0 0 auto;
-
-      padding:5px 9px;
-
-      border-radius:999px;
-
-      background:
-        rgba(255,255,255,.12);
-
-      color:white;
-
-      font-size:9px;
-
-      font-weight:900;
-    }
-
-
-    .schedule-head h1{
-      margin:6px 0 0;
-
-      font-size:30px;
-
-      line-height:1;
-
-      font-weight:1000;
-
-      letter-spacing:-1.1px;
-
-      text-transform:uppercase;
-    }
-
-
-    .schedule-head p{
-      margin:7px 0 0;
-
-      color:#d5d5d5;
-
-      font-size:11px;
-
-      line-height:1.35;
-    }
-
-
-    /* ========================================
        PLACEHOLDER
     ======================================== */
 
@@ -276,6 +183,8 @@
       font-weight:950;
 
       text-align:center;
+
+      text-decoration:none;
     }
 
 
@@ -325,6 +234,32 @@
 
 
     /* ========================================
+       REMERCIEMENT
+    ======================================== */
+
+    .support-note{
+      margin:12px 0 4px;
+
+      color:#999;
+
+      font-size:9px;
+
+      font-style:italic;
+
+      font-weight:600;
+
+      text-align:center;
+    }
+
+
+    .support-note .heart{
+      color:#e53935;
+
+      font-style:normal;
+    }
+
+
+    /* ========================================
        PETITS MOBILES
     ======================================== */
 
@@ -355,41 +290,6 @@
 
 
   <!-- ======================================
-       HEADER PAGE
-  ======================================= -->
-
-  <section class="schedule-head">
-
-    <div class="schedule-head-top">
-
-      <span class="schedule-kicker">
-        BT250 · Double Mixte
-      </span>
-
-
-      <span class="schedule-badge">
-        Vendredi 2 octobre
-      </span>
-
-    </div>
-
-
-    <h1>
-      Matchs
-    </h1>
-
-
-    <p>
-      Retrouve ici les matchs, les horaires
-      et les terrains dès la publication
-      de la programmation.
-    </p>
-
-  </section>
-
-
-
-  <!-- ======================================
        PLACEHOLDER
   ======================================= -->
 
@@ -414,7 +314,7 @@
     <p>
       La programmation sera publiée ici
       après la validation des équipes
-      et la constitution des poules.
+      et la constitution du tableau.
     </p>
 
 
@@ -465,6 +365,18 @@
     pour connaître ton prochain match et ton terrain.
 
   </section>
+
+
+
+  <!-- ======================================
+       REMERCIEMENT
+  ======================================= -->
+
+  <div class="support-note">
+    Merci au support de I
+    <span class="heart">♥</span>
+    Marine
+  </div>
 
 
 </main>
