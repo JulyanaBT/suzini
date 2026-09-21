@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#ffffff"
+  >
+
+  <title>
+    Accès | BT250 - Double Mixte
+  </title>
+
+
+  <link
+    rel="stylesheet"
+    href="assets/css/style.css"
+  >
+
+
+  <style>
+
+    /* ========================================
+       PAGE
+    ======================================== */
+
+    .access-page{
+      padding-bottom:24px;
+    }
+
+
+    /* ========================================
+       HERO
+    ======================================== */
+
+    .access-head{
+
+      padding:16px 17px;
+
+      border-radius:18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #111111,
+          #292929
+        );
+
+      color:#fff;
+
+      box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.08);
+    }
+
+
+    .access-head-top{
+
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      gap:10px;
+    }
+
+
+    .access-kicker{
+
+      color:var(--orange);
+
+      font-size:9px;
+      font-weight:950;
+
+      letter-spacing:1.3px;
+
+      text-transform:uppercase;
+    }
+
+
+    .access-pill{
+
+      padding:5px 8px;
+
+      border-radius:999px;
+
+      background:
+        rgba(255,75,39,.14);
+
+      color:#ff9b84;
+
+      font-size:9px;
+      font-weight:950;
+    }
+
+
+    .access-head h1{
+
+      margin:6px 0 0;
+
+      font-size:30px;
+      line-height:1;
+
+      font-weight:1000;
+
+      letter-spacing:-1.1px;
+
+      text-transform:uppercase;
+    }
+
+
+    .access-head p{
+
+      margin:7px 0 0;
+
+      color:#d5d5d5;
+
+      font-size:11px;
+      line-height:1.4;
+    }
+
+
+    /* ========================================
+       SOUS-NAV INFOS
+    ======================================== */
+
+    .infos-subnav{
+
+      display:flex;
+
+      gap:6px;
+
+      overflow-x:auto;
+
+      margin-top:8px;
+
+      padding:8px;
+
+      border-radius:15px;
+
+      background:#fff;
+
+      box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.07);
+
+      scrollbar-width:none;
+    }
+
+
+    .infos-subnav::-webkit-scrollbar{
+      display:none;
+    }
+
+
+    .infos-subnav a{
+
+      flex:0 0 auto;
+
+      padding:8px 10px;
+
+      border-radius:999px;
+
+      background:#eeeeee;
+
+      color:#333;
+
+      font-size:10px;
+      font-weight:900;
+
+      text-decoration:none;
+
+      white-space:nowrap;
+    }
+
+
+    .infos-subnav a.active{
+
+      background:#111;
+
+      color:#fff;
+    }
+
+
+    /* ========================================
+       BLOCS
+    ======================================== */
+
+    .access-grid{
+
+      display:grid;
+
+      gap:8px;
+
+      margin-top:8px;
+    }
+
+
+    .access-card{
+
+      padding:14px;
+
+      border-radius:17px;
+
+      background:#fff;
+
+      box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.07);
+    }
+
+
+    .access-card h2{
+
+      margin:0;
+
+      color:#111;
+
+      font-size:17px;
+      font-weight:1000;
+
+      line-height:1.1;
+    }
+
+
+    .access-card p{
+
+      margin:6px 0 0;
+
+      color:#666;
+
+      font-size:11px;
+      font-weight:750;
+
+      line-height:1.45;
+    }
+
+
+    /* ========================================
+       ADRESSE
+    ======================================== */
+
+    .access-card-address{
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff0b9,
+          #fffaf0
+        );
+
+      border:
+        1px solid
+        rgba(164,108,0,.15);
+    }
+
+
+    .address{
+
+      margin-top:8px;
+
+      color:#111;
+
+      font-size:13px;
+      font-weight:900;
+
+      line-height:1.45;
+    }
+
+
+    /* ========================================
+       CONVOCATION
+    ======================================== */
+
+    .access-card-call{
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffe0d8,
+          #fff7f4
+        );
+
+      border:
+        1px solid
+        rgba(255,75,39,.14);
+    }
+
+
+    .call-time{
+
+      display:flex;
+
+      align-items:center;
+
+      gap:10px;
+
+      margin-top:10px;
+    }
+
+
+    .call-time strong{
+
+      flex:0 0 auto;
+
+      color:var(--orange);
+
+      font-size:24px;
+      font-weight:1000;
+
+      line-height:1;
+    }
+
+
+    .call-time span{
+
+      color:#555;
+
+      font-size:10px;
+      font-weight:800;
+
+      line-height:1.35;
+    }
+
+
+    /* ========================================
+       NAVIGATION
+    ======================================== */
+
+    .navigation-actions{
+
+      display:grid;
+
+      gap:7px;
+
+      margin-top:10px;
+    }
+
+
+    .navigation-btn{
+
+      display:flex;
+
+      align-items:center;
+      justify-content:center;
+
+      min-height:42px;
+
+      padding:9px 12px;
+
+      border-radius:12px;
+
+      background:#111;
+
+      color:#fff;
+
+      font-size:11px;
+      font-weight:950;
+
+      text-decoration:none;
+
+      text-align:center;
+    }
+
+
+    .navigation-btn-secondary{
+
+      background:var(--orange);
+    }
+
+
+    /* ========================================
+       TABLETTE
+    ======================================== */
+
+    @media(min-width:760px){
+
+      .access-grid{
+
+        grid-template-columns:
+          repeat(2,minmax(0,1fr));
+      }
+
+
+      .access-card-address{
+
+        grid-column:
+          1 / -1;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body
+  data-page="infos"
+  data-title="BT250 - Double Mixte"
+  data-date="02 octobre 2026"
+>
+
+
+<div id="siteHeader"></div>
+
+
+<main class="container access-page">
+
+
+  <!-- ======================================
+       HERO
+  ======================================= -->
+
+  <section class="access-head">
+
+
+    <div class="access-head-top">
+
+      <span class="access-kicker">
+        Infos pratiques
+      </span>
+
+
+      <span class="access-pill">
+        📍 ACCÈS
+      </span>
+
+    </div>
+
+
+    <h1>
+      Accès
+    </h1>
+
+
+    <p>
+      Le BT250 Double Mixte se déroule
+      à l'Arena du Tennis Club de Suzini,
+      à Rémire-Montjoly.
+    </p>
+
+
+  </section>
+
+
+  <!-- ======================================
+       SOUS-NAVIGATION
+  ======================================= -->
+
+  <nav class="infos-subnav">
+
+    <a href="reglement.html">
+      📜 Règlement
+    </a>
+
+    <a href="restauration.html">
+      🍔 Restauration
+    </a>
+
+    <a
+      href="acces.html"
+      class="active"
+    >
+      📍 Accès
+    </a>
+
+    <a href="contacts.html">
+      ☎️ Contacts
+    </a>
+
+  </nav>
+
+
+  <!-- ======================================
+       CONTENU
+  ======================================= -->
+
+  <section class="access-grid">
+
+
+    <!-- ADRESSE -->
+
+    <article
+      class="
+        access-card
+        access-card-address
+      "
+    >
+
+      <h2>
+        📍 Tennis Club de Suzini
+      </h2>
+
+
+      <div class="address">
+
+        217 Route de Suzini<br>
+
+        97354 Rémire-Montjoly<br>
+
+        Guyane française
+
+      </div>
+
+    </article>
+
+
+    <!-- CONVOCATION -->
+
+    <article
+      class="
+        access-card
+        access-card-call
+      "
+    >
+
+      <h2>
+        ⏱️ Convocation
+      </h2>
+
+
+      <div class="call-time">
+
+        <strong>
+          17h45
+        </strong>
+
+        <span>
+          Convocation de l'ensemble
+          des équipes.
+        </span>
+
+      </div>
+
+
+      <p>
+        Début des matchs à 18h00.
+      </p>
+
+      <p>
+        En cas de difficulté ou de retard
+        exceptionnel, prévenez l'organisation
+        avant le début du tournoi.
+      </p>
+
+    </article>
+
+
+    <!-- PARKING -->
+
+    <article class="access-card">
+
+      <h2>
+        🚗 Stationnement
+      </h2>
+
+      <p>
+        Parking gratuit disponible
+        à proximité immédiate du club.
+      </p>
+
+    </article>
+
+
+    <!-- ARENA -->
+
+    <article class="access-card">
+
+      <h2>
+        🎾 Arena Beach Tennis
+      </h2>
+
+      <p>
+        Les matchs se déroulent sur les terrains
+        de Beach Tennis du Tennis Club de Suzini.
+      </p>
+
+      <p>
+        Une fois dans le club,
+        rejoignez directement l'espace
+        Beach Tennis.
+      </p>
+
+    </article>
+
+
+    <!-- NAVIGATION -->
+
+    <article class="access-card">
+
+      <h2>
+        🧭 Navigation
+      </h2>
+
+      <p>
+        Ouvrez directement le Tennis Club
+        de Suzini dans votre application
+        de navigation.
+      </p>
+
+
+      <div class="navigation-actions">
+
+
+        <a
+          class="navigation-btn"
+          href="https://maps.google.com/?q=Tennis+Club+Suzini+217+Route+de+Suzini+97354+Rémire-Montjoly"
+          target="_blank"
+          rel="noopener"
+        >
+          📍 Ouvrir dans Google Maps
+        </a>
+
+
+        <a
+          class="
+            navigation-btn
+            navigation-btn-secondary
+          "
+          href="https://www.google.com/maps/dir/?api=1&destination=Tennis+Club+de+Suzini+Remire-Montjoly"
+          target="_blank"
+          rel="noopener"
+        >
+          🚗 Lancer l'itinéraire
+        </a>
+
+
+      </div>
+
+    </article>
+
+
+  </section>
+
+
+</main>
+
+
+<script
+  type="module"
+  src="assets/js/header-tournament.js"
+></script>
+
+
+<script
+  type="module"
+  src="assets/js/maintenance-guard.js"
+></script>
+
+
+</body>
+
+</html>
