@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#ffffff"
+  >
+
+  <title>
+    Infos | BT250 - Double Mixte
+  </title>
+
+
+  <link
+    rel="stylesheet"
+    href="assets/css/style.css"
+  >
+
+
+  <style>
+
+    /* ========================================
+       PAGE INFOS
+    ======================================== */
+
+    .infos-page{
+      padding-bottom:24px;
+    }
+
+
+    /* ========================================
+       HERO
+    ======================================== */
+
+    .infos-head{
+
+      padding:16px 17px;
+
+      border-radius:18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #111111,
+          #292929
+        );
+
+      color:#fff;
+
+      box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.08);
+    }
+
+
+    .infos-head-top{
+
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      gap:10px;
+    }
+
+
+    .infos-kicker{
+
+      color:var(--orange);
+
+      font-size:9px;
+      font-weight:950;
+
+      letter-spacing:1.3px;
+
+      text-transform:uppercase;
+    }
+
+
+    .infos-pill{
+
+      padding:5px 8px;
+
+      border-radius:999px;
+
+      background:
+        rgba(255,75,39,.14);
+
+      color:#ff9b84;
+
+      font-size:9px;
+      font-weight:950;
+    }
+
+
+    .infos-head h1{
+
+      margin:6px 0 0;
+
+      font-size:30px;
+      line-height:1;
+
+      font-weight:1000;
+
+      letter-spacing:-1.1px;
+
+      text-transform:uppercase;
+    }
+
+
+    .infos-head p{
+
+      margin:7px 0 0;
+
+      color:#d5d5d5;
+
+      font-size:11px;
+      line-height:1.4;
+    }
+
+
+    /* ========================================
+       INFOS RAPIDES
+    ======================================== */
+
+    .quick-infos{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+      gap:6px;
+
+      margin-top:8px;
+    }
+
+
+    .quick-info{
+
+      padding:10px 6px;
+
+      border-radius:14px;
+
+      background:#fff;
+
+      text-align:center;
+
+      box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.06);
+    }
+
+
+    .quick-info strong{
+
+      display:block;
+
+      color:#111;
+
+      font-size:13px;
+      line-height:1.1;
+
+      font-weight:1000;
+    }
+
+
+    .quick-info span{
+
+      display:block;
+
+      margin-top:4px;
+
+      color:#777;
+
+      font-size:8px;
+      font-weight:900;
+
+      letter-spacing:.4px;
+
+      text-transform:uppercase;
+    }
+
+
+    /* ========================================
+       GRID
+    ======================================== */
+
+    .infos-grid{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:8px;
+
+      margin-top:8px;
+    }
+
+
+    /* ========================================
+       CARDS
+    ======================================== */
+
+    .info-card{
+
+      min-height:132px;
+
+      display:flex;
+
+      flex-direction:column;
+
+      justify-content:space-between;
+
+      gap:9px;
+
+      padding:14px;
+
+      border-radius:17px;
+
+      color:#111;
+
+      text-decoration:none;
+
+      box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.07);
+
+      transition:
+        transform .12s ease;
+    }
+
+
+    .info-card:active{
+      transform:scale(.985);
+    }
+
+
+    .info-card-kicker{
+
+      font-size:8px;
+      font-weight:950;
+
+      letter-spacing:.8px;
+
+      text-transform:uppercase;
+    }
+
+
+    .info-card-icon{
+
+      margin-top:6px;
+
+      font-size:28px;
+      line-height:1;
+    }
+
+
+    .info-card-title{
+
+      margin:0;
+
+      font-size:18px;
+      font-weight:1000;
+
+      line-height:1;
+    }
+
+
+    .info-card-text{
+
+      margin:5px 0 0;
+
+      font-size:10px;
+      font-weight:750;
+
+      line-height:1.35;
+
+      opacity:.78;
+    }
+
+
+    /* ========================================
+       COULEURS
+    ======================================== */
+
+    .info-card-blue{
+
+      background:
+        linear-gradient(
+          135deg,
+          #dff1ff,
+          #f6fbff
+        );
+    }
+
+
+    .info-card-blue
+    .info-card-kicker{
+      color:#1672ad;
+    }
+
+
+    .info-card-pink{
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffe5e7,
+          #fff6f7
+        );
+    }
+
+
+    .info-card-pink
+    .info-card-kicker{
+      color:#c73c50;
+    }
+
+
+    .info-card-yellow{
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff0b9,
+          #fffaf0
+        );
+    }
+
+
+    .info-card-yellow
+    .info-card-kicker{
+      color:#a46c00;
+    }
+
+
+    .info-card-green{
+
+      background:
+        linear-gradient(
+          135deg,
+          #ddf4e5,
+          #f4fbf6
+        );
+    }
+
+
+    .info-card-green
+    .info-card-kicker{
+      color:#247344;
+    }
+
+
+    .info-card-orange{
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffe0d8,
+          #fff7f4
+        );
+    }
+
+
+    .info-card-orange
+    .info-card-kicker{
+      color:#c83a1e;
+    }
+
+
+    .info-card-purple{
+
+      background:
+        linear-gradient(
+          135deg,
+          #ebe4ff,
+          #faf8ff
+        );
+    }
+
+
+    .info-card-purple
+    .info-card-kicker{
+      color:#6845ad;
+    }
+
+
+    /* ========================================
+       TABLETTE
+    ======================================== */
+
+    @media(min-width:760px){
+
+      .infos-grid{
+
+        grid-template-columns:
+          repeat(3,minmax(0,1fr));
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body
+  data-page="infos"
+  data-title="BT250 - Double Mixte"
+  data-date="02 octobre 2026"
+>
+
+
+<div id="siteHeader"></div>
+
+
+<main class="container infos-page">
+
+
+  <!-- ======================================
+       HERO
+  ======================================= -->
+
+  <section class="infos-head">
+
+
+    <div class="infos-head-top">
+
+      <span class="infos-kicker">
+        Les vendredis du BT Suzini
+      </span>
+
+
+      <span class="infos-pill">
+        ℹ️ INFOS
+      </span>
+
+    </div>
+
+
+    <h1>
+      Infos pratiques
+    </h1>
+
+
+    <p>
+      Retrouve toutes les informations utiles
+      pour le BT250 Double Mixte du vendredi
+      2 octobre à l'Arena TC Suzini.
+    </p>
+
+
+  </section>
+
+
+  <!-- ======================================
+       INFOS RAPIDES
+  ======================================= -->
+
+  <section class="quick-infos">
+
+
+    <div class="quick-info">
+
+      <strong>
+        02/10
+      </strong>
+
+      <span>
+        Vendredi
+      </span>
+
+    </div>
+
+
+    <div class="quick-info">
+
+      <strong>
+        18h00
+      </strong>
+
+      <span>
+        Début
+      </span>
+
+    </div>
+
+
+    <div class="quick-info">
+
+      <strong>
+        10 €
+      </strong>
+
+      <span>
+        / joueur
+      </span>
+
+    </div>
+
+
+  </section>
+
+
+  <!-- ======================================
+       CARTES INFOS
+  ======================================= -->
+
+  <section class="infos-grid">
+
+
+    <!-- RÈGLEMENT -->
+
+    <a
+      href="reglement.html"
+      class="info-card info-card-blue"
+    >
+
+      <div>
+
+        <div class="info-card-kicker">
+          Tournoi
+        </div>
+
+        <div class="info-card-icon">
+          📋
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <h2 class="info-card-title">
+          Règlement
+        </h2>
+
+        <p class="info-card-text">
+          Format du BT250,
+          organisation sportive
+          et règles du tournoi.
+        </p>
+
+      </div>
+
+    </a>
+
+
+    <!-- TIRAGE -->
+
+    <a
+      href="tirage.html"
+      class="info-card info-card-orange"
+    >
+
+      <div>
+
+        <div class="info-card-kicker">
+          Compétition
+        </div>
+
+        <div class="info-card-icon">
+          🎲
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <h2 class="info-card-title">
+          Tirage
+        </h2>
+
+        <p class="info-card-text">
+          Retrouve la composition
+          des poules après publication
+          du tirage.
+        </p>
+
+      </div>
+
+    </a>
+
+
+    <!-- RESTAURATION -->
+
+    <a
+      href="restauration.html"
+      class="info-card info-card-pink"
+    >
+
+      <div>
+
+        <div class="info-card-kicker">
+          Sur place
+        </div>
+
+        <div class="info-card-icon">
+          🍔
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <h2 class="info-card-title">
+          Restauration
+        </h2>
+
+        <p class="info-card-text">
+          Restauration,
+          boissons et informations
+          pratiques sur place.
+        </p>
+
+      </div>
+
+    </a>
+
+
+    <!-- ACCÈS -->
+
+    <a
+      href="acces.html"
+      class="info-card info-card-yellow"
+    >
+
+      <div>
+
+        <div class="info-card-kicker">
+          Venir
+        </div>
+
+        <div class="info-card-icon">
+          📍
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <h2 class="info-card-title">
+          Accès
+        </h2>
+
+        <p class="info-card-text">
+          Adresse du TC Suzini,
+          parking et accès
+          à l'Arena.
+        </p>
+
+      </div>
+
+    </a>
+
+
+    <!-- CONTACTS -->
+
+    <a
+      href="contacts.html"
+      class="info-card info-card-green"
+    >
+
+      <div>
+
+        <div class="info-card-kicker">
+          Organisation
+        </div>
+
+        <div class="info-card-icon">
+          💬
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <h2 class="info-card-title">
+          Contacts
+        </h2>
+
+        <p class="info-card-text">
+          Une question sur le tournoi ?
+          Retrouve les contacts
+          de l'organisation.
+        </p>
+
+      </div>
+
+    </a>
+
+
+    <!-- PARTICIPANTS -->
+
+    <a
+      href="participants.html"
+      class="info-card info-card-purple"
+    >
+
+      <div>
+
+        <div class="info-card-kicker">
+          Participants
+        </div>
+
+        <div class="info-card-icon">
+          👥
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <h2 class="info-card-title">
+          Équipes
+        </h2>
+
+        <p class="info-card-text">
+          Consulte les équipes inscrites
+          au BT250 Double Mixte.
+        </p>
+
+      </div>
+
+    </a>
+
+
+  </section>
+
+
+</main>
+
+
+<script
+  type="module"
+  src="assets/js/header-tournament.js"
+></script>
+
+
+<script
+  type="module"
+  src="assets/js/maintenance-guard.js"
+></script>
+
+
+</body>
+
+</html>
