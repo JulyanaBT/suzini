@@ -45,72 +45,72 @@
 
 
     /* ========================================
-       HERO
+       SOUS-MENU PRINCIPAL
     ======================================== */
 
-    .registrations-head{
-      padding:15px 16px;
+    .admin-subnav{
 
-      border-radius:18px;
+      display:grid;
 
-      background:
-        linear-gradient(
-          135deg,
-          #111,
-          #292929
-        );
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
 
-      color:white;
+      gap:5px;
+
+      padding:6px;
+
+      border-radius:15px;
+
+      background:#fff;
+
+      box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.06);
     }
 
 
-    .registrations-head-top{
-      display:flex;
+    .admin-subnav button{
 
-      align-items:center;
-      justify-content:space-between;
+      min-width:0;
+      min-height:42px;
 
-      gap:10px;
-    }
+      padding:8px 6px;
 
+      border:0;
+      border-radius:11px;
 
-    .registrations-kicker{
-      color:var(--orange);
+      background:#eeeeee;
+      color:#444;
 
-      font-size:9px;
-
+      font:inherit;
+      font-size:11px;
       font-weight:950;
 
-      letter-spacing:1.2px;
+      cursor:pointer;
 
-      text-transform:uppercase;
+      -webkit-tap-highlight-color:
+        transparent;
     }
 
 
-    .registrations-head-icon{
-      font-size:20px;
+    .admin-subnav button.active{
+
+      background:#111;
+      color:#fff;
     }
 
 
-    .registrations-head h1{
-      margin:5px 0 0;
+    /* ========================================
+       VUES
+    ======================================== */
 
-      font-size:28px;
-
-      line-height:1;
-
-      font-weight:1000;
+    .admin-view{
+      display:block;
     }
 
 
-    .registrations-head p{
-      margin:6px 0 0;
-
-      color:#ccc;
-
-      font-size:11px;
-
-      line-height:1.35;
+    .admin-view.hidden{
+      display:none;
     }
 
 
@@ -119,6 +119,7 @@
     ======================================== */
 
     .registration-control{
+
       margin-top:8px;
 
       padding:12px;
@@ -134,6 +135,7 @@
 
 
     .registration-state-line{
+
       display:flex;
 
       align-items:center;
@@ -144,10 +146,10 @@
 
 
     .registration-state-label{
+
       color:#777;
 
       font-size:9px;
-
       font-weight:950;
 
       letter-spacing:.5px;
@@ -157,16 +159,15 @@
 
 
     .registration-state{
+
       padding:5px 9px;
 
       border-radius:999px;
 
       background:#eee;
-
       color:#555;
 
       font-size:9px;
-
       font-weight:950;
 
       white-space:nowrap;
@@ -202,6 +203,7 @@
     ======================================== */
 
     .registration-actions{
+
       display:grid;
 
       grid-template-columns:
@@ -214,25 +216,20 @@
 
 
     .state-action{
-      min-width:0;
 
+      min-width:0;
       min-height:42px;
 
       padding:7px 5px;
 
-      border:
-        2px solid transparent;
-
+      border:2px solid transparent;
       border-radius:11px;
 
       background:#f1f1f1;
-
       color:#555;
 
       font:inherit;
-
       font-size:10px;
-
       font-weight:950;
 
       cursor:pointer;
@@ -283,6 +280,7 @@
 
 
     .status-message{
+
       display:none;
 
       margin-top:8px;
@@ -292,11 +290,9 @@
       border-radius:10px;
 
       background:#f3f3f3;
-
       color:#666;
 
       font-size:9px;
-
       font-weight:850;
 
       text-align:center;
@@ -321,10 +317,11 @@
 
 
     /* ========================================
-       COMPTEURS
+       COMPTEURS INSCRIPTIONS
     ======================================== */
 
     .registration-summary{
+
       display:grid;
 
       grid-template-columns:
@@ -337,6 +334,7 @@
 
 
     .summary-card{
+
       padding:10px 5px;
 
       border-radius:14px;
@@ -352,12 +350,12 @@
 
 
     .summary-card strong{
+
       display:block;
 
       color:#111;
 
       font-size:21px;
-
       line-height:1;
 
       font-weight:1000;
@@ -365,6 +363,7 @@
 
 
     .summary-card span{
+
       display:block;
 
       margin-top:4px;
@@ -372,7 +371,6 @@
       color:#777;
 
       font-size:8px;
-
       font-weight:900;
 
       letter-spacing:.35px;
@@ -382,10 +380,11 @@
 
 
     /* ========================================
-       ONGLETS
+       ONGLETS INSCRITS
     ======================================== */
 
     .registration-tabs{
+
       display:grid;
 
       grid-template-columns:
@@ -408,24 +407,20 @@
 
 
     .registration-tab{
-      min-width:0;
 
+      min-width:0;
       min-height:39px;
 
       padding:5px 3px;
 
       border:0;
-
       border-radius:10px;
 
       background:#f1f1f1;
-
       color:#666;
 
       font:inherit;
-
       font-size:9px;
-
       font-weight:950;
 
       cursor:pointer;
@@ -443,6 +438,7 @@
     ======================================== */
 
     .list-head{
+
       display:flex;
 
       align-items:flex-end;
@@ -458,10 +454,10 @@
 
 
     .list-kicker{
+
       color:var(--orange);
 
       font-size:8px;
-
       font-weight:950;
 
       letter-spacing:.8px;
@@ -471,12 +467,12 @@
 
 
     .list-head h2{
+
       margin:3px 0 0;
 
       color:#111;
 
       font-size:19px;
-
       line-height:1;
 
       font-weight:1000;
@@ -484,12 +480,12 @@
 
 
     .list-head p{
+
       margin:4px 0 0;
 
       color:#777;
 
       font-size:9px;
-
       line-height:1.3;
 
       font-weight:700;
@@ -497,6 +493,7 @@
 
 
     .live-pill{
+
       flex:0 0 auto;
 
       padding:4px 7px;
@@ -504,11 +501,9 @@
       border-radius:999px;
 
       background:#ddf7e7;
-
       color:#126a35;
 
       font-size:8px;
-
       font-weight:950;
 
       text-transform:uppercase;
@@ -516,16 +511,18 @@
 
 
     /* ========================================
-       LISTE
+       LISTE INSCRITS
     ======================================== */
 
     .items-list{
+
       display:grid;
       gap:7px;
     }
 
 
     .item-card{
+
       padding:11px;
 
       border-radius:15px;
@@ -539,6 +536,7 @@
 
 
     .item-head{
+
       display:flex;
 
       align-items:flex-start;
@@ -551,12 +549,12 @@
 
 
     .item-title{
+
       min-width:0;
 
       color:#111;
 
       font-size:15px;
-
       line-height:1.1;
 
       font-weight:1000;
@@ -564,6 +562,7 @@
 
 
     .item-state{
+
       flex:0 0 auto;
 
       padding:4px 7px;
@@ -571,11 +570,9 @@
       border-radius:999px;
 
       background:#eee;
-
       color:#666;
 
       font-size:8px;
-
       font-weight:950;
 
       text-transform:uppercase;
@@ -585,6 +582,7 @@
     .item-state.confirmed,
     .item-state.active,
     .item-state.accepted{
+
       background:#ddf7e7;
       color:#126a35;
     }
@@ -592,6 +590,7 @@
 
     .item-state.pending,
     .item-state.registered{
+
       background:#fff3cd;
       color:#8a6500;
     }
@@ -599,16 +598,17 @@
 
     .item-state.closed,
     .item-state.refused{
+
       background:#ffe3de;
       color:#a52d18;
     }
 
 
     .item-meta{
+
       color:#666;
 
       font-size:10px;
-
       font-weight:750;
 
       line-height:1.5;
@@ -616,12 +616,14 @@
 
 
     .item-meta strong{
+
       color:#222;
       font-weight:950;
     }
 
 
     .item-description{
+
       margin-top:7px;
 
       padding:8px 9px;
@@ -629,11 +631,9 @@
       border-radius:10px;
 
       background:#f5f5f5;
-
       color:#555;
 
       font-size:10px;
-
       line-height:1.4;
 
       font-weight:700;
@@ -645,6 +645,7 @@
     ======================================== */
 
     .item-actions{
+
       display:grid;
 
       grid-template-columns:
@@ -657,24 +658,20 @@
 
 
     .item-action{
-      min-width:0;
 
+      min-width:0;
       min-height:36px;
 
       padding:5px;
 
       border:0;
-
       border-radius:9px;
 
       background:#f1f1f1;
-
       color:#555;
 
       font:inherit;
-
       font-size:9px;
-
       font-weight:950;
 
       cursor:pointer;
@@ -699,13 +696,257 @@
     }
 
 
-    .item-action.red{
-      background:#ffe3de;
-      color:#a52d18;
+    .item-action:disabled{
+      opacity:.45;
     }
 
 
-    .item-action:disabled{
+    /* ========================================
+       PAIEMENTS — COMPTEURS
+    ======================================== */
+
+    .payment-summary{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+      gap:6px;
+
+      margin-top:8px;
+    }
+
+
+    .payment-summary-card{
+
+      padding:10px 6px;
+
+      border-radius:14px;
+
+      background:#fff;
+
+      text-align:center;
+
+      box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.06);
+    }
+
+
+    .payment-summary-card strong{
+
+      display:block;
+
+      color:#111;
+
+      font-size:21px;
+      line-height:1;
+
+      font-weight:1000;
+    }
+
+
+    .payment-summary-card span{
+
+      display:block;
+
+      margin-top:4px;
+
+      color:#777;
+
+      font-size:8px;
+      font-weight:900;
+
+      letter-spacing:.4px;
+
+      text-transform:uppercase;
+    }
+
+
+    /* ========================================
+       PAIEMENTS — LISTE
+    ======================================== */
+
+    .payment-list{
+
+      display:grid;
+
+      gap:7px;
+
+      margin-top:8px;
+    }
+
+
+    .payment-row{
+
+      padding:10px;
+
+      border-radius:15px;
+
+      background:#fff;
+
+      box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.06);
+    }
+
+
+    .payment-player{
+
+      display:flex;
+
+      align-items:flex-start;
+      justify-content:space-between;
+
+      gap:8px;
+
+      margin-bottom:8px;
+    }
+
+
+    .payment-player-info{
+      min-width:0;
+    }
+
+
+    .payment-name{
+
+      overflow:hidden;
+
+      color:#111;
+
+      font-size:15px;
+      font-weight:1000;
+
+      line-height:1.15;
+
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+
+
+    .payment-team{
+
+      margin-top:3px;
+
+      color:#888;
+
+      font-size:8px;
+      font-weight:800;
+
+      line-height:1.25;
+    }
+
+
+    .payment-state{
+
+      flex:0 0 auto;
+
+      padding:4px 7px;
+
+      border-radius:999px;
+
+      background:#fff0ec;
+      color:#c83417;
+
+      font-size:8px;
+      font-weight:950;
+
+      text-transform:uppercase;
+    }
+
+
+    .payment-row[data-payment="cash"]
+    .payment-state{
+
+      background:#ddf7e7;
+      color:#126a35;
+    }
+
+
+    .payment-row[data-payment="cb"]
+    .payment-state{
+
+      background:#e4f7fc;
+      color:#147d99;
+    }
+
+
+    /* ========================================
+       PAIEMENTS — BOUTONS
+    ======================================== */
+
+    .payment-actions{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+      gap:5px;
+    }
+
+
+    .payment-action{
+
+      min-width:0;
+      min-height:39px;
+
+      padding:6px 4px;
+
+      border:2px solid transparent;
+      border-radius:10px;
+
+      background:#f1f1f1;
+      color:#555;
+
+      font:inherit;
+      font-size:10px;
+      font-weight:950;
+
+      cursor:pointer;
+
+      white-space:nowrap;
+
+      -webkit-tap-highlight-color:
+        transparent;
+    }
+
+
+    .payment-action:active{
+      transform:scale(.98);
+    }
+
+
+    .payment-action.active-unpaid{
+
+      border-color:var(--orange);
+
+      background:#fff0ec;
+      color:#c83417;
+    }
+
+
+    .payment-action.active-cash{
+
+      border-color:#26a65b;
+
+      background:#ddf7e7;
+      color:#126a35;
+    }
+
+
+    .payment-action.active-cb{
+
+      border-color:#2fa7c7;
+
+      background:#e4f7fc;
+      color:#147d99;
+    }
+
+
+    .payment-action:disabled{
       opacity:.45;
     }
 
@@ -714,17 +955,17 @@
        VIDE / CHARGEMENT
     ======================================== */
 
-    .list-empty{
+    .list-empty,
+    .payment-empty{
+
       padding:25px 15px;
 
       border-radius:16px;
 
       background:white;
-
       color:#777;
 
       font-size:11px;
-
       font-weight:800;
 
       text-align:center;
@@ -735,6 +976,11 @@
     }
 
 
+    .payment-empty{
+      margin-top:8px;
+    }
+
+
     /* ========================================
        RESPONSIVE
     ======================================== */
@@ -742,12 +988,21 @@
     @media(min-width:560px){
 
       .registration-actions{
+
         grid-template-columns:
           repeat(4,minmax(0,1fr));
       }
 
 
       .items-list{
+
+        grid-template-columns:
+          repeat(2,minmax(0,1fr));
+      }
+
+
+      .payment-list{
+
         grid-template-columns:
           repeat(2,minmax(0,1fr));
       }
@@ -765,10 +1020,6 @@
 >
 
 
-<!-- ======================================
-     HEADER ADMIN
-======================================= -->
-
 <div id="siteHeader"></div>
 
 
@@ -776,268 +1027,367 @@
 
 
   <!-- ======================================
-       HERO
+       SOUS-MENU
   ======================================= -->
 
-  <section class="registrations-head">
-
-
-    <div class="registrations-head-top">
-
-      <span class="registrations-kicker">
-        Administration
-      </span>
-
-
-      <span class="registrations-head-icon">
-        ✍️
-      </span>
-
-    </div>
-
-
-    <h1>
-      Inscriptions
-    </h1>
-
-
-    <p>
-      Gestion des inscriptions du BT250 Double Mixte.
-    </p>
-
-
-  </section>
-
-
-
-  <!-- ======================================
-       ÉTAT DES INSCRIPTIONS
-  ======================================= -->
-
-  <section class="registration-control">
-
-
-    <div class="registration-state-line">
-
-      <span class="registration-state-label">
-        État des inscriptions
-      </span>
-
-
-      <span
-        id="currentState"
-        class="registration-state"
-        data-state="loading"
-      >
-        Chargement…
-      </span>
-
-    </div>
-
-
-    <div class="registration-actions">
-
-
-      <button
-        id="btnNotOpen"
-        class="state-action"
-        data-state="not_open"
-        type="button"
-      >
-        💤 Pas ouvertes
-      </button>
-
-
-      <button
-        id="btnOpen"
-        class="state-action"
-        data-state="open"
-        type="button"
-      >
-        ✅ Ouvrir
-      </button>
-
-
-      <button
-        id="btnPause"
-        class="state-action"
-        data-state="paused"
-        type="button"
-      >
-        ⏸️ Suspendre
-      </button>
-
-
-      <button
-        id="btnClose"
-        class="state-action"
-        data-state="closed"
-        type="button"
-      >
-        🔒 Clôturer
-      </button>
-
-
-    </div>
-
-
-    <div
-      id="statusMessage"
-      class="status-message"
-    >
-    </div>
-
-
-  </section>
-
-
-
-  <!-- ======================================
-       COMPTEURS
-  ======================================= -->
-
-  <section class="registration-summary">
-
-
-    <div class="summary-card">
-
-      <strong id="countTotal">
-        0
-      </strong>
-
-      <span>
-        Équipes
-      </span>
-
-    </div>
-
-
-    <div class="summary-card">
-
-      <strong id="countConfirmed">
-        0
-      </strong>
-
-      <span>
-        Confirmées
-      </span>
-
-    </div>
-
-
-    <div class="summary-card">
-
-      <strong id="countRemaining">
-        12
-      </strong>
-
-      <span>
-        Places
-      </span>
-
-    </div>
-
-
-  </section>
-
-
-
-  <!-- ======================================
-       ONGLETS
-  ======================================= -->
-
-  <section class="registration-tabs">
-
+  <nav
+    class="admin-subnav"
+    aria-label="Gestion des inscriptions"
+  >
 
     <button
-      id="tabTeams"
-      class="registration-tab active"
+      id="viewRegistrations"
+      class="active"
       type="button"
+      aria-selected="true"
     >
-      👥 Équipes
+      👥 Inscrits
     </button>
 
 
     <button
-      id="tabProfiles"
-      class="registration-tab"
+      id="viewPayments"
       type="button"
+      aria-selected="false"
     >
-      🔎 Recherches
+      💳 Paiements
     </button>
 
-
-    <button
-      id="tabInvites"
-      class="registration-tab"
-      type="button"
-    >
-      🤝 Propositions
-    </button>
-
-
-  </section>
+  </nav>
 
 
 
   <!-- ======================================
-       TITRE LISTE
+       VUE INSCRITS
   ======================================= -->
 
-  <section class="list-head">
+  <div
+    id="registrationsView"
+    class="admin-view"
+  >
 
 
-    <div>
+    <!-- ÉTAT INSCRIPTIONS -->
 
-      <div class="list-kicker">
-        Suivi en direct
+    <section class="registration-control">
+
+
+      <div class="registration-state-line">
+
+        <span class="registration-state-label">
+          État des inscriptions
+        </span>
+
+
+        <span
+          id="currentState"
+          class="registration-state"
+          data-state="loading"
+        >
+          Chargement…
+        </span>
+
       </div>
 
 
-      <h2 id="listTitle">
-        Équipes inscrites
-      </h2>
+      <div class="registration-actions">
 
 
-      <p id="listText">
-        Liste des équipes du tournoi.
-      </p>
-
-    </div>
-
-
-    <span class="live-pill">
-      Live
-    </span>
+        <button
+          id="btnNotOpen"
+          class="state-action"
+          data-state="not_open"
+          type="button"
+        >
+          💤 Pas ouvertes
+        </button>
 
 
-  </section>
+        <button
+          id="btnOpen"
+          class="state-action"
+          data-state="open"
+          type="button"
+        >
+          ✅ Ouvrir
+        </button>
+
+
+        <button
+          id="btnPause"
+          class="state-action"
+          data-state="paused"
+          type="button"
+        >
+          ⏸️ Suspendre
+        </button>
+
+
+        <button
+          id="btnClose"
+          class="state-action"
+          data-state="closed"
+          type="button"
+        >
+          🔒 Clôturer
+        </button>
+
+
+      </div>
+
+
+      <div
+        id="statusMessage"
+        class="status-message"
+      ></div>
+
+
+    </section>
+
+
+
+    <!-- COMPTEURS -->
+
+    <section class="registration-summary">
+
+
+      <div class="summary-card">
+
+        <strong id="countTotal">
+          0
+        </strong>
+
+        <span>
+          Équipes
+        </span>
+
+      </div>
+
+
+      <div class="summary-card">
+
+        <strong id="countConfirmed">
+          0
+        </strong>
+
+        <span>
+          Confirmées
+        </span>
+
+      </div>
+
+
+      <div class="summary-card">
+
+        <strong id="countRemaining">
+          12
+        </strong>
+
+        <span>
+          Places
+        </span>
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ONGLETS -->
+
+    <section class="registration-tabs">
+
+
+      <button
+        id="tabTeams"
+        class="registration-tab active"
+        type="button"
+      >
+        👥 Équipes
+      </button>
+
+
+      <button
+        id="tabProfiles"
+        class="registration-tab"
+        type="button"
+      >
+        🔎 Recherches
+      </button>
+
+
+      <button
+        id="tabInvites"
+        class="registration-tab"
+        type="button"
+      >
+        🤝 Propositions
+      </button>
+
+
+    </section>
+
+
+
+    <!-- TITRE LISTE -->
+
+    <section class="list-head">
+
+
+      <div>
+
+        <div class="list-kicker">
+          Suivi en direct
+        </div>
+
+
+        <h2 id="listTitle">
+          Équipes inscrites
+        </h2>
+
+
+        <p id="listText">
+          Liste des équipes du tournoi.
+        </p>
+
+      </div>
+
+
+      <span class="live-pill">
+        Live
+      </span>
+
+
+    </section>
+
+
+
+    <!-- LISTE -->
+
+    <section
+      id="itemsList"
+      class="items-list"
+    >
+
+      <div class="list-empty">
+        Chargement…
+      </div>
+
+    </section>
+
+
+  </div>
 
 
 
   <!-- ======================================
-       LISTE
+       VUE PAIEMENTS
   ======================================= -->
 
-  <section
-    id="itemsList"
-    class="items-list"
+  <div
+    id="paymentsView"
+    class="admin-view hidden"
   >
 
-    <div class="list-empty">
-      Chargement…
+
+    <!-- COMPTEURS -->
+
+    <section class="payment-summary">
+
+
+      <div class="payment-summary-card">
+
+        <strong id="unpaidCount">
+          0
+        </strong>
+
+        <span>
+          Non payés
+        </span>
+
+      </div>
+
+
+      <div class="payment-summary-card">
+
+        <strong id="cashCount">
+          0
+        </strong>
+
+        <span>
+          Espèces
+        </span>
+
+      </div>
+
+
+      <div class="payment-summary-card">
+
+        <strong id="cbCount">
+          0
+        </strong>
+
+        <span>
+          CB
+        </span>
+
+      </div>
+
+
+    </section>
+
+
+    <!-- TITRE -->
+
+    <section class="list-head">
+
+      <div>
+
+        <div class="list-kicker">
+          Suivi des règlements
+        </div>
+
+        <h2>
+          Paiements
+        </h2>
+
+        <p>
+          Paiement individuel de chaque joueur.
+        </p>
+
+      </div>
+
+      <span class="live-pill">
+        Live
+      </span>
+
+    </section>
+
+
+    <!-- LISTE -->
+
+    <section
+      id="paymentList"
+      class="payment-list"
+    ></section>
+
+
+    <div
+      id="paymentEmpty"
+      class="payment-empty"
+      hidden
+    >
+      Aucun joueur inscrit.
     </div>
 
-  </section>
+
+  </div>
 
 
 </main>
 
 
-
-<!-- ======================================
-     HEADER ADMIN
-======================================= -->
 
 <script
   type="module"
@@ -1045,10 +1395,6 @@
 ></script>
 
 
-
-<!-- ======================================
-     FIRESTORE / ADMIN
-======================================= -->
 
 <script type="module">
 
@@ -1085,10 +1431,7 @@
     onSnapshot,
     setDoc,
     updateDoc,
-    deleteDoc,
-    serverTimestamp,
-    query,
-    orderBy
+    serverTimestamp
   } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 
@@ -1146,7 +1489,35 @@
 
 
   /* ========================================
-     ÉLÉMENTS
+     ÉLÉMENTS — SOUS MENU
+  ======================================== */
+
+  const viewRegistrations =
+    document.getElementById(
+      "viewRegistrations"
+    );
+
+
+  const viewPayments =
+    document.getElementById(
+      "viewPayments"
+    );
+
+
+  const registrationsView =
+    document.getElementById(
+      "registrationsView"
+    );
+
+
+  const paymentsView =
+    document.getElementById(
+      "paymentsView"
+    );
+
+
+  /* ========================================
+     ÉLÉMENTS — INSCRIPTIONS
   ======================================== */
 
   const currentState =
@@ -1248,6 +1619,40 @@
 
 
   /* ========================================
+     ÉLÉMENTS — PAIEMENTS
+  ======================================== */
+
+  const unpaidCount =
+    document.getElementById(
+      "unpaidCount"
+    );
+
+
+  const cashCount =
+    document.getElementById(
+      "cashCount"
+    );
+
+
+  const cbCount =
+    document.getElementById(
+      "cbCount"
+    );
+
+
+  const paymentList =
+    document.getElementById(
+      "paymentList"
+    );
+
+
+  const paymentEmpty =
+    document.getElementById(
+      "paymentEmpty"
+    );
+
+
+  /* ========================================
      ÉTAT LOCAL
   ======================================== */
 
@@ -1261,6 +1666,10 @@
 
   let unsubscribeMain =
     null;
+
+
+  let teamsCache =
+    [];
 
 
   /* ========================================
@@ -1277,6 +1686,38 @@
       .replaceAll(">","&gt;")
       .replaceAll('"',"&quot;")
       .replaceAll("'","&#039;");
+
+  }
+
+
+  function timestampValue(row){
+
+    const createdAt =
+      row?.createdAt;
+
+
+    if(
+      createdAt &&
+      typeof createdAt.toMillis === "function"
+    ){
+
+      return createdAt.toMillis();
+
+    }
+
+
+    return 0;
+
+  }
+
+
+  function sortByCreatedAt(rows){
+
+    return [...rows].sort(
+      (a,b) =>
+        timestampValue(a) -
+        timestampValue(b)
+    );
 
   }
 
@@ -1324,6 +1765,78 @@
     }
 
   }
+
+
+  /* ========================================
+     SOUS-MENU PRINCIPAL
+  ======================================== */
+
+  function showMainView(view){
+
+    const registrationsActive =
+      view === "registrations";
+
+
+    viewRegistrations.classList.toggle(
+      "active",
+      registrationsActive
+    );
+
+
+    viewPayments.classList.toggle(
+      "active",
+      !registrationsActive
+    );
+
+
+    viewRegistrations.setAttribute(
+      "aria-selected",
+      String(registrationsActive)
+    );
+
+
+    viewPayments.setAttribute(
+      "aria-selected",
+      String(!registrationsActive)
+    );
+
+
+    registrationsView.classList.toggle(
+      "hidden",
+      !registrationsActive
+    );
+
+
+    paymentsView.classList.toggle(
+      "hidden",
+      registrationsActive
+    );
+
+  }
+
+
+  viewRegistrations.addEventListener(
+    "click",
+    () => {
+
+      showMainView(
+        "registrations"
+      );
+
+    }
+  );
+
+
+  viewPayments.addEventListener(
+    "click",
+    () => {
+
+      showMainView(
+        "payments"
+      );
+
+    }
+  );
 
 
   /* ========================================
@@ -1482,49 +1995,25 @@
 
   btnNotOpen.addEventListener(
     "click",
-    () => {
-
-      setState(
-        "not_open"
-      );
-
-    }
+    () => setState("not_open")
   );
 
 
   btnOpen.addEventListener(
     "click",
-    () => {
-
-      setState(
-        "open"
-      );
-
-    }
+    () => setState("open")
   );
 
 
   btnPause.addEventListener(
     "click",
-    () => {
-
-      setState(
-        "paused"
-      );
-
-    }
+    () => setState("paused")
   );
 
 
   btnClose.addEventListener(
     "click",
-    () => {
-
-      setState(
-        "closed"
-      );
-
-    }
+    () => setState("closed")
   );
 
 
@@ -1532,9 +2021,7 @@
      ÉQUIPES VISIBLES
   ======================================== */
 
-  function getVisibleTeams(
-    rows
-  ){
+  function getVisibleTeams(rows){
 
     return rows.filter(
       row =>
@@ -1549,12 +2036,10 @@
 
 
   /* ========================================
-     COMPTEURS
+     COMPTEURS INSCRIPTIONS
   ======================================== */
 
-  function updateTeamCounters(
-    rows
-  ){
+  function updateTeamCounters(rows){
 
     const visible =
       getVisibleTeams(
@@ -1598,10 +2083,7 @@
      CARTE ÉQUIPE
   ======================================== */
 
-  function teamCard(
-    id,
-    data
-  ){
+  function teamCard(id,data){
 
     const woman =
       data.woman ||
@@ -1635,19 +2117,14 @@
 
       <article class="item-card">
 
-
         <div class="item-head">
 
           <div class="item-title">
             ${esc(teamName)}
           </div>
 
-
           <span
-            class="
-              item-state
-              ${esc(status)}
-            "
+            class="item-state ${esc(status)}"
           >
             ${esc(statusLabel)}
           </span>
@@ -1669,9 +2146,7 @@
           Licence :
           ${esc(woman.licence || "—")}
 
-
           <br><br>
-
 
           <strong>
             👨 Joueur
@@ -1689,7 +2164,6 @@
 
 
         <div class="item-actions">
-
 
           <button
             class="item-action green"
@@ -1710,9 +2184,7 @@
             Inscrite
           </button>
 
-
         </div>
-
 
       </article>
 
@@ -1722,13 +2194,10 @@
 
 
   /* ========================================
-     CARTE RECHERCHE PARTENAIRE
+     CARTE RECHERCHE
   ======================================== */
 
-  function profileCard(
-    id,
-    data
-  ){
+  function profileCard(id,data){
 
     const status =
       data.status ||
@@ -1745,29 +2214,15 @@
 
       <article class="item-card">
 
-
         <div class="item-head">
 
           <div class="item-title">
-
-            ${esc(
-              data.prenom ||
-              "Profil"
-            )}
-
-            ${esc(
-              data.nom ||
-              ""
-            )}
-
+            ${esc(data.prenom || "Profil")}
+            ${esc(data.nom || "")}
           </div>
 
-
           <span
-            class="
-              item-state
-              ${esc(status)}
-            "
+            class="item-state ${esc(status)}"
           >
             ${
               status === "active"
@@ -1788,18 +2243,12 @@
           <br>
 
           Licence :
-          ${esc(
-            data.licence ||
-            "—"
-          )}
+          ${esc(data.licence || "—")}
 
           <br>
 
           Téléphone :
-          ${esc(
-            data.phone ||
-            "—"
-          )}
+          ${esc(data.phone || "—")}
 
         </div>
 
@@ -1807,16 +2256,15 @@
         ${
           data.profile
             ? `
-                <div class="item-description">
-                  ${esc(data.profile)}
-                </div>
-              `
+              <div class="item-description">
+                ${esc(data.profile)}
+              </div>
+            `
             : ""
         }
 
 
         <div class="item-actions">
-
 
           <button
             class="item-action green"
@@ -1837,9 +2285,7 @@
             Masquer
           </button>
 
-
         </div>
-
 
       </article>
 
@@ -1852,10 +2298,7 @@
      CARTE PROPOSITION
   ======================================== */
 
-  function inviteCard(
-    id,
-    data
-  ){
+  function inviteCard(id,data){
 
     const proposer =
       data.proposer ||
@@ -1879,25 +2322,18 @@
 
       <article class="item-card">
 
-
         <div class="item-head">
 
           <div class="item-title">
-
             Proposition pour
             ${esc(
               data.partnerPrenom ||
               "un profil"
             )}
-
           </div>
 
-
           <span
-            class="
-              item-state
-              ${esc(status)}
-            "
+            class="item-state ${esc(status)}"
           >
             ${esc(statusLabel)}
           </span>
@@ -1913,29 +2349,18 @@
 
           <br>
 
-          ${esc(
-            proposer.prenom ||
-            "—"
-          )}
-
-          ${esc(
-            proposer.nom ||
-            ""
-          )}
+          ${esc(proposer.prenom || "—")}
+          ${esc(proposer.nom || "")}
 
           <br>
 
           Licence :
-          ${esc(
-            proposer.licence ||
-            "—"
-          )}
+          ${esc(proposer.licence || "—")}
 
         </div>
 
 
         <div class="item-actions">
-
 
           <button
             class="item-action yellow"
@@ -1966,9 +2391,7 @@
             Refusée
           </button>
 
-
         </div>
-
 
       </article>
 
@@ -1978,7 +2401,7 @@
 
 
   /* ========================================
-     ONGLETS
+     ONGLETS INSCRITS
   ======================================== */
 
   function updateTabs(){
@@ -2042,16 +2465,12 @@
   function mainCollection(){
 
     if(currentTab === "profiles"){
-
       return profilesRef;
-
     }
 
 
     if(currentTab === "invites"){
-
       return invitesRef;
-
     }
 
 
@@ -2061,18 +2480,22 @@
 
 
   /* ========================================
-     AFFICHAGE LISTE
+     AFFICHAGE LISTE INSCRITS
   ======================================== */
 
-  function renderRows(
-    rows
-  ){
+  function renderRows(rows){
+
+    const sortedRows =
+      sortByCreatedAt(
+        rows
+      );
+
 
     if(currentTab === "profiles"){
 
       itemsList.innerHTML =
-        rows.length
-          ? rows
+        sortedRows.length
+          ? sortedRows
               .map(
                 row =>
                   profileCard(
@@ -2095,8 +2518,8 @@
     if(currentTab === "invites"){
 
       itemsList.innerHTML =
-        rows.length
-          ? rows
+        sortedRows.length
+          ? sortedRows
               .map(
                 row =>
                   inviteCard(
@@ -2118,7 +2541,7 @@
 
     const visibleTeams =
       getVisibleTeams(
-        rows
+        sortedRows
       );
 
 
@@ -2145,9 +2568,7 @@
   function startMainListener(){
 
     if(unsubscribeMain){
-
       unsubscribeMain();
-
     }
 
 
@@ -2164,13 +2585,7 @@
     unsubscribeMain =
       onSnapshot(
 
-        query(
-          mainCollection(),
-          orderBy(
-            "createdAt",
-            "asc"
-          )
-        ),
+        mainCollection(),
 
         snapshot => {
 
@@ -2214,18 +2629,437 @@
 
 
   /* ========================================
-     COMPTEURS ÉQUIPES EN DIRECT
+     PAIEMENTS
+  ======================================== */
+
+  function normalizePayment(value){
+
+    if(
+      value === "cash" ||
+      value === "especes"
+    ){
+      return "cash";
+    }
+
+
+    if(value === "cb"){
+      return "cb";
+    }
+
+
+    return "unpaid";
+
+  }
+
+
+  function paymentLabel(value){
+
+    switch(value){
+
+      case "cash":
+        return "Espèces";
+
+      case "cb":
+        return "CB";
+
+      default:
+        return "Non payé";
+
+    }
+
+  }
+
+
+  function getPaymentPlayers(rows){
+
+    const visibleTeams =
+      getVisibleTeams(
+        sortByCreatedAt(rows)
+      );
+
+
+    const players =
+      [];
+
+
+    visibleTeams.forEach(
+      team => {
+
+        const woman =
+          team.woman ||
+          team.player1 ||
+          {};
+
+
+        const man =
+          team.man ||
+          team.player2 ||
+          {};
+
+
+        const teamName =
+          team.teamName ||
+          `${woman.prenom || "Joueuse"} & ${man.prenom || "Joueur"}`;
+
+
+        players.push({
+
+          teamId:
+            team.id,
+
+          role:
+            "woman",
+
+          name:
+            `${woman.prenom || ""} ${woman.nom || ""}`.trim() ||
+            "Joueuse",
+
+          licence:
+            woman.licence || "",
+
+          teamName,
+
+          payment:
+            normalizePayment(
+              woman.payment
+            )
+
+        });
+
+
+        players.push({
+
+          teamId:
+            team.id,
+
+          role:
+            "man",
+
+          name:
+            `${man.prenom || ""} ${man.nom || ""}`.trim() ||
+            "Joueur",
+
+          licence:
+            man.licence || "",
+
+          teamName,
+
+          payment:
+            normalizePayment(
+              man.payment
+            )
+
+        });
+
+      }
+    );
+
+
+    return players;
+
+  }
+
+
+  function paymentRow(player){
+
+    const payment =
+      player.payment;
+
+
+    return `
+
+      <article
+        class="payment-row"
+        data-payment="${esc(payment)}"
+      >
+
+        <div class="payment-player">
+
+          <div class="payment-player-info">
+
+            <div class="payment-name">
+              ${esc(player.name)}
+            </div>
+
+            <div class="payment-team">
+
+              ${esc(player.teamName)}
+
+              ${
+                player.licence
+                  ? ` · Licence ${esc(player.licence)}`
+                  : ""
+              }
+
+            </div>
+
+          </div>
+
+
+          <span class="payment-state">
+            ${esc(paymentLabel(payment))}
+          </span>
+
+        </div>
+
+
+        <div class="payment-actions">
+
+
+          <button
+            class="
+              payment-action
+              ${
+                payment === "unpaid"
+                  ? "active-unpaid"
+                  : ""
+              }
+            "
+            data-payment-action="unpaid"
+            data-team-id="${esc(player.teamId)}"
+            data-role="${esc(player.role)}"
+            type="button"
+          >
+            Non payé
+          </button>
+
+
+          <button
+            class="
+              payment-action
+              ${
+                payment === "cash"
+                  ? "active-cash"
+                  : ""
+              }
+            "
+            data-payment-action="cash"
+            data-team-id="${esc(player.teamId)}"
+            data-role="${esc(player.role)}"
+            type="button"
+          >
+            💶 Espèces
+          </button>
+
+
+          <button
+            class="
+              payment-action
+              ${
+                payment === "cb"
+                  ? "active-cb"
+                  : ""
+              }
+            "
+            data-payment-action="cb"
+            data-team-id="${esc(player.teamId)}"
+            data-role="${esc(player.role)}"
+            type="button"
+          >
+            💳 CB
+          </button>
+
+
+        </div>
+
+      </article>
+
+    `;
+
+  }
+
+
+  function renderPayments(rows){
+
+    const players =
+      getPaymentPlayers(
+        rows
+      );
+
+
+    const unpaid =
+      players.filter(
+        player =>
+          player.payment === "unpaid"
+      ).length;
+
+
+    const cash =
+      players.filter(
+        player =>
+          player.payment === "cash"
+      ).length;
+
+
+    const cb =
+      players.filter(
+        player =>
+          player.payment === "cb"
+      ).length;
+
+
+    unpaidCount.textContent =
+      String(unpaid);
+
+
+    cashCount.textContent =
+      String(cash);
+
+
+    cbCount.textContent =
+      String(cb);
+
+
+    if(!players.length){
+
+      paymentList.innerHTML =
+        "";
+
+
+      paymentEmpty.hidden =
+        false;
+
+
+      return;
+
+    }
+
+
+    paymentEmpty.hidden =
+      true;
+
+
+    paymentList.innerHTML =
+      players
+        .map(
+          player =>
+            paymentRow(
+              player
+            )
+        )
+        .join("");
+
+  }
+
+
+  async function updatePlayerPayment(
+    teamId,
+    role,
+    payment
+  ){
+
+    const team =
+      teamsCache.find(
+        row =>
+          row.id === teamId
+      );
+
+
+    if(!team){
+
+      throw new Error(
+        "Équipe introuvable."
+      );
+
+    }
+
+
+    const currentPlayer =
+      role === "woman"
+        ? (
+            team.woman ||
+            team.player1 ||
+            {}
+          )
+        : (
+            team.man ||
+            team.player2 ||
+            {}
+          );
+
+
+    const updatedPlayer = {
+
+      ...currentPlayer,
+
+      payment
+
+    };
+
+
+    const patch = {
+
+      updatedAt:
+        serverTimestamp()
+
+    };
+
+
+    if(role === "woman"){
+
+      patch.woman =
+        updatedPlayer;
+
+
+      /*
+       * Compatibilité avec les anciennes
+       * données utilisant player1.
+       */
+
+      if(team.player1){
+
+        patch.player1 =
+          updatedPlayer;
+
+      }
+
+    }
+
+    else{
+
+      patch.man =
+        updatedPlayer;
+
+
+      /*
+       * Compatibilité avec les anciennes
+       * données utilisant player2.
+       */
+
+      if(team.player2){
+
+        patch.player2 =
+          updatedPlayer;
+
+      }
+
+    }
+
+
+    await updateDoc(
+
+      doc(
+        db,
+        "events",
+        EVENT_ID,
+        "teams",
+        teamId
+      ),
+
+      patch
+
+    );
+
+  }
+
+
+  /* ========================================
+     LISTENER GLOBAL ÉQUIPES
   ======================================== */
 
   onSnapshot(
 
-    query(
-      teamsRef,
-      orderBy(
-        "createdAt",
-        "asc"
-      )
-    ),
+    teamsRef,
 
     snapshot => {
 
@@ -2242,7 +3076,16 @@
         );
 
 
+      teamsCache =
+        rows;
+
+
       updateTeamCounters(
+        rows
+      );
+
+
+      renderPayments(
         rows
       );
 
@@ -2266,13 +3109,32 @@
       countRemaining.textContent =
         "—";
 
+
+      unpaidCount.textContent =
+        "—";
+
+
+      cashCount.textContent =
+        "—";
+
+
+      cbCount.textContent =
+        "—";
+
+
+      paymentList.innerHTML = `
+        <div class="payment-empty">
+          Erreur de chargement des paiements.
+        </div>
+      `;
+
     }
 
   );
 
 
   /* ========================================
-     CHANGEMENT D'ONGLET
+     CHANGEMENT D'ONGLET INSCRITS
   ======================================== */
 
   tabTeams.addEventListener(
@@ -2318,7 +3180,7 @@
 
 
   /* ========================================
-     MISE À JOUR D'UN ÉLÉMENT
+     MISE À JOUR ÉLÉMENT INSCRITS
   ======================================== */
 
   async function updateItem(
@@ -2374,10 +3236,12 @@
       reference,
 
       {
+
         ...patch,
 
         updatedAt:
           serverTimestamp()
+
       }
 
     );
@@ -2386,7 +3250,7 @@
 
 
   /* ========================================
-     ACTIONS SUR LES CARTES
+     ACTIONS CARTES INSCRITS
   ======================================== */
 
   itemsList.addEventListener(
@@ -2402,9 +3266,7 @@
 
 
       if(!button){
-
         return;
-
       }
 
 
@@ -2422,16 +3284,12 @@
 
       try{
 
-
-        /* ÉQUIPES */
-
         if(action === "confirm"){
 
           await updateItem(
             id,
             {
-              status:
-                "confirmed"
+              status:"confirmed"
             }
           );
 
@@ -2443,26 +3301,20 @@
           await updateItem(
             id,
             {
-              status:
-                "registered"
+              status:"registered"
             }
           );
 
         }
 
 
-        /* PROFILS */
-
         else if(action === "profile-active"){
 
           await updateItem(
             id,
             {
-              status:
-                "active",
-
-              closedReason:
-                null
+              status:"active",
+              closedReason:null
             }
           );
 
@@ -2474,26 +3326,20 @@
           await updateItem(
             id,
             {
-              status:
-                "closed",
-
-              closedReason:
-                "admin"
+              status:"closed",
+              closedReason:"admin"
             }
           );
 
         }
 
 
-        /* PROPOSITIONS */
-
         else if(action === "invite-pending"){
 
           await updateItem(
             id,
             {
-              status:
-                "pending"
+              status:"pending"
             }
           );
 
@@ -2505,8 +3351,7 @@
           await updateItem(
             id,
             {
-              status:
-                "accepted"
+              status:"accepted"
             }
           );
 
@@ -2518,8 +3363,7 @@
           await updateItem(
             id,
             {
-              status:
-                "refused"
+              status:"refused"
             }
           );
 
@@ -2553,8 +3397,111 @@
 
 
   /* ========================================
+     ACTIONS PAIEMENTS
+  ======================================== */
+
+  paymentList.addEventListener(
+
+    "click",
+
+    async event => {
+
+      const button =
+        event.target.closest(
+          "button[data-payment-action]"
+        );
+
+
+      if(!button){
+        return;
+      }
+
+
+      const payment =
+        button.dataset.paymentAction;
+
+
+      const teamId =
+        button.dataset.teamId;
+
+
+      const role =
+        button.dataset.role;
+
+
+      const row =
+        button.closest(
+          ".payment-row"
+        );
+
+
+      const buttons =
+        row
+          ? row.querySelectorAll(
+              ".payment-action"
+            )
+          : [];
+
+
+      buttons.forEach(
+        element => {
+
+          element.disabled =
+            true;
+
+        }
+      );
+
+
+      try{
+
+        await updatePlayerPayment(
+          teamId,
+          role,
+          payment
+        );
+
+      }
+
+      catch(error){
+
+        console.error(
+          error
+        );
+
+
+        alert(
+          "Impossible de modifier le paiement."
+        );
+
+      }
+
+      finally{
+
+        buttons.forEach(
+          element => {
+
+            element.disabled =
+              false;
+
+          }
+        );
+
+      }
+
+    }
+
+  );
+
+
+  /* ========================================
      INITIALISATION
   ======================================== */
+
+  showMainView(
+    "registrations"
+  );
+
 
   startMainListener();
 
