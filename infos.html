@@ -33,98 +33,7 @@
     ======================================== */
 
     .infos-page{
-      padding-bottom:24px;
-    }
-
-
-    /* ========================================
-       HERO
-    ======================================== */
-
-    .infos-head{
-
-      padding:16px 17px;
-
-      border-radius:18px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #111111,
-          #292929
-        );
-
-      color:#fff;
-
-      box-shadow:
-        0 8px 22px
-        rgba(0,0,0,.08);
-    }
-
-
-    .infos-head-top{
-
-      display:flex;
-
-      align-items:center;
-      justify-content:space-between;
-
-      gap:10px;
-    }
-
-
-    .infos-kicker{
-
-      color:var(--orange);
-
-      font-size:9px;
-      font-weight:950;
-
-      letter-spacing:1.3px;
-
-      text-transform:uppercase;
-    }
-
-
-    .infos-pill{
-
-      padding:5px 8px;
-
-      border-radius:999px;
-
-      background:
-        rgba(255,75,39,.14);
-
-      color:#ff9b84;
-
-      font-size:9px;
-      font-weight:950;
-    }
-
-
-    .infos-head h1{
-
-      margin:6px 0 0;
-
-      font-size:30px;
-      line-height:1;
-
-      font-weight:1000;
-
-      letter-spacing:-1.1px;
-
-      text-transform:uppercase;
-    }
-
-
-    .infos-head p{
-
-      margin:7px 0 0;
-
-      color:#d5d5d5;
-
-      font-size:11px;
-      line-height:1.4;
+      padding-bottom:18px;
     }
 
 
@@ -141,7 +50,7 @@
 
       gap:6px;
 
-      margin-top:8px;
+      margin-bottom:8px;
     }
 
 
@@ -203,13 +112,11 @@
         repeat(2,minmax(0,1fr));
 
       gap:8px;
-
-      margin-top:8px;
     }
 
 
     /* ========================================
-       CARDS
+       CARTES
     ======================================== */
 
     .info-card{
@@ -363,6 +270,34 @@
 
 
     /* ========================================
+       REMERCIEMENT
+    ======================================== */
+
+    .support-note{
+
+      margin:12px 0 4px;
+
+      color:#999;
+
+      font-size:9px;
+
+      font-style:italic;
+
+      font-weight:600;
+
+      text-align:center;
+    }
+
+
+    .support-note .heart{
+
+      color:#e53935;
+
+      font-style:normal;
+    }
+
+
+    /* ========================================
        TABLETTE
     ======================================== */
 
@@ -392,42 +327,6 @@
 
 
 <main class="container infos-page">
-
-
-  <!-- ======================================
-       HERO
-  ======================================= -->
-
-  <section class="infos-head">
-
-
-    <div class="infos-head-top">
-
-      <span class="infos-kicker">
-        Les vendredis du BT Suzini
-      </span>
-
-
-      <span class="infos-pill">
-        ℹ️ INFOS
-      </span>
-
-    </div>
-
-
-    <h1>
-      Infos pratiques
-    </h1>
-
-
-    <p>
-      Retrouve toutes les informations utiles
-      pour le BT250 Double Mixte du vendredi
-      2 octobre à l'Arena TC Suzini.
-    </p>
-
-
-  </section>
 
 
   <!-- ======================================
@@ -637,14 +536,33 @@
   </section>
 
 
+  <!-- ======================================
+       REMERCIEMENT
+  ======================================= -->
+
+  <div class="support-note">
+    Merci au support de I
+    <span class="heart">♥</span>
+    Marine
+  </div>
+
+
 </main>
 
+
+<!-- ======================================
+     HEADER
+======================================= -->
 
 <script
   type="module"
   src="assets/js/header-tournament.js"
 ></script>
 
+
+<!-- ======================================
+     MAINTENANCE
+======================================= -->
 
 <script
   type="module"
