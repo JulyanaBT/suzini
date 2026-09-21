@@ -1,0 +1,2403 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#ffffff"
+  >
+
+  <title>
+    Règlement | BT250 - Double Mixte
+  </title>
+
+
+  <link
+    rel="stylesheet"
+    href="assets/css/style.css"
+  >
+
+
+  <style>
+
+    /* ========================================
+       PAGE
+    ======================================== */
+
+    .rules-page{
+      padding-bottom:24px;
+    }
+
+
+    /* ========================================
+       HERO
+    ======================================== */
+
+    .rules-head{
+
+      padding:16px 17px;
+
+      border-radius:18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #111111,
+          #292929
+        );
+
+      color:white;
+
+      box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.08);
+    }
+
+
+    .rules-head-top{
+
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      gap:10px;
+    }
+
+
+    .rules-kicker{
+
+      color:var(--orange);
+
+      font-size:9px;
+      font-weight:950;
+
+      letter-spacing:1.3px;
+
+      text-transform:uppercase;
+    }
+
+
+    .rules-pill{
+
+      padding:5px 8px;
+
+      border-radius:999px;
+
+      background:
+        rgba(255,75,39,.14);
+
+      color:#ff9b84;
+
+      font-size:9px;
+      font-weight:950;
+    }
+
+
+    .rules-head h1{
+
+      margin:6px 0 0;
+
+      font-size:30px;
+      line-height:1;
+
+      font-weight:1000;
+
+      letter-spacing:-1.1px;
+
+      text-transform:uppercase;
+    }
+
+
+    .rules-head p{
+
+      margin:7px 0 0;
+
+      color:#d5d5d5;
+
+      font-size:11px;
+      line-height:1.4;
+    }
+
+
+    /* ========================================
+       RÉSUMÉ
+    ======================================== */
+
+    .rules-summary{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+      gap:6px;
+
+      margin-top:8px;
+    }
+
+
+    .rules-summary-card{
+
+      min-width:0;
+
+      padding:10px 4px;
+
+      border-radius:14px;
+
+      background:white;
+
+      text-align:center;
+
+      box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.06);
+    }
+
+
+    .rules-summary-card strong{
+
+      display:block;
+
+      color:#111;
+
+      font-size:13px;
+      line-height:1;
+
+      font-weight:1000;
+
+      white-space:nowrap;
+    }
+
+
+    .rules-summary-card span{
+
+      display:block;
+
+      margin-top:4px;
+
+      color:#777;
+
+      font-size:7px;
+      font-weight:900;
+
+      letter-spacing:.3px;
+
+      text-transform:uppercase;
+    }
+
+
+    /* ========================================
+       CONTRÔLES
+    ======================================== */
+
+    .rule-controls{
+
+      display:grid;
+
+      gap:8px;
+
+      margin-top:8px;
+
+      padding:11px;
+
+      border-radius:16px;
+
+      background:white;
+
+      box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.07);
+    }
+
+
+    .rule-toggle{
+
+      display:flex;
+
+      gap:7px;
+
+      overflow-x:auto;
+
+      scrollbar-width:none;
+    }
+
+
+    .rule-toggle::-webkit-scrollbar{
+      display:none;
+    }
+
+
+    .rule-btn{
+
+      flex:0 0 auto;
+
+      min-height:38px;
+
+      padding:7px 12px;
+
+      border:0;
+
+      border-radius:999px;
+
+      background:#ededed;
+      color:#333;
+
+      font-family:inherit;
+      font-size:11px;
+      font-weight:950;
+
+      cursor:pointer;
+
+      white-space:nowrap;
+    }
+
+
+    .rule-btn[aria-selected="true"]{
+
+      background:#111;
+      color:white;
+    }
+
+
+    .rule-toggle:first-child
+    .rule-btn[aria-selected="true"]{
+
+      background:var(--orange);
+      color:white;
+    }
+
+
+    /* ========================================
+       CONTENU
+    ======================================== */
+
+    .rule-content{
+
+      display:grid;
+
+      gap:8px;
+
+      margin-top:8px;
+    }
+
+
+    .rule-card{
+
+      padding:14px;
+
+      border-radius:17px;
+
+      background:white;
+      color:#111;
+
+      box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.07);
+    }
+
+
+    .rule-card h2{
+
+      margin:0 0 8px;
+
+      color:#111;
+
+      font-size:17px;
+      font-weight:1000;
+
+      line-height:1.1;
+    }
+
+
+    .rule-card ul{
+
+      margin:0;
+
+      padding-left:19px;
+
+      color:#555;
+
+      font-size:11px;
+      font-weight:750;
+
+      line-height:1.5;
+    }
+
+
+    .rule-card li{
+      margin:5px 0;
+    }
+
+
+    .rule-card strong{
+      color:#111;
+    }
+
+
+    /* ========================================
+       CARTES IMPORTANTES
+    ======================================== */
+
+    .rule-card-highlight{
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff0ec,
+          #ffffff
+        );
+
+      border:
+        1px solid
+        rgba(255,75,39,.20);
+    }
+
+
+    .rule-card-highlight h2{
+      color:#e34422;
+    }
+
+
+    .rule-card-blue{
+
+      background:
+        linear-gradient(
+          135deg,
+          #e4f7fc,
+          #ffffff
+        );
+
+      border:
+        1px solid
+        rgba(36,181,219,.18);
+    }
+
+
+    /* ========================================
+       SCHÉMA TMC
+    ======================================== */
+
+    .tmc-flow{
+
+      display:grid;
+
+      gap:6px;
+
+      margin-top:10px;
+    }
+
+
+    .tmc-step{
+
+      padding:10px 12px;
+
+      border-radius:12px;
+
+      background:#f2f2f2;
+
+      color:#111;
+
+      font-size:10px;
+      font-weight:900;
+
+      line-height:1.35;
+
+      text-align:center;
+    }
+
+
+    .tmc-step.orange{
+
+      background:#fff0ec;
+      color:#c83a1e;
+    }
+
+
+    .tmc-step.black{
+
+      background:#111;
+      color:white;
+    }
+
+
+    .tmc-arrow{
+
+      color:#999;
+
+      font-size:14px;
+      font-weight:1000;
+
+      text-align:center;
+    }
+
+
+    /* ========================================
+       FORMAT MATCH
+    ======================================== */
+
+    .match-format{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+      gap:6px;
+
+      margin-top:10px;
+    }
+
+
+    .match-format-box{
+
+      padding:10px 5px;
+
+      border-radius:12px;
+
+      background:#111;
+
+      color:white;
+
+      text-align:center;
+    }
+
+
+    .match-format-box strong{
+
+      display:block;
+
+      color:white;
+
+      font-size:14px;
+      line-height:1.05;
+
+      font-weight:1000;
+    }
+
+
+    .match-format-box span{
+
+      display:block;
+
+      margin-top:4px;
+
+      color:#aaa;
+
+      font-size:7px;
+      font-weight:900;
+
+      text-transform:uppercase;
+    }
+
+
+    /* ========================================
+       CACHE
+    ======================================== */
+
+    .hidden{
+      display:none !important;
+    }
+
+
+    /* ========================================
+       RETOUR
+    ======================================== */
+
+    .rules-back{
+
+      display:inline-flex;
+
+      margin-top:10px;
+
+      color:#555;
+
+      font-size:10px;
+      font-weight:900;
+
+      text-decoration:none;
+    }
+
+
+    /* ========================================
+       PETITS ÉCRANS
+    ======================================== */
+
+    @media(max-width:370px){
+
+      .rules-summary{
+        grid-template-columns:
+          repeat(2,minmax(0,1fr));
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body
+  data-page="infos"
+  data-title="BT250 - Double Mixte"
+  data-date="02 octobre 2026"
+>
+
+
+<div id="siteHeader"></div>
+
+
+<main class="container rules-page">
+
+
+  <!-- ======================================
+       HERO
+  ======================================= -->
+
+  <section class="rules-head">
+
+    <div class="rules-head-top">
+
+      <span class="rules-kicker">
+        Les vendredis du BT Suzini
+      </span>
+
+      <span class="rules-pill">
+        📜 RÈGLEMENT
+      </span>
+
+    </div>
+
+
+    <h1>
+      Règlement
+    </h1>
+
+
+    <p>
+      Règlement du BT250 Double Mixte
+      du vendredi 2 octobre 2026
+      à l'Arena TC Suzini.
+    </p>
+
+  </section>
+
+
+  <!-- ======================================
+       RÉSUMÉ
+  ======================================= -->
+
+  <section class="rules-summary">
+
+
+    <div class="rules-summary-card">
+
+      <strong>
+        17h45
+      </strong>
+
+      <span>
+        Convocation
+      </span>
+
+    </div>
+
+
+    <div class="rules-summary-card">
+
+      <strong>
+        18h00
+      </strong>
+
+      <span>
+        Début
+      </span>
+
+    </div>
+
+
+    <div class="rules-summary-card">
+
+      <strong>
+        12
+      </strong>
+
+      <span>
+        Équipes
+      </span>
+
+    </div>
+
+
+    <div class="rules-summary-card">
+
+      <strong>
+        20 €
+      </strong>
+
+      <span>
+        / équipe
+      </span>
+
+    </div>
+
+
+  </section>
+
+
+  <!-- ======================================
+       CONTRÔLES
+  ======================================= -->
+
+  <section class="rule-controls">
+
+
+    <!-- LANGUE -->
+
+    <div class="rule-toggle">
+
+      <button
+        class="rule-btn"
+        id="btnFr"
+        type="button"
+        aria-selected="true"
+      >
+        🇫🇷 Français
+      </button>
+
+
+      <button
+        class="rule-btn"
+        id="btnPt"
+        type="button"
+        aria-selected="false"
+      >
+        🇧🇷 Português
+      </button>
+
+    </div>
+
+
+    <!-- TYPE -->
+
+    <div class="rule-toggle">
+
+      <button
+        class="rule-btn"
+        id="btnGeneral"
+        type="button"
+        aria-selected="true"
+      >
+        📘 Général
+      </button>
+
+
+      <button
+        class="rule-btn"
+        id="btnSport"
+        type="button"
+        aria-selected="false"
+      >
+        🎾 Sportif
+      </button>
+
+    </div>
+
+
+  </section>
+
+
+  <!-- ======================================
+       FRANÇAIS — GÉNÉRAL
+  ======================================= -->
+
+  <div
+    id="contentFrGeneral"
+    class="rule-content"
+  >
+
+
+    <section
+      class="
+        rule-card
+        rule-card-highlight
+      "
+    >
+
+      <h2>
+        🎾 Le tournoi
+      </h2>
+
+      <ul>
+
+        <li>
+          Le tournoi est un
+          <strong>BT250 FFT homologué</strong>
+          organisé au Tennis Club de Suzini.
+        </li>
+
+        <li>
+          Il se dispute en
+          <strong>double mixte adultes</strong>.
+        </li>
+
+        <li>
+          Le tournoi se déroule le
+          <strong>vendredi 2 octobre 2026</strong>
+          à l'Arena TC Suzini.
+        </li>
+
+        <li>
+          Le début des rencontres est fixé à
+          <strong>18h00</strong>.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        👥 Participation
+      </h2>
+
+      <ul>
+
+        <li>
+          L'inscription s'effectue
+          <strong>par équipe mixte</strong>,
+          composée d'une joueuse et d'un joueur.
+        </li>
+
+        <li>
+          Le tournoi est limité initialement à
+          <strong>12 équipes</strong>.
+        </li>
+
+        <li>
+          Au-delà de cette limite,
+          les nouvelles équipes sont placées
+          sur <strong>liste d'attente</strong>.
+        </li>
+
+        <li>
+          En fonction du nombre d'équipes
+          en liste d'attente et des possibilités
+          d'organisation, l'organisation pourra
+          décider d'augmenter le nombre
+          d'équipes admises dans le tournoi.
+        </li>
+
+        <li>
+          En cas de désistement,
+          la première équipe de la liste d'attente
+          est intégrée au tableau principal.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        📝 Inscription
+      </h2>
+
+      <ul>
+
+        <li>
+          Le tarif est fixé à
+          <strong>10 € par joueur</strong>,
+          soit <strong>20 € par équipe</strong>.
+        </li>
+
+        <li>
+          L'inscription validée est considérée
+          comme définitive.
+        </li>
+
+        <li>
+          En cas de forfait non justifié,
+          les droits d'inscription
+          <strong>ne sont pas remboursés</strong>.
+        </li>
+
+        <li>
+          Toute difficulté ou impossibilité
+          de participer doit être signalée
+          à l'organisation dans les meilleurs délais.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section
+      class="
+        rule-card
+        rule-card-highlight
+      "
+    >
+
+      <h2>
+        ⏱️ Convocation
+      </h2>
+
+      <ul>
+
+        <li>
+          Toutes les équipes sont convoquées
+          à <strong>17h45</strong>.
+        </li>
+
+        <li>
+          Les premières rencontres débutent
+          à <strong>18h00</strong>.
+        </li>
+
+        <li>
+          Les joueurs doivent être prêts à jouer
+          dès le début de la compétition.
+        </li>
+
+        <li>
+          L'organisation pourra exceptionnellement
+          tolérer un retard lorsqu'il est
+          <strong>justifié</strong>.
+        </li>
+
+        <li>
+          Le joueur concerné doit impérativement
+          prévenir l'organisation
+          <strong>en amont</strong>
+          dès qu'il a connaissance
+          d'une difficulté susceptible
+          de retarder son arrivée.
+        </li>
+
+        <li>
+          La prise en compte d'un retard reste
+          soumise aux possibilités sportives
+          et organisationnelles du tournoi.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        🎲 Tirage
+      </h2>
+
+      <ul>
+
+        <li>
+          Le tirage du tournoi est effectué
+          <strong>la veille de la compétition</strong>.
+        </li>
+
+        <li>
+          Il est prévu le
+          <strong>jeudi 1er octobre à 18h00</strong>.
+        </li>
+
+        <li>
+          Le tableau pourra être publié
+          sur le mini-site après sa réalisation.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        ⚖️ Organisation
+      </h2>
+
+      <ul>
+
+        <li>
+          Le juge-arbitre du tournoi est
+          <strong>Jules PARISIS</strong>.
+        </li>
+
+        <li>
+          Les rencontres sont disputées
+          en <strong>auto-arbitrage</strong>.
+        </li>
+
+        <li>
+          En cas de difficulté ou de désaccord,
+          les joueurs doivent faire appel
+          au juge-arbitre.
+        </li>
+
+        <li>
+          Les décisions nécessaires
+          au bon déroulement sportif
+          et matériel de la compétition
+          relèvent de l'organisation
+          et du juge-arbitre.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        🤝 Comportement
+      </h2>
+
+      <ul>
+
+        <li>
+          Le respect des partenaires,
+          adversaires, officiels,
+          bénévoles et spectateurs
+          est obligatoire.
+        </li>
+
+        <li>
+          Les joueurs doivent adopter
+          un comportement sportif
+          et respectueux pendant
+          l'ensemble de la compétition.
+        </li>
+
+        <li>
+          Le fair-play et le respect
+          des décisions sportives
+          sont attendus de tous.
+        </li>
+
+        <li>
+          Tout comportement contraire
+          aux règles applicables
+          à la compétition pourra faire
+          l'objet des mesures prévues
+          par la réglementation en vigueur.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        ⚠️ Responsabilité
+      </h2>
+
+      <ul>
+
+        <li>
+          Chaque participant est responsable
+          de ses effets personnels.
+        </li>
+
+        <li>
+          L'organisation ne peut être tenue
+          responsable de la perte,
+          du vol ou de la détérioration
+          des effets personnels.
+        </li>
+
+        <li>
+          Les participants doivent respecter
+          les installations et le matériel
+          mis à leur disposition.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        📷 Images
+      </h2>
+
+      <ul>
+
+        <li>
+          Des photos ou vidéos peuvent être
+          réalisées pendant le tournoi
+          pour la communication du
+          Tennis Club de Suzini
+          et de Jul'Yana Beach Tennis.
+        </li>
+
+        <li>
+          Toute personne ne souhaitant pas
+          apparaître sur ces supports
+          est invitée à le signaler
+          à l'organisation.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+  </div>
+
+
+  <!-- ======================================
+       FRANÇAIS — SPORTIF
+  ======================================= -->
+
+  <div
+    id="contentFrSport"
+    class="rule-content hidden"
+  >
+
+
+    <section
+      class="
+        rule-card
+        rule-card-highlight
+      "
+    >
+
+      <h2>
+        🏆 Format du tournoi
+      </h2>
+
+      <ul>
+
+        <li>
+          Le tournoi est organisé sous la forme
+          d'un <strong>tableau TMC</strong>.
+        </li>
+
+        <li>
+          Pour un tableau de 12 équipes,
+          les <strong>4 têtes de série</strong>
+          entrent directement
+          en quarts de finale.
+        </li>
+
+        <li>
+          Les <strong>8 autres équipes</strong>
+          disputent les huitièmes de finale.
+        </li>
+
+        <li>
+          Tous les
+          <strong>matchs de classement</strong>
+          sont joués afin d'établir
+          le classement final du tournoi.
+        </li>
+
+      </ul>
+
+
+      <div class="tmc-flow">
+
+        <div class="tmc-step">
+          8 équipes
+          commencent en huitièmes
+        </div>
+
+        <div class="tmc-arrow">
+          ↓
+        </div>
+
+        <div class="tmc-step orange">
+          4 têtes de série
+          entrent directement en quarts
+        </div>
+
+        <div class="tmc-arrow">
+          ↓
+        </div>
+
+        <div class="tmc-step black">
+          Tableau principal
+          + matchs de classement
+        </div>
+
+      </div>
+
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        🔄 Adaptation du tableau
+      </h2>
+
+      <ul>
+
+        <li>
+          Le format présenté correspond
+          à un tournoi composé de
+          <strong>12 équipes</strong>.
+        </li>
+
+        <li>
+          L'organisation se réserve
+          la possibilité d'adapter
+          le format sportif si le nombre
+          définitif d'équipes est différent.
+        </li>
+
+        <li>
+          Cette adaptation pourra notamment
+          modifier la structure du tableau,
+          les tours d'entrée ou
+          l'organisation des matchs
+          de classement.
+        </li>
+
+        <li>
+          L'objectif reste de garantir
+          un déroulement cohérent
+          et équitable de la compétition.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section
+      class="
+        rule-card
+        rule-card-blue
+      "
+    >
+
+      <h2>
+        🎾 Format des matchs
+      </h2>
+
+      <ul>
+
+        <li>
+          Les rencontres sont disputées
+          au <strong>format 3</strong>.
+        </li>
+
+        <li>
+          Les deux premiers sets se jouent
+          en <strong>4 jeux</strong>.
+        </li>
+
+        <li>
+          Le système
+          <strong>no-ad</strong>
+          est appliqué :
+          à 40A, un point décisif
+          détermine le jeu.
+        </li>
+
+        <li>
+          À <strong>4 jeux partout</strong>,
+          le set est décidé par un tie-break.
+        </li>
+
+        <li>
+          En cas d'égalité à un set partout,
+          le troisième set est remplacé par
+          un <strong>super tie-break</strong>.
+        </li>
+
+      </ul>
+
+
+      <div class="match-format">
+
+
+        <div class="match-format-box">
+
+          <strong>
+            4 jeux
+          </strong>
+
+          <span>
+            Sets 1 & 2
+          </span>
+
+        </div>
+
+
+        <div class="match-format-box">
+
+          <strong>
+            No-ad
+          </strong>
+
+          <span>
+            À 40A
+          </span>
+
+        </div>
+
+
+        <div class="match-format-box">
+
+          <strong>
+            STB
+          </strong>
+
+          <span>
+            3e set
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        📊 Classement FFT
+      </h2>
+
+      <ul>
+
+        <li>
+          Le classement pris en compte
+          pour l'organisation du tournoi
+          est le
+          <strong>classement FFT de septembre 2026</strong>.
+        </li>
+
+        <li>
+          Il est notamment utilisé
+          pour établir la hiérarchie
+          des équipes et les têtes de série.
+        </li>
+
+        <li>
+          Les résultats de la compétition
+          sont enregistrés dans le cadre
+          de l'homologation du tournoi.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        🎾 Balles et échauffement
+      </h2>
+
+      <ul>
+
+        <li>
+          Les <strong>balles sont fournies</strong>
+          par l'organisation.
+        </li>
+
+        <li>
+          La durée maximale d'échauffement
+          avant une rencontre est fixée
+          à <strong>5 minutes</strong>.
+        </li>
+
+        <li>
+          Les joueurs sont invités
+          à rejoindre rapidement leur terrain
+          dès l'appel de leur rencontre
+          afin de respecter la programmation.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        ⚖️ Auto-arbitrage
+      </h2>
+
+      <ul>
+
+        <li>
+          Les matchs sont disputés
+          en <strong>auto-arbitrage</strong>.
+        </li>
+
+        <li>
+          Les joueurs annoncent clairement
+          le score et veillent ensemble
+          au bon déroulement de la rencontre.
+        </li>
+
+        <li>
+          En cas de désaccord ne pouvant
+          être résolu entre les joueurs,
+          le juge-arbitre doit être appelé.
+        </li>
+
+        <li>
+          Le juge-arbitre du tournoi est
+          <strong>Jules PARISIS</strong>.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        📱 Programmation et résultats
+      </h2>
+
+      <ul>
+
+        <li>
+          Le tableau, la programmation
+          et les résultats peuvent être consultés
+          sur le mini-site du tournoi.
+        </li>
+
+        <li>
+          Les joueurs sont invités
+          à consulter régulièrement
+          la programmation afin de connaître
+          leur prochain match.
+        </li>
+
+        <li>
+          À la fin d'une rencontre,
+          le résultat doit être communiqué
+          à l'organisation.
+        </li>
+
+        <li>
+          Toute erreur constatée
+          dans un résultat doit être signalée
+          rapidement au juge-arbitre.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section
+      class="
+        rule-card
+        rule-card-highlight
+      "
+    >
+
+      <h2>
+        📘 Règlements applicables
+      </h2>
+
+      <ul>
+
+        <li>
+          Le tournoi étant homologué,
+          il est soumis aux
+          <strong>règlements applicables de la FFT</strong>
+          et aux dispositions relatives
+          aux compétitions de beach tennis.
+        </li>
+
+        <li>
+          Le présent document précise
+          l'organisation particulière
+          retenue pour ce BT250.
+        </li>
+
+        <li>
+          En cas de situation non prévue
+          par le présent règlement,
+          les règlements applicables
+          et la décision du juge-arbitre
+          s'appliquent.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+  </div>
+
+
+  <!-- ======================================
+       PORTUGUÊS — GERAL
+  ======================================= -->
+
+  <div
+    id="contentPtGeneral"
+    class="rule-content hidden"
+  >
+
+
+    <section
+      class="
+        rule-card
+        rule-card-highlight
+      "
+    >
+
+      <h2>
+        🎾 O torneio
+      </h2>
+
+      <ul>
+
+        <li>
+          O torneio é um
+          <strong>BT250 homologado pela FFT</strong>,
+          organizado pelo Tennis Club de Suzini.
+        </li>
+
+        <li>
+          A competição é disputada em
+          <strong>duplas mistas adultas</strong>.
+        </li>
+
+        <li>
+          O torneio acontece na
+          <strong>sexta-feira, 2 de outubro de 2026</strong>,
+          na Arena TC Suzini.
+        </li>
+
+        <li>
+          O início dos jogos está previsto
+          para as <strong>18h00</strong>.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        👥 Participação
+      </h2>
+
+      <ul>
+
+        <li>
+          A inscrição é feita
+          <strong>por dupla mista</strong>,
+          formada por uma jogadora
+          e um jogador.
+        </li>
+
+        <li>
+          Inicialmente, o torneio está limitado
+          a <strong>12 duplas</strong>.
+        </li>
+
+        <li>
+          As duplas inscritas além desse limite
+          entram na
+          <strong>lista de espera</strong>.
+        </li>
+
+        <li>
+          Dependendo do número de duplas
+          na lista de espera e das condições
+          de organização, o número de duplas
+          participantes poderá ser aumentado.
+        </li>
+
+        <li>
+          Em caso de desistência,
+          a primeira dupla da lista de espera
+          entra no quadro principal.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        📝 Inscrição
+      </h2>
+
+      <ul>
+
+        <li>
+          A inscrição custa
+          <strong>10 € por jogador</strong>,
+          ou <strong>20 € por dupla</strong>.
+        </li>
+
+        <li>
+          Uma inscrição validada
+          é considerada definitiva.
+        </li>
+
+        <li>
+          Em caso de desistência
+          sem justificativa,
+          o valor da inscrição
+          <strong>não será reembolsado</strong>.
+        </li>
+
+        <li>
+          Qualquer dificuldade
+          ou impossibilidade de participar
+          deve ser comunicada à organização
+          o mais rapidamente possível.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section
+      class="
+        rule-card
+        rule-card-highlight
+      "
+    >
+
+      <h2>
+        ⏱️ Convocação
+      </h2>
+
+      <ul>
+
+        <li>
+          Todas as duplas estão convocadas
+          para as <strong>17h45</strong>.
+        </li>
+
+        <li>
+          Os primeiros jogos começam
+          às <strong>18h00</strong>.
+        </li>
+
+        <li>
+          Excepcionalmente, a organização
+          poderá aceitar um atraso
+          quando houver motivo justificado.
+        </li>
+
+        <li>
+          Os jogadores devem avisar
+          a organização
+          <strong>com antecedência</strong>
+          assim que souberem de qualquer
+          dificuldade que possa atrasar
+          sua chegada.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        🎲 Sorteio
+      </h2>
+
+      <ul>
+
+        <li>
+          O sorteio será realizado
+          <strong>na véspera do torneio</strong>.
+        </li>
+
+        <li>
+          Está previsto para
+          <strong>quinta-feira, 1º de outubro,
+          às 18h00</strong>.
+        </li>
+
+        <li>
+          O quadro poderá ser publicado
+          no mini-site após o sorteio.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        ⚖️ Organização
+      </h2>
+
+      <ul>
+
+        <li>
+          O árbitro responsável pelo torneio é
+          <strong>Jules PARISIS</strong>.
+        </li>
+
+        <li>
+          Os jogos são disputados
+          em <strong>autoarbitragem</strong>.
+        </li>
+
+        <li>
+          Em caso de dificuldade
+          ou desacordo, os jogadores
+          devem chamar o árbitro responsável.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        🤝 Comportamento
+      </h2>
+
+      <ul>
+
+        <li>
+          O respeito aos parceiros,
+          adversários, oficiais,
+          voluntários e espectadores
+          é obrigatório.
+        </li>
+
+        <li>
+          Todos os participantes devem manter
+          uma atitude esportiva e respeitosa
+          durante toda a competição.
+        </li>
+
+        <li>
+          Fair-play e respeito às decisões
+          esportivas são essenciais.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        ⚠️ Responsabilidade
+      </h2>
+
+      <ul>
+
+        <li>
+          Cada participante é responsável
+          por seus objetos pessoais.
+        </li>
+
+        <li>
+          A organização não se responsabiliza
+          por perda, roubo ou danos
+          aos objetos pessoais.
+        </li>
+
+        <li>
+          Os participantes devem respeitar
+          as instalações e os equipamentos.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        📷 Imagens
+      </h2>
+
+      <ul>
+
+        <li>
+          Fotos e vídeos poderão ser realizados
+          durante o torneio para a comunicação
+          do Tennis Club de Suzini
+          e da Jul'Yana Beach Tennis.
+        </li>
+
+        <li>
+          Quem não desejar aparecer
+          nesses conteúdos deve informar
+          a organização.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+  </div>
+
+
+  <!-- ======================================
+       PORTUGUÊS — ESPORTIVO
+  ======================================= -->
+
+  <div
+    id="contentPtSport"
+    class="rule-content hidden"
+  >
+
+
+    <section
+      class="
+        rule-card
+        rule-card-highlight
+      "
+    >
+
+      <h2>
+        🏆 Formato do torneio
+      </h2>
+
+      <ul>
+
+        <li>
+          O torneio será organizado
+          em formato de
+          <strong>quadro TMC</strong>.
+        </li>
+
+        <li>
+          Em um quadro de 12 duplas,
+          as <strong>4 cabeças de chave</strong>
+          entram diretamente
+          nas quartas de final.
+        </li>
+
+        <li>
+          As <strong>8 outras duplas</strong>
+          disputam as oitavas de final.
+        </li>
+
+        <li>
+          Todos os
+          <strong>jogos de classificação</strong>
+          serão disputados para estabelecer
+          a classificação final do torneio.
+        </li>
+
+      </ul>
+
+
+      <div class="tmc-flow">
+
+        <div class="tmc-step">
+          8 duplas começam
+          nas oitavas de final
+        </div>
+
+        <div class="tmc-arrow">
+          ↓
+        </div>
+
+        <div class="tmc-step orange">
+          4 cabeças de chave
+          entram nas quartas
+        </div>
+
+        <div class="tmc-arrow">
+          ↓
+        </div>
+
+        <div class="tmc-step black">
+          Quadro principal
+          + jogos de classificação
+        </div>
+
+      </div>
+
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        🔄 Adaptação do quadro
+      </h2>
+
+      <ul>
+
+        <li>
+          O formato apresentado corresponde
+          a um torneio com
+          <strong>12 duplas</strong>.
+        </li>
+
+        <li>
+          A organização poderá adaptar
+          o formato esportivo se o número
+          definitivo de duplas for diferente.
+        </li>
+
+        <li>
+          A estrutura do quadro,
+          as rodadas de entrada
+          e os jogos de classificação
+          poderão ser ajustados.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section
+      class="
+        rule-card
+        rule-card-blue
+      "
+    >
+
+      <h2>
+        🎾 Formato dos jogos
+      </h2>
+
+      <ul>
+
+        <li>
+          As partidas serão disputadas
+          no <strong>formato 3</strong>.
+        </li>
+
+        <li>
+          Os dois primeiros sets
+          são disputados em
+          <strong>4 games</strong>.
+        </li>
+
+        <li>
+          É utilizado o sistema
+          <strong>no-ad</strong>:
+          em 40 iguais, um ponto decisivo
+          define o game.
+        </li>
+
+        <li>
+          Em <strong>4 games a 4</strong>,
+          o set é decidido em tie-break.
+        </li>
+
+        <li>
+          Em caso de um set para cada dupla,
+          o terceiro set é substituído
+          por um <strong>super tie-break</strong>.
+        </li>
+
+      </ul>
+
+
+      <div class="match-format">
+
+
+        <div class="match-format-box">
+
+          <strong>
+            4 games
+          </strong>
+
+          <span>
+            Sets 1 e 2
+          </span>
+
+        </div>
+
+
+        <div class="match-format-box">
+
+          <strong>
+            No-ad
+          </strong>
+
+          <span>
+            40 iguais
+          </span>
+
+        </div>
+
+
+        <div class="match-format-box">
+
+          <strong>
+            STB
+          </strong>
+
+          <span>
+            3º set
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        📊 Ranking FFT
+      </h2>
+
+      <ul>
+
+        <li>
+          O ranking considerado
+          para a organização do torneio
+          é o
+          <strong>ranking FFT de setembro de 2026</strong>.
+        </li>
+
+        <li>
+          Ele é utilizado especialmente
+          para estabelecer a hierarquia
+          das duplas e as cabeças de chave.
+        </li>
+
+        <li>
+          Os resultados serão registrados
+          no âmbito da homologação
+          da competição.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        🎾 Bolas e aquecimento
+      </h2>
+
+      <ul>
+
+        <li>
+          As <strong>bolas são fornecidas</strong>
+          pela organização.
+        </li>
+
+        <li>
+          O aquecimento antes de cada partida
+          é limitado a
+          <strong>5 minutos</strong>.
+        </li>
+
+        <li>
+          Os jogadores devem chegar rapidamente
+          à quadra quando sua partida
+          for chamada.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        ⚖️ Autoarbitragem
+      </h2>
+
+      <ul>
+
+        <li>
+          As partidas são disputadas
+          em <strong>autoarbitragem</strong>.
+        </li>
+
+        <li>
+          Os jogadores devem anunciar
+          claramente o placar.
+        </li>
+
+        <li>
+          Em caso de desacordo
+          que não possa ser resolvido
+          entre os jogadores,
+          o árbitro responsável deve ser chamado.
+        </li>
+
+        <li>
+          O árbitro responsável é
+          <strong>Jules PARISIS</strong>.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section class="rule-card">
+
+      <h2>
+        📱 Programação e resultados
+      </h2>
+
+      <ul>
+
+        <li>
+          O quadro, a programação
+          e os resultados poderão ser consultados
+          no mini-site do torneio.
+        </li>
+
+        <li>
+          Os jogadores devem consultar
+          regularmente a programação
+          para conhecer sua próxima partida.
+        </li>
+
+        <li>
+          Ao final de cada partida,
+          o resultado deve ser comunicado
+          à organização.
+        </li>
+
+        <li>
+          Qualquer erro deve ser comunicado
+          rapidamente ao árbitro responsável.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section
+      class="
+        rule-card
+        rule-card-highlight
+      "
+    >
+
+      <h2>
+        📘 Regulamentos aplicáveis
+      </h2>
+
+      <ul>
+
+        <li>
+          Por ser um torneio homologado,
+          a competição está sujeita aos
+          <strong>regulamentos aplicáveis da FFT</strong>
+          e às regras das competições
+          de beach tennis.
+        </li>
+
+        <li>
+          Este documento especifica
+          a organização particular
+          adotada para este BT250.
+        </li>
+
+        <li>
+          Em qualquer situação não prevista
+          neste regulamento,
+          aplicam-se os regulamentos vigentes
+          e a decisão do árbitro responsável.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+  </div>
+
+
+  <!-- ======================================
+       RETOUR INFOS
+  ======================================= -->
+
+  <a
+    href="infos.html"
+    class="rules-back"
+  >
+    ← Retour aux infos
+  </a>
+
+
+</main>
+
+
+<script
+  type="module"
+  src="assets/js/header-tournament.js"
+></script>
+
+
+<script
+  type="module"
+  src="assets/js/maintenance-guard.js"
+></script>
+
+
+<script>
+
+  /* ========================================
+     ÉLÉMENTS
+  ======================================== */
+
+  const btnFr =
+    document.getElementById(
+      "btnFr"
+    );
+
+
+  const btnPt =
+    document.getElementById(
+      "btnPt"
+    );
+
+
+  const btnGeneral =
+    document.getElementById(
+      "btnGeneral"
+    );
+
+
+  const btnSport =
+    document.getElementById(
+      "btnSport"
+    );
+
+
+  /* ========================================
+     ÉTAT
+  ======================================== */
+
+  let lang =
+    "fr";
+
+
+  let tab =
+    "general";
+
+
+  /* ========================================
+     AFFICHAGE
+  ======================================== */
+
+  function refreshRules(){
+
+    btnFr.setAttribute(
+      "aria-selected",
+      lang === "fr"
+    );
+
+
+    btnPt.setAttribute(
+      "aria-selected",
+      lang === "pt"
+    );
+
+
+    btnGeneral.setAttribute(
+      "aria-selected",
+      tab === "general"
+    );
+
+
+    btnSport.setAttribute(
+      "aria-selected",
+      tab === "sport"
+    );
+
+
+    document
+      .querySelectorAll(
+        ".rule-content"
+      )
+      .forEach(
+        element => {
+
+          element.classList.add(
+            "hidden"
+          );
+
+        }
+      );
+
+
+    let contentId;
+
+
+    if(
+      lang === "fr" &&
+      tab === "general"
+    ){
+
+      contentId =
+        "contentFrGeneral";
+
+    }
+
+
+    else if(
+      lang === "fr" &&
+      tab === "sport"
+    ){
+
+      contentId =
+        "contentFrSport";
+
+    }
+
+
+    else if(
+      lang === "pt" &&
+      tab === "general"
+    ){
+
+      contentId =
+        "contentPtGeneral";
+
+    }
+
+
+    else{
+
+      contentId =
+        "contentPtSport";
+
+    }
+
+
+    document
+      .getElementById(
+        contentId
+      )
+      .classList.remove(
+        "hidden"
+      );
+
+  }
+
+
+  /* ========================================
+     ÉVÉNEMENTS
+  ======================================== */
+
+  btnFr.addEventListener(
+    "click",
+    () => {
+
+      lang =
+        "fr";
+
+      refreshRules();
+
+    }
+  );
+
+
+  btnPt.addEventListener(
+    "click",
+    () => {
+
+      lang =
+        "pt";
+
+      refreshRules();
+
+    }
+  );
+
+
+  btnGeneral.addEventListener(
+    "click",
+    () => {
+
+      tab =
+        "general";
+
+      refreshRules();
+
+    }
+  );
+
+
+  btnSport.addEventListener(
+    "click",
+    () => {
+
+      tab =
+        "sport";
+
+      refreshRules();
+
+    }
+  );
+
+
+  /* ========================================
+     INITIALISATION
+  ======================================== */
+
+  refreshRules();
+
+</script>
+
+
+</body>
+
+</html>
