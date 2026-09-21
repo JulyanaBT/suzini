@@ -38,105 +38,6 @@
 
 
     /* ========================================
-       MINI HERO
-    ======================================== */
-
-    .signup-hero{
-      margin-bottom:8px;
-
-      padding:16px 18px;
-
-      border-radius:18px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #ff4b27,
-          #ff714f
-        );
-
-      color:white;
-
-      box-shadow:
-        var(--shadow);
-    }
-
-
-    .signup-hero-top{
-      display:flex;
-
-      align-items:center;
-
-      justify-content:space-between;
-
-      gap:12px;
-
-      margin-bottom:8px;
-    }
-
-
-    .signup-kicker{
-      font-size:9px;
-
-      font-weight:900;
-
-      letter-spacing:1.3px;
-
-      text-transform:uppercase;
-
-      opacity:.9;
-    }
-
-
-    .signup-badge{
-      flex:0 0 auto;
-
-      padding:5px 8px;
-
-      border-radius:999px;
-
-      background:
-        rgba(255,255,255,.18);
-
-      font-size:9px;
-
-      font-weight:900;
-
-      text-transform:uppercase;
-    }
-
-
-    .signup-hero h1{
-      margin:0;
-
-      font-size:31px;
-
-      line-height:1;
-
-      font-weight:1000;
-
-      letter-spacing:-1.1px;
-
-      text-transform:uppercase;
-    }
-
-
-    .signup-hero p{
-      margin:8px 0 0;
-
-      max-width:440px;
-
-      font-size:12px;
-
-      line-height:1.35;
-
-      font-weight:650;
-
-      opacity:.95;
-    }
-
-
-    /* ========================================
        SOUS-ONGLETS PRINCIPAUX
     ======================================== */
 
@@ -189,7 +90,6 @@
 
     .signup-tab.active{
       background:#101010;
-
       color:white;
     }
 
@@ -308,14 +208,12 @@
 
     .registration-badge.open{
       background:#ddf7e7;
-
       color:#126a35;
     }
 
 
     .registration-badge.closed{
       background:#ffe6df;
-
       color:#b3290e;
     }
 
@@ -375,7 +273,6 @@
 
     .players{
       display:grid;
-
       gap:8px;
     }
 
@@ -405,7 +302,6 @@
 
     .player-symbol{
       width:31px;
-
       height:31px;
 
       flex:0 0 31px;
@@ -461,7 +357,6 @@
 
     .form-box{
       display:grid;
-
       gap:11px;
     }
 
@@ -535,7 +430,6 @@
 
     .field textarea{
       min-height:105px;
-
       resize:vertical;
     }
 
@@ -545,7 +439,6 @@
     .field select:focus,
     .filter-select:focus{
       border-color:var(--orange);
-
       background:white;
     }
 
@@ -602,7 +495,6 @@
 
     .btn-submit{
       background:var(--orange);
-
       font-size:15px;
     }
 
@@ -624,7 +516,6 @@
 
     .action-btn.soft{
       background:#eeeeee;
-
       color:#333;
     }
 
@@ -638,7 +529,6 @@
     .btn-submit:disabled,
     .action-btn:disabled{
       opacity:.45;
-
       cursor:not-allowed;
     }
 
@@ -779,7 +669,6 @@
 
     .search-list{
       display:grid;
-
       gap:8px;
     }
 
@@ -822,7 +711,6 @@
 
     .sex-pill{
       width:30px;
-
       height:30px;
 
       flex:0 0 30px;
@@ -924,6 +812,32 @@
       gap:7px;
 
       margin-top:10px;
+    }
+
+
+    /* ========================================
+       REMERCIEMENT
+    ======================================== */
+
+    .support-note{
+      margin:12px 0 4px;
+
+      color:#999;
+
+      font-size:9px;
+
+      font-style:italic;
+
+      font-weight:600;
+
+      text-align:center;
+    }
+
+
+    .support-note .heart{
+      color:#e53935;
+
+      font-style:normal;
     }
 
 
@@ -1036,42 +950,6 @@
   ======================================= -->
 
   <div id="normalPage">
-
-
-    <!-- ====================================
-         MINI HERO
-    ===================================== -->
-
-    <section class="signup-hero">
-
-      <div class="signup-hero-top">
-
-        <span class="signup-kicker">
-          Les vendredis du BT Suzini
-        </span>
-
-        <span
-          id="heroTeamCount"
-          class="signup-badge"
-        >
-          0 / 12 équipes
-        </span>
-
-      </div>
-
-
-      <h1>
-        Inscription
-      </h1>
-
-
-      <p>
-        Inscris ton équipe mixte pour le BT250
-        du vendredi 2 octobre.
-      </p>
-
-    </section>
-
 
 
     <!-- ====================================
@@ -1642,6 +1520,17 @@
   </div>
 
 
+  <!-- ======================================
+       REMERCIEMENT
+  ======================================= -->
+
+  <div class="support-note">
+    Merci au support de I
+    <span class="heart">♥</span>
+    Marine
+  </div>
+
+
 </main>
 
 
@@ -1898,12 +1787,6 @@
     );
 
 
-  const heroTeamCount =
-    document.getElementById(
-      "heroTeamCount"
-    );
-
-
   /* ========================================
      ÉTAT LOCAL
   ======================================== */
@@ -2074,10 +1957,6 @@
   ======================================== */
 
   function updateStateUi(){
-
-    heroTeamCount.textContent =
-      `${currentTeamCount} / ${MAX_TEAMS} équipes`;
-
 
     const closed =
       !isOpen();
