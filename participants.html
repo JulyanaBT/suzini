@@ -276,6 +276,17 @@
        STATUT
     ======================================== */
 
+    .team-badges{
+      flex:0 0 auto;
+
+      display:flex;
+
+      align-items:center;
+
+      gap:4px;
+    }
+
+
     .team-status{
       flex:0 0 auto;
 
@@ -306,6 +317,53 @@
       background:#e4f7fc;
 
       color:#155f75;
+    }
+
+
+    /* ========================================
+       PAIEMENT
+    ======================================== */
+
+    .payment-status{
+      width:22px;
+      height:22px;
+
+      flex:0 0 22px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      border-radius:999px;
+
+      font-size:11px;
+
+      line-height:1;
+
+      font-weight:1000;
+    }
+
+
+    .payment-status.paid{
+      background:#ddf7e7;
+
+      color:#16723c;
+    }
+
+
+    .payment-status.partial{
+      background:#fff3cd;
+
+      color:#8a6500;
+    }
+
+
+    .payment-status.unpaid{
+      background:#ffe3de;
+
+      color:#a52d18;
     }
 
 
@@ -1030,6 +1088,83 @@
 
 
   /* ========================================
+     PAIEMENT
+  ======================================== */
+
+  function isPlayerPaid(player){
+
+    const payment =
+      String(
+        player?.payment || ""
+      )
+      .trim()
+      .toLowerCase();
+
+
+    return (
+      payment === "cash" ||
+      payment === "especes" ||
+      payment === "cb"
+    );
+
+  }
+
+
+  function paymentStatus(
+    woman,
+    man
+  ){
+
+    const paidCount =
+
+      (
+        isPlayerPaid(woman)
+          ? 1
+          : 0
+      )
+
+      +
+
+      (
+        isPlayerPaid(man)
+          ? 1
+          : 0
+      );
+
+
+    if(
+      paidCount === 2
+    ){
+
+      return {
+        css:"paid",
+        title:"Équipe entièrement payée"
+      };
+
+    }
+
+
+    if(
+      paidCount === 1
+    ){
+
+      return {
+        css:"partial",
+        title:"1 joueur sur 2 a payé"
+      };
+
+    }
+
+
+    return {
+      css:"unpaid",
+      title:"Aucun joueur n'a payé"
+    };
+
+  }
+
+
+  /* ========================================
      CARTE ÉQUIPE
   ======================================== */
 
@@ -1081,6 +1216,13 @@
       );
 
 
+    const payment =
+      paymentStatus(
+        woman,
+        man
+      );
+
+
     const rankingHtml =
       rank === null
 
@@ -1127,11 +1269,24 @@
           </div>
 
 
-          <span
-            class="team-status ${status.css}"
-          >
-            ${status.label}
-          </span>
+          <div class="team-badges">
+
+            <span
+              class="team-status ${status.css}"
+            >
+              ${status.label}
+            </span>
+
+
+            <span
+              class="payment-status ${payment.css}"
+              title="${esc(payment.title)}"
+              aria-label="${esc(payment.title)}"
+            >
+              €
+            </span>
+
+          </div>
 
 
         </div>
