@@ -45,7 +45,7 @@
       display:grid;
 
       grid-template-columns:
-        repeat(2,minmax(0,1fr));
+        repeat(3,minmax(0,1fr));
 
       gap:6px;
 
@@ -63,9 +63,11 @@
 
 
     .signup-tab{
+      min-width:0;
+
       min-height:43px;
 
-      padding:8px 10px;
+      padding:8px 5px;
 
       border:0;
 
@@ -77,11 +79,13 @@
 
       font:inherit;
 
-      font-size:11px;
+      font-size:10px;
 
       font-weight:950;
 
       cursor:pointer;
+
+      white-space:nowrap;
 
       -webkit-tap-highlight-color:
         transparent;
@@ -816,6 +820,164 @@
 
 
     /* ========================================
+       PAIEMENT
+    ======================================== */
+
+    .payment-panel{
+      padding:22px 17px;
+
+      border-radius:18px;
+
+      background:white;
+
+      text-align:center;
+
+      box-shadow:var(--shadow);
+    }
+
+
+    .payment-icon{
+      display:flex;
+
+      align-items:center;
+      justify-content:center;
+
+      width:58px;
+      height:58px;
+
+      margin:
+        0 auto 12px;
+
+      border-radius:18px;
+
+      background:#fff0ec;
+
+      font-size:30px;
+    }
+
+
+    .payment-panel small{
+      display:block;
+
+      margin-bottom:4px;
+
+      color:var(--orange);
+
+      font-size:9px;
+
+      font-weight:900;
+
+      letter-spacing:1.2px;
+
+      text-transform:uppercase;
+    }
+
+
+    .payment-panel h2{
+      margin:0;
+
+      color:#111;
+
+      font-size:23px;
+
+      line-height:1.05;
+
+      font-weight:1000;
+    }
+
+
+    .payment-price{
+      margin-top:12px;
+
+      color:var(--orange);
+
+      font-size:38px;
+
+      line-height:1;
+
+      font-weight:1000;
+    }
+
+
+    .payment-player{
+      margin-top:2px;
+
+      color:#777;
+
+      font-size:10px;
+
+      font-weight:850;
+
+      text-transform:uppercase;
+    }
+
+
+    .payment-panel p{
+      max-width:400px;
+
+      margin:
+        13px auto 0;
+
+      color:#70757a;
+
+      font-size:12px;
+
+      line-height:1.45;
+
+      font-weight:650;
+    }
+
+
+    .payment-button{
+      display:flex;
+
+      align-items:center;
+      justify-content:center;
+
+      width:100%;
+
+      min-height:51px;
+
+      box-sizing:border-box;
+
+      margin-top:18px;
+
+      padding:12px;
+
+      border-radius:14px;
+
+      background:#101010;
+
+      color:white;
+
+      font-size:15px;
+
+      font-weight:950;
+
+      text-decoration:none;
+
+      -webkit-tap-highlight-color:
+        transparent;
+    }
+
+
+    .payment-button:active{
+      transform:scale(.985);
+    }
+
+
+    .payment-note{
+      margin-top:10px;
+
+      color:#999;
+
+      font-size:9px;
+
+      line-height:1.35;
+    }
+
+
+    /* ========================================
        PETITS MOBILES
     ======================================== */
 
@@ -825,6 +987,13 @@
       .profile-actions,
       .invite-actions{
         grid-template-columns:1fr;
+      }
+
+
+      .signup-tab{
+        padding-left:2px;
+        padding-right:2px;
+        font-size:9px;
       }
 
     }
@@ -932,7 +1101,7 @@
 
     <nav
       class="signup-subnav"
-      aria-label="Mode d'inscription"
+      aria-label="Inscription, partenaire et paiement"
     >
 
       <button
@@ -950,6 +1119,15 @@
         class="signup-tab"
       >
         🔎 Partenaire
+      </button>
+
+
+      <button
+        id="tabPayment"
+        type="button"
+        class="signup-tab"
+      >
+        💳 Paiement
       </button>
 
     </nav>
@@ -1491,6 +1669,73 @@
     </div>
 
 
+
+    <!-- ====================================
+         PAIEMENT
+    ===================================== -->
+
+    <div
+      id="panelPayment"
+      class="signup-tab-panel"
+      hidden
+    >
+
+      <section class="payment-panel">
+
+
+        <div class="payment-icon">
+          💳
+        </div>
+
+
+        <small>
+          BT250 · Double Mixte
+        </small>
+
+
+        <h2>
+          Paiement en ligne
+        </h2>
+
+
+        <div class="payment-price">
+          10 €
+        </div>
+
+
+        <div class="payment-player">
+          par joueur
+        </div>
+
+
+        <p>
+          Le paiement s'effectue directement
+          sur la boutique en ligne
+          du Tennis Club de Suzini.
+        </p>
+
+
+        <a
+          class="payment-button"
+          href="https://tennis-club-de-suzini.sumupstore.com/product/bt-americano-inscription"
+          target="_blank"
+          rel="noopener"
+        >
+          💳 Payer 10 €
+        </a>
+
+
+        <div class="payment-note">
+          Le paiement s'ouvre sur le site sécurisé
+          du Tennis Club de Suzini.
+        </div>
+
+
+      </section>
+
+    </div>
+
+
   </div>
 
 
@@ -1665,6 +1910,12 @@
     );
 
 
+  const tabPayment =
+    document.getElementById(
+      "tabPayment"
+    );
+
+
   const panelRegister =
     document.getElementById(
       "panelRegister"
@@ -1674,6 +1925,12 @@
   const panelPartner =
     document.getElementById(
       "panelPartner"
+    );
+
+
+  const panelPayment =
+    document.getElementById(
+      "panelPayment"
     );
 
 
@@ -1853,13 +2110,21 @@
 
   function setTab(tab){
 
+    const register =
+      tab === "register";
+
+
     const partner =
       tab === "partner";
 
 
+    const payment =
+      tab === "payment";
+
+
     tabRegister.classList.toggle(
       "active",
-      !partner
+      register
     );
 
 
@@ -1869,12 +2134,22 @@
     );
 
 
+    tabPayment.classList.toggle(
+      "active",
+      payment
+    );
+
+
     panelRegister.hidden =
-      partner;
+      !register;
 
 
     panelPartner.hidden =
       !partner;
+
+
+    panelPayment.hidden =
+      !payment;
 
   }
 
@@ -3273,6 +3548,18 @@
 
       setTab(
         "partner"
+      );
+
+    }
+  );
+
+
+  tabPayment.addEventListener(
+    "click",
+    () => {
+
+      setTab(
+        "payment"
       );
 
     }
