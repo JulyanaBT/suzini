@@ -45,91 +45,6 @@
 
 
     /* ========================================
-       HERO
-    ======================================== */
-
-    .teams-admin-head{
-      padding:15px 16px;
-
-      border-radius:18px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #111,
-          #292929
-        );
-
-      color:white;
-    }
-
-
-    .teams-admin-head-top{
-      display:flex;
-
-      align-items:flex-start;
-      justify-content:space-between;
-
-      gap:10px;
-    }
-
-
-    .teams-admin-kicker{
-      color:var(--orange);
-
-      font-size:9px;
-
-      font-weight:950;
-
-      letter-spacing:1.2px;
-
-      text-transform:uppercase;
-    }
-
-
-    .teams-admin-head h1{
-      margin:5px 0 0;
-
-      font-size:28px;
-
-      line-height:1;
-
-      font-weight:1000;
-
-      letter-spacing:-1px;
-    }
-
-
-    .teams-admin-head p{
-      margin:6px 0 0;
-
-      color:#aaa;
-
-      font-size:10px;
-
-      line-height:1.35;
-    }
-
-
-    .live-badge{
-      flex:0 0 auto;
-
-      padding:5px 8px;
-
-      border-radius:999px;
-
-      background:
-        rgba(37,184,100,.16);
-
-      color:#75e9a4;
-
-      font-size:9px;
-
-      font-weight:950;
-    }
-
-
-    /* ========================================
        COMPTEURS
     ======================================== */
 
@@ -140,8 +55,6 @@
         repeat(4,minmax(0,1fr));
 
       gap:6px;
-
-      margin-top:8px;
     }
 
 
@@ -373,8 +286,6 @@
 
     .team-admin-card.deleted{
       border-left-color:#999;
-
-      opacity:.58;
     }
 
 
@@ -637,6 +548,12 @@
     }
 
 
+    .quick-btn.red{
+      background:#ffe3de;
+      color:#a52d18;
+    }
+
+
     .quick-btn:disabled{
       opacity:.45;
     }
@@ -731,6 +648,127 @@
 
 
     /* ========================================
+       CORBEILLE
+    ======================================== */
+
+    .trash-section{
+      margin-top:18px;
+
+      border-radius:17px;
+
+      background:#fff;
+
+      box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.06);
+
+      overflow:hidden;
+    }
+
+
+    .trash-section > summary{
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      gap:10px;
+
+      padding:13px 14px;
+
+      cursor:pointer;
+
+      list-style:none;
+
+      user-select:none;
+    }
+
+
+    .trash-section > summary::-webkit-details-marker{
+      display:none;
+    }
+
+
+    .trash-title{
+      display:flex;
+
+      align-items:center;
+
+      gap:7px;
+
+      color:#555;
+
+      font-size:13px;
+
+      font-weight:1000;
+    }
+
+
+    .trash-count{
+      flex:0 0 auto;
+
+      min-width:24px;
+
+      padding:4px 7px;
+
+      border-radius:999px;
+
+      background:#ececec;
+
+      color:#666;
+
+      font-size:8px;
+
+      font-weight:950;
+
+      text-align:center;
+    }
+
+
+    .trash-section[open] > summary{
+      border-bottom:
+        1px solid #eee;
+    }
+
+
+    .trash-content{
+      padding:8px;
+    }
+
+
+    .trash-list{
+      display:grid;
+
+      gap:7px;
+    }
+
+
+    .trash-empty{
+      padding:18px 12px;
+
+      color:#999;
+
+      font-size:10px;
+
+      font-weight:800;
+
+      text-align:center;
+    }
+
+
+    .trash-actions{
+      display:grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:5px;
+
+      margin-top:8px;
+    }
+
+
+    /* ========================================
        VIDE / ERREUR
     ======================================== */
 
@@ -776,7 +814,8 @@
 
     @media(min-width:700px){
 
-      .teams-list{
+      .teams-list,
+      .trash-list{
         grid-template-columns:
           repeat(2,minmax(0,1fr));
       }
@@ -802,47 +841,6 @@
 
 
 <main class="container teams-admin-page">
-
-
-  <!-- ======================================
-       HERO
-  ======================================= -->
-
-  <section class="teams-admin-head">
-
-
-    <div class="teams-admin-head-top">
-
-
-      <div>
-
-        <div class="teams-admin-kicker">
-          Gestion en direct
-        </div>
-
-
-        <h1>
-          Équipes
-        </h1>
-
-
-        <p>
-          Gestion des équipes du BT250 Double Mixte.
-        </p>
-
-      </div>
-
-
-      <div class="live-badge">
-        ● LIVE
-      </div>
-
-
-    </div>
-
-
-  </section>
-
 
 
   <!-- ======================================
@@ -976,7 +974,7 @@
 
 
   <!-- ======================================
-       LISTE
+       LISTE ACTIVE
   ======================================= -->
 
   <section
@@ -991,6 +989,50 @@
   </section>
 
 
+
+  <!-- ======================================
+       CORBEILLE
+  ======================================= -->
+
+  <details
+    id="trashSection"
+    class="trash-section"
+  >
+
+    <summary>
+
+      <span class="trash-title">
+        🗑️ Corbeille
+      </span>
+
+      <span
+        id="trashCount"
+        class="trash-count"
+      >
+        0
+      </span>
+
+    </summary>
+
+
+    <div class="trash-content">
+
+      <div
+        id="trashList"
+        class="trash-list"
+      >
+
+        <div class="trash-empty">
+          La corbeille est vide.
+        </div>
+
+      </div>
+
+    </div>
+
+  </details>
+
+
 </main>
 
 
@@ -1002,6 +1044,17 @@
 <script
   type="module"
   src="../assets/js/admin-header.js"
+></script>
+
+
+
+<!-- ======================================
+     I ♥ MARINE
+======================================= -->
+
+<script
+  type="module"
+  src="../assets/js/support-note.js"
 ></script>
 
 
@@ -1044,6 +1097,7 @@
     doc,
     onSnapshot,
     updateDoc,
+    deleteDoc,
     query,
     orderBy,
     serverTimestamp
@@ -1108,6 +1162,18 @@
   const cardsList =
     document.getElementById(
       "cardsList"
+    );
+
+
+  const trashList =
+    document.getElementById(
+      "trashList"
+    );
+
+
+  const trashCount =
+    document.getElementById(
+      "trashCount"
     );
 
 
@@ -1380,7 +1446,8 @@
 
   function teamCard(
     row,
-    index
+    index,
+    trash = false
   ){
 
     const woman =
@@ -1426,12 +1493,6 @@
       );
 
 
-    const deleted =
-      isDeleted(
-        row
-      );
-
-
     return `
 
       <article
@@ -1443,8 +1504,6 @@
       >
 
 
-        <!-- TÊTE -->
-
         <div class="team-card-head">
 
 
@@ -1453,7 +1512,11 @@
 
             <div class="team-number">
 
-              Équipe ${index + 1}
+              ${
+                trash
+                  ? "Corbeille"
+                  : `Équipe ${index + 1}`
+              }
 
               ${
                 teamRank !== null
@@ -1496,8 +1559,6 @@
         </div>
 
 
-
-        <!-- JOUEURS -->
 
         <div class="team-players">
 
@@ -1579,13 +1640,12 @@
 
 
         ${
-          deleted
+          trash
 
             ? `
 
-                <!-- ÉQUIPE SUPPRIMÉE -->
+                <div class="trash-actions">
 
-                <div class="quick-actions">
 
                   <button
                     class="quick-btn green"
@@ -1593,16 +1653,25 @@
                     data-id="${esc(row.id)}"
                     type="button"
                   >
-                    ↩️ Restaurer l'équipe
+                    ↩️ Restaurer
                   </button>
+
+
+                  <button
+                    class="quick-btn red"
+                    data-action="destroy"
+                    data-id="${esc(row.id)}"
+                    type="button"
+                  >
+                    🗑️ Supprimer définitivement
+                  </button>
+
 
                 </div>
 
               `
 
             : `
-
-                <!-- ACTIONS RAPIDES -->
 
                 <div class="quick-actions">
 
@@ -1642,8 +1711,6 @@
                 </div>
 
 
-
-                <!-- PLUS D'ACTIONS -->
 
                 <details class="team-more">
 
@@ -1696,7 +1763,7 @@
                       data-id="${esc(row.id)}"
                       type="button"
                     >
-                      🗑️ Supprimer
+                      🗑️ Corbeille
                     </button>
 
 
@@ -1720,29 +1787,15 @@
      TRI
   ======================================== */
 
-  function sortedRows(){
+  function sortRows(list){
 
     return [
-      ...rows
+      ...list
     ].sort(
       (a,b) => {
 
 
-        /*
-         * ORDRE :
-         *
-         * 1. Liste principale
-         * 2. Liste d'attente
-         * 3. STBY
-         * 4. Supprimées
-         */
-
         function priority(row){
-
-          if(isDeleted(row)){
-            return 4;
-          }
-
 
           if(isStby(row)){
             return 3;
@@ -1770,11 +1823,6 @@
 
         }
 
-
-        /*
-         * Dans un même groupe :
-         * meilleur rang équipe en premier.
-         */
 
         const rankA =
           rankingValue(a);
@@ -1815,10 +1863,6 @@
         }
 
 
-        /*
-         * Sinon ordre d'inscription.
-         */
-
         const timeA =
           a.createdAt?.seconds ||
           0;
@@ -1847,6 +1891,13 @@
       rows.filter(
         row =>
           !isDeleted(row)
+      );
+
+
+    const deletedRows =
+      rows.filter(
+        row =>
+          isDeleted(row)
       );
 
 
@@ -1900,19 +1951,28 @@
       `${mainRows.length} / ${MAX_TEAMS}`;
 
 
-    const ordered =
-      sortedRows();
+    trashCount.textContent =
+      String(
+        deletedRows.length
+      );
+
+
+    const orderedActive =
+      sortRows(
+        activeRows
+      );
 
 
     cardsList.innerHTML =
-      ordered.length
+      orderedActive.length
 
-        ? ordered
+        ? orderedActive
             .map(
               (row,index) =>
                 teamCard(
                   row,
-                  index
+                  index,
+                  false
                 )
             )
             .join("")
@@ -1920,6 +1980,50 @@
         : `
             <div class="teams-empty">
               Aucune équipe inscrite.
+            </div>
+          `;
+
+
+    const orderedDeleted =
+      [...deletedRows]
+        .sort(
+          (a,b) => {
+
+            const timeA =
+              a.deletedAt?.seconds ||
+              a.createdAt?.seconds ||
+              0;
+
+
+            const timeB =
+              b.deletedAt?.seconds ||
+              b.createdAt?.seconds ||
+              0;
+
+
+            return timeB - timeA;
+
+          }
+        );
+
+
+    trashList.innerHTML =
+      orderedDeleted.length
+
+        ? orderedDeleted
+            .map(
+              (row,index) =>
+                teamCard(
+                  row,
+                  index,
+                  true
+                )
+            )
+            .join("")
+
+        : `
+            <div class="trash-empty">
+              La corbeille est vide.
             </div>
           `;
 
@@ -2169,11 +2273,6 @@
         man:
           newMan,
 
-        /*
-         * Compatibilité avec
-         * l'ancien format.
-         */
-
         player1:
           newWoman,
 
@@ -2329,85 +2428,156 @@
      ACTIONS SUR LES ÉQUIPES
   ======================================== */
 
-  cardsList.addEventListener(
+  async function handleAction(
+    button
+  ){
 
-    "click",
+    const id =
+      button.dataset.id;
 
-    async event => {
 
-      const button =
-        event.target.closest(
-          "button[data-action]"
+    const action =
+      button.dataset.action;
+
+
+    const row =
+      rows.find(
+        item =>
+          item.id === id
+      );
+
+
+    if(!row){
+
+      return;
+
+    }
+
+
+    button.disabled =
+      true;
+
+
+    try{
+
+
+      /* ==================================
+         CONFIRMER
+      ================================== */
+
+      if(action === "confirm"){
+
+        await patchItem(
+
+          id,
+
+          {
+            status:
+              "confirmed",
+
+            list:
+              "main",
+
+            publicList:
+              "main",
+
+            stby:
+              false
+          }
+
         );
-
-
-      if(!button){
-
-        return;
 
       }
 
 
-      const id =
-        button.dataset.id;
+      /* ==================================
+         LISTE PRINCIPALE
+      ================================== */
+
+      else if(action === "main"){
+
+        const currentMainCount =
+          rows.filter(
+            item =>
+              item.id !== id &&
+              !isDeleted(item) &&
+              !isWait(item) &&
+              !isStby(item)
+          ).length;
 
 
-      const action =
-        button.dataset.action;
+        if(
+          currentMainCount >=
+          MAX_TEAMS
+        ){
 
-
-      const row =
-        rows.find(
-          item =>
-            item.id === id
-        );
-
-
-      if(!row){
-
-        return;
-
-      }
-
-
-      button.disabled =
-        true;
-
-
-      try{
-
-
-        /* ==================================
-           CONFIRMER
-        ================================== */
-
-        if(action === "confirm"){
-
-          await patchItem(
-
-            id,
-
-            {
-              status:
-                "confirmed",
-
-              list:
-                "main",
-
-              stby:
-                false
-            }
-
+          alert(
+            `La liste principale contient déjà ${MAX_TEAMS} équipes.`
           );
+
+          return;
 
         }
 
 
-        /* ==================================
-           LISTE PRINCIPALE
-        ================================== */
+        await patchItem(
 
-        else if(action === "main"){
+          id,
+
+          {
+            list:
+              "main",
+
+            publicList:
+              "main",
+
+            stby:
+              false,
+
+            status:
+              isConfirmed(row)
+                ? "confirmed"
+                : "registered"
+          }
+
+        );
+
+      }
+
+
+      /* ==================================
+         LISTE D'ATTENTE
+      ================================== */
+
+      else if(action === "wait"){
+
+        await patchItem(
+
+          id,
+
+          {
+            list:
+              "wait",
+
+            publicList:
+              "waiting",
+
+            stby:
+              false
+          }
+
+        );
+
+      }
+
+
+      /* ==================================
+         STBY
+      ================================== */
+
+      else if(action === "stby"){
+
+        if(isStby(row)){
 
           const currentMainCount =
             rows.filter(
@@ -2432,233 +2602,207 @@
 
           }
 
-
-          await patchItem(
-
-            id,
-
-            {
-              list:
-                "main",
-
-              publicList:
-                "main",
-
-              stby:
-                false,
-
-              status:
-                isConfirmed(row)
-                  ? "confirmed"
-                  : "registered"
-            }
-
-          );
-
         }
 
 
-        /* ==================================
-           LISTE D'ATTENTE
-        ================================== */
+        await patchItem(
 
-        else if(action === "wait"){
+          id,
 
-          await patchItem(
-
-            id,
-
-            {
-              list:
-                "wait",
-
-              publicList:
-                "waiting",
-
-              stby:
-                false
-            }
-
-          );
-
-        }
-
-
-        /* ==================================
-           STBY
-        ================================== */
-
-        else if(action === "stby"){
-
-          if(isStby(row)){
-
-            const currentMainCount =
-              rows.filter(
-                item =>
-                  item.id !== id &&
-                  !isDeleted(item) &&
-                  !isWait(item) &&
-                  !isStby(item)
-              ).length;
-
-
-            if(
-              currentMainCount >=
-              MAX_TEAMS
-            ){
-
-              alert(
-                `La liste principale contient déjà ${MAX_TEAMS} équipes.`
-              );
-
-              return;
-
-            }
-
+          {
+            stby:
+              !isStby(row)
           }
 
-
-          await patchItem(
-
-            id,
-
-            {
-              stby:
-                !isStby(row)
-            }
-
-          );
-
-        }
-
-
-        /* ==================================
-           MODIFIER
-        ================================== */
-
-        else if(action === "edit"){
-
-          await editTeam(
-            row
-          );
-
-        }
-
-
-        /* ==================================
-           CLASSEMENTS
-        ================================== */
-
-        else if(action === "rank"){
-
-          await editRanks(
-            row
-          );
-
-        }
-
-
-        /* ==================================
-           SUPPRESSION LOGIQUE
-        ================================== */
-
-        else if(action === "delete"){
-
-          const ok =
-            confirm(
-              `Supprimer l'équipe "${row.teamName || "Équipe"}" ?`
-            );
-
-
-          if(!ok){
-
-            return;
-
-          }
-
-
-          await patchItem(
-
-            id,
-
-            {
-              status:
-                "deleted",
-
-              deletedAt:
-                serverTimestamp()
-            }
-
-          );
-
-        }
-
-
-        /* ==================================
-           RESTAURATION
-        ================================== */
-
-        else if(action === "restore"){
-
-          const currentMainCount =
-            rows.filter(
-              item =>
-                item.id !== id &&
-                !isDeleted(item) &&
-                !isWait(item) &&
-                !isStby(item)
-            ).length;
-
-
-          /*
-           * Si le tableau principal est plein,
-           * l'équipe restaurée passe directement
-           * en liste d'attente.
-           */
-
-          const mainIsFull =
-            currentMainCount >=
-            MAX_TEAMS;
-
-
-          await patchItem(
-
-            id,
-
-            {
-              status:
-                "registered",
-
-              list:
-                mainIsFull
-                  ? "wait"
-                  : "main",
-
-              publicList:
-                mainIsFull
-                  ? "waiting"
-                  : "main",
-
-              stby:
-                false,
-
-              deletedAt:
-                null
-            }
-
-          );
-
-        }
-
+        );
 
       }
 
-      catch(error){
 
-        console.error(
-          error
+      /* ==================================
+         MODIFIER
+      ================================== */
+
+      else if(action === "edit"){
+
+        await editTeam(
+          row
         );
 
+      }
+
+
+      /* ==================================
+         CLASSEMENTS
+      ================================== */
+
+      else if(action === "rank"){
+
+        await editRanks(
+          row
+        );
+
+      }
+
+
+      /* ==================================
+         VERS LA CORBEILLE
+      ================================== */
+
+      else if(action === "delete"){
+
+        const teamLabel =
+          row.teamName ||
+          "Équipe";
+
+
+        const ok =
+          confirm(
+            `Placer l'équipe "${teamLabel}" dans la corbeille ?`
+          );
+
+
+        if(!ok){
+
+          return;
+
+        }
+
+
+        await patchItem(
+
+          id,
+
+          {
+            status:
+              "deleted",
+
+            deletedAt:
+              serverTimestamp()
+          }
+
+        );
+
+      }
+
+
+      /* ==================================
+         RESTAURATION
+      ================================== */
+
+      else if(action === "restore"){
+
+        const currentMainCount =
+          rows.filter(
+            item =>
+              item.id !== id &&
+              !isDeleted(item) &&
+              !isWait(item) &&
+              !isStby(item)
+          ).length;
+
+
+        const mainIsFull =
+          currentMainCount >=
+          MAX_TEAMS;
+
+
+        await patchItem(
+
+          id,
+
+          {
+            status:
+              "registered",
+
+            list:
+              mainIsFull
+                ? "wait"
+                : "main",
+
+            publicList:
+              mainIsFull
+                ? "waiting"
+                : "main",
+
+            stby:
+              false,
+
+            deletedAt:
+              null
+          }
+
+        );
+
+      }
+
+
+      /* ==================================
+         SUPPRESSION DÉFINITIVE
+      ================================== */
+
+      else if(action === "destroy"){
+
+        const teamLabel =
+          row.teamName ||
+          "Équipe";
+
+
+        const firstConfirm =
+          confirm(
+            `Supprimer définitivement l'équipe "${teamLabel}" ?\n\nCette action est irréversible.`
+          );
+
+
+        if(!firstConfirm){
+
+          return;
+
+        }
+
+
+        const secondConfirm =
+          confirm(
+            `Dernière confirmation : supprimer définitivement "${teamLabel}" de la base de données ?`
+          );
+
+
+        if(!secondConfirm){
+
+          return;
+
+        }
+
+
+        await deleteDoc(
+          itemRef(id)
+        );
+
+      }
+
+
+    }
+
+    catch(error){
+
+      console.error(
+        error
+      );
+
+
+      if(
+        action === "destroy" &&
+        error?.code ===
+          "permission-denied"
+      ){
+
+        alert(
+          "Suppression définitive refusée par les règles Firestore. Il faut autoriser la suppression des équipes dans les règles de la base."
+        );
+
+      }
+
+      else{
 
         alert(
           "Action impossible."
@@ -2666,12 +2810,68 @@
 
       }
 
-      finally{
+    }
 
-        button.disabled =
-          false;
+    finally{
+
+      button.disabled =
+        false;
+
+    }
+
+  }
+
+
+  cardsList.addEventListener(
+
+    "click",
+
+    async event => {
+
+      const button =
+        event.target.closest(
+          "button[data-action]"
+        );
+
+
+      if(!button){
+
+        return;
 
       }
+
+
+      await handleAction(
+        button
+      );
+
+    }
+
+  );
+
+
+  trashList.addEventListener(
+
+    "click",
+
+    async event => {
+
+      const button =
+        event.target.closest(
+          "button[data-action]"
+        );
+
+
+      if(!button){
+
+        return;
+
+      }
+
+
+      await handleAction(
+        button
+      );
 
     }
 
@@ -2688,7 +2888,7 @@
 
       document
         .querySelectorAll(
-          ".team-more"
+          "#cardsList .team-more"
         )
         .forEach(
           detail => {
@@ -2709,7 +2909,7 @@
 
       document
         .querySelectorAll(
-          ".team-more"
+          "#cardsList .team-more"
         )
         .forEach(
           detail => {
