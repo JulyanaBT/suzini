@@ -71,23 +71,27 @@ style.textContent = `
 
   .support-note{
 
-    margin:12px 0 4px;
+    margin:9px 0 2px;
 
-    color:#999;
+    color:#b8b8b8;
 
-    font-size:9px;
+    font-size:7px;
 
     font-style:italic;
 
-    font-weight:600;
+    font-weight:400;
+
+    letter-spacing:.15px;
 
     text-align:center;
+
+    opacity:.75;
   }
 
 
   .support-note-heart{
 
-    color:#e53935;
+    color:#d98b8b;
 
     font-style:normal;
   }
