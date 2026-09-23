@@ -1,0 +1,1072 @@
+<!doctype html>
+
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#ffffff"
+  >
+
+  <title>
+    BT250 - Double Mixte | Les vendredis du BT Suzini
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="assets/css/style.css"
+  >
+
+
+  <style>
+
+    /* ========================================
+       ACCÈS ORGANISATEUR
+    ======================================== */
+
+    .admin-access{
+      margin-top:8px;
+      margin-bottom:6px;
+    }
+
+
+    .admin-access a{
+      display:flex;
+
+      align-items:center;
+
+      justify-content:space-between;
+
+      gap:10px;
+
+      min-height:42px;
+
+      padding:8px 12px;
+
+      border-radius:14px;
+
+      background:
+        rgba(255,255,255,.58);
+
+      border:
+        1px solid rgba(0,0,0,.05);
+
+      color:#777;
+
+      text-decoration:none;
+
+      box-shadow:
+        0 4px 12px
+        rgba(0,0,0,.035);
+
+      -webkit-tap-highlight-color:
+        transparent;
+    }
+
+
+    .admin-access-left{
+      display:flex;
+
+      align-items:center;
+
+      gap:8px;
+    }
+
+
+    .admin-access-icon{
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      width:28px;
+      height:28px;
+
+      flex:0 0 28px;
+
+      border-radius:9px;
+
+      background:
+        rgba(0,0,0,.055);
+
+      font-size:13px;
+    }
+
+
+    .admin-access-text{
+      display:grid;
+
+      gap:1px;
+    }
+
+
+    .admin-access-text small{
+      color:#999;
+
+      font-size:7px;
+
+      font-weight:900;
+
+      letter-spacing:.9px;
+
+      text-transform:uppercase;
+    }
+
+
+    .admin-access-text strong{
+      color:#555;
+
+      font-size:11px;
+
+      font-weight:900;
+    }
+
+
+    .admin-access-arrow{
+      color:#aaa;
+
+      font-size:17px;
+
+      font-weight:900;
+    }
+
+
+    .admin-access a:active{
+      transform:scale(.99);
+    }
+
+
+
+    /* ========================================
+       COMPTEUR ÉQUIPES
+    ======================================== */
+
+    .team-counter{
+      display:inline-flex;
+
+      align-items:center;
+
+      gap:4px;
+
+      margin-top:12px;
+
+      padding:6px 9px;
+
+      border-radius:999px;
+
+      background:
+        rgba(255,255,255,.88);
+
+      font-size:10px;
+
+      font-weight:900;
+    }
+
+
+    .team-counter strong{
+      color:var(--orange);
+    }
+
+
+
+    /* ========================================
+       ÉTAT TOURNOI
+    ======================================== */
+
+    .tournament-state{
+      display:inline-flex;
+
+      align-items:center;
+
+      gap:4px;
+
+      margin-bottom:8px;
+
+      padding:5px 8px;
+
+      border-radius:999px;
+
+      background:
+        rgba(255,255,255,.90);
+
+      color:#087a35;
+
+      font-size:9px;
+
+      font-weight:950;
+
+      text-transform:uppercase;
+    }
+
+
+    .tournament-state.live{
+      color:#9a6500;
+    }
+
+
+    .tournament-state.finished{
+      color:#555;
+    }
+
+  </style>
+
+</head>
+
+
+<body
+  data-page="accueil"
+  data-title="BT250 - Double Mixte"
+  data-date="Les vendredis du BT Suzini"
+>
+
+
+<div id="siteHeader"></div>
+
+
+<main class="container">
+
+
+  <!-- ======================================
+       HERO
+  ======================================= -->
+
+  <section class="home-hero">
+
+
+    <!-- INFOS RAPIDES -->
+
+    <div class="hero-pills">
+
+      <span>
+        📅 Ven. 2 oct.
+      </span>
+
+      <span>
+        🕕 Dès 18h
+      </span>
+
+      <span>
+        👥 12 équipes max.
+      </span>
+
+    </div>
+
+
+    <!-- ÉTAT DU TOURNOI -->
+
+    <div
+      id="tournamentState"
+      class="tournament-state"
+    >
+      🟢 Inscriptions ouvertes
+    </div>
+
+
+    <!-- LABEL -->
+
+    <div class="hero-label">
+      Les vendredis du BT Suzini
+    </div>
+
+
+    <!-- TITRE -->
+
+    <h1>
+
+      BT250
+
+      <span>
+        Double Mixte
+      </span>
+
+    </h1>
+
+
+    <!-- MESSAGE -->
+
+    <div
+      id="heroMessage"
+      class="hero-message"
+    >
+
+      Lance ta saison
+
+      <strong>
+        sur le sable de Suzini !
+      </strong>
+
+    </div>
+
+
+    <!-- COMPTEUR -->
+
+    <div class="team-counter">
+
+      👥
+
+      <strong id="teamCount">
+        0
+      </strong>
+
+      / 12 équipes inscrites
+
+    </div>
+
+
+    <!-- ACTIONS PRINCIPALES -->
+
+    <div
+      id="heroActions"
+      class="hero-actions"
+    >
+
+      <a
+        href="inscriptions.html"
+        class="btn btn-orange"
+      >
+        ✍️ S'inscrire
+      </a>
+
+
+      <a
+        href="programmation.html"
+        class="btn btn-black"
+      >
+        🎾 Voir les matchs
+      </a>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- ======================================
+       INFOS ESSENTIELLES
+  ======================================= -->
+
+  <section class="essential-grid">
+
+
+    <!-- LIEU -->
+
+    <div class="essential-card">
+
+      <span class="essential-icon">
+        📍
+      </span>
+
+      <div>
+
+        <small>
+          Lieu
+        </small>
+
+        <strong>
+          Arena TC Suzini
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- TARIF -->
+
+    <div class="essential-card">
+
+      <span class="essential-icon">
+        💶
+      </span>
+
+      <div>
+
+        <small>
+          Inscription
+        </small>
+
+        <strong>
+          10 € / joueur
+        </strong>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- ======================================
+       ACCÈS RAPIDES
+  ======================================= -->
+
+  <section class="dashboard">
+
+
+    <!-- CLASSEMENT -->
+
+    <a
+      href="classement.html"
+      class="dashboard-card"
+    >
+
+      <span class="dashboard-icon">
+        🏆
+      </span>
+
+      <div>
+
+        <small>
+          Résultats
+        </small>
+
+        <strong>
+          Classement
+        </strong>
+
+      </div>
+
+    </a>
+
+
+    <!-- RÈGLEMENT -->
+
+    <a
+      href="reglement.html"
+      class="dashboard-card"
+    >
+
+      <span class="dashboard-icon">
+        📖
+      </span>
+
+      <div>
+
+        <small>
+          Tournoi
+        </small>
+
+        <strong>
+          Règlement
+        </strong>
+
+      </div>
+
+    </a>
+
+
+  </section>
+
+
+
+  <!-- ======================================
+       WHATSAPP
+  ======================================= -->
+
+  <a
+    id="whatsappLink"
+    class="food-strip"
+    href="#"
+    target="_blank"
+    rel="noopener"
+  >
+
+    <span>
+      💬
+    </span>
+
+    <div>
+
+      <strong>
+        Groupe WhatsApp
+      </strong>
+
+      <small>
+        Infos du tournoi, horaires et actualités en direct.
+      </small>
+
+    </div>
+
+  </a>
+
+
+
+  <!-- ======================================
+       ACCÈS ORGANISATEUR
+  ======================================= -->
+
+  <section class="admin-access">
+
+    <a href="admin/index.html">
+
+
+      <div class="admin-access-left">
+
+        <span class="admin-access-icon">
+          🔐
+        </span>
+
+
+        <span class="admin-access-text">
+
+          <small>
+            Organisation
+          </small>
+
+          <strong>
+            Accès organisateur
+          </strong>
+
+        </span>
+
+      </div>
+
+
+      <span class="admin-access-arrow">
+        ›
+      </span>
+
+
+    </a>
+
+  </section>
+
+
+</main>
+
+
+
+<!-- ======================================
+     HEADER
+======================================= -->
+
+<script
+  type="module"
+  src="assets/js/header-tournament.js"
+></script>
+
+
+
+<!-- ======================================
+     MENTION I ♥ MARINE
+======================================= -->
+
+<script
+  type="module"
+  src="assets/js/support-note.js"
+></script>
+
+
+
+<!-- ======================================
+     FIRESTORE / ÉTAT DU TOURNOI
+======================================= -->
+
+<script type="module">
+
+  import {
+    db
+  } from "./assets/js/firebase.js";
+
+
+  import {
+
+    doc,
+    collection,
+    onSnapshot
+
+  } from
+  "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+
+
+  /* ========================================
+     CONFIGURATION
+  ======================================== */
+
+  const EVENT_ID =
+    "suzini-bt250-mixte-2026-10-02";
+
+
+  const MAX_TEAMS =
+    12;
+
+
+  const WHATSAPP_GROUP_URL =
+    "https://chat.whatsapp.com/Kk8uAXuZplX1Tw0g2rHtp6?s=em&p=i&mlu=0&ilr=0";
+
+
+
+  /* ========================================
+     ÉLÉMENTS
+  ======================================== */
+
+  const tournamentState =
+    document.getElementById(
+      "tournamentState"
+    );
+
+
+  const heroMessage =
+    document.getElementById(
+      "heroMessage"
+    );
+
+
+  const heroActions =
+    document.getElementById(
+      "heroActions"
+    );
+
+
+  const teamCount =
+    document.getElementById(
+      "teamCount"
+    );
+
+
+  const whatsappLink =
+    document.getElementById(
+      "whatsappLink"
+    );
+
+
+
+  /* ========================================
+     WHATSAPP
+  ======================================== */
+
+  whatsappLink.href =
+    WHATSAPP_GROUP_URL;
+
+
+
+  /* ========================================
+     FIRESTORE
+  ======================================== */
+
+  const teamsRef =
+    collection(
+      db,
+      "events",
+      EVENT_ID,
+      "teams"
+    );
+
+
+  const statusRef =
+    doc(
+      db,
+      "events",
+      EVENT_ID,
+      "config",
+      "status"
+    );
+
+
+  const programmationRef =
+    doc(
+      db,
+      "events",
+      EVENT_ID,
+      "config",
+      "programmation"
+    );
+
+
+
+  /* ========================================
+     ÉTAT LOCAL
+  ======================================== */
+
+  let teamsCountValue =
+    0;
+
+
+  let manualState =
+    null;
+
+
+  let programmationVisible =
+    false;
+
+
+
+  /* ========================================
+     ÉTAT ACTUEL
+  ======================================== */
+
+  function currentState(){
+
+    if(
+      manualState ===
+      "finished"
+    ){
+      return "finished";
+    }
+
+
+    if(
+      manualState ===
+      "live"
+    ){
+      return "live";
+    }
+
+
+    if(
+      programmationVisible
+    ){
+      return "live";
+    }
+
+
+    return "registration";
+
+  }
+
+
+
+  /* ========================================
+     RENDU
+  ======================================== */
+
+  function render(){
+
+    const state =
+      currentState();
+
+
+    teamCount.textContent =
+      String(
+        teamsCountValue
+      );
+
+
+    tournamentState.className =
+      "tournament-state";
+
+
+
+    /* ======================================
+       INSCRIPTIONS
+    ======================================= */
+
+    if(
+      state ===
+      "registration"
+    ){
+
+      tournamentState.textContent =
+        "🟢 Inscriptions ouvertes";
+
+
+      heroMessage.innerHTML = `
+
+        Lance ta saison
+
+        <strong>
+          sur le sable de Suzini !
+        </strong>
+
+      `;
+
+
+      heroActions.innerHTML = `
+
+        <a
+          href="inscriptions.html"
+          class="btn btn-orange"
+        >
+          ✍️ S'inscrire
+        </a>
+
+
+        <a
+          href="participants.html"
+          class="btn btn-black"
+        >
+          👥 Voir les équipes
+        </a>
+
+      `;
+
+
+      return;
+
+    }
+
+
+
+    /* ======================================
+       TOURNOI EN COURS
+    ======================================= */
+
+    if(
+      state ===
+      "live"
+    ){
+
+      tournamentState.classList.add(
+        "live"
+      );
+
+
+      tournamentState.textContent =
+        "🟡 Tournoi en cours";
+
+
+      heroMessage.innerHTML = `
+
+        Les matchs sont
+
+        <strong>
+          en cours !
+        </strong>
+
+      `;
+
+
+      heroActions.innerHTML = `
+
+        <a
+          href="programmation.html"
+          class="btn btn-orange"
+        >
+          🎾 Voir les matchs
+        </a>
+
+
+        <a
+          href="classement.html"
+          class="btn btn-black"
+        >
+          🏆 Classement
+        </a>
+
+      `;
+
+
+      return;
+
+    }
+
+
+
+    /* ======================================
+       TOURNOI TERMINÉ
+    ======================================= */
+
+    tournamentState.classList.add(
+      "finished"
+    );
+
+
+    tournamentState.textContent =
+      "🏁 Tournoi terminé";
+
+
+    heroMessage.innerHTML = `
+
+      Merci à tous
+
+      <strong>
+        pour cette soirée !
+      </strong>
+
+    `;
+
+
+    heroActions.innerHTML = `
+
+      <a
+        href="classement.html"
+        class="btn btn-orange"
+      >
+        🏆 Classement final
+      </a>
+
+
+      <a
+        href="programmation.html"
+        class="btn btn-black"
+      >
+        🎾 Résultats
+      </a>
+
+    `;
+
+  }
+
+
+
+  /* ========================================
+     ÉQUIPES
+  ======================================== */
+
+  onSnapshot(
+
+    teamsRef,
+
+    snapshot => {
+
+      const visibleTeams =
+        snapshot.docs.filter(
+          documentSnapshot => {
+
+            const team =
+              documentSnapshot.data() ||
+              {};
+
+
+            return (
+
+              team.status !==
+                "deleted"
+
+              &&
+
+              team.status !==
+                "cancelled"
+
+              &&
+
+              team.status !==
+                "refused"
+
+            );
+
+          }
+        );
+
+
+      teamsCountValue =
+        visibleTeams.length;
+
+
+      render();
+
+    },
+
+    error => {
+
+      console.error(
+        "Erreur équipes :",
+        error
+      );
+
+
+      render();
+
+    }
+
+  );
+
+
+
+  /* ========================================
+     STATUT TOURNOI
+  ======================================== */
+
+  onSnapshot(
+
+    statusRef,
+
+    snapshot => {
+
+      const data =
+        snapshot.exists()
+          ? snapshot.data()
+          : {};
+
+
+      manualState =
+        data.state ||
+        null;
+
+
+      render();
+
+    },
+
+    error => {
+
+      console.error(
+        "Erreur statut :",
+        error
+      );
+
+
+      render();
+
+    }
+
+  );
+
+
+
+  /* ========================================
+     PROGRAMMATION
+  ======================================== */
+
+  onSnapshot(
+
+    programmationRef,
+
+    snapshot => {
+
+      const data =
+        snapshot.exists()
+          ? snapshot.data()
+          : {};
+
+
+      programmationVisible =
+        data.publicVisible === true ||
+        data.published === true;
+
+
+      render();
+
+    },
+
+    error => {
+
+      console.error(
+        "Erreur programmation :",
+        error
+      );
+
+
+      render();
+
+    }
+
+  );
+
+
+
+  /* ========================================
+     PREMIER AFFICHAGE
+  ======================================== */
+
+  render();
+
+</script>
+
+
+</body>
+
+</html>
