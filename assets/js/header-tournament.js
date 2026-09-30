@@ -41,6 +41,12 @@ const navItems = [
   },
 
   {
+    page: "tirage",
+    label: "🎲 Tirage",
+    href: "tirage.html"
+  },
+
+  {
     page: "programmation",
     label: "🎾 Matchs",
     href: "programmation.html"
