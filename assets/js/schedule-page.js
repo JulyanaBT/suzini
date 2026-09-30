@@ -124,7 +124,7 @@ async function boot(){
   if(admin){
     const {createPlanning}=await import('./planning-admin.js?v=20261001-2');
     planningController=createPlanning({db,planningRef,getContext:()=>({positions:planningPositions,ready:planningReady&&planningConnected}),onUpdate:refresh,onSaved:saved=>{planningPositions=saved.positions;refresh();}});
-    const {createScoring}=await import('./scoring-admin.js?v=20261001-2');
+    const {createScoring}=await import('./scoring-admin.js?v=20261001-3');
     controller=createScoring({db,drawRef,resultsRef,getContext:()=>({draw:currentDraw,drawRevision,positions:planningPositions,document:resultsDocument,ready:planningReady&&drawReady&&resultsReady&&drawConnected&&resultsConnected}),onUpdate:refresh,onSaved:saved=>{if(saved.drawKey===drawKey(currentDraw,drawRevision)&&(resultsDocument?.revision||0)<=saved.revision){resultsDocument=saved;refresh();}}});
   }
   onSnapshot(planningRef,{includeMetadataChanges:true},snapshot=>{

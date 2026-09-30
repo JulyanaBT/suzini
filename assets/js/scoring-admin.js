@@ -20,7 +20,7 @@ export function createScoring({db,drawRef,resultsRef,getContext,onUpdate,onSaved
     const focusAction=focused?.dataset?.scoreAction,focusMatch=focused?.dataset?.match,focusTeam=focused?.dataset?.team;
     $('scoreNotice').textContent=notice||(!c.ready?'Chargement des résultats…':!c.key?'Termine le tirage avant de commencer la saisie.':'Chaque modification est enregistrée.');
     $('scoreNotice').classList.toggle('error',error);
-    $('resultsMatches').innerHTML=matches.map(match=>{
+    const renderCard=match=>{
       const waiting=match.participants.some(p=>p.pending),stored=c.state.live?.[match.id];
       const invalid=!!stored&&!liveValid(stored,match),live=stored&&!invalid?stored:blankLive(match);
       const complete=!invalid&&wins(live.sets).includes(2);
@@ -36,7 +36,13 @@ export function createScoring({db,drawRef,resultsRef,getContext,onUpdate,onSaved
         <div class="score-actions">${match.result?button('reopen','Corriger','secondary'):waiting||invalid?'':complete?button('review','Valider le résultat')+button('undoSet','Reprendre le dernier set','secondary'):button('validateSet','Valider le set','',live.current[0]===live.current[1])+ (live.sets.length?button('undoSet','Reprendre le set précédent','secondary',live.current.some(n=>n!==0)):'')}</div>
         ${(stored||c.state.results?.[match.id])?`<button type="button" class="score-button reset-score" data-score-action="reset" data-match="${match.id}" ${locked?'disabled':''}>Réinitialiser le match</button>`:''}
       </article>`;
-    }).join('');
+    };
+    const chronological=[...matches].sort((a,b)=>a.start-b.start||a.court-b.court);
+    const groups=[
+      {id:'pendingResults',title:'Matchs à valider',matches:chronological.filter(m=>!m.result),empty:'Tous les matchs sont validés.'},
+      {id:'validatedResults',title:'Matchs validés',matches:chronological.filter(m=>m.result),empty:'Aucun match validé pour le moment.'},
+    ];
+    $('resultsMatches').innerHTML=groups.map(group=>`<section class="results-section" aria-labelledby="${group.id}Title" id="${group.id}"><h2 id="${group.id}Title">${group.title} <span>${group.matches.length}</span></h2>${group.matches.length?`<div class="results-grid">${group.matches.map(renderCard).join('')}</div>`:`<p class="results-empty">${group.empty}</p>`}</section>`).join('');
     if(focusAction){
       const selector=`[data-score-action="${focusAction}"][data-match="${focusMatch}"]${focusTeam!==undefined?`[data-team="${focusTeam}"]`:''}`;
       $('resultsMatches').querySelector(selector)?.focus({preventScroll:true});

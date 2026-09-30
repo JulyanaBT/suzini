@@ -143,3 +143,8 @@
 #planningNotice.error{color:#a42d23}
 
 .score-button.reset-score{margin-top:10px;background:#fff;color:#9d2b22;border:1px solid #c98c85;font-size:11px}
+
+.results-section{margin:18px 0 24px}
+.results-section>h2{display:flex;align-items:center;gap:8px;font-size:18px;margin:0 0 12px}
+.results-section>h2 span{font-size:12px;padding:4px 8px;border-radius:20px;background:#eee;color:#555}
+.results-empty{font-size:12px;color:#70757a;padding:14px;background:white;border-radius:12px}
