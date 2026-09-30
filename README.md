@@ -203,3 +203,16 @@ interrompt le replay. Le réglage de réduction des animations est respecté.
 
 `node tests/draw-replay.test.mjs` vérifie cent tirages : ordre de révélation,
 têtes de série fixes, unicité, résultat identique et absence de mutation.
+
+### Accueil orienté tournoi
+
+La programmation chronologique est le premier accès de l’accueil, suivie du
+groupe WhatsApp existant pour les infos, annonces et photos. Les liens fonctionnent
+sans chargement Firestore. Seul le badge de statut utilise `config/status` pour
+indiquer éventuellement un tournoi en cours ou terminé. Aucun état ne réintroduit
+un bouton d’inscription. L’accueil présente huit équipes, sans tarif d’inscription.
+
+Navigation publique : Accueil, Matchs, Équipes, Tirage, Classement, Infos.
+Les inscriptions restent accessibles à l’organisation depuis sa navigation admin.
+Vérifié sur mobile : ordre de navigation, absence des inscriptions, lien exact
+WhatsApp conservé et accès à la programmation chronologique.

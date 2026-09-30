@@ -21,49 +21,12 @@ const currentPage =
 ========================================================= */
 
 const navItems = [
-
-  {
-    page: "accueil",
-    label: "🏠 Accueil",
-    href: "index.html"
-  },
-
-  {
-    page: "inscription",
-    label: "✍️ Inscription",
-    href: "inscriptions.html"
-  },
-
-  {
-    page: "participants",
-    label: "👥 Équipes",
-    href: "participants.html"
-  },
-
-  {
-    page: "tirage",
-    label: "🎲 Tirage",
-    href: "tirage.html?v=20261001-5"
-  },
-
-  {
-    page: "programmation",
-    label: "🎾 Matchs",
-    href: "programmation.html?v=20261001-2"
-  },
-
-  {
-    page: "classement",
-    label: "🏆 Classement",
-    href: "classement.html?v=20261001-4"
-  },
-
-  {
-    page: "infos",
-    label: "ℹ️ Infos",
-    href: "infos.html"
-  }
-
+  {page: "accueil", label: "🏠 Accueil", href: "index.html?v=20261001-6"},
+  {page: "programmation", label: "🎾 Matchs", href: "programmation.html?v=20261001-3"},
+  {page: "participants", label: "👥 Équipes", href: "participants.html"},
+  {page: "tirage", label: "🎲 Tirage", href: "tirage.html?v=20261001-5"},
+  {page: "classement", label: "🏆 Classement", href: "classement.html?v=20261001-4"},
+  {page: "infos", label: "ℹ️ Infos", href: "infos.html"}
 ];
 
 
@@ -198,7 +161,7 @@ function buildHeader(){
         <!-- SUZINI -->
 
         <a
-          href="index.html"
+          href="index.html?v=20261001-6"
           class="header-logo header-logo-left"
           aria-label="Accueil du tournoi"
         >
@@ -214,7 +177,7 @@ function buildHeader(){
         <!-- TITRE -->
 
         <a
-          href="index.html"
+          href="index.html?v=20261001-6"
           class="header-event"
           aria-label="Accueil BT250 Double Mixte"
         >

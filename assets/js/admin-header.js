@@ -65,7 +65,7 @@ const currentPage =
 const publicPages = {
 
   accueil:
-    "../index.html",
+    "../index.html?v=20261001-6",
 
   inscriptions:
     "../inscriptions.html",
@@ -86,17 +86,17 @@ const publicPages = {
     "../classement.html?v=20261001-4",
 
   parametres:
-    "../index.html",
+    "../index.html?v=20261001-6",
 
   maintenance:
-    "../index.html"
+    "../index.html?v=20261001-6"
 
 };
 
 
 const publicTarget =
   publicPages[currentPage] ||
-  "../index.html";
+  "../index.html?v=20261001-6";
 
 
 /* ========================================
