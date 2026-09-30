@@ -39,12 +39,19 @@ function drawConnections() {
   }
 }
 
+function matchLabel(match) {
+  if (match.round === 'quarter') return 'Quart ' + match.id.slice(2);
+  if (match.round === 'semi') return 'Demi ' + match.id.slice(2);
+  if (match.round === 'classification') return 'Classement 5–8 · ' + match.id.slice(2);
+  if (match.id.startsWith('P')) return match.id.slice(1) + 'e place';
+  return 'Finale';
+}
+
 function card(match) {
   return `<article style="--court-column:${match.court+1}" class="match-card court-${match.court} ${match.id === 'F' ? 'highlight' : ''}" data-match="${match.id}" aria-label="${esc(match.title)}">
-    <div class="match-meta"><span class="match-id">${match.id}</span><span class="match-time">${time(match.start)}</span></div>
+    <div class="match-meta"><span class="match-id">${matchLabel(match)}</span><span class="match-time">${time(match.start)}</span></div>
     <div class="match-court court-label court-${match.court}">${esc(match.courtName)}</div>
-    <h4>${match.title}</h4>
-    ${match.participants.map(p => `<div class="match-team ${p.pending ? 'pending' : ''}"><div><strong>${esc(p.name)}</strong>${p.players ? `<small>${esc(p.players)}</small>` : ''}</div>${p.seed ? `<span class="match-seed">TS ${p.seed}</span>` : ''}</div>`).join('')}
+    ${match.participants.map(p => `<div class="match-team ${p.pending ? 'pending' : ''}"><div><strong>${esc(p.name)}</strong></div>${p.seed ? `<span class="match-seed">TS ${p.seed}</span>` : ''}</div>`).join('')}
   </article>`;
 }
 

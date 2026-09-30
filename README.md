@@ -108,3 +108,8 @@ fictif, le rechargement et la navigation au clavier.
 La vue chronologique conserve deux colonnes dès 320 px. Lisa est en rouge (🌶️),
 Manon en jaune (🐝). Le match de 3e place précède la finale sur deux créneaux
 distincts. Le sous-menu est affiché directement sous la navigation principale.
+
+Les cartes de programmation affichent uniquement les noms d’équipes. Leur
+libellé compact (« Quart 1 », « Demi 1 », etc.) remplace le code et le titre
+répétés. Sur mobile, deux tours entiers du tableau sont visibles sans défilement ;
+le troisième reste accessible horizontalement. Vérifié à 320 px et 390 px.

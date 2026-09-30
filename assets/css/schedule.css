@@ -79,3 +79,27 @@
  .schedule-court-grid .match-seed{margin-left:0}
  .schedule-court-grid .match-meta{gap:3px}
 }
+/* Compact cards shared by the tree and chronological view. */
+.match-card{padding:8px}
+.match-meta{gap:4px;margin-bottom:4px}
+.match-id{font-size:9px;line-height:1.25;font-weight:800}
+.match-time{font-size:11px}
+.match-court{font-size:9px;line-height:1.25;margin-bottom:4px}
+.match-team{padding:5px 0;min-height:29px;font-size:11px;gap:4px}
+.match-team>div{min-width:0;flex:1}
+.match-seed{font-size:7px;padding:3px 4px}
+@media(max-width:700px){
+ .schedule-tree{min-width:0;width:calc(150% + 6px);grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+ .schedule-tree.consolation{min-width:0;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .schedule-round h3{font-size:9px;letter-spacing:.2px;margin:6px 0 9px}
+ .schedule-round-body{gap:10px}
+ .schedule-tree .match-card{padding:6px;border-radius:9px}
+ .schedule-tree .match-meta{gap:3px}
+ .schedule-tree .match-id{font-size:8px}
+ .schedule-tree .match-time{font-size:10px}
+ .schedule-tree .match-court{font-size:9px;min-height:23px}
+ .schedule-tree .match-team{font-size:10px;min-height:28px;flex-wrap:wrap}
+ .schedule-court-grid .match-court{font-size:9px;min-height:0}
+ .schedule-court-grid .match-team{min-height:29px;padding:5px 0;flex-wrap:nowrap;align-items:center}
+ .schedule-court-grid .match-seed{margin-left:auto}
+}
