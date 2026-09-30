@@ -23,6 +23,13 @@ export function publicTeam(t) {
   const players = [short(t.woman || t.player1,'Joueuse'),short(t.man || t.player2,'Joueur')];
   return { id:t.id, name:String(t.teamName || players.join(' & ')), players, rank:rank(t) };
 }
+// Firestore may return map fields in a different order. Compare explicit values,
+// not the serialization order of the objects returned by the database.
+export function teamFingerprint(list) {
+  return JSON.stringify([...list]
+    .sort((a,b) => a.id.localeCompare(b.id))
+    .map(t => [t.id, t.name, t.players, t.rank ?? null]));
+}
 export function start(teams, seed1, seed2) {
   const ids = teams.map(t => t.id);
   if (ids.length !== 8 || new Set(ids).size !== 8) throw Error('Il faut exactement 8 équipes distinctes.');

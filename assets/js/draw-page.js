@@ -1,4 +1,4 @@
-import { EVENT_ID, visible, compare, publicTeam, start, next, valid, matches } from './draw-core.mjs';
+import { EVENT_ID, visible, compare, publicTeam, teamFingerprint, start, next, valid, matches } from './draw-core.mjs';
 
 const admin = document.body.dataset.admin === 'true';
 // This reuses the site's existing UI session. Firestore rules remain the authority
@@ -29,7 +29,7 @@ async function boot() {
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
   }[c]));
-  const fingerprint = list => JSON.stringify([...list].sort((a,b) => a.id.localeCompare(b.id)));
+  const fingerprint = teamFingerprint;
 
   function status(text, error = false) {
     if (!$('status')) return; // The maintenance screen may have replaced the page.
