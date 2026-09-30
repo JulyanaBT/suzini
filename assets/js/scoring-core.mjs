@@ -1,7 +1,7 @@
-import { schedule, descendants, drawKey } from './schedule-core.mjs?v=20260930-4';
+import { schedule, descendants, drawKey } from './schedule-core.mjs?v=20261001-1';
 
-import { wins, scoreText, setsValid, pairValid } from './score-values.mjs?v=20260930-4';
-export { wins, scoreText } from './score-values.mjs?v=20260930-4';
+import { wins, scoreText, setsValid, pairValid } from './score-values.mjs?v=20261001-1';
+export { wins, scoreText } from './score-values.mjs?v=20261001-1';
 export function blankLive(match) { return {team1Id:match.participants[0].id,team2Id:match.participants[1].id,sets:[],current:[0,0]}; }
 export function liveValid(live,match) {
   return !!live && !!match && match.participants.every(p=>p.id&&!p.pending) && live.team1Id===match.participants[0].id && live.team2Id===match.participants[1].id

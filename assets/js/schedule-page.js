@@ -1,6 +1,7 @@
-import { scoreDocument } from './score-values.mjs?v=20260930-4';
-import { schedule, time, DURATION, drawKey } from './schedule-core.mjs?v=20260930-4';
-import { liveValid, wins, scoreText } from './scoring-core.mjs?v=20260930-4';
+import { validatePlanning, moveLabel } from './planning-core.mjs?v=20261001-1';
+import { scoreDocument } from './score-values.mjs?v=20261001-1';
+import { schedule, time, DURATION, drawKey } from './schedule-core.mjs?v=20261001-1';
+import { liveValid, wins, scoreText } from './scoring-core.mjs?v=20261001-1';
 import { EVENT_ID, valid } from './draw-core.mjs?v=20260930-3';
 
 const $ = id => document.getElementById(id);
@@ -9,7 +10,8 @@ const admin = document.body.dataset.admin === 'true';
 let displayedMatches = [];
 let currentDraw = null, drawRevision = 0, resultsDocument = null;
 let drawReady = false, resultsReady = false, drawConnected = false, resultsConnected = false;
-let controller = null;
+let controller = null, planningController=null;
+let planningPositions={},planningReady=false,planningConnected=false,planningError=false;
 function activeScores() { return resultsDocument?.drawKey === drawKey(currentDraw,drawRevision) ? resultsDocument : {results:{},live:{}}; }
 
 function drawConnections() {
@@ -53,24 +55,29 @@ function matchLabel(match) {
   return 'Finale';
 }
 
-function card(match) {
+function card(match,editable=false) {
+  const controls=editable?`<div class="planning-controls">${['up','court','down'].map(direction=>{
+    const option=moveLabel(planningPositions,match.id,direction);
+    return `<button type="button" data-move="${direction}" data-match="${match.id}" aria-label="${esc(option.label)}" title="${esc(option.label)}" ${!option.allowed||!planningReady||!planningConnected||planningController?.isBusy()?'disabled':''}>${direction==='up'?'↑':direction==='down'?'↓':match.court===0?'→':'←'}</button>`;
+  }).join('')}</div>`:'';
   return `<article style="--court-column:${match.court+1}" class="match-card court-${match.court} ${match.id === 'F' ? 'highlight' : ''}" data-match="${match.id}" aria-label="${esc(match.title)}">
     <div class="match-meta"><span class="match-id">${matchLabel(match)}</span><span class="match-time">${time(match.start)}</span></div>
     <div class="match-court court-label court-${match.court}">${esc(match.courtName)}</div>
     ${match.participants.map(p => `<div class="match-team ${p.pending ? 'pending' : ''} ${match.result?.winnerId===p.id ? 'winner' : ''}"><div><strong>${esc(p.name)}</strong></div>${p.seed ? `<span class="match-seed">TS ${p.seed}</span>` : ''}</div>`).join('')}
     ${match.result ? `<div class="match-score">✓ ${esc(match.result.score)}</div>` : liveValid(activeScores().live?.[match.id],match) ? `<div class="match-score">${wins(activeScores().live[match.id].sets).includes(2) ? 'À confirmer' : 'En cours'} · ${esc(scoreText(activeScores().live[match.id].sets.concat(wins(activeScores().live[match.id].sets).includes(2)?[]:[activeScores().live[match.id].current])))}</div>` : ''}
+    ${controls}
   </article>`;
 }
 
 function render(draw) {
   if (!$('chronologicalMatches')) return;
-  const matches = schedule(draw,activeScores().results);
+  const matches = schedule(draw,activeScores().results,planningPositions);
   displayedMatches = matches;
   const byId = Object.fromEntries(matches.map(m => [m.id,m]));
   const round = (title, css, ids) => `<section class="schedule-round"><h3>${title}</h3><div class="schedule-round-body ${css}">${ids.map(id => card(byId[id])).join('')}</div></section>`;
   if ($('mainTree')) $('mainTree').innerHTML = round('Quarts de finale','quarters',['QF1','QF2','QF3','QF4']) + round('Demi-finales','semis',['DF1','DF2']) + round('Finale & 3e place','finals',['F','P3']);
   if ($('classificationTree')) $('classificationTree').innerHTML = round('Classement 5–8','semis',['CL1','CL2']) + round('Places 5 et 7','finals',['P5','P7']);
-  $('chronologicalMatches').innerHTML = [...new Set(matches.map(m => m.start))].map(start => `<section class="schedule-time-group"><h3 class="schedule-time-heading">${time(start)} <span>→ ${time(start+DURATION)}</span></h3><div class="schedule-court-grid">${matches.filter(m => m.start === start).map(card).join('')}</div></section>`).join('');
+  $('chronologicalMatches').innerHTML = [...new Set(matches.map(m => m.start))].sort((a,b)=>a-b).map(start => `<section class="schedule-time-group"><h3 class="schedule-time-heading">${time(start)} <span>→ ${time(start+DURATION)}</span></h3><div class="schedule-court-grid">${matches.filter(m => m.start === start).sort((a,b)=>a.court-b.court).map(m=>card(m,admin)).join('')}</div></section>`).join('');
   requestAnimationFrame(drawConnections);
   controller?.render();
 }
@@ -92,9 +99,10 @@ function notify(text,error=false){
 }
 function refresh(){
   render(currentDraw);
+  if(!planningReady){notify(planningError?'Impossible de charger la programmation enregistrée.':'Chargement de la programmation…',planningError);return;}
   if(!drawReady||!resultsReady)return;
   const count=currentDraw?.slots.filter(Boolean).length||0;
-  notify(!drawConnected||!resultsConnected?'Connexion en cours…':count===8?'Tirage complet · résultats actualisés.':count?`Tirage en cours · ${count}/8 équipes placées.`:'Programme prévisionnel · tirage à venir.');
+  notify(!drawConnected||!resultsConnected||!planningConnected?'Connexion en cours…':count===8?'Tirage complet · résultats actualisés.':count?`Tirage en cours · ${count}/8 équipes placées.`:'Programme prévisionnel · tirage à venir.');
 }
 async function boot(){
   if(admin){const {requireAdmin}=await import('./admin-session.js');if(!requireAdmin())return;}
@@ -112,10 +120,21 @@ async function boot(){
   const [{db},{doc,onSnapshot}]=await Promise.all([import('./firebase.js'),import('https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js')]);
   const drawRef=doc(db,'events',EVENT_ID,'config','draw');
   const resultsRef=doc(db,'events',EVENT_ID,'config','results');
+  const planningRef=doc(db,'events',EVENT_ID,'config','programming');
   if(admin){
-    const {createScoring}=await import('./scoring-admin.js?v=20260930-4');
-    controller=createScoring({db,drawRef,resultsRef,getContext:()=>({draw:currentDraw,drawRevision,document:resultsDocument,ready:drawReady&&resultsReady&&drawConnected&&resultsConnected}),onUpdate:refresh,onSaved:saved=>{if(saved.drawKey===drawKey(currentDraw,drawRevision)&&(resultsDocument?.revision||0)<=saved.revision){resultsDocument=saved;refresh();}}});
+    const {createPlanning}=await import('./planning-admin.js?v=20261001-1');
+    planningController=createPlanning({db,planningRef,getContext:()=>({positions:planningPositions,ready:planningReady&&planningConnected}),onUpdate:refresh,onSaved:saved=>{planningPositions=saved.positions;refresh();}});
+    const {createScoring}=await import('./scoring-admin.js?v=20261001-1');
+    controller=createScoring({db,drawRef,resultsRef,getContext:()=>({draw:currentDraw,drawRevision,positions:planningPositions,document:resultsDocument,ready:planningReady&&drawReady&&resultsReady&&drawConnected&&resultsConnected}),onUpdate:refresh,onSaved:saved=>{if(saved.drawKey===drawKey(currentDraw,drawRevision)&&(resultsDocument?.revision||0)<=saved.revision){resultsDocument=saved;refresh();}}});
   }
+  onSnapshot(planningRef,{includeMetadataChanges:true},snapshot=>{
+    if(snapshot.metadata.hasPendingWrites)return;
+    try{
+      const data=snapshot.exists()?snapshot.data():null;
+      if(data&&(data.version!==1||!Number.isInteger(data.revision)||!data.positions))throw Error('Programmation invalide.');
+      planningPositions=validatePlanning(data?.positions||{});planningReady=true;planningError=false;planningConnected=!snapshot.metadata.fromCache;refresh();
+    }catch(e){planningReady=false;planningError=true;refresh();}
+  },()=>{planningReady=false;planningError=true;planningConnected=false;refresh();});
   onSnapshot(drawRef,{includeMetadataChanges:true},snapshot=>{
     if(snapshot.metadata.hasPendingWrites)return;
     const data=snapshot.exists()?snapshot.data():{draw:null,revision:0};

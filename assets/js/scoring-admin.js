@@ -1,6 +1,6 @@
-import { scoreDocument } from './score-values.mjs?v=20260930-4';
-import { schedule, drawKey } from './schedule-core.mjs?v=20260930-4';
-import { blankLive, liveValid, wins, scoreText, reduceScore, matchStateKey } from './scoring-core.mjs?v=20260930-4';
+import { scoreDocument } from './score-values.mjs?v=20261001-1';
+import { schedule, drawKey } from './schedule-core.mjs?v=20261001-1';
+import { blankLive, liveValid, wins, scoreText, reduceScore, matchStateKey } from './scoring-core.mjs?v=20261001-1';
 import { isAdminConnected } from './admin-session.js';
 import { runTransaction, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
 
@@ -15,7 +15,7 @@ export function createScoring({db,drawRef,resultsRef,getContext,onUpdate,onSaved
   };
   function render(){
     if(!$('resultsMatches'))return;
-    const c=context(),matches=schedule(c.draw,c.state.results),locked=busy||!c.ready||!c.key;
+    const c=context(),matches=schedule(c.draw,c.state.results,c.positions),locked=busy||!c.ready||!c.key;
     const focused=document.activeElement;
     const focusAction=focused?.dataset?.scoreAction,focusMatch=focused?.dataset?.match,focusTeam=focused?.dataset?.team;
     $('scoreNotice').textContent=notice||(!c.ready?'Chargement des résultats…':!c.key?'Termine le tirage avant de commencer la saisie.':'Chaque modification est enregistrée.');
@@ -48,7 +48,7 @@ export function createScoring({db,drawRef,resultsRef,getContext,onUpdate,onSaved
     }
   }
   function review(id){
-    const c=context(),match=schedule(c.draw,c.state.results).find(m=>m.id===id),live=c.state.live[id];
+    const c=context(),match=schedule(c.draw,c.state.results,c.positions).find(m=>m.id===id),live=c.state.live[id];
     if(!c.ready||!liveValid(live,match)||!wins(live.sets).includes(2))return;
     const winner=match.participants[wins(live.sets)[0]===2?0:1];
     ticket={id,drawKey:c.key,matchKey:matchStateKey(c.state,id)};

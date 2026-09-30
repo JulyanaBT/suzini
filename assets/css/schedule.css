@@ -134,3 +134,10 @@
 .score-summary{display:block;font-size:22px;margin:14px 0}
 @media(min-width:760px){.results-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:350px){.score-card{padding:10px}.score-stepper{gap:3px}.score-stepper button{width:36px;height:42px}.score-stepper output{min-width:23px}.score-team-row>strong{font-size:12px}}
+
+.planning-controls{display:flex;justify-content:space-between;gap:4px;margin-top:7px;border-top:1px solid #0002;padding-top:6px}
+.planning-controls button{min-width:0;flex:1;height:36px;border:1px solid #0002;border-radius:8px;background:#fffc;color:#161616;font-size:21px;cursor:pointer}
+.planning-controls button:disabled{opacity:.28;cursor:not-allowed}
+.planning-controls button:focus-visible{outline:3px solid #101010;outline-offset:2px}
+#planningNotice{font-size:11px;line-height:1.5;color:#526552;margin:8px 0 14px}
+#planningNotice.error{color:#a42d23}

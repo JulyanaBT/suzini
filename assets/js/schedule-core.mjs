@@ -1,4 +1,4 @@
-import { wins, scoreText, setsValid } from './score-values.mjs?v=20260930-4';
+import { wins, scoreText, setsValid } from './score-values.mjs?v=20261001-1';
 import { valid } from './draw-core.mjs?v=20260930-3';
 
 export const COURTS = ['🌶️ Lisa de Los Pimentos', '🐝 Manon Queen Bee'];
@@ -51,13 +51,14 @@ export function validResult(result, participants) {
     && result.score === scoreText(result.sets);
 }
 
-export function schedule(draw = null, results = {}) {
+export function schedule(draw = null, results = {}, positions = {}) {
   if (draw !== null && !valid(draw)) throw Error('Le tirage enregistré est invalide.');
   const resolved = {};
   return MATCHES.map(match => {
     const participants = match.sources.map(source => participant(source,draw,resolved));
     const result = validResult(results?.[match.id],participants) ? results[match.id] : null;
-    return resolved[match.id] = { ...match, end:match.start+DURATION, courtName:COURTS[match.court], participants, result };
+    const placement=positions[match.id]||match;
+    return resolved[match.id] = { ...match, start:placement.start, court:placement.court, end:placement.start+DURATION, courtName:COURTS[placement.court], participants, result };
   });
 }
 

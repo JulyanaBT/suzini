@@ -91,7 +91,7 @@ deux demies, deux rencontres de classement 5–8, puis les matchs des places
 
 Chaque créneau dure 45 minutes ; fin prévue à 23 h 15. La page écoute le document
 du tirage en lecture seule, accepte un tirage partiel et complète les quarts à
-chaque équipe placée. Les horaires sont fixes à ce stade. Les tours suivants
+chaque équipe placée. Les horaires et terrains sont modifiables depuis la vue chronologique admin. Les tours suivants
 mentionnent le vainqueur ou perdant attendu puis les équipes qualifiées après confirmation du résultat.
 
 ```sh
@@ -132,3 +132,24 @@ la lecture et les écritures organisateur sur ce document, comme pour le tirage.
 Validation : `node tests/scoring-core.test.mjs`, parcours navigateur fictif
 avec +/−, trois sets, annulation du récapitulatif, rechargement, confirmation
 et propagation du vainqueur. Aucun résultat réel n’a été saisi pendant les tests.
+
+### Échanges de créneaux et terrains
+
+Dans la vue chronologique admin, les flèches ↑/↓ échangent le match avec celui
+du créneau précédent/suivant sur le même terrain. La flèche horizontale échange
+les terrains pour le même horaire. Une destination vide reçoit simplement le
+match. Les créneaux durent 45 minutes, de 18 h à 23 h 15 (fin à minuit).
+Les déplacements qui placeraient un match avant la fin d’un de ses matchs
+précédents sont désactivés.
+
+Les positions sont enregistrées par transaction dans
+`events/suzini-bt250-mixte-2026-10-02/config/programming`. Elles sont indépendantes
+du tirage et des scores et partagées par le tableau public, la chronologie et
+la saisie des résultats. Un document absent conserve le programme initial.
+La lecture et les écritures organisateur de ce document doivent être permises
+par les règles Firestore. Les conflits entre appareils sont détectés avant écriture.
+
+Tests : `node tests/planning-core.test.mjs` (échanges, cases libres, dépendances,
+limites et 1000 déplacements). Vérification mobile avec équipes fictives :
+échange de terrain puis de créneau, rechargement, affichage public et résultats,
+refus d’écriture sans changement. Aucun créneau réel modifié pendant les tests.
