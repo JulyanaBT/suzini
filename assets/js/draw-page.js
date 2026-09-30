@@ -1,4 +1,4 @@
-import { EVENT_ID, visible, compare, publicTeam, teamFingerprint, start, next, valid, matches } from './draw-core.mjs';
+import { EVENT_ID, visible, compare, publicTeam, teamFingerprint, start, next, valid, matches } from './draw-core.mjs?v=20260930-3';
 
 const admin = document.body.dataset.admin === 'true';
 // This reuses the site's existing UI session. Firestore rules remain the authority

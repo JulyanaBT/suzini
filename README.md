@@ -53,10 +53,16 @@ Avec Node.js 20 ou supérieur :
 
 ```sh
 node tests/draw-core.test.mjs
+node --experimental-vm-modules tests/draw-page.test.mjs
 ```
 
 Les tests couvrent 500 tirages complets, l’ordre des lignes, les têtes de série,
 l’absence de doublons et le raccordement des quarts.
+Le test de page exécute les vrais gestionnaires de clics sur 20 tirages complets,
+avec réponses Firestore simulées qui réordonnent les champs après chaque écriture,
+rechargement après chaque ligne, double clic, refus d'écriture et conflit.
+Les URL des scripts du tirage sont versionnées pour éviter de réutiliser une
+ancienne comparaison des équipes conservée dans le cache du navigateur.
 La prévisualisation locale avec données fictives a également permis de vérifier
 le parcours des six clics, la reprise après rechargement, la vue publique sans
 commandes, l’affichage à 390 px, les têtes de série identiques, les erreurs
