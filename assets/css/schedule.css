@@ -141,3 +141,5 @@
 .planning-controls button:focus-visible{outline:3px solid #101010;outline-offset:2px}
 #planningNotice{font-size:11px;line-height:1.5;color:#526552;margin:8px 0 14px}
 #planningNotice.error{color:#a42d23}
+
+.score-button.reset-score{margin-top:10px;background:#fff;color:#9d2b22;border:1px solid #c98c85;font-size:11px}

@@ -1,4 +1,4 @@
-import { wins, scoreText, setsValid } from './score-values.mjs?v=20261001-1';
+import { wins, scoreText, setsValid } from './score-values.mjs?v=20261001-2';
 import { valid } from './draw-core.mjs?v=20260930-3';
 
 export const COURTS = ['🌶️ Lisa de Los Pimentos', '🐝 Manon Queen Bee'];

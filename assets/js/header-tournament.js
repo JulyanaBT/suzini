@@ -49,7 +49,7 @@ const navItems = [
   {
     page: "programmation",
     label: "🎾 Matchs",
-    href: "programmation.html"
+    href: "programmation.html?v=20261001-2"
   },
 
   {

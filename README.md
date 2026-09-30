@@ -153,3 +153,17 @@ Tests : `node tests/planning-core.test.mjs` (échanges, cases libres, dépendanc
 limites et 1000 déplacements). Vérification mobile avec équipes fictives :
 échange de terrain puis de créneau, rechargement, affichage public et résultats,
 refus d’écriture sans changement. Aucun créneau réel modifié pendant les tests.
+
+### Remise à zéro et accès public
+
+« Réinitialiser le match » efface, après confirmation, ses sets, son score en
+cours et son résultat validé. Les qualifications issues de ce match sont
+retirées du tableau et de la chronologie publics et admin. Si un match dépendant
+a déjà une saisie, il faut le réinitialiser en premier ; les autres résultats
+ne sont jamais supprimés implicitement.
+
+Les liens Matchs et retour au public portent une version, ainsi que les modules
+de navigation et de programmation, pour éviter une ancienne page en cache.
+Vérification du tableau public réel en lecture seule : vainqueur de QF1 en DF1
+et perdant de QF1 en CL1. Tests supplémentaires avec données fictives :
+confirmation, propagation et réinitialisation avec une page publique déjà ouverte.

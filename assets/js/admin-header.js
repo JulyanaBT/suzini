@@ -80,7 +80,7 @@ const publicPages = {
     "../tirage.html",
 
   programmation:
-    "../programmation.html",
+    "../programmation.html?v=20261001-2",
 
   classement:
     "../classement.html",

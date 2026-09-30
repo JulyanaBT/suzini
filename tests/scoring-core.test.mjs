@@ -41,3 +41,23 @@ const {scoreDocument}=await import('../assets/js/score-values.mjs');
 const example={results:{QF1:{sets:[[4,2],[4,1]]}},live:{QF2:{sets:[[1,4]],current:[2,1]}}};
 assert.deepEqual(scoreDocument(scoreDocument(example,true)),example);
 assert.deepEqual(scoreDocument(example,true).results.QF1.sets,[{a:4,b:2},{a:4,b:1}]);
+
+// A reset clears all validated sets, current points, and confirmed qualification.
+let resetState={results:{},live:{}};
+for(let setNo=0;setNo<2;setNo++){
+ resetState=reduceScore(draw,8,resetState,'QF1',{type:'adjust',team:0,delta:1});
+ resetState=reduceScore(draw,8,resetState,'QF1',{type:'validateSet'});
+}
+resetState=reduceScore(draw,8,resetState,'QF1',{type:'confirm'});
+assert.equal(schedule(draw,resetState.results).find(m=>m.id==='DF1').participants[0].pending,false);
+assert.equal(schedule(draw,resetState.results).find(m=>m.id==='CL1').participants[0].pending,false);
+const blockedState={...resetState,live:{DF1:{team1Id:'1',team2Id:'3',sets:[],current:[1,0]}}};
+assert.throws(()=>reduceScore(draw,8,blockedState,'QF1',{type:'reset'}),/d’abord/);
+const cleared=reduceScore(draw,8,resetState,'QF1',{type:'reset'});
+assert.deepEqual(cleared,{results:{},live:{}});
+assert.equal(schedule(draw,cleared.results).find(m=>m.id==='DF1').participants[0].pending,true);
+assert.equal(schedule(draw,cleared.results).find(m=>m.id==='CL1').participants[0].pending,true);
+const inProgress=reduceScore(draw,8,cleared,'QF1',{type:'adjust',team:1,delta:1});
+assert.deepEqual(reduceScore(draw,8,inProgress,'QF1',{type:'reset'}),cleared);
+assert.ok(resetState.results.QF1); // no mutation of the input
+console.log('PASS: remise à zéro en cours/confirmé, retrait des qualifications, protection des matchs suivants.');

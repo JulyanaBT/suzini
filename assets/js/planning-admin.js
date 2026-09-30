@@ -1,4 +1,4 @@
-import { planningKey, swapPlanning } from './planning-core.mjs?v=20261001-1';
+import { planningKey, swapPlanning } from './planning-core.mjs?v=20261001-2';
 import { isAdminConnected } from './admin-session.js';
 import { runTransaction, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
 

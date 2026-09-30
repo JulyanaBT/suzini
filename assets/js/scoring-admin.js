@@ -1,6 +1,6 @@
-import { scoreDocument } from './score-values.mjs?v=20261001-1';
-import { schedule, drawKey } from './schedule-core.mjs?v=20261001-1';
-import { blankLive, liveValid, wins, scoreText, reduceScore, matchStateKey } from './scoring-core.mjs?v=20261001-1';
+import { scoreDocument } from './score-values.mjs?v=20261001-2';
+import { schedule, drawKey } from './schedule-core.mjs?v=20261001-2';
+import { blankLive, liveValid, wins, scoreText, reduceScore, matchStateKey } from './scoring-core.mjs?v=20261001-2';
 import { isAdminConnected } from './admin-session.js';
 import { runTransaction, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
 
@@ -34,6 +34,7 @@ export function createScoring({db,drawRef,resultsRef,getContext,onUpdate,onSaved
         <p class="current-set">${match.result?'Match validé':waiting?'En attente des matchs précédents':invalid?'Saisie invalide':complete?'Deux sets gagnés · résultat à confirmer':live.sets.length===2?'Super tie-break en cours':`Set ${live.sets.length+1} en cours`}</p>
         ${match.participants.map((p,i)=>`<div class="score-team-row"><strong>${esc(p.name)}${match.result?.winnerId===p.id?' ✓':''}</strong>${!match.result&&!waiting&&!invalid?`<div class="score-stepper"><button type="button" data-score-action="minus" data-match="${match.id}" data-team="${i}" aria-label="Retirer un point à ${esc(p.name)}" ${disabled||complete||live.current[i]===0?'disabled':''}>−</button><output aria-label="Score de ${esc(p.name)}">${complete?wins(live.sets)[i]:live.current[i]}</output><button type="button" data-score-action="plus" data-match="${match.id}" data-team="${i}" aria-label="Ajouter un point à ${esc(p.name)}" ${disabled||complete||live.current[i]===99?'disabled':''}>+</button></div>`:''}</div>`).join('')}
         <div class="score-actions">${match.result?button('reopen','Corriger','secondary'):waiting||invalid?'':complete?button('review','Valider le résultat')+button('undoSet','Reprendre le dernier set','secondary'):button('validateSet','Valider le set','',live.current[0]===live.current[1])+ (live.sets.length?button('undoSet','Reprendre le set précédent','secondary',live.current.some(n=>n!==0)):'')}</div>
+        ${(stored||c.state.results?.[match.id])?`<button type="button" class="score-button reset-score" data-score-action="reset" data-match="${match.id}" ${locked?'disabled':''}>Réinitialiser le match</button>`:''}
       </article>`;
     }).join('');
     if(focusAction){
@@ -51,16 +52,29 @@ export function createScoring({db,drawRef,resultsRef,getContext,onUpdate,onSaved
     const c=context(),match=schedule(c.draw,c.state.results,c.positions).find(m=>m.id===id),live=c.state.live[id];
     if(!c.ready||!liveValid(live,match)||!wins(live.sets).includes(2))return;
     const winner=match.participants[wins(live.sets)[0]===2?0:1];
-    ticket={id,drawKey:c.key,matchKey:matchStateKey(c.state,id)};
+    ticket={id,type:'confirm',drawKey:c.key,matchKey:matchStateKey(c.state,id)};
+    $('scoreDialogTitle').textContent='Confirmer le résultat';
+    $('scoreDialogConfirm').textContent='Valider le résultat';
     $('scoreDialogSummary').innerHTML=`<p>${esc(match.title)}</p><p class="score-winner">🏆 ${esc(winner.name)}</p><p>Score des sets, dans l’ordre des équipes ci-dessous :</p><p>${esc(match.participants[0].name)} / ${esc(match.participants[1].name)}</p><strong class="score-summary">${esc(scoreText(live.sets))}</strong>`;
     $('scoreDialogError').textContent='';$('scoreDialogConfirm').disabled=false;$('scoreDialogCancel').disabled=false;
     if(!$('scoreDialog').open)$('scoreDialog').showModal();
     $('scoreDialogConfirm').focus();
   }
+  function reviewReset(id){
+    const c=context(),match=schedule(c.draw,c.state.results,c.positions).find(m=>m.id===id);
+    if(!c.ready||!match)return;
+    ticket={id,type:'reset',drawKey:c.key,matchKey:matchStateKey(c.state,id)};
+    $('scoreDialogTitle').textContent='Réinitialiser le match ?';
+    $('scoreDialogSummary').innerHTML=`<p><strong>${esc(match.title)}</strong></p><p>${esc(match.participants.map(p=>p.name).join(' / '))}</p><p>Tous les sets et le résultat de ce match seront effacés. La saisie reprendra au set 1, à 0–0. Le vainqueur et le perdant seront retirés des tours suivants.</p>`;
+    $('scoreDialogError').textContent='';
+    $('scoreDialogConfirm').textContent='Réinitialiser';
+    $('scoreDialogConfirm').disabled=false;$('scoreDialogCancel').disabled=false;
+    $('scoreDialog').showModal();$('scoreDialogCancel').focus();
+  }
   async function act(id,action,expected=ticket){
     const c=context();if(busy||!c.ready||!c.key)return;
-    const expectedKey=action.type==='confirm'?expected?.matchKey:matchStateKey(c.state,id);
-    const expectedDraw=action.type==='confirm'?expected?.drawKey:c.key;
+    const expectedKey=['confirm','reset'].includes(action.type)?expected?.matchKey:matchStateKey(c.state,id);
+    const expectedDraw=['confirm','reset'].includes(action.type)?expected?.drawKey:c.key;
     busy=true;notice='Enregistrement…';error=false;render();
     try{
       if(!isAdminConnected())throw Error('Reconnecte-toi à l’administration.');
@@ -76,8 +90,8 @@ export function createScoring({db,drawRef,resultsRef,getContext,onUpdate,onSaved
         transaction.set(resultsRef,{...scoreDocument(output,true),updatedAt:serverTimestamp()});return output;
       });
       onSaved(saved);
-      notice=action.type==='confirm'?'Résultat du match validé.':action.type==='validateSet'?'Set validé.':action.type==='reopen'?'Résultat rouvert : corrige puis valide à nouveau.':'Score enregistré.';
-      if(action.type==='confirm'){$('scoreDialog').close();ticket=null;}
+      notice=action.type==='reset'?'Match réinitialisé : set 1, score 0–0.':action.type==='confirm'?'Résultat du match validé.':action.type==='validateSet'?'Set validé.':action.type==='reopen'?'Résultat rouvert : corrige puis valide à nouveau.':'Score enregistré.';
+      if(['confirm','reset'].includes(action.type)){$('scoreDialog').close();ticket=null;}
       busy=false;onUpdate();render();
       if(action.type==='validateSet')review(id);
     }catch(e){
@@ -90,11 +104,12 @@ export function createScoring({db,drawRef,resultsRef,getContext,onUpdate,onSaved
     const button=event.target.closest('button[data-score-action]');if(!button||button.disabled)return;
     const {scoreAction:type,match:id,team}=button.dataset;
     if(type==='review'){review(id);return;}
+    if(type==='reset'){reviewReset(id);return;}
     if(type==='reopen'&&!confirm('Reprendre le dernier set de ce match ? Le résultat sera retiré jusqu’à sa nouvelle validation.'))return;
     const action=type==='plus'||type==='minus'?{type:'adjust',team:Number(team),delta:type==='plus'?1:-1}:{type};
     void act(id,action);
   };
-  $('scoreDialogConfirm').onclick=()=>{if(ticket&&!$('scoreDialogConfirm').disabled)void act(ticket.id,{type:'confirm'},ticket);};
+  $('scoreDialogConfirm').onclick=()=>{if(ticket&&!$('scoreDialogConfirm').disabled)void act(ticket.id,{type:ticket.type},ticket);};
   $('scoreDialogCancel').onclick=()=>{if(!busy)$('scoreDialog').close();};
   $('scoreDialog').addEventListener('cancel',event=>{if(busy)event.preventDefault();});
   return {render};

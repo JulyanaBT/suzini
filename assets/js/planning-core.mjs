@@ -1,4 +1,4 @@
-import { MATCHES, DURATION, time } from './schedule-core.mjs?v=20261001-1';
+import { MATCHES, DURATION, time } from './schedule-core.mjs?v=20261001-2';
 export const FIRST_START=18*60, LAST_START=23*60+15;
 export function placements(overrides={}) {
   if(!overrides||typeof overrides!=='object'||Array.isArray(overrides))throw Error('Programmation invalide.');

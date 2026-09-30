@@ -1,7 +1,7 @@
-import { schedule, descendants, drawKey } from './schedule-core.mjs?v=20261001-1';
+import { schedule, descendants, drawKey } from './schedule-core.mjs?v=20261001-2';
 
-import { wins, scoreText, setsValid, pairValid } from './score-values.mjs?v=20261001-1';
-export { wins, scoreText } from './score-values.mjs?v=20261001-1';
+import { wins, scoreText, setsValid, pairValid } from './score-values.mjs?v=20261001-2';
+export { wins, scoreText } from './score-values.mjs?v=20261001-2';
 export function blankLive(match) { return {team1Id:match.participants[0].id,team2Id:match.participants[1].id,sets:[],current:[0,0]}; }
 export function liveValid(live,match) {
   return !!live && !!match && match.participants.every(p=>p.id&&!p.pending) && live.team1Id===match.participants[0].id && live.team2Id===match.participants[1].id
@@ -15,8 +15,14 @@ export function matchStateKey(state,id) {
 export function reduceScore(draw,revision,state,id,action) {
   if(!drawKey(draw,revision))throw Error('Le tirage doit être terminé.');
   const match=schedule(draw,state.results||{}).find(m=>m.id===id);
-  if(!match||match.participants.some(p=>p.pending))throw Error('Les deux équipes doivent être connues avant de saisir le score.');
+  if(!match)throw Error('Match inconnu.');
   const results={...(state.results||{})}, live={...(state.live||{})};
+  if(action.type==='reset'){
+    const blocked=descendants(id).filter(next=>results[next]||live[next]);
+    if(blocked.length)throw Error(`Réinitialise d’abord les matchs suivants déjà saisis : ${blocked.join(', ')}.`);
+    delete results[id];delete live[id];return {results,live};
+  }
+  if(match.participants.some(p=>p.pending))throw Error('Les deux équipes doivent être connues avant de saisir le score.');
   if(action.type==='reopen'){
     if(!match.result)throw Error('Aucun résultat validé à corriger.');
     const blocked=descendants(id).filter(next=>results[next]||live[next]);
