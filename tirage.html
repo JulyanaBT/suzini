@@ -6,34 +6,21 @@
 <meta name="theme-color" content="#ffffff">
 <title>Tirage | BT250 - Double Mixte</title>
 <link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/draw.css">
+<link rel="stylesheet" href="assets/css/draw-public.css?v=20261001-5">
 </head>
 <body data-page="tirage" data-title="BT250 - Double Mixte" data-date="02 octobre 2026">
 <div id="siteHeader"></div>
-<main class="container draw-page">
-<section class="draw-panel">
-<span class="draw-eyebrow">BT250 · Double mixte · 8 équipes</span>
-<h1>Le tirage du tournoi</h1>
-<p class="draw-sub">Tête de série 2 en haut, tête de série 1 en bas. Les six autres équipes prennent place, par tirage au sort, de la ligne 2 à la ligne 7.</p>
-<div id="status" class="draw-status" role="status" aria-live="polite">Chargement du tableau…</div>
-</section>
-<section class="draw-panel" aria-label="Tableau du tournoi">
-<div class="draw-sub" id="progressText">0 équipe placée sur 8</div><progress id="progress" class="draw-progress" max="8" value="0" aria-label="Équipes placées"></progress>
-<p class="draw-sub">Sur mobile, fais glisser le tableau pour voir les tours suivants.</p>
-<div class="bracket-scroll" tabindex="0" role="region" aria-label="Tableau défilant : quarts, demi-finales et finale"><div class="bracket">
-<div class="round"><div class="round-title">Quarts de finale</div><div id="quarters" class="round-body quarters"></div></div>
-<div class="round"><div class="round-title">Demi-finales</div><div class="round-body semis"><div class="match later"><div class="match-title">DF1</div><div class="slot pending">Vainqueur QF1</div><div class="slot pending">Vainqueur QF2</div></div><div class="match later"><div class="match-title">DF2</div><div class="slot pending">Vainqueur QF3</div><div class="slot pending">Vainqueur QF4</div></div></div></div>
-<div class="round"><div class="round-title">Finale</div><div class="round-body finals"><div class="match later"><div class="match-title">Finale</div><div class="slot pending">Vainqueur DF1</div><div class="slot pending">Vainqueur DF2</div></div></div></div>
-</div></div>
-</section>
-<section id="poolPanel" class="draw-panel" hidden><h2 id="poolTitle">Équipes à tirer</h2><div id="pool" class="draw-pool"></div></section>
-<a class="draw-link" href="participants.html">👥 Voir les équipes inscrites</a>
-<p class="draw-note">Ce tableau présente les quarts, les demi-finales et la finale. Les matchs de classement et les horaires sont disponibles dans l’onglet Matchs.</p>
+<main class="container public-draw">
+<div class="public-draw-heading"><h1>Les quarts de finale</h1><span id="drawCount">0/8 équipes</span></div>
+<p id="drawStatus" role="status" aria-live="polite">Chargement du tirage…</p>
+<div class="roulette" id="roulette" aria-hidden="true"><small id="rouletteLabel">Replay du tirage enregistré</small><strong id="rouletteName">🎲 Revoir le tirage</strong></div>
+<section id="quarters" class="public-quarters" aria-label="Les quatre quarts de finale"></section>
+<div class="public-draw-actions"><button id="replayStart" type="button" disabled>▶ Rejouer le tirage</button><button id="replayStop" type="button" hidden>Voir le tableau complet</button><a href="programmation.html?v=20261001-3">🎾 Tous les matchs</a></div>
 <noscript>Active JavaScript pour afficher le tirage.</noscript>
 </main>
-<script type="module" src="assets/js/header-tournament.js?v=20261001-4"></script>
+<script type="module" src="assets/js/header-tournament.js?v=20261001-5"></script>
 <script type="module" src="assets/js/support-note.js"></script>
 <script type="module" src="assets/js/maintenance.js"></script>
-<script type="module" src="assets/js/draw-page.js?v=20260930-3"></script>
+<script type="module" src="assets/js/draw-public.js?v=20261001-5"></script>
 </body>
 </html>

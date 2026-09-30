@@ -77,7 +77,7 @@ const publicPages = {
     "../participants.html",
 
   tirage:
-    "../tirage.html",
+    "../tirage.html?v=20261001-5",
 
   programmation:
     "../programmation.html?v=20261001-2",

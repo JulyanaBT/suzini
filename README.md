@@ -186,3 +186,20 @@ Validation : `node tests/ranking-core.test.mjs` couvre les 4096 combinaisons,
 l’unicité des huit places, les résultats partiels, la réinitialisation et les
 anciens tirages. Parcours mobile testé avec huit équipes fictives, classement
 complet puis réinitialisation de la finale ; aucune donnée réelle modifiée.
+
+### Tirage public compact et replay
+
+La page publique affiche uniquement les quatre quarts, en grille 2×2 et sans
+noms de joueurs en double. Vérifiée à 320×568 sans défilement vertical ou
+horizontal. Le lien Matchs donne accès aux autres tours.
+
+Le bouton Rejouer place les deux têtes de série puis révèle les lignes 2 à 7
+avec une roulette. Le module public ne contient aucune écriture Firestore et
+ne génère aucun nouvel aléa : chaque arrêt correspond au slot enregistré.
+Le tableau complet reste affiché à l’ouverture. Le replay est disponible
+uniquement pour un tirage complet reçu du serveur ; un bouton permet de
+revenir immédiatement au tableau. Une modification admin ou la mise en arrière-plan
+interrompt le replay. Le réglage de réduction des animations est respecté.
+
+`node tests/draw-replay.test.mjs` vérifie cent tirages : ordre de révélation,
+têtes de série fixes, unicité, résultat identique et absence de mutation.
