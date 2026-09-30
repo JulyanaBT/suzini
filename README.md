@@ -29,7 +29,7 @@ démarrage ou après remise à zéro ; sinon il contient `version`, `eventId`,
 Les lignes sont indexées de 0 à 7 dans `slots` et les matchs utilisent les IDs
 d’équipes, afin de préparer le raccordement à la programmation.
 Les paiements et autres champs privés ne sont pas recopiés dans ce document.
-Les matchs de classement TMC, les scores et les horaires restent à réaliser.
+Les matchs de classement et horaires figurent désormais dans la programmation ; la saisie des scores reste à réaliser.
 La capacité de 12 des pages d’inscription existantes n’a pas été changée.
 
 ## Autorisations
@@ -67,3 +67,39 @@ La prévisualisation locale avec données fictives a également permis de vérif
 le parcours des six clics, la reprise après rechargement, la vue publique sans
 commandes, l’affichage à 390 px, les têtes de série identiques, les erreurs
 Firestore et conflits de révision, et le blocage avec sept équipes.
+
+## Programmation
+
+`programmation.html` propose deux onglets : Tableau (arbre du tournoi) et
+Chronologique (créneaux, puis terrains). Le choix est conservé dans le fragment
+`#tableau` ou `#chronologique`. La page admin propose les mêmes vues avec la
+navigation organisateur.
+
+Les 12 matchs sont calculés par `assets/js/schedule-core.mjs` : quatre quarts,
+deux demies, deux rencontres de classement 5–8, puis les matchs des places
+1–2, 3–4, 5–6 et 7–8. Chaque équipe joue trois fois.
+
+| Début | Lisa de Los Pimentos | Manon Queen Bee |
+| --- | --- | --- |
+| 18 h 00 | QF1 | QF2 |
+| 18 h 45 | QF3 | QF4 |
+| 19 h 30 | DF1 | CL1 |
+| 20 h 15 | DF2 | CL2 |
+| 21 h 00 | 5e place | 7e place |
+| 21 h 45 | Finale | 3e place |
+
+Chaque créneau dure 45 minutes ; fin prévue à 22 h 30. La page écoute le document
+du tirage en lecture seule, accepte un tirage partiel et complète les quarts à
+chaque équipe placée. Les horaires sont fixes à ce stade. Les tours suivants
+mentionnent le vainqueur ou perdant attendu : la saisie et la propagation des
+résultats ne font pas partie de cette version.
+
+```sh
+node tests/schedule-core.test.mjs
+```
+
+Le test simule les 4096 combinaisons de résultats pour vérifier les dépendances,
+l’absence de chevauchement pour une équipe ou un terrain, trois matchs par
+équipe et huit places finales distinctes. Les deux vues ont été vérifiées dans
+le navigateur à 390 px et 1280 px, ainsi que leur mise à jour pendant un tirage
+fictif, le rechargement et la navigation au clavier.
