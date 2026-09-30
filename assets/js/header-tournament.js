@@ -55,7 +55,7 @@ const navItems = [
   {
     page: "classement",
     label: "🏆 Classement",
-    href: "classement.html"
+    href: "classement.html?v=20261001-4"
   },
 
   {

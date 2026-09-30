@@ -83,7 +83,7 @@ const publicPages = {
     "../programmation.html?v=20261001-2",
 
   classement:
-    "../classement.html",
+    "../classement.html?v=20261001-4",
 
   parametres:
     "../index.html",
@@ -567,7 +567,7 @@ headerTarget.innerHTML = `
 
 
         <a
-          href="classement.html"
+          href="classement.html?v=20261001-4"
           data-nav="classement"
         >
 

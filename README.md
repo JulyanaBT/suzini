@@ -167,3 +167,22 @@ de navigation et de programmation, pour éviter une ancienne page en cache.
 Vérification du tableau public réel en lecture seule : vainqueur de QF1 en DF1
 et perdant de QF1 en CL1. Tests supplémentaires avec données fictives :
 confirmation, propagation et réinitialisation avec une page publique déjà ouverte.
+
+### Classement public et admin
+
+`classement.html` et `admin/classement.html` utilisent les mêmes résultats
+confirmés que la programmation. Finale : places 1/2 ; P3 : 3/4 ; P5 : 5/6 ;
+P7 : 7/8. Une place non décidée reste « À déterminer ». Le podium est mis en
+couleur dès confirmation et le classement devient final lorsque les huit places
+sont attribuées. Le compteur indique les matchs validés et les places attribuées.
+La page admin propose un accès à la saisie/correction des résultats.
+
+Aucun document de classement distinct n’est écrit et aucun bouton de publication
+supplémentaire n’est requis : `config/classement` n’est plus utilisé. Les deux
+pages écoutent le tirage et les résultats en temps réel et ignorent les résultats
+issus d’une autre révision du tirage. Une réinitialisation retire la place.
+
+Validation : `node tests/ranking-core.test.mjs` couvre les 4096 combinaisons,
+l’unicité des huit places, les résultats partiels, la réinitialisation et les
+anciens tirages. Parcours mobile testé avec huit équipes fictives, classement
+complet puis réinitialisation de la finale ; aucune donnée réelle modifiée.

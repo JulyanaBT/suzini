@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#ffffff">
   <title>Classement | BT250 - Double Mixte</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/ranking.css?v=20261001-4">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/ranking.css?v=20261001-4">
 </head>
-<body data-page="classement"  data-title="BT250 - Double Mixte" data-date="02 octobre 2026">
+<body data-page="classement" data-admin="true" data-title="BT250 - Double Mixte" data-date="02 octobre 2026">
 <div id="siteHeader"></div>
 <main class="container ranking-page">
   <section class="ranking-heading">
@@ -17,13 +17,13 @@
     <p id="rankingStatus" role="status" aria-live="polite">Chargement des résultats…</p>
   </section>
   <ol id="rankingRows" class="ranking-list" aria-label="Classement de la première à la huitième place"></ol>
-  <div class="ranking-actions"><a href="programmation.html?v=20261001-3">🎾 Voir les matchs</a><a href="participants.html">👥 Voir les équipes</a></div>
-  <p class="ranking-note">Seuls les résultats confirmés attribuent une place. Le classement se met à jour automatiquement.</p>
+  <div class="ranking-actions"><a href="programmation.html?v=20261001-3#resultats">✍️ Saisir les résultats</a><a href="participants.html">👥 Voir les équipes</a></div>
+  <p class="ranking-note">Le classement public se met à jour automatiquement. Corrige ou réinitialise un match dans Résultats pour rectifier une place.</p>
   <noscript>Active JavaScript pour consulter le classement.</noscript>
 </main>
-<script type="module" src="assets/js/header-tournament.js?v=20261001-4"></script>
-<script type="module" src="assets/js/support-note.js"></script>
-<script type="module" src="assets/js/maintenance-guard.js"></script>
-<script type="module" src="assets/js/ranking-page.js?v=20261001-4"></script>
+<script type="module" src="../assets/js/admin-header.js?v=20261001-4"></script>
+<script type="module" src="../assets/js/support-note.js"></script>
+
+<script type="module" src="../assets/js/ranking-page.js?v=20261001-4"></script>
 </body>
 </html>

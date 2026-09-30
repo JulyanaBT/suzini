@@ -1,0 +1,21 @@
+.ranking-page{padding-bottom:18px}
+.ranking-heading{background:white;padding:18px;border-radius:16px;margin-bottom:10px}
+.ranking-heading h1{font-size:23px;margin:0 0 8px}
+.ranking-heading p{font-size:12px;line-height:1.5;color:#687077;margin:6px 0 0}
+#rankingStatus{font-size:11px;font-weight:800;color:#47644e}
+#rankingStatus.error{color:#a42d23}
+.ranking-list{list-style:none;padding:0;margin:0;background:white;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px #00000008}
+.ranking-row{display:flex;align-items:center;gap:12px;padding:13px 15px;min-height:65px;border-bottom:1px solid #eee}
+.ranking-row:last-child{border:0}
+.ranking-place{width:32px;flex-shrink:0;text-align:center;font-size:18px;font-weight:950}
+.ranking-team{min-width:0;flex:1}
+.ranking-team strong{font-size:14px;overflow-wrap:anywhere}
+.ranking-team small{display:block;margin-top:3px;font-size:10px;color:#73797b;line-height:1.4}
+.ranking-row.pending strong{color:#92979b;font-weight:650}
+.ranking-row.pending .ranking-place{color:#92979b}
+.ranking-check{font-weight:900;color:#247547}
+.ranking-row.place-1{background:#fff2be}.ranking-row.place-2{background:#f0f2f5}.ranking-row.place-3{background:#fae8dc}
+.ranking-actions{display:flex;gap:8px;margin-top:12px}
+.ranking-actions a{flex:1;padding:13px 9px;border-radius:12px;background:#101010;color:white;text-align:center;font-size:12px;font-weight:850;text-decoration:none}
+.ranking-actions a:first-child{background:var(--orange)}
+.ranking-note{font-size:11px;line-height:1.5;color:#666;padding:0 4px}
