@@ -103,3 +103,34 @@
  .schedule-court-grid .match-team{min-height:29px;padding:5px 0;flex-wrap:nowrap;align-items:center}
  .schedule-court-grid .match-seed{margin-left:auto}
 }
+.match-team.winner strong{font-weight:1000}
+.match-team.winner strong:after{content:' ✓';color:#176533}
+.match-score{font-size:9px;font-weight:850;margin-top:5px;border-top:1px solid #0002;padding-top:5px;line-height:1.4}
+.results-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.score-card{background:#fff;border:1px solid #ddd;border-radius:14px;padding:14px}
+.score-card.court-0{border-top:4px solid #d94232;background:#fff5f3}
+.score-card.court-1{border-top:4px solid #d6af22;background:#fffbea}
+.score-card-head{display:flex;justify-content:space-between;gap:10px;font-size:13px}
+.score-card-head span{white-space:nowrap;font-weight:900}
+.current-set{font-size:12px;font-weight:850;margin:10px 0}
+.set-history{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
+.set-chip{padding:5px 8px;background:#fff;border:1px solid #ddd;border-radius:7px;font-size:11px;font-weight:850}
+.score-team-row{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:54px;border-top:1px solid #0001}
+.score-team-row>strong{min-width:0;overflow-wrap:anywhere;font-size:13px;line-height:1.3}
+.score-stepper{display:flex;gap:5px;align-items:center;flex-shrink:0}
+.score-stepper button{width:42px;height:42px;border:1px solid #bbb;border-radius:10px;background:white;font-size:24px;font-weight:800;cursor:pointer}
+.score-stepper output{min-width:27px;text-align:center;font-size:22px;font-weight:950}
+.score-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.score-button{min-height:42px;padding:9px 12px;border:0;border-radius:10px;background:#101010;color:white;font-size:12px;font-weight:850;cursor:pointer}
+.score-button.secondary{background:#eee;color:#333}
+.score-card button:disabled,.score-dialog button:disabled{opacity:.4;cursor:not-allowed}
+#scoreNotice{font-size:12px;line-height:1.5;margin:7px 0 0;color:#586b59}
+#scoreNotice.error,#scoreDialogError{color:#a42d23}
+.score-dialog{border:0;border-radius:20px;padding:22px;max-width:430px;width:calc(100% - 28px);color:#101010;box-shadow:0 18px 50px #0004}
+.score-dialog::backdrop{background:#0008}
+.score-dialog h2{font-size:21px;margin:0 0 12px}
+.score-dialog p{font-size:13px;line-height:1.5}
+.score-dialog .score-winner{font-size:22px;font-weight:950}
+.score-summary{display:block;font-size:22px;margin:14px 0}
+@media(min-width:760px){.results-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:350px){.score-card{padding:10px}.score-stepper{gap:3px}.score-stepper button{width:36px;height:42px}.score-stepper output{min-width:23px}.score-team-row>strong{font-size:12px}}

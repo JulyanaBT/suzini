@@ -6,34 +6,32 @@
   <meta name="theme-color" content="#ffffff">
   <title>Programmation | BT250 - Double Mixte</title>
   <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/schedule.css?v=20260930-3">
+  <link rel="stylesheet" href="../assets/css/schedule.css?v=20260930-4">
 </head>
 <body data-page="programmation" data-admin="true" data-title="BT250 - Double Mixte" data-date="02 octobre 2026">
 <div id="siteHeader"></div>
 <main class="container schedule-page">
   <h1 class="visually-hidden">La programmation</h1>
   <p id="scheduleStatus" class="schedule-state visually-hidden" role="status" aria-live="polite">Chargement du tirage…</p>
-  <nav class="schedule-tabs" role="tablist" aria-label="Vue de la programmation">
-    <button class="schedule-tab" id="tabTableau" type="button" role="tab" aria-selected="true" aria-controls="panelTableau">🏆 Tableau</button>
-    <button class="schedule-tab" id="tabChronologique" type="button" role="tab" aria-selected="false" aria-controls="panelChronologique" tabindex="-1">🕒 Chronologique</button>
+  <nav class="schedule-tabs" role="tablist" aria-label="Vue organisateur">
+    <button class="schedule-tab" id="tabChronologique" type="button" role="tab" aria-selected="true" aria-controls="panelChronologique">🕒 Chronologique</button>
+    <button class="schedule-tab" id="tabResultats" type="button" role="tab" aria-selected="false" aria-controls="panelResultats" tabindex="-1">✍️ Résultats</button>
   </nav>
-  <section id="panelTableau" role="tabpanel" aria-labelledby="tabTableau" tabindex="0">
-    <section class="schedule-panel">
-      <h2>Le titre et le podium</h2>
-      <p class="schedule-description">Quarts de finale → demi-finales → finale et match pour la 3e place. Fais glisser le tableau pour parcourir les tours. Traits pleins : vainqueurs ; pointillés : perdants.</p>
-      <div class="schedule-scroll" role="region" aria-label="Arbre du tableau principal" tabindex="0"><div id="mainTree" class="schedule-tree"></div></div>
-    </section>
-    <section class="schedule-panel">
-      <h2>Les places 5 à 8</h2>
-      <p class="schedule-description">Les perdants des quarts poursuivent le tournoi. Chaque équipe dispute trois matchs.</p>
-      <div class="schedule-scroll" role="region" aria-label="Arbre des matchs de classement" tabindex="0"><div id="classificationTree" class="schedule-tree consolation"></div></div>
-    </section>
-  </section>
-  <section id="panelChronologique" class="schedule-panel" role="tabpanel" aria-labelledby="tabChronologique" tabindex="0" hidden>
+  <section id="panelChronologique" class="schedule-panel" role="tabpanel" aria-labelledby="tabChronologique" tabindex="0">
     <h2>Le fil de la soirée</h2>
     <p class="schedule-description">Les rencontres dans l’ordre, regroupées par créneau et par terrain.</p>
     <div id="chronologicalMatches"></div>
   </section>
+  <section id="panelResultats" role="tabpanel" aria-labelledby="tabResultats" tabindex="0" hidden>
+    <div class="schedule-panel"><h2>Saisie des résultats</h2><p class="schedule-description">Ajuste le score avec + et −, puis valide chaque set. Le résultat du match sera soumis à ta confirmation.</p><p id="scoreNotice" role="status" aria-live="polite"></p></div>
+    <div id="resultsMatches" class="results-grid"></div>
+  </section>
+  <dialog id="scoreDialog" class="score-dialog" aria-labelledby="scoreDialogTitle">
+    <h2 id="scoreDialogTitle">Confirmer le résultat</h2>
+    <div id="scoreDialogSummary"></div>
+    <p id="scoreDialogError" role="alert"></p>
+    <div class="score-actions"><button type="button" id="scoreDialogCancel" class="score-button secondary">Revenir au score</button><button type="button" id="scoreDialogConfirm" class="score-button">Valider le résultat</button></div>
+  </dialog>
   <div class="schedule-actions"><a class="schedule-link primary" href="tirage.html">🎲 Voir le tirage</a><a class="schedule-link" href="participants.html">👥 Voir les équipes</a></div>
   <p class="schedule-note">Les horaires sont prévisionnels. Les adversaires des tours suivants sont indiqués par le résultat attendu du match précédent : « Vainqueur QF1 », par exemple.</p>
   <noscript>Active JavaScript pour consulter les matchs et changer de vue.</noscript>
@@ -41,6 +39,6 @@
 <script type="module" src="../assets/js/admin-header.js"></script>
 <script type="module" src="../assets/js/support-note.js"></script>
 
-<script type="module" src="../assets/js/schedule-page.js?v=20260930-3"></script>
+<script type="module" src="../assets/js/schedule-page.js?v=20260930-4"></script>
 </body>
 </html>

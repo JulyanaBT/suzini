@@ -29,7 +29,7 @@ démarrage ou après remise à zéro ; sinon il contient `version`, `eventId`,
 Les lignes sont indexées de 0 à 7 dans `slots` et les matchs utilisent les IDs
 d’équipes, afin de préparer le raccordement à la programmation.
 Les paiements et autres champs privés ne sont pas recopiés dans ce document.
-Les matchs de classement et horaires figurent désormais dans la programmation ; la saisie des scores reste à réaliser.
+Les matchs de classement et horaires figurent désormais dans la programmation ; la saisie des scores est disponible en administration.
 La capacité de 12 des pages d’inscription existantes n’a pas été changée.
 
 ## Autorisations
@@ -92,8 +92,7 @@ deux demies, deux rencontres de classement 5–8, puis les matchs des places
 Chaque créneau dure 45 minutes ; fin prévue à 23 h 15. La page écoute le document
 du tirage en lecture seule, accepte un tirage partiel et complète les quarts à
 chaque équipe placée. Les horaires sont fixes à ce stade. Les tours suivants
-mentionnent le vainqueur ou perdant attendu : la saisie et la propagation des
-résultats ne font pas partie de cette version.
+mentionnent le vainqueur ou perdant attendu puis les équipes qualifiées après confirmation du résultat.
 
 ```sh
 node tests/schedule-core.test.mjs
@@ -113,3 +112,23 @@ Les cartes de programmation affichent uniquement les noms d’équipes. Leur
 libellé compact (« Quart 1 », « Demi 1 », etc.) remplace le code et le titre
 répétés. Sur mobile, deux tours entiers du tableau sont visibles sans défilement ;
 le troisième reste accessible horizontalement. Vérifié à 320 px et 390 px.
+
+### Résultats en administration
+
+La programmation admin propose Chronologique et Résultats. Chaque équipe dispose
+de boutons +/− pour le set en cours. « Valider le set » enregistre un set sans
+égalité puis ouvre le suivant (super tie-break au troisième). Après deux sets
+gagnés, une fenêtre récapitule le vainqueur et les scores ; seule la confirmation
+valide le match et propage les équipes dans les tours suivants.
+
+Chaque modification est enregistrée par transaction dans
+`events/suzini-bt250-mixte-2026-10-02/config/results`, liée à la révision du tirage.
+Les sets sont stockés sous forme de maps `{a,b}` compatibles Firestore. La saisie
+reprend après rechargement. Les modifications concurrentes du même match sont
+refusées avec un message explicite. Un résultat peut être corrigé tant qu’aucun
+match dépendant n’a commencé sa saisie. Les règles Firestore doivent autoriser
+la lecture et les écritures organisateur sur ce document, comme pour le tirage.
+
+Validation : `node tests/scoring-core.test.mjs`, parcours navigateur fictif
+avec +/−, trois sets, annulation du récapitulatif, rechargement, confirmation
+et propagation du vainqueur. Aucun résultat réel n’a été saisi pendant les tests.

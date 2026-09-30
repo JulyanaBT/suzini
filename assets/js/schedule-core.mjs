@@ -1,3 +1,4 @@
+import { wins, scoreText, setsValid } from './score-values.mjs?v=20260930-4';
 import { valid } from './draw-core.mjs?v=20260930-3';
 
 export const COURTS = ['🌶️ Lisa de Los Pimentos', '🐝 Manon Queen Bee'];
@@ -27,21 +28,47 @@ export function time(minutes) {
   return `${String(Math.floor(minutes/60)).padStart(2,'0')} h ${String(minutes%60).padStart(2,'0')}`;
 }
 
-export function participant(source, draw) {
-  if(source.type !== 'slot') return {
-    name: `${source.type === 'winner' ? 'Vainqueur' : 'Perdant'} ${source.match}`,
-    players: '', seed: null, pending: true,
-  };
-  const id = draw?.slots[source.line];
-  const team = id ? draw.teams.find(t => t.id === id) : null;
-  if(!team) return { name:`Équipe ligne ${source.line+1}`, players:'À déterminer au tirage', seed:null, pending:true };
-  return { name:team.name, players:team.players.join(' · '), seed:id === draw.seed1 ? 1 : id === draw.seed2 ? 2 : null, pending:false };
+export function participant(source, draw, resolved = {}) {
+  let id;
+  if (source.type === 'slot') id = draw?.slots[source.line];
+  else {
+    const previous = resolved[source.match];
+    if (previous?.result) id = source.type === 'winner' ? previous.result.winnerId : previous.participants.find(p => p.id !== previous.result.winnerId)?.id;
+    if (!id) return { id:null, name:`${source.type === 'winner' ? 'Vainqueur' : 'Perdant'} ${source.match}`, players:'', seed:null, pending:true };
+  }
+  const team = id ? draw?.teams.find(t => t.id === id) : null;
+  if (!team) return { id:null, name:`Équipe ligne ${source.line+1}`, players:'À déterminer au tirage', seed:null, pending:true };
+  return { id:team.id, name:team.name, players:team.players.join(' · '), seed:id === draw.seed1 ? 1 : id === draw.seed2 ? 2 : null, pending:false };
 }
 
-export function schedule(draw = null) {
-  if(draw !== null && !valid(draw)) throw Error('Le tirage enregistré est invalide.');
-  return MATCHES.map(match => ({
-    ...match, end:match.start+DURATION, courtName:COURTS[match.court],
-    participants:match.sources.map(source => participant(source,draw)),
-  }));
+export function validResult(result, participants) {
+  return !!result && participants.length === 2 && participants.every(p => p.id && !p.pending)
+    && participants[0].id !== participants[1].id
+    && result.team1Id === participants[0].id && result.team2Id === participants[1].id
+    && participants.some(p => p.id === result.winnerId)
+    && setsValid(result.sets) && wins(result.sets).includes(2)
+    && result.winnerId === participants[wins(result.sets)[0] === 2 ? 0 : 1].id
+    && result.score === scoreText(result.sets);
+}
+
+export function schedule(draw = null, results = {}) {
+  if (draw !== null && !valid(draw)) throw Error('Le tirage enregistré est invalide.');
+  const resolved = {};
+  return MATCHES.map(match => {
+    const participants = match.sources.map(source => participant(source,draw,resolved));
+    const result = validResult(results?.[match.id],participants) ? results[match.id] : null;
+    return resolved[match.id] = { ...match, end:match.start+DURATION, courtName:COURTS[match.court], participants, result };
+  });
+}
+
+export function drawKey(draw, revision) {
+  return draw && valid(draw) && !draw.slots.includes(null) && Number.isInteger(revision)
+    ? JSON.stringify([draw.eventId, revision, draw.slots]) : null;
+}
+
+export function descendants(matchId) {
+  const affected = new Set([matchId]);
+  for (const match of MATCHES) if (match.sources.some(source => affected.has(source.match))) affected.add(match.id);
+  affected.delete(matchId);
+  return [...affected];
 }
