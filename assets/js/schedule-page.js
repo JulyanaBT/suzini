@@ -1,4 +1,4 @@
-import { schedule, time, DURATION } from './schedule-core.mjs?v=20260930-1';
+import { schedule, time, DURATION } from './schedule-core.mjs?v=20260930-2';
 import { EVENT_ID, valid } from './draw-core.mjs?v=20260930-3';
 
 const $ = id => document.getElementById(id);
@@ -40,7 +40,7 @@ function drawConnections() {
 }
 
 function card(match) {
-  return `<article class="match-card court-${match.court} ${match.id === 'F' ? 'highlight' : ''}" data-match="${match.id}" aria-label="${esc(match.title)}">
+  return `<article style="--court-column:${match.court+1}" class="match-card court-${match.court} ${match.id === 'F' ? 'highlight' : ''}" data-match="${match.id}" aria-label="${esc(match.title)}">
     <div class="match-meta"><span class="match-id">${match.id}</span><span class="match-time">${time(match.start)}</span></div>
     <div class="match-court court-label court-${match.court}">${esc(match.courtName)}</div>
     <h4>${match.title}</h4>

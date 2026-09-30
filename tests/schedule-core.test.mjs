@@ -2,10 +2,10 @@ import assert from 'node:assert/strict';
 import { MATCHES, COURTS, DURATION, schedule, time } from '../assets/js/schedule-core.mjs';
 import { start } from '../assets/js/draw-core.mjs';
 assert.equal(MATCHES.length,12);
-assert.deepEqual(COURTS,['Lisa de Los Pimentos','Manon Queen Bee']);
+assert.deepEqual(COURTS,['🌶️ Lisa de Los Pimentos','🐝 Manon Queen Bee']);
 assert.equal(DURATION,45);
 assert.equal(Math.min(...MATCHES.map(m=>m.start)),1080);
-assert.equal(Math.max(...MATCHES.map(m=>m.start+DURATION)),1350);
+assert.equal(Math.max(...MATCHES.map(m=>m.start+DURATION)),1395);
 assert.equal(new Set(MATCHES.map(m=>`${m.start}:${m.court}`)).size,12);
 assert.equal(new Set(MATCHES.map(m=>m.id)).size,12);
 for(const m of MATCHES)for(const s of m.sources)if(s.type!=='slot'){
@@ -35,3 +35,7 @@ assert.equal(rows.find(m=>m.id==='CL1').participants[0].name,'Perdant QF1');
 assert.equal(time(1305),'21 h 45');assert.equal(time(1350),'22 h 30');
 assert.equal(schedule(null).length,12);assert.throws(()=>schedule({}));
 console.log('PASS: 4096 scénarios TMC, 3 matchs par équipe, aucun chevauchement, 8 places finales, tirages partiels et complets.');
+
+assert.deepEqual(MATCHES.map(m=>m.id),['QF1','QF2','QF3','QF4','CL1','CL2','DF1','DF2','P7','P5','P3','F']);
+assert.equal(MATCHES.find(m=>m.id==='F').start,MATCHES.find(m=>m.id==='P3').start+DURATION);
+assert.equal(time(1395),'23 h 15');

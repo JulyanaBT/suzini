@@ -83,12 +83,13 @@ deux demies, deux rencontres de classement 5–8, puis les matchs des places
 | --- | --- | --- |
 | 18 h 00 | QF1 | QF2 |
 | 18 h 45 | QF3 | QF4 |
-| 19 h 30 | DF1 | CL1 |
-| 20 h 15 | DF2 | CL2 |
-| 21 h 00 | 5e place | 7e place |
-| 21 h 45 | Finale | 3e place |
+| 19 h 30 | CL1 | CL2 |
+| 20 h 15 | DF1 | DF2 |
+| 21 h 00 | 7e place | 5e place |
+| 21 h 45 | 3e place | — |
+| 22 h 30 | Finale | — |
 
-Chaque créneau dure 45 minutes ; fin prévue à 22 h 30. La page écoute le document
+Chaque créneau dure 45 minutes ; fin prévue à 23 h 15. La page écoute le document
 du tirage en lecture seule, accepte un tirage partiel et complète les quarts à
 chaque équipe placée. Les horaires sont fixes à ce stade. Les tours suivants
 mentionnent le vainqueur ou perdant attendu : la saisie et la propagation des
@@ -103,3 +104,7 @@ l’absence de chevauchement pour une équipe ou un terrain, trois matchs par
 équipe et huit places finales distinctes. Les deux vues ont été vérifiées dans
 le navigateur à 390 px et 1280 px, ainsi que leur mise à jour pendant un tirage
 fictif, le rechargement et la navigation au clavier.
+
+La vue chronologique conserve deux colonnes dès 320 px. Lisa est en rouge (🌶️),
+Manon en jaune (🐝). Le match de 3e place précède la finale sur deux créneaux
+distincts. Le sous-menu est affiché directement sous la navigation principale.
