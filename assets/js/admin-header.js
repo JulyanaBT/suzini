@@ -77,13 +77,13 @@ const publicPages = {
     "../participants.html",
 
   tirage:
-    "../tirage.html?v=20261001-5",
+    "../tirage.html?v=20261002-1",
 
   programmation:
-    "../programmation.html?v=20261001-2",
+    "../programmation.html?v=20261002-1",
 
   classement:
-    "../classement.html?v=20261001-4",
+    "../classement.html?v=20261002-1",
 
   parametres:
     "../index.html?v=20261001-6",
@@ -535,7 +535,7 @@ headerTarget.innerHTML = `
 
 
         <a
-          href="tirage.html"
+          href="tirage.html?v=20261002-1"
           data-nav="tirage"
         >
 
@@ -551,7 +551,7 @@ headerTarget.innerHTML = `
 
 
         <a
-          href="programmation.html"
+          href="programmation.html?v=20261002-1"
           data-nav="programmation"
         >
 
@@ -567,7 +567,7 @@ headerTarget.innerHTML = `
 
 
         <a
-          href="classement.html?v=20261001-4"
+          href="classement.html?v=20261002-1"
           data-nav="classement"
         >
 

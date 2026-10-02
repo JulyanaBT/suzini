@@ -1,7 +1,9 @@
+import {displayDraw} from './team-display.mjs?v=20261002-1';
 import {EVENT_ID,valid} from './draw-core.mjs?v=20260930-3';
 import {replayFrames} from './draw-replay-core.mjs?v=20261001-5';
 const $=id=>document.getElementById(id);
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let rawDraw=null,currentTeams=[];
 let saved=null,revision=0,ready=false,online=false,running=false,timer=null,run=0;
 let shown=Array(8).fill(null);
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
@@ -64,13 +66,19 @@ $('replayStop').onclick=()=>restore('Tirage validé · Tableau complet');
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)restore();});
 window.addEventListener('pagehide',()=>{if(running)restore();});
 async function boot(){
-  const [{db},{doc,onSnapshot}]=await Promise.all([import('./firebase.js'),import('https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js')]);
+  const [{db},{doc,collection,onSnapshot}]=await Promise.all([import('./firebase.js'),import('https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js')]);
+  onSnapshot(collection(db,'events',EVENT_ID,'teams'),{includeMetadataChanges:true},snapshot=>{
+    if(snapshot.metadata.hasPendingWrites)return;
+    currentTeams=snapshot.docs.map(s=>({...s.data(),id:s.id}));
+    const updated=displayDraw(rawDraw,currentTeams);
+    if(JSON.stringify(updated?.teams)!==JSON.stringify(saved?.teams)){saved=updated;restore();}
+  },()=>status('Impossible d’actualiser les noms des équipes. Recharge la page.',true));
   onSnapshot(doc(db,'events',EVENT_ID,'config','draw'),{includeMetadataChanges:true},snapshot=>{
     if(snapshot.metadata.hasPendingWrites)return;
     const data=snapshot.exists()?snapshot.data():{draw:null,revision:0};
     if(!Number.isInteger(data.revision)||data.revision<0||(data.draw!==null&&!valid(data.draw))){ready=false;restore();status('Le tableau enregistré est invalide.',true);return;}
-    const changed=revision!==data.revision||JSON.stringify(saved?.slots)!==JSON.stringify(data.draw?.slots)||JSON.stringify(saved?.teams)!==JSON.stringify(data.draw?.teams);
-    saved=data.draw;revision=data.revision;ready=true;online=!snapshot.metadata.fromCache;
+    const changed=revision!==data.revision||JSON.stringify(saved?.slots)!==JSON.stringify(data.draw?.slots)||JSON.stringify(saved?.teams)!==JSON.stringify(displayDraw(data.draw,currentTeams)?.teams);
+    rawDraw=data.draw;saved=displayDraw(rawDraw,currentTeams);revision=data.revision;ready=true;online=!snapshot.metadata.fromCache;
     if(running&&!changed&&online)return;
     restore(running&&changed?'Le tirage a été actualisé · voici le tableau enregistré.':undefined);
   },()=>{ready=false;restore();status('Impossible d’actualiser le tirage. Recharge la page une fois connecté.',true);});

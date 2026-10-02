@@ -1,3 +1,4 @@
+import {displayDraw} from './team-display.mjs?v=20261002-1';
 import { validatePlanning, moveLabel } from './planning-core.mjs?v=20261001-2';
 import { scoreDocument } from './score-values.mjs?v=20261001-2';
 import { schedule, time, DURATION, drawKey } from './schedule-core.mjs?v=20261001-2';
@@ -8,6 +9,7 @@ const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const admin = document.body.dataset.admin === 'true';
 let displayedMatches = [];
+let rawDraw=null,currentTeams=[];
 let currentDraw = null, drawRevision = 0, resultsDocument = null;
 let drawReady = false, resultsReady = false, drawConnected = false, resultsConnected = false;
 let controller = null, planningController=null;
@@ -117,7 +119,7 @@ async function boot(){
   selectTab(location.hash.slice(1),false);render(null);
   const observer=new ResizeObserver(drawConnections);
   for(const id of ['mainTree','classificationTree'])if($(id))observer.observe($(id));
-  const [{db},{doc,onSnapshot}]=await Promise.all([import('./firebase.js'),import('https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js')]);
+  const [{db},{doc,collection,onSnapshot}]=await Promise.all([import('./firebase.js'),import('https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js')]);
   const drawRef=doc(db,'events',EVENT_ID,'config','draw');
   const resultsRef=doc(db,'events',EVENT_ID,'config','results');
   const planningRef=doc(db,'events',EVENT_ID,'config','programming');
@@ -127,6 +129,10 @@ async function boot(){
     const {createScoring}=await import('./scoring-admin.js?v=20261001-3');
     controller=createScoring({db,drawRef,resultsRef,getContext:()=>({draw:currentDraw,drawRevision,positions:planningPositions,document:resultsDocument,ready:planningReady&&drawReady&&resultsReady&&drawConnected&&resultsConnected}),onUpdate:refresh,onSaved:saved=>{if(saved.drawKey===drawKey(currentDraw,drawRevision)&&(resultsDocument?.revision||0)<=saved.revision){resultsDocument=saved;refresh();}}});
   }
+  onSnapshot(collection(db,'events',EVENT_ID,'teams'),{includeMetadataChanges:true},snapshot=>{
+    if(snapshot.metadata.hasPendingWrites)return;
+    currentTeams=snapshot.docs.map(s=>({...s.data(),id:s.id}));currentDraw=displayDraw(rawDraw,currentTeams);refresh();
+  },()=>{notify('Les noms des équipes ne peuvent pas être actualisés. Recharge la page.',true);});
   onSnapshot(planningRef,{includeMetadataChanges:true},snapshot=>{
     if(snapshot.metadata.hasPendingWrites)return;
     try{
@@ -141,7 +147,7 @@ async function boot(){
     if((data.draw!==null&&!valid(data.draw))||!Number.isInteger(data.revision)){
       drawReady=false;currentDraw=null;render(null);notify('Le tirage enregistré est invalide.',true);return;
     }
-    currentDraw=data.draw;drawRevision=data.revision;drawReady=true;drawConnected=!snapshot.metadata.fromCache;refresh();
+    rawDraw=data.draw;currentDraw=displayDraw(rawDraw,currentTeams);drawRevision=data.revision;drawReady=true;drawConnected=!snapshot.metadata.fromCache;refresh();
   },()=>{drawReady=false;render(currentDraw);notify('Impossible d’actualiser le tirage. Recharge la page une fois connecté.',true);});
   onSnapshot(resultsRef,{includeMetadataChanges:true},snapshot=>{
     if(snapshot.metadata.hasPendingWrites)return;

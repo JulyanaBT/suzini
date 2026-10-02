@@ -22,10 +22,10 @@ const currentPage =
 
 const navItems = [
   {page: "accueil", label: "🏠 Accueil", href: "index.html?v=20261001-6"},
-  {page: "programmation", label: "🎾 Matchs", href: "programmation.html?v=20261001-3"},
+  {page: "programmation", label: "🎾 Matchs", href: "programmation.html?v=20261002-1"},
   {page: "participants", label: "👥 Équipes", href: "participants.html"},
-  {page: "tirage", label: "🎲 Tirage", href: "tirage.html?v=20261001-5"},
-  {page: "classement", label: "🏆 Classement", href: "classement.html?v=20261001-4"},
+  {page: "tirage", label: "🎲 Tirage", href: "tirage.html?v=20261002-1"},
+  {page: "classement", label: "🏆 Classement", href: "classement.html?v=20261002-1"},
   {page: "infos", label: "ℹ️ Infos", href: "infos.html"}
 ];
 
@@ -49,13 +49,13 @@ const adminPages = {
     "admin/participants.html",
 
   programmation:
-    "admin/programmation.html",
+    "admin/programmation.html?v=20261002-1",
 
   classement:
-    "admin/classement.html",
+    "admin/classement.html?v=20261002-1",
 
   tirage:
-    "admin/tirage.html",
+    "admin/tirage.html?v=20261002-1",
 
   infos:
     "admin/index.html"

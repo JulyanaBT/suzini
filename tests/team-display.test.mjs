@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {start} from '../assets/js/draw-core.mjs';
+import {drawKey,schedule} from '../assets/js/schedule-core.mjs';
+import {displayDraw} from '../assets/js/team-display.mjs';
+const teams=Array.from({length:8},(_,i)=>({id:String(i),teamName:`Team ${i}`,man:{prenom:'Thomas',nom:'Lacombe',rank:10},woman:{prenom:'Mekki',rank:20}}));
+const draw=start(teams,'0','1');draw.slots=['1','2','3','4','5','6','7','0'];
+const before=JSON.stringify(draw),key=drawKey(draw,8);
+const updated=displayDraw(draw,[{...teams[1],teamName:'Mekki & Christo',man:{prenom:'Christopher',nom:'Tabourin',rank:447}}]);
+assert.equal(updated.teams[1].name,'Mekki & Christo');assert.equal(updated.teams[1].players[1],'Christopher T.');
+assert.equal(updated.teams[1].rank,draw.teams[1].rank);
+assert.deepEqual(updated.slots,draw.slots);assert.equal(drawKey(updated,8),key);assert.equal(JSON.stringify(draw),before);
+const result={QF1:{team1Id:'1',team2Id:'2',winnerId:'1',sets:[[4,0],[4,0]],score:'4–0, 4–0'}};
+assert.equal(schedule(updated,result).find(m=>m.id==='DF1').participants[0].name,'Mekki & Christo');
+assert.equal(schedule(updated,result)[0].result.winnerId,'1');
+assert.deepEqual(displayDraw(draw,[]),draw);assert.equal(displayDraw(null,teams),null);
+console.log('PASS: noms actualisés, rang/têtes de série/slots/révision inchangés, résultats et qualifications préservés.');

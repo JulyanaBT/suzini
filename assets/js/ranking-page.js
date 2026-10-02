@@ -1,7 +1,9 @@
+import {displayDraw} from './team-display.mjs?v=20261002-1';
 import {ranking} from './ranking-core.mjs?v=20261001-4';
 import {EVENT_ID,valid} from './draw-core.mjs?v=20260930-3';
 const $=id=>document.getElementById(id);
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let rawDraw=null,currentTeams=[];
 let draw=null,revision=0,results=null,drawReady=false,resultsReady=false,drawOnline=false,resultsOnline=false;
 function render(){
   if(!$('rankingRows'))return;
@@ -17,12 +19,16 @@ async function boot(){
   if(document.body.dataset.admin==='true'){
     const {requireAdmin}=await import('./admin-session.js');if(!requireAdmin())return;
   }
-  const [{db},{doc,onSnapshot}]=await Promise.all([import('./firebase.js'),import('https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js')]);
+  const [{db},{doc,collection,onSnapshot}]=await Promise.all([import('./firebase.js'),import('https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js')]);
+  onSnapshot(collection(db,'events',EVENT_ID,'teams'),{includeMetadataChanges:true},snapshot=>{
+    if(snapshot.metadata.hasPendingWrites)return;
+    currentTeams=snapshot.docs.map(s=>({...s.data(),id:s.id}));draw=displayDraw(rawDraw,currentTeams);render();
+  },()=>error('Impossible d’actualiser les noms des équipes. Recharge la page.'));
   onSnapshot(doc(db,'events',EVENT_ID,'config','draw'),{includeMetadataChanges:true},snapshot=>{
     if(snapshot.metadata.hasPendingWrites)return;
     const data=snapshot.exists()?snapshot.data():{draw:null,revision:0};
     if((data.draw!==null&&!valid(data.draw))||!Number.isInteger(data.revision)){drawReady=false;error('Le tirage enregistré est invalide.');return;}
-    draw=data.draw;revision=data.revision;drawReady=true;drawOnline=!snapshot.metadata.fromCache;render();
+    rawDraw=data.draw;draw=displayDraw(rawDraw,currentTeams);revision=data.revision;drawReady=true;drawOnline=!snapshot.metadata.fromCache;render();
   },()=>{drawReady=false;error('Impossible de charger le tirage. Recharge la page une fois connecté.');});
   onSnapshot(doc(db,'events',EVENT_ID,'config','results'),{includeMetadataChanges:true},snapshot=>{
     if(snapshot.metadata.hasPendingWrites)return;

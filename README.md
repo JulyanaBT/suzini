@@ -216,3 +216,17 @@ Navigation publique : Accueil, Matchs, Équipes, Tirage, Classement, Infos.
 Les inscriptions restent accessibles à l’organisation depuis sa navigation admin.
 Vérifié sur mobile : ordre de navigation, absence des inscriptions, lien exact
 WhatsApp conservé et accès à la programmation chronologique.
+
+### Mise à jour des noms après le tirage
+
+La programmation (public/admin), le classement (public/admin) et le tirage public
+écoutent désormais la collection `teams`. Les noms d’équipes et de joueurs sont
+actualisés par identifiant, sans modifier le document du tirage, ses slots,
+ses têtes de série, ses rangs initiaux ni sa révision. Les scores restent liés
+aux mêmes identifiants. Une équipe absente de la collection conserve son libellé
+historique. Un changement de libellé interrompt un replay pour afficher la version
+actuelle. La validation du tirage admin reste inchangée.
+
+`node tests/team-display.test.mjs` vérifie le remplacement Thomas/Christopher,
+la conservation du tirage et des résultats et la propagation du nouveau nom
+vers le tour suivant.
